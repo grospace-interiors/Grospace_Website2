@@ -1,0 +1,624 @@
+# Grospace Interiors — Website Structure, Routes & Content Plan
+
+## First Impression Review
+
+Your website already has:
+
+* Premium modern look
+* Good luxury interior aesthetic
+* Strong black + white + soft red branding
+* Clean package flow
+* Nice calculator concept
+* Good CTA placements
+
+But currently it still feels:
+
+* Incomplete in content depth
+* Slightly template-like in some sections
+* Missing trust-building storytelling
+* Weak route hierarchy
+* Missing SEO structure
+* Some pages feel disconnected
+* Not enough emotional copywriting
+
+The biggest opportunity:
+You are not just selling furniture.
+You are selling:
+
+* Stress-free home setup
+* Complete home transformation
+* Budget clarity
+* Modular customization
+* Trust
+* Execution support
+
+The website should feel like:
+"A modern interior company that makes furnishing simple for middle + upper-middle-class families in Bhopal."
+
+---
+
+# Recommended Final Website Routes
+
+## MAIN ROUTES
+
+### /
+
+Homepage
+
+### /about
+
+About Grospace Interiors
+
+### /packages
+
+Interior Packages Overview
+
+### /packages/1bhk
+
+1BHK Packages
+
+### /packages/2bhk
+
+2BHK Packages
+
+### /packages/3bhk
+
+3BHK Packages
+
+### /modular-kitchen
+
+Modular Kitchen Services
+
+### /wardrobes
+
+Wardrobe Designs
+
+### /home-renovation
+
+Home Renovation Services
+
+### /full-home-interiors
+
+Complete Interior Solutions
+
+### /calculator
+
+Interior Price Calculator
+
+### /portfolio
+
+Project Portfolio
+
+### /portfolio/modular-kitchen
+
+Kitchen Projects
+
+### /portfolio/wardrobes
+
+Wardrobe Projects
+
+### /portfolio/full-home
+
+Full Home Projects
+
+### /testimonials
+
+Customer Reviews
+
+### /contact
+
+Contact Page
+
+### /book-consultation
+
+Book Free Consultation
+
+### /privacy-policy
+
+Privacy Policy
+
+### /terms
+
+Terms & Conditions
+
+---
+
+# Recommended Navbar Structure
+
+## Navbar
+
+Home
+Services
+Packages
+Calculator
+Portfolio
+About
+Contact
+
+CTA Button:
+"Get Free Quote"
+
+---
+
+# Recommended Homepage Structure
+
+## SECTION 1 — HERO SECTION
+
+### Heading
+
+Design Homes That Feel Premium, Practical & Personal
+
+### Subheading
+
+Complete interior solutions for modern homes in Bhopal — modular kitchens, wardrobes, furniture and full home interiors with transparent pricing.
+
+### CTA Buttons
+
+[ Get Free Consultation ]
+[ View Packages ]
+
+### Small Trust Line
+
+100+ Designs | Custom Solutions | On-Time Delivery
+
+---
+
+## SECTION 2 — TRUST STRIP
+
+### Small Stats
+
+100+
+Design Concepts
+
+25+
+Material Options
+
+Affordable
+Package Plans
+
+End-to-End
+Execution Support
+
+---
+
+## SECTION 3 — WHY GROSPACE
+
+### Heading
+
+Why Homeowners Choose Grospace Interiors
+
+### Cards
+
+#### Transparent Pricing
+
+Know what you are paying for with clearly structured packages.
+
+#### Customized Designs
+
+Every home is designed according to your lifestyle and space.
+
+#### Complete Execution
+
+From design to installation — we manage everything.
+
+#### Modern Materials
+
+Premium plywood, laminates and hardware built for durability.
+
+#### Local Support
+
+Easy site visits and support across Bhopal.
+
+#### Space Optimization
+
+Smart storage solutions for modern homes.
+
+---
+
+## SECTION 4 — SERVICES
+
+### Heading
+
+Interior Services We Offer
+
+### Service Cards
+
+* Modular Kitchens
+* Wardrobes
+* TV Units
+* Full Home Interiors
+* Home Renovation
+* False Ceiling
+* Storage Solutions
+* Furniture Design
+
+Each card should have:
+
+* Image
+* 2-line description
+* "Explore More" button
+
+---
+
+## SECTION 5 — PACKAGE PREVIEW
+
+### Heading
+
+Interior Packages for Every Budget
+
+### Subheading
+
+Flexible furnishing plans designed for 1BHK, 2BHK and 3BHK homes.
+
+### Package Cards
+
+#### Essential Package
+
+Affordable and functional interiors for modern living.
+
+#### Comfort Package
+
+Balanced aesthetics with upgraded finishes and storage.
+
+#### Premium Package
+
+Luxury materials, designer finishes and customized detailing.
+
+CTA:
+[ Compare Packages ]
+
+---
+
+## SECTION 6 — PROCESS SECTION
+
+### Heading
+
+How Your Interior Journey Works
+
+### Steps
+
+1. Consultation
+   Understand your requirements and budget.
+
+2. Design Planning
+   Layout planning, style discussion and material selection.
+
+3. Quotation & Approval
+   Transparent pricing with detailed scope.
+
+4. Production & Installation
+   Execution handled by our expert team.
+
+5. Final Handover
+   Beautiful finished interiors ready to move in.
+
+---
+
+## SECTION 7 — PORTFOLIO PREVIEW
+
+### Heading
+
+Homes We Have Designed
+
+Add:
+
+* Kitchen projects
+* Wardrobes
+* Bedroom interiors
+* TV units
+* Full homes
+
+Use:
+
+* Before/after if possible
+* Real client projects
+* Category filters
+
+CTA:
+[ View Portfolio ]
+
+---
+
+## SECTION 8 — TESTIMONIALS
+
+### Heading
+
+What Our Clients Say
+
+Use real reviews with:
+
+* Name
+* Area/location
+* Project type
+* Small photo if available
+
+Example:
+"Grospace helped us complete our 2BHK interiors within budget while maintaining a premium finish."
+
+---
+
+## SECTION 9 — FINAL CTA
+
+### Heading
+
+Ready To Transform Your Home?
+
+### Subheading
+
+Book a free consultation and get personalized interior solutions for your space.
+
+Buttons:
+[ Get Free Quote ]
+[ WhatsApp Us ]
+
+---
+
+# About Page Structure
+
+## Hero
+
+Creating Modern Homes With Smart Design & Practical Living
+
+## Story
+
+Grospace Interiors was created to make home interiors simpler, more transparent and more accessible for modern families.
+
+We combine functionality, aesthetics and durable materials to create spaces that feel comfortable, elegant and personalized.
+
+## Mission
+
+To deliver affordable premium interiors with transparency and trust.
+
+## Vision
+
+To become one of the most trusted interior brands in Central India.
+
+## Why Us
+
+* Practical designs
+* Budget flexibility
+* Local expertise
+* Quality materials
+* Personalized consultation
+
+---
+
+# Calculator Page Improvements
+
+This section is your strongest conversion tool.
+
+Current issue:
+It feels like a form.
+
+It should feel like:
+"Interactive home planning experience"
+
+## Add Intro Section
+
+### Heading
+
+Estimate Your Interior Budget Instantly
+
+### Text
+
+Answer a few quick questions and get an estimated interior cost based on your preferences, home size and materials.
+
+---
+
+## Add Progress Indicator
+
+Step 1 of 10
+
+---
+
+## Add Sticky Mobile Summary
+
+Selected Package
+Estimated Budget
+Chosen Materials
+
+---
+
+## Add Final CTA
+
+### Heading
+
+Your Personalized Estimate Is Ready
+
+### Buttons
+
+[ Download Estimate ]
+[ Talk To Designer ]
+[ WhatsApp Consultation ]
+
+---
+
+# Package Page Suggestions
+
+Each package page should include:
+
+## Hero Section
+
+### Example Heading
+
+Affordable 2BHK Interior Packages in Bhopal
+
+### Subheading
+
+Complete furnishing solutions with modular kitchens, wardrobes and storage designed for modern homes.
+
+---
+
+## Package Comparison Table
+
+Include:
+
+* Materials
+* Kitchen size
+* Wardrobe options
+* Hardware
+* Finishes
+* Warranty
+* Timeline
+
+---
+
+## Add Real Images
+
+Use:
+
+* Actual work
+* Real laminate textures
+* Wardrobe styles
+* Kitchen layouts
+
+Avoid too much stock imagery.
+
+---
+
+# Missing Important Sections
+
+## Add These
+
+### FAQs
+
+Very important for SEO.
+
+Examples:
+
+* How much does full home interior cost in Bhopal?
+* What materials do you use?
+* How long does interior work take?
+* Do you provide customized furniture?
+* Do you offer site visits?
+
+---
+
+## Add WhatsApp Floating CTA
+
+Text:
+"Need Interior Help?"
+
+---
+
+## Add Sticky CTA On Mobile
+
+[ Call ] [ WhatsApp ] [ Get Quote ]
+
+---
+
+## Add Location SEO Section
+
+### Example
+
+Interior Designers in Bhopal
+
+Grospace Interiors offers modular kitchens, wardrobes, complete home interiors and renovation services across Bhopal.
+
+Areas Served:
+
+* Arera Colony
+* Kolar
+* Katara Hills
+* MP Nagar
+* Hoshangabad Road
+* Bawadia Kalan
+* Danish Nagar
+
+---
+
+# Important Technical Suggestions
+
+## Add Proper Route Hierarchy
+
+Do NOT use random page names.
+
+Keep URLs clean:
+
+GOOD:
+/packages/2bhk
+
+BAD:
+/page-2-final-new
+
+---
+
+## Add SEO Metadata
+
+Every page should have:
+
+* Unique title
+* Meta description
+* Open Graph image
+* Proper H1 heading
+
+---
+
+## Add Schema Markup
+
+Use:
+
+* LocalBusiness schema
+* FAQ schema
+* Review schema
+
+---
+
+# Recommended Brand Tone
+
+Not:
+
+* Overluxury
+* Fancy corporate
+* Cheap furniture shop
+
+Instead:
+Modern + Trustworthy + Practical + Premium
+
+---
+
+# Homepage SEO Title Example
+
+Grospace Interiors | Modular Kitchen & Home Interior Designers in Bhopal
+
+# Meta Description Example
+
+Grospace Interiors provides modular kitchens, wardrobes, full home interiors and renovation services in Bhopal with transparent pricing and customized solutions.
+
+---
+
+# Priority Tasks You Should Complete Next
+
+## HIGH PRIORITY
+
+1. Finish homepage copy
+2. Create proper packages pages
+3. Add portfolio images
+4. Complete calculator flow
+5. Add WhatsApp integration
+6. Add testimonials
+7. Add SEO metadata
+8. Improve mobile responsiveness
+
+## MEDIUM PRIORITY
+
+1. Add blog section
+2. Add downloadable brochure
+3. Add comparison tables
+4. Add lead tracking
+5. Add analytics
+
+---
+
+# Overall Website Rating (Current)
+
+Visual Design: 8/10
+Branding: 8/10
+Structure: 6/10
+Content Quality: 5/10
+Conversion Flow: 6.5/10
+Trust Building: 5/10
+Mobile Strategy: 6/10
+SEO Structure: 4/10
+
+Potential After Improvements: 9/10

@@ -1,0 +1,19 @@
+# Future Updates for Grospace Website
+
+This file lists features and improvements to be implemented in future iterations of the website, post-launch.
+
+## 1. Portfolio / Projects Section Enhancements
+- Implement filters for projects (e.g., 2BHK / 3BHK / Bedroom / Kitchen).
+- Add a lightbox gallery feature for project images.
+- Create individual project pages for detailed viewing.
+
+## 2. Testimonials
+- Implement video testimonials.
+- Integrate testimonials with a database flow.
+
+## 3. Database & CRM Integrations
+- Implement `site_visits` table for tracking site visit details.
+- Develop functionality to auto-create WhatsApp follow-ups based on enquiry status.
+- Build a CRM dashboard for managing enquiries and customers.
+- Implement tracking for enquiry to conversion percentages.
+- Set up systems to run ads and measure their ROI effectively.

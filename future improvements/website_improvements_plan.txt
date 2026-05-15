@@ -1,0 +1,21 @@
+# Website Improvement Plan
+
+This plan is based on the feedback and analysis provided for the Grospace website. We will address these points one by one, starting with the "MUST-HAVE" items.
+
+## MUST-HAVE
+
+1.  **Implement WhatsApp chat feature.**
+2.  **Implement a call button.**
+3.  **Implement a "Book Free Site Visit" form.**
+4.  **Implement a testimonials section.**
+5.  **Add real execution photos.**
+6.  **Explain the process (how work happens).**
+7.  **Ensure easy navigation and page structure (review "Projects", "Contact", "About" accessibility).**
+8.  **Create or enhance a contact page/section.**
+9.  **Add a floating WhatsApp button.**
+10. **Add click-to-call functionality on mobile.**
+
+## IMPORTANT
+
+11. **Implement simple project pages or galleries.**
+12. **Optimize site performance (loading speed, images, videos).**

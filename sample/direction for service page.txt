@@ -1,0 +1,302 @@
+Upgrade the Grospace Interiors service pages into premium modern interior experience pages while maintaining a clean, elegant and conversion-focused design.
+
+SERVICES:
+Create/refine separate premium pages for:
+
+* Full Home Interiors
+* Modular Kitchen
+* Wardrobes
+* Home Renovation
+
+Each page already has a basic structure. The goal is to significantly improve storytelling, technical depth, trust-building, material explanation and overall premium experience.
+
+IMPORTANT DESIGN DIRECTION:
+The experience should feel like a modern premium architecture/interior studio website — elegant, restrained and highly polished — not an over-animated luxury template.
+
+BRAND STYLE:
+
+* Affordable premium interiors
+* Modern architecture studio aesthetic
+* White + dark purple + pink accent (#ee6669)
+* Minimal but rich
+* Editorial luxury layouts
+* Large spacing and breathing room
+* Sophisticated typography hierarchy
+* Smooth subtle animations only
+* Calm cinematic feel
+* Premium but practical
+
+TECH STACK:
+
+* Next.js App Router
+* React
+* Tailwind CSS
+* Framer Motion
+* ShadCN UI
+* Lucide Icons
+
+GLOBAL ENHANCEMENTS FOR ALL SERVICE PAGES:
+
+1. PREMIUM HERO SECTION
+   Create elegant service hero sections with:
+
+* Large emotional heading
+* Service-focused subheading
+* High-quality realistic interior imagery
+* Primary CTA:
+  “Book Free Consultation”
+* Secondary CTA:
+  “Estimate Budget”
+* Trust badges:
+
+  * Transparent Pricing
+  * Premium Materials
+  * End-to-End Execution
+
+Add subtle fade-up animations and premium spacing.
+
+2. WHAT THIS SERVICE INCLUDES
+   Create a modern explanatory section for each service.
+
+Examples:
+
+FULL HOME INTERIORS:
+
+* Modular Kitchen
+* Wardrobes
+* TV Units
+* False Ceiling
+* Crockery Units
+* Storage Solutions
+* Bedroom Interiors
+
+MODULAR KITCHEN:
+
+* Base Units
+* Wall Cabinets
+* Tall Units
+* Pantry Storage
+* Countertops
+* Hardware Systems
+
+WARDROBES:
+
+* Sliding Wardrobes
+* Hinged Wardrobes
+* Loft Storage
+* Internal Accessories
+* Glass Shutters
+* Soft Close Systems
+
+RENOVATION:
+
+* Civil Work
+* Electrical
+* Plumbing
+* False Ceiling
+* Painting
+* Flooring
+* Space Remodeling
+
+Design:
+
+* Elegant responsive cards
+* Minimal icons
+* Soft hover effects
+* Clean layout
+* Glassmorphism only lightly if needed
+
+3. HOW IT WORKS SECTION
+   Add a premium process timeline explaining the complete journey.
+
+Steps:
+
+1. Consultation & Requirement Discussion
+2. Site Visit & Measurements
+3. Design & Layout Planning
+4. Material Selection
+5. Final Quotation & Approval
+6. Manufacturing & Execution
+7. Installation & Finishing
+8. Final Handover
+
+Requirements:
+
+* Elegant timeline UI
+* Scroll reveal animations
+* Step numbers
+* Small descriptions
+* Premium spacing
+* Subtle progress animations
+
+4. MATERIALS & TECHNICAL QUALITY SECTION
+   Create a premium material explanation section.
+
+Explain:
+
+* HDHMR
+* BWP Plywood
+* Marine Ply
+* MDF
+* Acrylic Finish
+* PU Finish
+* Laminates
+* Toughened Glass
+
+Add hardware brands:
+
+* Hettich
+* Hafele
+* Blum
+* Ebco
+
+Add trust labels:
+
+* Water Resistant
+* Scratch Resistant
+* Termite Resistant
+* Soft Close Hardware
+
+IMPORTANT:
+This section should educate users and build trust, not feel too technical or cluttered.
+
+Use:
+
+* material texture cards
+* elegant grid layout
+* subtle hover animations
+* premium shadows
+
+5. TECHNICAL CHALLENGES & SOLUTIONS SECTION
+   Create a premium section explaining common interior challenges and how Grospace solves them.
+
+Examples:
+
+* Space optimization
+* Electrical planning
+* Ventilation considerations
+* Storage efficiency
+* Moisture protection
+* Kitchen workflow planning
+* Material durability
+* Installation precision
+
+Layout:
+Left:
+Challenge
+
+Right:
+Grospace Solution
+
+This section should build expertise and authority.
+
+6. WHY CHOOSE GROSPACE SECTION
+   Create a premium comparison section.
+
+LEFT:
+Traditional Problems
+
+* Delayed timelines
+* Inconsistent finishing
+* Budget uncertainty
+* Site mess
+* Manual dependency
+
+RIGHT:
+Grospace Advantages
+
+* Factory precision
+* Structured execution
+* Transparent pricing
+* Faster installation
+* Professional project management
+
+Add trust badges:
+
+* Lifetime Warranty*
+* Dedicated Project Manager
+* Modern Manufacturing
+* Transparent Pricing
+
+7. PROJECT SHOWCASE SECTION
+   Add premium project gallery section.
+
+Include:
+
+* Large modern image cards
+* Hover zoom effect
+* Elegant overlays
+* Before/after preview option
+* Modern masonry layout
+* Premium spacing
+
+IMPORTANT:
+Use realistic warm interior visuals — not overly CGI luxury renders.
+
+8. TESTIMONIALS SECTION
+   Create elegant client review section.
+
+Include:
+
+* Client image
+* Project type
+* Star ratings
+* Smooth subtle carousel
+* Premium typography
+* Clean card design
+
+9. FAQ SECTION
+   Create modern accordion FAQ section.
+
+Examples:
+
+* How long does the project take?
+* Which materials are best?
+* Do you provide customization?
+* Is warranty included?
+* How is pricing calculated?
+* What is included in execution?
+
+10. FINAL CTA SECTION
+    Create a luxury minimal closing section.
+
+Heading:
+“Let’s Design A Space That Reflects Your Lifestyle”
+
+Subtext:
+Book a free consultation with Grospace Interiors and explore premium interior solutions tailored for your home.
+
+Buttons:
+
+* Book Free Consultation
+* View Packages
+* WhatsApp Us
+
+Design:
+
+* Dark premium background
+* Soft spotlight gradients
+* Elegant button interactions
+* Minimal cinematic feel
+
+ADDITIONAL UI IMPROVEMENTS:
+
+* Sticky consultation button
+* Smooth scrolling experience
+* Scroll progress indicator
+* Animated counters
+* Premium section separators
+* Responsive layouts
+* SEO-friendly semantic structure
+* Clean mobile optimization
+* Large breathing room between sections
+
+IMPORTANT:
+
+* Maintain premium minimalism
+* Avoid excessive animations
+* Avoid clutter
+* Focus on elegance, spacing and trust
+* Prioritize realism and sophistication
+* The pages should feel like a high-end modern interior studio website
+* Keep everything production-ready and responsive

@@ -1,0 +1,308 @@
+Transform the Grospace Interiors Projects page into a premium editorial-style portfolio experience while maintaining clean minimal luxury aesthetics.
+
+IMPORTANT DESIGN DIRECTION:
+The page should feel like a modern architecture/interior studio portfolio — elegant, spacious, visual-first and highly polished.
+
+Current page feels too empty and grid-based.
+Improve:
+
+* storytelling
+* project presentation
+* visual hierarchy
+* luxury interactions
+* trust-building
+* premium spacing
+
+Avoid:
+
+* clutter
+* excessive animations
+* template-style portfolio layouts
+
+BRAND STYLE:
+
+* White + dark purple + pink accent (#ee6669)
+* Editorial luxury layouts
+* Sophisticated typography
+* Large breathing room
+* Minimal but rich
+* Architecture studio aesthetic
+* Realistic warm interiors
+* Smooth cinematic feel
+
+TECH STACK:
+
+* Next.js
+* React
+* Tailwind CSS
+* Framer Motion
+* ShadCN UI
+* Lucide Icons
+
+---
+
+1. PREMIUM HERO SECTION
+
+---
+
+Upgrade the top section into a luxury editorial hero.
+
+Add:
+
+* Large elegant heading
+* Refined typography hierarchy
+* Premium subheading
+* Better spacing
+* Soft background gradients
+* Subtle motion effects
+
+Example heading:
+“Spaces Designed Around Modern Living”
+
+Subheading:
+Explore thoughtfully crafted interiors designed for comfort, functionality and timeless aesthetics.
+
+Add:
+
+* Animated fade-up entrance
+* Small trust badges:
+
+  * Premium Materials
+  * Transparent Execution
+  * End-to-End Interiors
+
+---
+
+2. FEATURED PROJECT SECTION
+
+---
+
+Add a premium featured project section above the main grid.
+
+Layout:
+
+* Large cinematic project image
+* Editorial text layout beside image
+* Project details:
+
+  * Location
+  * Home Type
+  * Style
+  * Timeline
+
+Add CTA:
+“View Full Project”
+
+Use:
+
+* asymmetrical luxury layout
+* subtle image zoom
+* elegant hover interactions
+
+---
+
+3. PREMIUM PROJECT GRID
+
+---
+
+Redesign the current plain grid into a modern luxury gallery.
+
+Requirements:
+
+* Masonry or editorial grid layout
+* Different image sizes for visual rhythm
+* Rounded corners
+* Soft shadows
+* Smooth hover elevation
+* Subtle zoom effect on hover
+* Elegant overlays
+
+On hover show:
+
+* Project Name
+* Style Type
+* BHK Type
+* View Project CTA
+
+Avoid:
+
+* harsh dark overlays
+* excessive animations
+
+---
+
+4. PROJECT FILTERS
+
+---
+
+Add clean premium category filters.
+
+Filters:
+
+* All Projects
+* Full Home
+* Kitchen
+* Wardrobes
+* Renovation
+* Luxury Interiors
+
+Style:
+
+* Minimal pills/tabs
+* Smooth active transitions
+* Elegant selected state
+
+---
+
+5. BEFORE & AFTER SECTION
+
+---
+
+Add a premium transformation showcase section.
+
+Heading:
+“From Empty Spaces To Thoughtful Homes”
+
+Include:
+
+* Before/After slider cards
+* Smooth image transition
+* Minimal UI controls
+* Elegant captions
+
+Focus on:
+
+* trust
+* transformation
+* craftsmanship
+
+---
+
+6. PROJECT DETAILS PREVIEW
+
+---
+
+Each project card should preview:
+
+* Area Size
+* Budget Range
+* Timeline
+* Material Highlights
+
+Keep layout minimal and clean.
+
+---
+
+7. CLIENT TESTIMONIAL STRIP
+
+---
+
+Add a clean testimonial section between project grids.
+
+Include:
+
+* Client photo
+* Short review
+* Project type
+* Star rating
+
+Design:
+
+* Minimal luxury cards
+* Soft shadows
+* Elegant typography
+
+---
+
+8. TRUST & EXECUTION SECTION
+
+---
+
+Add a premium trust-building section.
+
+Include:
+
+* Factory Finished
+* Premium Hardware
+* Dedicated Project Manager
+* Transparent Pricing
+* Professional Installation
+
+Mention:
+
+* Hettich
+* Hafele
+* HDHMR
+* BWP Plywood
+
+Use:
+
+* clean icon cards
+* dark/light contrast section
+* elegant spacing
+
+---
+
+9. FINAL CTA SECTION
+
+---
+
+Create a premium closing section.
+
+Heading:
+“Ready To Design Your Dream Home?”
+
+Subtext:
+Book a free consultation with Grospace Interiors and explore premium interior solutions tailored for your lifestyle and budget.
+
+Buttons:
+
+* Book Free Consultation
+* View Packages
+* WhatsApp Us
+
+Design:
+
+* Dark luxury background
+* Spotlight gradient
+* Elegant button styling
+* Minimal cinematic feel
+
+---
+
+## ANIMATION STYLE
+
+Use Framer Motion only for:
+
+* fade-up reveals
+* stagger animations
+* subtle hover transitions
+* smooth image scaling
+* elegant section transitions
+
+Keep animations:
+
+* calm
+* cinematic
+* premium
+* restrained
+
+Avoid:
+
+* excessive glow
+* flashy motion
+* overdesigned effects
+
+---
+
+## IMPORTANT DESIGN RULES
+
+* Prioritize visuals and spacing
+* Make the page feel editorial
+* Use realistic interior photography
+* Focus on premium storytelling
+* Maintain minimal luxury aesthetics
+* Ensure responsive production-ready design
+* Make project browsing feel immersive and elegant
+
+The final result should feel like a premium architecture/interior studio portfolio website rather than a simple gallery grid.

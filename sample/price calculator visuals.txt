@@ -1,0 +1,204 @@
+Upgrade the Grospace Interiors price calculator page into a premium modern interior estimation experience while keeping the overall structure clean, minimal and easy to use.
+
+IMPORTANT:
+Focus mainly on:
+
+* visual improvements
+* interaction polish
+* premium UI feel
+* spacing
+* animations
+* trust-building
+
+Do NOT overcomplicate the calculator logic or add too many sections.
+
+The experience should feel like a premium architecture/interior studio tool — elegant, modern and highly polished.
+
+BRAND STYLE:
+
+* White + dark purple + pink accent (#ee6669)
+* Modern luxury minimalism
+* Clean architectural layouts
+* Elegant typography
+* Large breathing room
+* Smooth subtle animations
+* Premium but practical
+
+TECH STACK:
+
+* Next.js
+* React
+* Tailwind CSS
+* Framer Motion
+* ShadCN UI
+* Lucide Icons
+
+---
+
+## VISUAL IMPROVEMENTS
+
+1. PREMIUM HERO SECTION
+   Improve the calculator hero section with:
+
+* Large elegant heading
+* Clean luxury subheading
+* Soft gradient background
+* Floating blur accents
+* Premium spacing
+* Smooth fade-up animation
+
+Add trust badges:
+
+* Transparent Pricing
+* Premium Materials
+* End-to-End Execution
+
+---
+
+2. CALCULATOR UI POLISH
+   Improve the existing calculator cards and layout.
+
+Add:
+
+* better spacing
+* premium shadows
+* rounded corners
+* elegant active states
+* smooth hover transitions
+* subtle animations
+* modern card styling
+
+Use:
+
+* soft border glow
+* clean selected states
+* minimal glassmorphism only if needed
+
+Avoid:
+
+* excessive glow
+* flashy animations
+* dashboard complexity
+
+---
+
+3. LIVE ESTIMATE PANEL
+   Upgrade the estimate section visually.
+
+Add:
+
+* sticky desktop panel
+* smooth number transitions
+* elegant breakdown cards
+* premium glass-style background
+* clean typography hierarchy
+
+Make the pricing feel:
+
+* transparent
+* modern
+* trustworthy
+
+---
+
+4. HOW IT WORKS SECTION
+   Add a simple premium process section below calculator.
+
+Steps:
+
+1. Consultation
+2. Design & Material Selection
+3. Manufacturing & Execution
+4. Installation & Handover
+
+Design:
+
+* horizontal timeline/cards
+* elegant icons
+* subtle scroll reveal animation
+* minimal clean layout
+
+---
+
+5. TRUST & QUALITY SECTION
+   Add a clean trust-building section.
+
+Include:
+
+* Lifetime Warranty*
+* Premium Hardware
+* Factory Finished
+* Transparent Pricing
+
+Mention materials:
+
+* HDHMR
+* BWP Plywood
+* Soft Close Hardware
+
+Design:
+
+* premium icon cards
+* dark/light contrast section
+* elegant spacing
+
+---
+
+6. FINAL CONSULTATION CTA
+   Add a premium minimal closing section.
+
+Heading:
+“Get Your Personalized Interior Estimate”
+
+Subtext:
+Book a free consultation with Grospace Interiors and receive expert guidance tailored to your space and budget.
+
+Buttons:
+
+* Book Free Consultation
+* WhatsApp Us
+
+Design:
+
+* dark premium background
+* spotlight gradient
+* elegant button styling
+* smooth subtle animations
+
+---
+
+## ANIMATION STYLE
+
+Use Framer Motion only for:
+
+* fade-up reveals
+* smooth hover transitions
+* subtle scale animations
+* soft stagger animations
+
+Keep animations:
+
+* smooth
+* minimal
+* premium
+
+Avoid:
+
+* magnetic buttons
+* excessive parallax
+* cursor glow
+* flashy futuristic effects
+
+---
+
+## IMPORTANT DESIGN RULES
+
+* Maintain premium minimalism
+* Keep calculator simple and easy to use
+* Focus on visual refinement
+* Prioritize spacing and typography
+* Make pricing feel transparent and trustworthy
+* Use realistic luxury interior visuals
+* Keep everything responsive and production ready
+
+The final experience should feel elegant, modern and premium — not overdesigned.

@@ -1,0 +1,57 @@
+# Grospace Interiors Website Transformation Roadmap (Livspace-Inspired)
+
+This document outlines the pointers for transforming the Grospace Interiors website into a high-converting platform with a separate Main Page and a Performance Landing Page.
+
+## 1. Structural Separation
+- **Main Page (app/page.tsx):** Brand-focused, comprehensive, educational. Focuses on "The Grospace Interiors Story," full portfolio, and detailed services.
+- **Landing Page (app/lp/landing-page/page.tsx):** Conversion-focused, minimalist navigation (no leaks), aggressive lead capture (Hero Form), and "Starting At" bundle pricing.
+
+## 2. Key UI/UX Changes (Main Page)
+- **Section Reordering:** Hero -> Services -> Shop (Bundles) -> Process (How it Works) -> Projects -> Trust Bar -> Testimonials -> Contact.
+- **Trust Bar:** Add a thin "Social Proof" bar below the Hero (e.g., "Bhopal's Trusted Choice | 50+ Homes Delivered | 10-Year Warranty").
+- **Process Section:** Add a 4-5 step visual timeline of the interior journey.
+- **Shop Section:** Display "Bundle of 4" and "Bundle of 6" with "Starting At" pricing fetched from Supabase.
+
+## 3. Performance Landing Page (Marketing)
+- **Zero-Leak Navigation:** Remove the full menu. Only keep the Logo and a "Call Now" or "Get Quote" button.
+- **Hero Split-Layout:** Left side: Aspirational high-res image. Right side: A 2-step lead capture form (Step 1: Name -> Step 2: Contact Info).
+- **Bundle Highlights:** Focus only on the high-value bundles (Kitchen, 2BHK, 3BHK) with clear pricing.
+- **Urgency/Scarcity:** Add banners like "Book now for a Free 3D Design Consultation."
+
+## 4. Branding & Voice (Grospace Interiors Premium Finish)
+- **Copywriting:** Use "Accessible Luxury" language. Calm, confident, and family-first.
+- **Typography:** Bold serif headlines for the "Premium" feel, clean sans-serif for readability.
+- **Visuals:** Use white space effectively to convey luxury.
+
+## 5. Interior Price Estimator (Interactive Lead Magnet)
+- **The Concept:** A multi-step "quiz" that provides an instant price range for interiors in Bhopal.
+- **The Steps:**
+  1. **Home Type:** Apartment, Independent House, or Villa.
+  2. **BHK Size:** 1BHK, 2BHK, 3BHK, 4BHK+.
+  3. **Scope:** Full Home, Kitchen Only, or Wardrobes & Storage.
+  4. **Quality Tier:** "Budget-Friendly" (Practical) vs. "Premium Finish" (Luxury).
+- **The Lead Capture:** Place the form (Name/Phone) at the *end* of the quiz. Users must provide details to unlock their "Custom Quote."
+- **Result:** Display a realistic range (e.g., ₹2.5L - ₹4.5L) based on current Bhopal market rates, followed by a "Book Site Visit" CTA.
+
+## 6. Technical Implementation
+- **Supabase Integration:** Connect the Shop Section to the `products` and `bundles` tables.
+- **Lead Capture:** Ensure all forms (Main and LP) feed into the `enquiries` table in Supabase.
+- **Performance:** Optimize images (Next/Image) for fast loading on mobile marketing campaigns.
+
+## 7. Implementation Phases (Execution Roadmap)
+### Phase 1: Trust & Packages (Main Page)
+- **Trust Bar:** Thin, premium bar below Hero highlighting "10-Year Warranty," "Bhopal-Based," and "On-Time Delivery."
+- **Shop Section:** Fetch "Bundle of 4" and "Bundle of 6" from Supabase. Present as "Accessible Luxury Packages."
+- **Section Reordering:** Implement the high-conversion layout in `app/page.tsx`.
+
+### Phase 2: Process & Lead Magnets
+- **Process Section:** "How it Works" visual timeline (Consult -> Design -> Move-in).
+- **Price Estimator:** Step-wise wizard to calculate interior costs and capture leads.
+
+### Phase 3: The Marketing Landing Page (LP)
+- **LP Route:** Create `app/lp/landing-page/page.tsx`.
+- **UI Structure:** Zero-leak navigation, Split-Hero with Lead Form, and optimized for mobile ads.
+
+---
+Prepared by Gemini CLI
+Date: 2026-05-10
