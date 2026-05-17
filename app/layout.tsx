@@ -9,7 +9,6 @@ import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
-
 export const metadata: Metadata = {
   title: 'Grospace Interiors | Interior Design & Custom Furniture Studio',
   description: 'Premium interiors for Indian homes — Grospace Interiors. Thoughtful design with a focus on family comfort and budget.',
@@ -27,12 +26,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`font-sans antialiased`}>
-        {children}
+      <body className="antialiased">
         <Suspense fallback={null}>
+          {children}
+          <WhatsAppFab />
           <LeadModal />
         </Suspense>
-        <WhatsAppFab />
         <Analytics />
       </body>
     </html>

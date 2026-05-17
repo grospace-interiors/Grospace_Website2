@@ -32,7 +32,7 @@ export default function PriceCalculatorMain() {
               <div className="grid lg:grid-cols-2 gap-24 items-center">
                 <div className="space-y-12">
                    <div className="space-y-6">
-                      <h2 className="text-5xl lg:text-7xl font-serif font-light text-[#2d1b4e] leading-tight tracking-tight">The Kalpvriksh <br /><span className="text-[#ee6669]">Material Guarantee.</span></h2>
+                      <h2 className="text-5xl lg:text-7xl font-serif font-light text-[#2d1b4e] leading-tight tracking-tight">The Grospace <br /><span className="text-[#ee6669]">Material Guarantee.</span></h2>
                       <p className="text-xl text-zinc-500 font-light leading-relaxed">We source only from certified premium partners to ensure your home isn't just beautiful, but built to last a lifetime.</p>
                    </div>
                    <div className="grid grid-cols-2 gap-8 pt-8">

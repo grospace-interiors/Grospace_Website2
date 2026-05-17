@@ -141,18 +141,7 @@ export function ProjectsPageClient() {
         </section>
 
         {/* 3 & 4. PREMIUM PROJECT GRID with FILTERS */}
-        <section className="py-24 lg:py-40">
-           <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-              <div className="flex flex-col lg:flex-row justify-between items-end mb-24 gap-12">
-                 <div className="space-y-6 max-w-2xl">
-                    <h2 className="text-5xl lg:text-7xl font-serif font-light text-[#2d1b4e] leading-tight tracking-tight">Our <span className="text-[#ee6669]">Portfolio.</span></h2>
-                    <p className="text-xl text-zinc-500 font-light leading-relaxed">From compact modular kitchens to expansive full-home transformations. Filter by category to see our specific expertise.</p>
-                 </div>
-              </div>
-              
-              <ProjectsSection />
-           </div>
-        </section>
+        <ProjectsSection />
 
         {/* 5. BEFORE & AFTER SECTION */}
         <section className="py-24 lg:py-40 bg-zinc-950 text-white relative overflow-hidden">

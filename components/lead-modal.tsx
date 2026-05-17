@@ -34,29 +34,33 @@ export function LeadModal() {
   }, [])
 
   useEffect(() => {
-    // 1. Track Page Views (Show after 3 pages)
+    // 1. Track Page Views
     const pageViews = Number(sessionStorage.getItem('pageViews') || '0') + 1
     sessionStorage.setItem('pageViews', pageViews.toString())
     
-    if (pageViews >= 3) {
-      const timer = setTimeout(triggerModal, 2000)
-      return () => clearTimeout(timer)
+    // 2. Trigger after 15 seconds on the first page OR 3 pages
+    const showDelay = pageViews >= 3 ? 2000 : 15000
+    const timer = setTimeout(triggerModal, showDelay)
+
+    // 3. Exit Intent Trigger
+    const handleMouseLeave = (e: MouseEvent) => {
+      if (e.clientY <= 0) {
+        triggerModal()
+      }
     }
 
-    // 2. 4-minute active browsing delay
-    const fourMinuteTimer = setTimeout(triggerModal, 240000)
-
-    // 3. Listen for engagement events (Portfolio/Calculator)
+    // 4. Listen for engagement events (Portfolio/Calculator)
     const handleEngagement = () => {
-      // Small delay after interaction for natural feel
       setTimeout(triggerModal, 3000)
     }
 
+    window.addEventListener('mouseout', handleMouseLeave)
     window.addEventListener('open-lead-modal-engagement', handleEngagement)
-    window.addEventListener('open-lead-modal', triggerModal) // Manual trigger
+    window.addEventListener('open-lead-modal', triggerModal)
 
     return () => {
-      clearTimeout(fourMinuteTimer)
+      clearTimeout(timer)
+      window.removeEventListener('mouseout', handleMouseLeave)
       window.removeEventListener('open-lead-modal-engagement', handleEngagement)
       window.removeEventListener('open-lead-modal', triggerModal)
     }

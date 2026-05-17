@@ -26,12 +26,14 @@ export function LandingForm() {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
+  const [leadId, setLeadId] = useState<string | null>(null)
+
   const handleStep1Submit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStep(2)
     
     try {
-      await fetch('/api/enquiry', {
+      const response = await fetch('/api/enquiry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -40,9 +42,14 @@ export function LandingForm() {
           email: formData.email,
           city: formData.location,
           source: 'landing_page_partial',
-          notes: 'Captured at Step 1 of 2-step form'
+          status: 'partial' // Mark as partial for follow-up
         }),
       })
+      
+      const result = await response.json()
+      if (result.data?.[0]?.id) {
+        setLeadId(result.data[0].id)
+      }
     } catch (error) {
       console.error('Error saving partial lead:', error)
     }
@@ -57,16 +64,19 @@ export function LandingForm() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          id: leadId, // Pass the existing ID to update instead of duplicate
           name: formData.name,
           phone: formData.phone,
           email: formData.email,
           city: formData.location,
           typeOfSpace: formData.bhkSize,
           source: 'landing_page',
+          budget: formData.budget,
+          status: 'new', // Update status to new/complete
           details: {
             propertyType: formData.propertyType,
             services: formData.services,
-            budget: formData.budget,
+            budgetRange: formData.budget,
             timeline: formData.timeline
           }
         }),

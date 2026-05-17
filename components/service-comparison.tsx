@@ -3,30 +3,39 @@
 import { motion } from 'framer-motion'
 import { X, Check } from 'lucide-react'
 
-const comparisons = [
+interface Comparison {
+  traditional: string
+  grospace: string
+}
+
+interface ServiceComparisonProps {
+  comparisons?: Comparison[]
+}
+
+const defaultComparisons = [
   {
     traditional: "Delayed timelines",
-    kalpvriksh: "Factory-precision execution"
+    grospace: "Factory-precision execution"
   },
   {
     traditional: "Inconsistent finishing",
-    kalpvriksh: "Standardized quality control"
+    grospace: "Standardized quality control"
   },
   {
     traditional: "Budget uncertainty",
-    kalpvriksh: "Transparent, locked-in pricing"
+    grospace: "Transparent, locked-in pricing"
   },
   {
     traditional: "On-site mess",
-    kalpvriksh: "Swift installation with minimal disruption"
+    grospace: "Swift installation with minimal disruption"
   },
   {
     traditional: "Manual dependency",
-    kalpvriksh: "Professional project management"
+    grospace: "Professional project management"
   }
 ]
 
-export function ServiceComparison() {
+export function ServiceComparison({ comparisons = defaultComparisons }: ServiceComparisonProps) {
   return (
     <section className="py-24 lg:py-40 bg-zinc-50 overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
@@ -92,32 +101,11 @@ export function ServiceComparison() {
                   <div className="w-8 h-8 rounded-full bg-[#ee6669]/20 flex items-center justify-center shrink-0">
                     <Check className="w-4 h-4 text-[#ee6669]" />
                   </div>
-                  <span className="text-purple-50 font-medium">{item.kalpvriksh}</span>
+                  <span className="text-purple-50 font-medium">{item.grospace}</span>
                 </motion.div>
               ))}
             </div>
           </div>
-        </div>
-
-        {/* Trust Badges */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mt-24">
-          {[
-            "Lifetime Warranty*",
-            "Dedicated Project Manager",
-            "Modern Manufacturing",
-            "Transparent Pricing"
-          ].map((badge, index) => (
-            <motion.div 
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5 + index * 0.1 }}
-              className="text-center p-6 border border-zinc-100 rounded-3xl bg-white"
-            >
-              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#ee6669]">{badge}</span>
-            </motion.div>
-          ))}
         </div>
       </div>
     </section>

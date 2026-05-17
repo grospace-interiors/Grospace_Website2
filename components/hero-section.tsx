@@ -17,22 +17,17 @@ import { cn } from '@/lib/utils'
 
 const slides = [
   {
-    src: '/hero-1.avif',
-    title: 'Home to beautiful interiors',
-    subtitle: "India's First LIFETIME WARRANTY"
-  },
-  {
-    src: '/hero-2.avif',
+    src: '/hero-2.jpg',
     title: 'Premium Finish for Modern Homes',
     subtitle: "Bhopal's Trusted Choice"
   },
   {
-    src: '/hero-3.avif',
+    src: '/hero-3.jpg',
     title: 'Designs that Fit Your Budget',
     subtitle: 'Transparent Pricing, No Hidden Costs'
   },
   {
-    src: '/hero-4.avif',
+    src: '/hero-4.jpg',
     title: 'Transform Your Space Today',
     subtitle: '50+ Homes Delivered on Time'
   }
@@ -53,7 +48,7 @@ export function HeroSection() {
   }, [api])
 
   return (
-    <section id="home" className="relative w-full h-[70vh] lg:h-[90vh] min-h-[500px] bg-white overflow-hidden">
+    <section id="home" className="relative w-full h-[70vh] lg:h-[90vh] min-h-[500px] bg-zinc-950 overflow-hidden">
       <Carousel 
         setApi={setApi} 
         opts={{ loop: true }}
@@ -71,49 +66,49 @@ export function HeroSection() {
                   priority={index === 0}
                   quality={90}
                 />
-                <div className="absolute inset-0 bg-white/20" />
-                <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent" />
+                <div className="absolute inset-0 bg-black/40" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
               </div>
             </CarouselItem>
           ))}
         </CarouselContent>
 
         {/* Navigation Arrows using standard components */}
-        <CarouselNext className="hidden lg:flex absolute right-8 top-[calc(50%-28px)] z-30 w-12 h-12 rounded-full bg-[#ee6669]/10 backdrop-blur-md border border-[#ee6669]/20 hover:bg-[#ee6669] text-[#ee6669] hover:text-white translate-x-0 transition-all" />
-        <CarouselPrevious className="hidden lg:flex absolute right-8 top-[calc(50%+28px)] z-30 w-12 h-12 rounded-full bg-[#ee6669]/10 backdrop-blur-md border border-[#ee6669]/20 hover:bg-[#ee6669] text-[#ee6669] hover:text-white translate-x-0 transition-all" />
+        <CarouselNext className="hidden lg:flex absolute right-8 top-[calc(50%-28px)] z-30 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-[#ee6669] text-white translate-x-0 transition-all" />
+        <CarouselPrevious className="hidden lg:flex absolute right-8 top-[calc(50%+28px)] z-30 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-[#ee6669] text-white translate-x-0 transition-all" />
 
         {/* Content Overlay */}
         <div className="absolute inset-0 z-20 w-full h-full flex flex-col justify-center pointer-events-none">
           <div className="max-w-[1400px] mx-auto px-4 lg:px-8 text-center space-y-8">
             <div className="space-y-6">
-              <h1 className="text-5xl lg:text-8xl font-serif font-light text-zinc-900 drop-shadow-sm tracking-tight transition-all duration-500 leading-[1.1]">
+              <h1 className="text-5xl lg:text-8xl font-serif font-light text-white drop-shadow-2xl tracking-tight transition-all duration-500 leading-[1.1]">
                 Design Homes That Feel <br/>
                 <span className="text-[#ee6669] italic font-serif">Premium, Practical & Personal</span>
               </h1>
-              <p className="text-zinc-600 text-lg lg:text-xl font-light drop-shadow-none max-w-3xl mx-auto leading-relaxed">
+              <p className="text-white/80 text-lg lg:text-xl font-light drop-shadow-lg max-w-3xl mx-auto leading-relaxed">
                 Complete interior solutions for modern homes in Bhopal — modular kitchens, wardrobes, furniture and full home interiors with transparent pricing.
               </p>
             </div>
             
             <div className="flex flex-col sm:flex-row justify-center gap-6 pointer-events-auto">
               <Button 
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                className="bg-[#ee6669] hover:bg-zinc-900 text-white px-12 py-8 text-xs font-bold uppercase tracking-[0.2em] rounded-full shadow-xl transition-all hover:scale-105"
+                onClick={() => window.dispatchEvent(new CustomEvent('open-lead-modal'))}
+                className="bg-[#ee6669] hover:bg-white hover:text-[#ee6669] text-white px-12 py-8 text-xs font-bold uppercase tracking-[0.2em] rounded-full shadow-xl transition-all hover:scale-105 border-none"
               >
                 Get Free Consultation
               </Button>
               <Button 
                 asChild
                 variant="outline"
-                className="bg-white border-[#ee6669]/20 hover:border-[#ee6669] text-[#ee6669] px-12 py-8 text-xs font-bold uppercase tracking-[0.2em] rounded-full shadow-lg transition-all"
+                className="bg-transparent border-white/30 hover:border-white text-white px-12 py-8 text-xs font-bold uppercase tracking-[0.2em] rounded-full shadow-lg transition-all"
               >
                 <Link href="/packages">View Packages</Link>
               </Button>
             </div>
 
             <div className="pt-8">
-               <p className="text-zinc-400 text-[10px] font-bold uppercase tracking-[0.4em] flex items-center justify-center gap-4">
-                 <span>100+ Designs</span>
+               <p className="text-white/40 text-[10px] font-bold uppercase tracking-[0.4em] flex items-center justify-center gap-4">
+                 <span>10+ Years Experience</span>
                  <span className="w-1.5 h-1.5 rounded-full bg-[#ee6669]" />
                  <span>Custom Solutions</span>
                  <span className="w-1.5 h-1.5 rounded-full bg-[#ee6669]" />
@@ -142,16 +137,6 @@ export function HeroSection() {
         </div>
       </Carousel>
 
-      {/* Static Elements */}
-      <div className="hidden lg:block absolute left-20 top-1/4 z-40 animate-in fade-in zoom-in duration-1000 pointer-events-none">
-        <div className="w-32 h-32 rounded-full bg-[#ee6669] border-4 border-white shadow-xl flex items-center justify-center text-center p-2 transform -rotate-12 hover:rotate-0 transition-transform duration-500">
-          <p className="text-white text-[10px] font-bold uppercase leading-tight">
-            India's First<br/>
-            <span className="text-lg">LIFETIME</span><br/>
-            WARRANTY
-          </p>
-        </div>
-      </div>
     </section>
   )
 }

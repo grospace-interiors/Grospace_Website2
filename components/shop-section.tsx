@@ -132,7 +132,10 @@ export function ShopSection() {
                 </div>
 
                 {/* CTA */}
-                <Button className="w-full bg-transparent border border-zinc-200 hover:border-[#ee6669] hover:bg-[#ee6669] hover:text-white text-[#2d1b4e] py-6 rounded-lg transition-all duration-300 group/btn">
+                <Button 
+                  onClick={() => window.dispatchEvent(new CustomEvent('open-lead-modal'))}
+                  className="w-full bg-transparent border border-zinc-200 hover:border-[#ee6669] hover:bg-[#ee6669] hover:text-white text-[#2d1b4e] py-6 rounded-lg transition-all duration-300 group/btn"
+                >
                   <span className="uppercase tracking-widest text-xs font-bold mr-2">Shop This Bundle</span>       
                   <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
                 </Button>

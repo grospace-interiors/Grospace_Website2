@@ -65,26 +65,6 @@ export function ServiceHero({ title, subtitle, image }: ServiceHeroProps) {
             Estimate Budget
           </Button>
         </motion.div>
-
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1 }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-12 text-[10px] font-bold uppercase tracking-[0.3em] text-purple-200/50"
-        >
-          <div className="flex items-center gap-3">
-            <ShieldCheck className="w-4 h-4 text-[#ee6669]" />
-            Transparent Pricing
-          </div>
-          <div className="flex items-center gap-3">
-            <Gem className="w-4 h-4 text-[#ee6669]" />
-            Premium Materials
-          </div>
-          <div className="flex items-center gap-3">
-            <PenTool className="w-4 h-4 text-[#ee6669]" />
-            End-to-End Execution
-          </div>
-        </motion.div>
       </div>
     </section>
   )

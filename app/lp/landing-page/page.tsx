@@ -12,6 +12,7 @@ import { FAQSection } from '@/components/faq-section'
 import { Button } from '@/components/ui/button'
 import { Footer } from '@/components/footer'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { ArrowRight, Sparkles, ShieldCheck, Heart } from 'lucide-react'
 
 export default function HomeInteriorsLandingPage() {
@@ -110,20 +111,100 @@ export default function HomeInteriorsLandingPage() {
         {/* Warranty Section - DARK PREMIUM */}
         <LandingWarranty />
 
-        {/* Price Estimator */}
-        <section className="bg-zinc-50 py-24 lg:py-32">
-           <div className="max-w-[1400px] mx-auto px-6 lg:px-12 text-center mb-16">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="space-y-4"
-              >
-                <h2 className="text-4xl lg:text-6xl font-serif font-light text-zinc-900 tracking-tight">Estimate Your <span className="text-[#ee6669]">Interior Budget</span></h2>
-                <p className="text-zinc-500 text-lg font-light max-w-2xl mx-auto">Get an instant, transparent estimate for your home project in just a few clicks.</p>
-              </motion.div>
+        {/* Price Estimator Section - CREATIVE HERO MOTO */}
+        <section className="bg-zinc-50 py-32 lg:py-48 relative overflow-hidden">
+           {/* Creative Background Elements */}
+           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none select-none overflow-hidden opacity-[0.03] z-0">
+             <span className="absolute -top-10 -left-20 text-[300px] font-serif font-bold text-[#2d1b4e]">BUDGET</span>
            </div>
-           <PriceEstimator />
+           
+           <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10 mb-32">
+              <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+                
+                {/* Left Column: Moto & Story */}
+                <div className="space-y-10 text-left">
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    className="inline-flex items-center gap-3 bg-white border border-[#ee6669]/20 px-8 py-3 rounded-full text-[#ee6669] text-[10px] font-bold uppercase tracking-[0.4em] shadow-sm"
+                  >
+                    <Sparkles className="w-4 h-4" /> Transparency at its Heart
+                  </motion.div>
+                  
+                  <motion.h2
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className="text-6xl lg:text-[84px] font-serif font-light text-[#2d1b4e] leading-[1] tracking-tight"
+                  >
+                    Plan with <span className="text-[#ee6669] italic">Confidence,</span> <br/>
+                    Design without <span className="text-[#ee6669] italic">Compromise.</span>
+                  </motion.h2>
+                  
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    className="text-xl lg:text-2xl text-zinc-500 font-light max-w-xl leading-relaxed"
+                  >
+                    No hidden costs. No guesswork. Use our premium estimator to discover the real investment for your dream home in Bhopal.
+                  </motion.p>
+
+                  <motion.div 
+                    initial={{ width: 0 }}
+                    whileInView={{ width: '80px' }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, delay: 0.4 }}
+                    className="h-1 bg-[#ee6669] rounded-full"
+                  />
+                </div>
+
+                {/* Right Column: Designed Image */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1 }}
+                  className="relative group"
+                >
+                  <div className="relative h-[600px] w-full rounded-[4rem] overflow-hidden shadow-2xl border-8 border-white group-hover:border-[#ee6669]/10 transition-colors duration-700">
+                    <Image 
+                      src="/images/living%20room.jpg" 
+                      alt="Premium Interior Budgeting" 
+                      fill 
+                      sizes="(max-width: 1024px) 100vw, 800px"
+                      className="object-cover transition-transform duration-[3s] group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#2d1b4e]/40 to-transparent" />
+                  </div>
+                  
+                  {/* Floating Trust Badge */}
+                  <motion.div 
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5, duration: 0.8 }}
+                    className="absolute -bottom-10 -left-10 bg-white p-10 rounded-[3rem] shadow-2xl border border-zinc-100 hidden md:block max-w-[260px] space-y-4"
+                  >
+                     <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-[#ee6669]/10 flex items-center justify-center">
+                           <ShieldCheck className="w-5 h-5 text-[#ee6669]" />
+                        </div>
+                        <p className="text-[10px] font-bold text-[#ee6669] uppercase tracking-widest leading-none">Price Promise</p>
+                     </div>
+                     <p className="text-sm font-serif text-[#2d1b4e] leading-relaxed italic">"Get exact quotes delivered to your inbox within minutes."</p>
+                  </motion.div>
+                </motion.div>
+
+              </div>
+           </div>
+           
+           <div className="relative z-10">
+             <PriceEstimator />
+           </div>
         </section>
 
         {/* Testimonials */}

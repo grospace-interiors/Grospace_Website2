@@ -8,25 +8,25 @@ export function OneStopShop() {
     {
       title: 'Modular Interiors',
       description: 'Functional kitchen and wardrobe solutions.',
-      image: 'https://images.unsplash.com/photo-1556912177-c54035601844?q=80&w=800',
+      image: '/images/modular-interiors-hero.jpg',
       href: '/services/modular-interiors'
     },
     {
       title: 'Full Home Interiors',
       description: 'End-to-end interior solutions for your home.',
-      image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=800',
+      image: '/images/full%20home%20interior.jpg',
       href: '/services/full-home-interiors'
     },
     {
       title: 'Luxury Interiors',
       description: 'Tailored interiors that define your lifestyle.',
-      image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=800',
+      image: '/images/luxary%20interion.jpg',
       href: '/services/luxury-interiors'
     },
     {
       title: 'Renovations',
       description: 'Expert solutions to remodel your space.',
-      image: 'https://images.unsplash.com/photo-1581850518616-cee8107f7fa2?q=80&w=800',
+      image: '/images/renovation.jpg',
       href: '/services/renovations'
     },
   ]
@@ -34,11 +34,11 @@ export function OneStopShop() {
   return (
     <section className="w-full bg-white py-20 lg:py-28">
       <div className="max-w-[1400px] mx-auto px-4 lg:px-8 text-center">
-        <h2 className="text-3xl lg:text-4xl font-bold text-[#333] mb-4">
-          One-stop shop for all things interiors
+        <h2 className="text-4xl lg:text-6xl font-serif font-light text-[#2d1b4e] mb-6 tracking-tight leading-tight">
+          Everything your <span className="text-[#ee6669]">Home Needs.</span>
         </h2>
-        <p className="text-zinc-600 max-w-3xl mx-auto mb-16 leading-relaxed">
-          Be it end-to-end interiors, renovation or modular solutions, we have it all for your home or office. With a wide range of furniture & decor, we have your back from start to finish.
+        <p className="text-zinc-500 max-w-2xl mx-auto mb-16 text-lg font-light leading-relaxed">
+          From modular kitchens to complete luxury home transformations — we handle everything from design to final handover.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
@@ -52,6 +52,7 @@ export function OneStopShop() {
                 src={category.image} 
                 alt={category.title} 
                 fill 
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-110" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />

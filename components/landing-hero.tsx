@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { motion } from 'framer-motion'
-import { ArrowRight, ShieldCheck, BadgePercent, Construction } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
 export function LandingHero() {
   const scrollToForm = () => {
@@ -58,36 +58,6 @@ export function LandingHero() {
             >
               View Packages
             </Button>
-          </motion.div>
-
-          {/* Trust Badges */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.6 }}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-12 border-t border-white/10"
-          >
-            <div className="flex items-center gap-3 text-white/80">
-              <ShieldCheck className="w-6 h-6 text-[#ee6669]" />
-              <div className="space-y-0.5">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-[#ee6669]">Peace of Mind</p>
-                <p className="text-sm font-light">10-Year Warranty</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3 text-white/80">
-              <BadgePercent className="w-6 h-6 text-[#ee6669]" />
-              <div className="space-y-0.5">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-[#ee6669]">Honest Values</p>
-                <p className="text-sm font-light">Transparent Pricing</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3 text-white/80">
-              <Construction className="w-6 h-6 text-[#ee6669]" />
-              <div className="space-y-0.5">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-[#ee6669]">Seamless Flow</p>
-                <p className="text-sm font-light">End-to-End Execution</p>
-              </div>
-            </div>
           </motion.div>
         </div>
       </div>

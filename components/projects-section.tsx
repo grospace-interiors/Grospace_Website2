@@ -45,8 +45,32 @@ export function ProjectsSection({ limit }: { limit?: number }) {
   }
 
   return (
-    <div id="projects" className="w-full">
-      <ProjectsClient projects={projects} limit={limit} />
-    </div>
+    <section id="projects" className="w-full py-20 lg:py-28 bg-white">
+      <div className="max-w-[1400px] mx-auto px-4 lg:px-8 text-center">
+        {limit && (
+          <>
+            <h2 className="text-4xl lg:text-6xl font-serif font-light text-[#2d1b4e] mb-6 tracking-tight leading-tight">
+              Real Homes, <span className="text-[#ee6669]">Real Stories.</span>
+            </h2>
+            <p className="text-zinc-500 max-w-2xl mx-auto mb-16 text-lg font-light leading-relaxed">
+              Every home we design tells a story of a family's dreams coming to life. Discover our latest transformations across Bhopal.
+            </p>
+          </>
+        )}
+        
+        <ProjectsClient projects={projects} limit={limit} />
+        
+        {limit && (
+          <div className="mt-20 text-center">
+            <a 
+              href="/projects" 
+              className="inline-flex items-center gap-3 px-10 py-5 bg-[#2d1b4e] text-white rounded-2xl font-bold uppercase tracking-[0.2em] text-[10px] shadow-xl hover:bg-[#ee6669] transition-all duration-500"
+            >
+              View Full Portfolio
+            </a>
+          </div>
+        )}
+      </div>
+    </section>
   )
 }

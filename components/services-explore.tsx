@@ -7,23 +7,23 @@ import { ArrowRight } from 'lucide-react'
 
 const serviceCategories = [
   {
-    title: 'Full Home Interiors',
-    slug: 'full-home-interiors',
-    image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1200',
-    description: 'Transform your entire living space with a cohesive design language that reflects your personality and lifestyle.',
+    title: 'Modular Interiors',
+    slug: 'modular-interiors',
+    image: '/images/modular-interiors-hero.jpg',
+    description: 'Precision-engineered kitchens, wardrobes, and storage solutions manufactured with state-of-the-art technology.',
     count: '01'
   },
   {
-    title: 'Modular Interiors',
-    slug: 'modular-interiors',
-    image: 'https://images.unsplash.com/photo-1556912177-c54035601844?q=80&w=1200',
-    description: 'Precision-engineered kitchens, wardrobes, and storage solutions manufactured with state-of-the-art technology.',
+    title: 'Full Home Interiors',
+    slug: 'full-home-interiors',
+    image: '/images/full home interior.jpg',
+    description: 'Transform your entire living space with a cohesive design language that reflects your personality and lifestyle.',
     count: '02'
   },
   {
     title: 'Luxury Interiors',
     slug: 'luxury-interiors',
-    image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1200',
+    image: '/images/luxary interion.jpg',
     description: 'Exquisite, bespoke designs for an elite lifestyle, featuring rare materials and unparalleled craftsmanship.',
     count: '03'
   }
@@ -33,25 +33,25 @@ const specializedServices = [
   {
     title: 'Modular Kitchen',
     slug: 'modular-kitchen',
-    image: 'https://images.unsplash.com/photo-1556911220-e15595b69581?q=80&w=800',
+    image: '/images/modular kitchen.jpg',
     description: 'Ergonomic layouts & smart storage.'
   },
   {
     title: 'Wardrobes',
     slug: 'wardrobes',
-    image: 'https://images.unsplash.com/photo-1595428774223-ef0c06b8109a?q=80&w=800',
+    image: '/images/wardrobe.jpg',
     description: 'Custom closets & sliding systems.'
   },
   {
     title: 'False Ceiling',
     slug: 'false-ceiling',
-    image: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=800',
+    image: '/images/false ceiling.jpg',
     description: 'Designer lighting & layered aesthetics.'
   },
   {
     title: 'Space Planning',
     slug: 'space-planning',
-    image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=800',
+    image: '/images/kitchen.jpg',
     description: 'Strategic layouts & optimization.'
   }
 ]

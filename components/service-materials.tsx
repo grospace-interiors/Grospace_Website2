@@ -3,7 +3,17 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 
-const materials = [
+interface Material {
+  name: string
+  properties: string[]
+  description: string
+}
+
+interface ServiceMaterialsProps {
+  materials?: Material[]
+}
+
+const defaultMaterials = [
   {
     name: "HDHMR",
     properties: ["High Density", "Water Resistant", "Termite Proof"],
@@ -28,7 +38,7 @@ const materials = [
 
 const brands = ["Hettich", "Hafele", "Blum", "Ebco"]
 
-export function ServiceMaterials() {
+export function ServiceMaterials({ materials = defaultMaterials }: ServiceMaterialsProps) {
   return (
     <section className="py-24 lg:py-40 bg-white">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
@@ -39,7 +49,7 @@ export function ServiceMaterials() {
             viewport={{ once: true }}
             className="text-4xl lg:text-6xl font-serif font-light text-[#2d1b4e] mb-6"
           >
-            Premium <span className="text-[#ee6669]">Materials</span> & Hardware
+            The <span className="text-[#ee6669]">Grospace</span> Material Standard
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}

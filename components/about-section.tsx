@@ -16,7 +16,7 @@ export function AboutSection() {
 
             <div className="space-y-6 text-lg text-zinc-600 leading-relaxed">
               <p>
-                Founded by Nandlal Kushwaha, <span className="text-zinc-900 font-medium">Grospace Interiors</span> represents "Growing Spaces"—our commitment to transforming ordinary houses into smart, modern, and well-designed living spaces.
+                Founded by Nandlal Kushwaha, <span className="text-zinc-900 font-medium">Grospace Interiors</span> represents our commitment to transforming ordinary houses into smart, modern, and well-designed living spaces that grow with your family.
               </p>
               <p>
                 Based in Bhopal, we specialize in creating functional and space-efficient interiors that look premium without overspending. Whether it's a new 2BHK or 3BHK home, our goal is to help you grow your living experience through thoughtful design.

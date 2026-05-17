@@ -20,25 +20,34 @@ const supabase = createClient(supabaseUrl, supabaseServiceRoleKey);
 
 export async function POST(request: Request) {
   try {
-    const { name, phone, email, city, typeOfSpace, source, details } = await request.json();
+    const { id, name, phone, email, city, typeOfSpace, source, details, budget, status } = await request.json();
 
     // Basic validation
     if (!name || !phone) {
       return NextResponse.json({ error: 'Full Name and Phone are required' }, { status: 400 });
     }
 
+    const payload: any = {
+      full_name: name,
+      phone,
+      email: email || null,
+      city: city || 'Bhopal', 
+      space_type: typeOfSpace,
+      source: source || 'website',
+      budget_range: budget || null,
+      status: status || 'new',
+      details: details || {},
+      updated_at: new Date().toISOString()
+    };
+
+    // If ID is provided, include it for upsert
+    if (id) {
+      payload.id = id;
+    }
+
     const { data, error } = await supabase
       .from('enquiries')
-      .insert({
-        full_name: name,
-        phone,
-        email: email || null,
-        city: city || 'Bhopal', // Default to Bhopal if not provided
-        space_type: typeOfSpace,
-        source: source || 'website',
-        status: 'new',
-        notes: typeof details === 'object' ? JSON.stringify(details) : details // Ensure details is stringified if it's an object
-      })
+      .upsert(payload, { onConflict: 'id' })
       .select();
 
     if (error) {

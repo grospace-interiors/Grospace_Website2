@@ -99,7 +99,10 @@ export function ProjectsClient({ projects, limit }: ProjectsClientProps) {
       )}
 
       {/* Projects Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12 lg:gap-16">
+      <div className={cn(
+        "grid grid-cols-1 gap-12 lg:gap-16",
+        limit ? "lg:grid-cols-12" : "md:grid-cols-2 lg:gap-12"
+      )}>
         <AnimatePresence mode="popLayout">
           {filteredProjects.map((project, index) => (
             <motion.div
@@ -109,6 +112,14 @@ export function ProjectsClient({ projects, limit }: ProjectsClientProps) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
+              className={cn(
+                limit && (
+                  index % 4 === 0 ? "lg:col-span-7" :
+                  index % 4 === 1 ? "lg:col-span-5" :
+                  index % 4 === 2 ? "lg:col-span-5" :
+                  "lg:col-span-7"
+                )
+              )}
             >
               <button
                 type="button"
@@ -117,13 +128,14 @@ export function ProjectsClient({ projects, limit }: ProjectsClientProps) {
               >
                 {/* Image Container */}
                 <div className={cn(
-                  "relative overflow-hidden rounded-[3rem] bg-zinc-100 transition-all duration-700 shadow-xl group-hover:shadow-[0_48px_80px_-20px_rgba(45,27,78,0.15)] group-hover:-translate-y-2",
-                  index % 3 === 0 ? "aspect-[4/5]" : "aspect-square"
+                  "relative overflow-hidden rounded-[2.5rem] bg-zinc-100 transition-all duration-700 shadow-lg border border-zinc-100 group-hover:border-[#ee6669]/20 group-hover:shadow-[0_48px_80px_-20px_rgba(45,27,78,0.15)] group-hover:-translate-y-2",
+                  limit ? (index % 4 === 1 || index % 4 === 2 ? "aspect-[4/5]" : "aspect-[16/11]") : "aspect-[16/10]"
                 )}>
                   <Image
                     src={project.image || "/placeholder.svg"}
                     alt={project.title || "Interior Design Project"}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover transition-transform duration-[2000ms] group-hover:scale-110"
                   />
                   
@@ -151,15 +163,31 @@ export function ProjectsClient({ projects, limit }: ProjectsClientProps) {
                   </div>
                 </div>
 
-                {/* Bottom Metadata (Always visible on mobile, editorial style) */}
-                <div className="mt-8 px-4 space-y-2">
-                   <div className="flex items-center justify-between">
-                      <h4 className="text-xl font-serif text-[#2d1b4e]">{project.title}</h4>
-                      <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">{project.category || 'Full Home'}</span>
+                {/* Bottom Metadata (Always visible, editorial style) */}
+                <div className="mt-8 px-2 space-y-3">
+                   <div className="flex items-baseline justify-between border-b border-zinc-100 pb-4">
+                      <div className="space-y-1">
+                        <span className="text-[10px] font-bold text-[#ee6669] uppercase tracking-[0.3em]">{project.category || 'Full Home'}</span>
+                        <h4 className="text-2xl lg:text-3xl font-serif text-[#2d1b4e]">{project.title}</h4>
+                      </div>
+                      <div className="text-right">
+                         <p className="text-[9px] font-bold text-zinc-400 uppercase tracking-widest mb-1">Area</p>
+                         <p className="text-sm font-serif text-[#2d1b4e]">{project.area_size || '1,250 SQFT'}</p>
+                      </div>
                    </div>
-                   <div className="flex items-center gap-6 text-[9px] font-bold text-zinc-400 uppercase tracking-widest">
-                      <span className="flex items-center gap-2"><Layout className="w-3 h-3 text-[#ee6669]" /> {project.area_size || '1,250 SQFT'}</span>
-                      <span className="flex items-center gap-2"><Clock className="w-3 h-3 text-[#ee6669]" /> {project.timeline || '55 DAYS'}</span>
+                   <div className="flex items-center gap-6 pt-1">
+                      <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 rounded-full bg-zinc-50 flex items-center justify-center">
+                          <Clock className="w-3.5 h-3.5 text-[#ee6669]" />
+                        </div>
+                        <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">{project.timeline || '55 DAYS'}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 rounded-full bg-zinc-50 flex items-center justify-center">
+                          <Sparkles className="w-3.5 h-3.5 text-[#ee6669]" />
+                        </div>
+                        <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">{project.style_type || 'Modern'}</span>
+                      </div>
                    </div>
                 </div>
               </button>

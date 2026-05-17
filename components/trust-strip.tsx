@@ -6,8 +6,8 @@ export function TrustStrip() {
   const stats = [
     {
       icon: BadgeCheck,
-      label: '100+',
-      sublabel: 'Design Concepts'
+      label: '10+ Years',
+      sublabel: 'Expert Experience'
     },
     {
       icon: Zap,

@@ -4,7 +4,6 @@ import React from "react"
 import { useState } from 'react'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import { MessageCircle } from 'lucide-react'
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -185,20 +184,6 @@ export function ContactSection() {
             {getButtonText()}
           </button>
         </form>
-
-        {/* WhatsApp Alternative */}
-        <div className="text-center space-y-4 pt-8 border-t border-zinc-100">
-          <p className="text-zinc-500 text-sm italic">Prefer instant messaging?</p>
-          <a
-            href="https://wa.me/918319032087"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#128C7E] text-white px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
-          >
-            <MessageCircle className="w-5 h-5" />
-            <span className="text-sm font-bold uppercase tracking-widest">Chat on WhatsApp</span>
-          </a>
-        </div>
       </div>
     </section>
   )

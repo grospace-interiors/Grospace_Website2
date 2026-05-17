@@ -36,86 +36,133 @@ export function FAQSection() {
   ]
 
   return (
-    <section className="w-full bg-white py-24 lg:py-32">
-      <div className="max-w-4xl mx-auto px-6 lg:px-12">
-        <div className="text-center space-y-4 mb-16">
-          <h2 className="text-4xl lg:text-6xl font-serif font-light text-zinc-900 leading-tight">
-            Commonly <span className="text-[#ee6669]">Asked.</span>
-          </h2>
-          <p className="text-zinc-500 text-lg font-light">Everything you need to know about starting your project with Grospace.</p>
-        </div>
+    <section className="w-full bg-[#fcfcfc] py-20 lg:py-32 overflow-hidden relative">
+      {/* Background Decor */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none select-none overflow-hidden opacity-[0.03]">
+        <span className="absolute -top-20 -left-20 text-[400px] font-serif font-bold text-[#2d1b4e]">Q&A</span>
+      </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-24"
-        >
-          <Accordion type="single" collapsible className="w-full space-y-4">
-            {faqs.map((faq, idx) => (
-              <AccordionItem key={idx} value={`item-${idx}`} className="border border-zinc-100 rounded-2xl px-6 bg-zinc-50/30 overflow-hidden">
-                <AccordionTrigger className="hover:no-underline font-serif text-lg text-zinc-800 text-left py-6">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-zinc-500 font-light text-base leading-relaxed pb-6">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </motion.div>
-
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          className="bg-[#332233] rounded-[3rem] p-10 lg:p-16 text-center text-white relative overflow-hidden shadow-2xl"
-        >
-          {/* Decorative Circle */}
-          <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#ee6669]/20 rounded-full blur-[80px]" />
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
           
-          <div className="relative z-10 space-y-8">
-            <div className="space-y-4">
-              <h3 className="text-3xl lg:text-5xl font-serif font-light tracking-tight">Still have <span className="text-[#ee6669] italic">Questions?</span></h3>
-              <p className="text-zinc-400 font-light text-lg max-w-2xl mx-auto">
-                Connect with our design experts directly and get all your doubts cleared over a quick chat.
+          {/* Left Column: Clean Accordion */}
+          <div className="lg:col-span-8 space-y-10">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-zinc-100 pb-10">
+              <div className="space-y-2">
+                <span className="text-[#ee6669] text-[9px] font-bold uppercase tracking-[0.5em] block">Support Hub</span>
+                <h2 className="text-5xl lg:text-6xl font-serif font-light text-[#2d1b4e] tracking-tight">
+                  Commonly <span className="text-[#ee6669] italic">Asked.</span>
+                </h2>
+              </div>
+              <p className="text-zinc-400 text-sm font-light max-w-[280px] leading-relaxed">
+                Quick answers to help you start your dream home journey.
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center pt-4">
-              <Button 
-                asChild
-                className="h-20 px-12 rounded-full bg-[#ee6669] hover:bg-white hover:text-[#332233] text-white font-bold uppercase tracking-[0.2em] text-[11px] transition-all shadow-xl shadow-black/20"
-              >
-                <a href={`tel:${PHONE_NUMBER}`} className="flex items-center gap-3">
-                  <Phone className="w-5 h-5" />
-                  Call Now
-                </a>
-              </Button>
-
-              <Button 
-                asChild
-                variant="outline"
-                className="h-20 px-12 rounded-full border-white/20 hover:bg-white/10 text-white font-bold uppercase tracking-[0.2em] text-[11px] transition-all"
-              >
-                <a 
-                  href={whatsappUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="flex items-center gap-3"
-                >
-                  <MessageCircle className="w-5 h-5 text-[#25D366]" />
-                  Send WhatsApp
-                </a>
-              </Button>
-            </div>
-            
-            <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-[0.4em] pt-4">
-              We respond faster than your next coffee brew.
-            </p>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="divide-y divide-zinc-100"
+            >
+              <Accordion type="single" collapsible className="w-full">
+                {faqs.map((faq, idx) => (
+                  <AccordionItem key={idx} value={`item-${idx}`} className="border-none group">
+                    <AccordionTrigger className="hover:no-underline font-serif text-xl lg:text-2xl text-[#2d1b4e] text-left py-7 group-hover:text-[#ee6669] transition-colors">
+                      <div className="flex items-center gap-6">
+                        <span className="text-[10px] font-bold text-zinc-300 group-hover:text-[#ee6669]/40 transition-colors tracking-tighter">0{idx + 1}</span>
+                        {faq.question}
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="text-zinc-500 font-light text-lg leading-relaxed pb-8 pl-12 max-w-2xl">
+                      {faq.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </motion.div>
           </div>
-        </motion.div>
+
+          {/* Right Column: Sleek Floating Card */}
+          <div className="lg:col-span-4 lg:sticky lg:top-40">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="bg-[#2d1b4e] rounded-[3rem] p-10 border border-white/5 shadow-[0_48px_80px_-20px_rgba(45,27,78,0.3)] relative overflow-hidden group"
+            >
+              {/* Premium Glow Effect */}
+              <div className="absolute top-0 right-0 w-40 h-40 bg-[#ee6669]/10 rounded-full blur-[60px] -mr-20 -mt-20" />
+              <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/5 rounded-full blur-[60px] -ml-16 -mb-16" />
+              
+              <div className="relative z-10 space-y-10">
+                <div className="space-y-6">
+                  <div className="flex items-center gap-5">
+                    <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center rotate-3 shadow-2xl group-hover:rotate-0 transition-transform duration-500">
+                      <MessageCircle className="w-7 h-7 text-[#ee6669]" />
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-serif font-light text-white">Still curious?</h3>
+                      <p className="text-[10px] font-bold text-[#ee6669] uppercase tracking-[0.4em]">Expert Chat</p>
+                    </div>
+                  </div>
+                  <p className="text-zinc-400 text-sm font-light leading-relaxed">
+                    Connect with our senior design experts directly and get all your doubts cleared over a quick chat.
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <Button 
+                    asChild
+                    className="h-18 w-full rounded-2xl bg-[#ee6669] hover:bg-white hover:text-[#2d1b4e] text-white font-bold uppercase tracking-[0.3em] text-[10px] transition-all shadow-xl shadow-black/20 group/btn"
+                  >
+                    <a href={`tel:${PHONE_NUMBER}`} className="flex items-center justify-center gap-3">
+                      <Phone className="w-4 h-4" />
+                      CALL NOW <ArrowRight className="w-3.5 h-3.5 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+                    </a>
+                  </Button>
+
+                  <Button 
+                    asChild
+                    variant="outline"
+                    className="h-18 w-full rounded-2xl border-white/10 bg-white/5 hover:bg-white hover:text-[#2d1b4e] text-white font-bold uppercase tracking-[0.3em] text-[10px] transition-all"
+                  >
+                    <a 
+                      href={whatsappUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="flex items-center justify-center gap-3"
+                    >
+                      <MessageCircle className="w-4 h-4 text-[#25D366]" />
+                      SEND WHATSAPP
+                    </a>
+                  </Button>
+                </div>
+
+                <div className="pt-8 border-t border-white/5 space-y-4">
+                   <div className="flex items-center justify-between">
+                      <div className="flex -space-x-2">
+                         {[1,2,3].map(i => (
+                           <div key={i} className="w-8 h-8 rounded-full border-2 border-[#2d1b4e] bg-zinc-800 flex items-center justify-center text-[9px] font-bold text-white shadow-sm">
+                             {String.fromCharCode(64 + i)}
+                           </div>
+                         ))}
+                      </div>
+                      <div className="flex items-center gap-2">
+                         <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                         <p className="text-[9px] text-zinc-500 font-bold uppercase tracking-widest">
+                           Experts Online
+                         </p>
+                      </div>
+                   </div>
+                   <p className="text-[10px] text-zinc-500 font-medium italic leading-relaxed text-center">
+                     "We respond faster than your next coffee brew."
+                   </p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   )

@@ -81,48 +81,25 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
     setSubmitted(false)
   }
 
-  // Live Estimate Logic
-  const liveEstimate = useMemo(() => {
-    let base = 0
+  // Selection Summary Logic (No live price showing)
+  const selectionSummary = useMemo(() => {
     let timeline = '45-60 Days'
     let features: string[] = []
 
     if (category === 'home') {
-      if (formData.bhk === '1 BHK') base = 350000
-      else if (formData.bhk === '2 BHK') base = 550000
-      else if (formData.bhk === '3 BHK') base = 850000
-      else if (formData.bhk === '4 BHK') base = 1200000
-      
-      const spaceMultiplier = 1 + (formData.spaces.length * 0.15)
-      base *= spaceMultiplier
-      
-      if (formData.style === 'Luxury') base *= 1.4
-      if (formData.material === 'PU Finish' || formData.material === 'Veneer') base *= 1.3
       timeline = '60-75 Days'
-      features = [...formData.spaces, formData.style, formData.material].filter(Boolean)
+      features = [formData.bhk, ...formData.spaces, formData.style, formData.material].filter(Boolean)
     } 
     else if (category === 'kitchen') {
-      base = 120000 
-      if (formData.layout === 'U Shape') base += 40000
-      if (formData.layout === 'Island Kitchen') base += 80000
-      base += (formData.kitchenSize * 1500) 
-      if (formData.kitchenFinish === 'Glass Finish') base *= 1.5
-      if (formData.countertop === 'Quartz') base += 25000
       timeline = '30-45 Days'
       features = [formData.layout, formData.kitchenFinish, formData.countertop, ...formData.kitchenAccessories].filter(Boolean)
     }
     else if (category === 'wardrobe') {
-      const area = formData.wardrobeWidth * formData.wardrobeHeight
-      base = area * 1800 
-      if (formData.wardrobeType === 'Sliding') base *= 1.2
-      if (formData.wardrobeFinish === 'Glass Finish') base *= 1.4
       timeline = '20-30 Days'
       features = [formData.wardrobeType, formData.wardrobeFinish, ...formData.wardrobeAccessories].filter(Boolean)
     }
 
-    const min = Math.round(base * 0.9)
-    const max = Math.round(base * 1.15)
-    return { min, max, timeline, features }
+    return { timeline, features }
   }, [category, formData])
 
   const nextStep = () => setStep(s => s + 1)
@@ -155,7 +132,6 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
           details: {
             whatsappPreferred: formData.whatsappPreferred,
             category,
-            estimate: `${liveEstimate.min} - ${liveEstimate.max}`,
             projectDetails: formData
           }
         }),
@@ -177,34 +153,34 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
              <Calculator className="w-6 h-6 text-[#ee6669]" />
           </div>
           <div>
-            <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.3em] leading-none mb-2">Live</p>
-            <h4 className="text-lg font-serif font-light text-[#2d1b4e]">Estimation</h4>
+            <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.3em] leading-none mb-2">Expert</p>
+            <h4 className="text-lg font-serif font-light text-[#2d1b4e]">Consultation</h4>
           </div>
         </div>
 
         <div className="space-y-4">
-          <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Project Estimate Range</p>
+          <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Personalized Quotation</p>
           <div className="space-y-2">
              <motion.p 
                 key={submitted ? 'final' : 'mock'}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-3xl lg:text-4xl font-serif font-light text-[#2d1b4e] tracking-tight"
+                className="text-2xl lg:text-3xl font-serif font-light text-[#2d1b4e] tracking-tight leading-tight"
              >
                 {submitted ? (
-                  `₹${liveEstimate.min.toLocaleString('en-IN')} - ₹${liveEstimate.max.toLocaleString('en-IN')}`
+                  "Quotation Requested"
                 ) : (
-                  '₹ XX,XXX - ₹ XX,XXX'
+                  'Pending Your Selections'
                 )}
              </motion.p>
              <p className="text-[10px] text-zinc-400 italic uppercase tracking-[0.2em] font-medium leading-relaxed">
-               {submitted ? 'Verified range based on your selection' : 'Complete steps to unlock pricing'}
+               {submitted ? 'Our experts will call you with the best price' : 'Complete steps for a tailored estimate'}
              </p>
           </div>
         </div>
 
         <AnimatePresence>
-          {liveEstimate.features.length > 0 && (
+          {selectionSummary.features.length > 0 && (
             <motion.div 
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
@@ -215,7 +191,7 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
                  <CheckCircle2 className="w-3.5 h-3.5 text-[#ee6669]" /> Selection Summary
                </p>
                <div className="flex flex-wrap gap-2.5">
-                  {liveEstimate.features.map(f => (
+                  {selectionSummary.features.map(f => (
                     <motion.span 
                       key={f} 
                       initial={{ opacity: 0, scale: 0.9 }}
@@ -232,8 +208,8 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
 
         <div className="space-y-6 pt-6 border-t border-zinc-100">
            <div className="flex items-center justify-between text-[11px] py-1">
-              <span className="text-zinc-500 font-bold uppercase tracking-widest">Delivery Time</span>
-              <span className="font-bold flex items-center gap-2.5 text-[#2d1b4e]"><Clock className="w-4 h-4 text-[#ee6669]" /> {liveEstimate.timeline}</span>
+              <span className="text-zinc-500 font-bold uppercase tracking-widest">Est. Delivery</span>
+              <span className="font-bold flex items-center gap-2.5 text-[#2d1b4e]"><Clock className="w-4 h-4 text-[#ee6669]" /> {selectionSummary.timeline}</span>
            </div>
            <div className="flex items-center justify-between text-[11px] py-1">
               <span className="text-zinc-500 font-bold uppercase tracking-widest">Quality Seal</span>
@@ -249,7 +225,7 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
           }}
         >
           <span className="relative z-10 flex items-center justify-center">
-            UNCOVER DETAILED QUOTE <ArrowRight className="w-4 h-4 ml-3 group-hover:translate-x-1 transition-transform" />
+            REQUEST CUSTOM QUOTE <ArrowRight className="w-4 h-4 ml-3 group-hover:translate-x-1 transition-transform" />
           </span>
           <div className="absolute inset-0 bg-[#2d1b4e] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
         </Button>
@@ -299,13 +275,13 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
 
   if (category === 'none') {
     return (
-      <section id="estimator" className="w-full bg-white pt-32 lg:pt-48 pb-24 overflow-hidden relative">
+      <section id="estimator" className="w-full bg-white pt-12 lg:pt-16 pb-24 overflow-hidden relative">
         {/* Background Accents */}
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#ee6669]/5 rounded-full blur-[120px] -mr-64 -mt-64" />
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#2d1b4e]/5 rounded-full blur-[120px] -ml-64 -mb-64" />
 
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
-          <div className="text-center max-w-4xl mx-auto mb-32 space-y-10">
+          <div className="text-center max-w-4xl mx-auto mb-20 space-y-8">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -334,35 +310,8 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
               transition={{ delay: 0.2, duration: 0.8 }}
               className="text-xl lg:text-2xl text-zinc-500 font-light max-w-2xl mx-auto leading-relaxed"
             >
-               Get an instant, transparent cost range for your luxury home project in Bhopal. Elegant design meets practical budgeting.
+               Instant, transparent cost estimates for your luxury home project in Bhopal.
             </motion.p>
-
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-              className="flex flex-wrap items-center justify-center gap-12 pt-12 text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-400"
-            >
-              <div className="flex items-center gap-3 group">
-                <div className="w-10 h-10 rounded-full bg-zinc-50 border border-zinc-100 flex items-center justify-center group-hover:border-[#ee6669]/20 group-hover:bg-white transition-all">
-                  <ShieldCheck className="w-4 h-4 text-[#ee6669]" />
-                </div>
-                Transparent Pricing
-              </div>
-              <div className="flex items-center gap-3 group">
-                <div className="w-10 h-10 rounded-full bg-zinc-50 border border-zinc-100 flex items-center justify-center group-hover:border-[#ee6669]/20 group-hover:bg-white transition-all">
-                  <Gem className="w-4 h-4 text-[#ee6669]" />
-                </div>
-                Premium Materials
-              </div>
-              <div className="flex items-center gap-3 group">
-                <div className="w-10 h-10 rounded-full bg-zinc-50 border border-zinc-100 flex items-center justify-center group-hover:border-[#ee6669]/20 group-hover:bg-white transition-all">
-                  <PenTool className="w-4 h-4 text-[#ee6669]" />
-                </div>
-                End-to-End Execution
-              </div>
-            </motion.div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
@@ -371,23 +320,50 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
               title="Home Interior"
               desc="Comprehensive premium renovation for apartments, villas and independent homes."
               icon={Home}
-              img="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=800"
+              img="/images/living%20room.jpg"
             />
             <CategoryCard 
               type="kitchen"
               title="Modular Kitchen"
               desc="High-performance, elegant kitchen designs with world-class smart storage."
               icon={Zap}
-              img="https://images.unsplash.com/photo-1556912177-c54035601844?q=80&w=800"
+              img="/images/kitchen.jpg"
             />
             <CategoryCard 
               type="wardrobe"
               title="Luxury Wardrobes"
               desc="Bespoke sliding and hinged wardrobes with sophisticated internal shelving."
               icon={Award}
-              img="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=800"
+              img="/images/wardrobe.jpg"
             />
           </div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+            className="flex flex-wrap items-center justify-center gap-12 pt-20 text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-400"
+          >
+            <div className="flex items-center gap-3 group">
+              <div className="w-10 h-10 rounded-full bg-zinc-50 border border-zinc-100 flex items-center justify-center group-hover:border-[#ee6669]/20 group-hover:bg-white transition-all">
+                <ShieldCheck className="w-4 h-4 text-[#ee6669]" />
+              </div>
+              Transparent Pricing
+            </div>
+            <div className="flex items-center gap-3 group">
+              <div className="w-10 h-10 rounded-full bg-zinc-50 border border-zinc-100 flex items-center justify-center group-hover:border-[#ee6669]/20 group-hover:bg-white transition-all">
+                <Gem className="w-4 h-4 text-[#ee6669]" />
+              </div>
+              Premium Materials
+            </div>
+            <div className="flex items-center gap-3 group">
+              <div className="w-10 h-10 rounded-full bg-zinc-50 border border-zinc-100 flex items-center justify-center group-hover:border-[#ee6669]/20 group-hover:bg-white transition-all">
+                <PenTool className="w-4 h-4 text-[#ee6669]" />
+              </div>
+              End-to-End Execution
+            </div>
+          </motion.div>
         </div>
       </section>
     )
