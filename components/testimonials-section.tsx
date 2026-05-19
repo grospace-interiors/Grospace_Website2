@@ -4,35 +4,80 @@ import { Card } from '@/components/ui/card'
 import { ChevronRight, Star, Quote } from 'lucide-react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
+import { supabase } from '@/lib/supabase'
 
-const testimonials = [
-  {
-    id: 1,
-    quote:
-      'Grospace transformed our home into a space that feels both luxurious and lived-in. Their attention to material quality is unmatched.',
-    client: 'Anjali Sharma',
-    city: 'Gulmohar, Bhopal',
-    project: '3BHK Interior'
-  },
-  {
-    id: 2,
-    quote:
-      'Working with their team on our redesign was seamless. They understood our vision immediately and delivered beyond expectations.',
-    client: 'Rajesh Gupta',
-    city: 'Arera Colony, Bhopal',
-    project: 'Villa Redesign'
-  },
-  {
-    id: 3,
-    quote:
-      'The custom furniture pieces are exceptional. Every detail feels thoughtfully executed. Highly recommend for anyone serious about quality.',
-    client: 'Priya Nair',
-    city: 'Bawadiya Kalan, Bhopal',
-    project: 'Modular Kitchen'
-  },
-]
+interface Testimonial {
+  id: string
+  client_name: string
+  review: string
+  rating: number
+  image?: string
+  project_type?: string
+  city?: string
+}
 
 export function TestimonialsSection() {
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function loadTestimonials() {
+      try {
+        const { data, error } = await supabase
+          .from('testimonials')
+          .select('*')
+          .eq('is_featured', true)
+          .order('created_at', { ascending: false })
+          .limit(3)
+
+        if (error) throw error
+        setTestimonials(data || [])
+      } catch (err) {
+        console.error('Error loading testimonials:', err)
+      } finally {
+        setLoading(false)
+      }
+    }
+    loadTestimonials()
+  }, [])
+
+  // Fallback if DB is empty
+  const displayTestimonials = testimonials.length > 0 ? testimonials : [
+    {
+      id: '1',
+      review: 'Grospace transformed our home into a space that feels both luxurious and lived-in. Their attention to material quality is unmatched.',
+      client_name: 'Anjali Sharma',
+      city: 'Gulmohar',
+      project_type: '3BHK Interior',
+      rating: 5
+    },
+    {
+      id: '2',
+      review: 'Working with their team on our redesign was seamless. They understood our vision immediately and delivered beyond expectations.',
+      client_name: 'Rajesh Gupta',
+      city: 'Arera Colony',
+      project_type: 'Villa Redesign',
+      rating: 5
+    },
+    {
+      id: '3',
+      review: 'The custom furniture pieces are exceptional. Every detail feels thoughtfully executed. Highly recommend for anyone serious about quality.',
+      client_name: 'Priya Nair',
+      city: 'Bawadiya Kalan',
+      project_type: 'Modular Kitchen',
+      rating: 5
+    },
+  ]
+
+  if (loading) {
+    return (
+      <section className="w-full bg-zinc-50 py-24 flex justify-center items-center">
+        <div className="w-12 h-12 border-2 border-zinc-100 border-t-[#ee6669] rounded-full animate-spin" />
+      </section>
+    )
+  }
+
   return (
     <section className="w-full bg-zinc-50 py-24 lg:py-32 overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
@@ -43,13 +88,13 @@ export function TestimonialsSection() {
             </h2>
             <p className="text-zinc-500 text-lg font-light">See how we've helped homeowners across Bhopal build their dream spaces.</p>
           </div>
-          <Link href="#" className="hidden md:flex items-center gap-3 text-[#ee6669] font-bold uppercase text-[10px] tracking-[0.2em] group">
+          <Link href="/projects" className="hidden md:flex items-center gap-3 text-[#ee6669] font-bold uppercase text-[10px] tracking-[0.2em] group">
             View All Stories <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {testimonials.map((testimonial, idx) => (
+          {displayTestimonials.map((testimonial, idx) => (
             <motion.div
               key={testimonial.id}
               initial={{ opacity: 0, y: 20 }}
@@ -63,24 +108,28 @@ export function TestimonialsSection() {
                 <Quote className="absolute top-8 right-8 w-12 h-12 text-zinc-50 opacity-10 group-hover:opacity-20 transition-opacity" />
                 <div className="space-y-8 relative z-10">
                   <div className="flex gap-1">
-                     {[...Array(5)].map((_, i) => (
+                     {[...Array(testimonial.rating || 5)].map((_, i) => (
                        <Star key={i} className="w-3 h-3 fill-[#ee6669] text-[#ee6669]" />
                      ))}
                   </div>
                   {/* Quote */}
                   <blockquote className="text-lg text-zinc-800 font-light leading-relaxed italic">
-                    "{testimonial.quote}"
+                    "{testimonial.review}"
                   </blockquote>
 
                   {/* Client Info */}
                   <div className="pt-8 border-t border-zinc-50 flex items-center gap-4">
                     <div className="w-12 h-12 rounded-full bg-zinc-100 overflow-hidden">
-                       <img src={`https://i.pravatar.cc/100?u=${testimonial.client}`} alt={testimonial.client} className="w-full h-full object-cover" />
+                       <img 
+                        src={testimonial.image || `https://i.pravatar.cc/100?u=${testimonial.client_name}`} 
+                        alt={testimonial.client_name} 
+                        className="w-full h-full object-cover" 
+                       />
                     </div>
                     <div>
-                      <p className="font-serif text-lg text-[#2d1b4e] leading-none">{testimonial.client}</p>
+                      <p className="font-serif text-lg text-[#2d1b4e] leading-none">{testimonial.client_name}</p>
                       <p className="text-[10px] text-zinc-400 font-bold uppercase tracking-widest mt-1">
-                        {testimonial.city} • {testimonial.project}
+                        {testimonial.city || 'Bhopal'} • {testimonial.project_type}
                       </p>
                     </div>
                   </div>

@@ -3,9 +3,11 @@
 import { supabase } from '@/lib/supabase'
 import { Package } from '@/lib/types'
 import Image from 'next/image'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Calculator } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
+import { Badge } from '@/components/ui/badge'
 
 async function getPackages() {
   try {
@@ -39,116 +41,177 @@ export function ShopSection() {
     load()
   }, [])
 
-  // Fallback data if DB is empty or not yet set up
   const displayPackages = packages.length > 0 ? packages : [
     {
       id: '1',
-      name: 'Essential Bundle of 4',
-      description: 'Perfect for a 1BHK or specific room renovation. Includes core modular elements.',
-      price: 149000,
+      name: 'The Essential Collection',
+      description: 'A thoughtful curation of fundamental interior elements designed for efficiency and modern aesthetics.',
+      price: 250000,
       image_url: 'https://images.unsplash.com/photo-1556912177-c54035601844?q=80&w=800',
-      items: ['Modular Kitchen (L-Shape)', 'Master Bedroom Wardrobe', 'TV Unit', 'Basic False Ceiling'],
+      items: ['Modular Kitchen', '1 Wardrobe', 'Basic Storage', 'Living Unit'],
     },
     {
       id: '2',
-      name: 'Premium Bundle of 6',
-      description: 'Our most popular choice for 2BHK homes. Comprehensive design and execution.',
-      price: 289000,
+      name: 'The Smart Living Suite',
+      description: 'Elevated space planning meeting sophisticated finishes for a balanced contemporary lifestyle.',
+      price: 350000,
       image_url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=800',
-      items: ['Modular Kitchen (U-Shape)', 'Master Bedroom Wardrobe', 'Kids Room Wardrobe', 'Living Room TV Unit', 'Premium False Ceiling', 'Shoe Rack & Foyer Unit'],
+      items: ['Modular Kitchen', '2 Wardrobes', 'TV Unit', 'Study Nook'],
+      badge: 'CURATED FAVORITE',
+    },
+    {
+      id: '3',
+      name: 'The Signature Series',
+      description: 'Our most comprehensive interior solution, featuring artisanal details and complete home transformation.',
+      price: 500000,
+      image_url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800',
+      items: ['Full Home Interior', 'Premium Kitchen', 'Master Wardrobe', 'False Ceiling'],
     }
   ]
 
   if (loading) {
-    return <section className="w-full bg-white py-24 md:py-32 text-[#2d1b4e]"><div className="text-center">Loading...</div></section>
+    return <section className="w-full bg-white py-24 md:py-32 text-[#2d1b4e]"><div className="text-center font-light tracking-widest uppercase text-xs opacity-50">Discovering Collections...</div></section>
   }
 
   return (
-    <section id="shop" className="w-full bg-white py-24 md:py-32 text-[#2d1b4e]">
-      <div className="max-w-7xl mx-auto px-5 md:px-8">
+    <section id="collections" className="w-full bg-[#fafafa] py-24 md:py-36 text-[#2d1b4e] overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Section Header */}
-        <div className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
-          <div>
-            <p className="text-xs uppercase tracking-[0.15em] text-[#ee6669] font-medium mb-4">
+        <div className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-10">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="max-w-3xl"
+          >
+            <span className="text-[10px] uppercase tracking-[0.3em] text-[#ee6669] font-bold mb-6 block">
               Curated Solutions
-            </p>
-            <h2 className="text-4xl md:text-5xl font-serif font-light text-[#2d1b4e] text-balance">
-              Interior Bundles
+            </span>
+            <h2 className="text-4xl md:text-6xl font-serif font-light text-[#2d1b4e] leading-[1.1] mb-8">
+              Interior Collections for <br />
+              <span className="italic">Modern Living</span>
             </h2>
-            <p className="text-lg text-zinc-600 mt-6 max-w-2xl leading-relaxed">
-              Premium-finish interior packages designed for modern families in Bhopal. Fixed pricing, no hidden costs.
+            <p className="text-lg text-zinc-500 font-light max-w-xl leading-relaxed">
+              Thoughtfully designed setups that blend architectural precision with lived-in comfort. Each collection is a complete narrative for your home.
             </p>
-            <div className="mt-6 w-16 h-0.5 bg-[#ee6669]" />
-          </div>
+          </motion.div>
           
-          <div className="shrink-0">
-             <Button variant="outline" className="border-zinc-200 hover:border-[#ee6669] hover:bg-[#ee6669] text-[#2d1b4e] hover:text-white rounded-full px-8 h-14 uppercase tracking-widest text-[10px] font-bold transition-all">
-                View All Bundles
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+             <Button variant="link" className="text-[#2d1b4e] group p-0 h-auto hover:no-underline">
+                <span className="uppercase tracking-[0.2em] text-[10px] font-bold mr-4">View All Solutions</span>
+                <div className="w-10 h-10 rounded-full border border-zinc-200 flex items-center justify-center group-hover:bg-[#2d1b4e] group-hover:text-white transition-all duration-500">
+                  <ArrowRight className="w-4 h-4" />
+                </div>
              </Button>
-          </div>
+          </motion.div>
         </div>
 
-        {/* Packages Grid */}
-        <div className="grid md:grid-cols-2 gap-10 lg:gap-16">
-          {displayPackages.map((pkg) => (
-            <div
+        {/* Collections Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-14">
+          {displayPackages.map((pkg: any, index: number) => (
+            <motion.div
               key={pkg.id}
-              className="group bg-white border border-zinc-100 hover:border-[#ee6669]/20 shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden flex flex-col rounded-xl"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: index * 0.1 }}
+              className="group flex flex-col"
             >
-              {/* Image Container */}
-              <div className="relative h-64 md:h-80 w-full overflow-hidden">
+              {/* Image Showcase */}
+              <div className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl mb-8 shadow-sm group-hover:shadow-2xl transition-all duration-700">
                 <Image
                   src={pkg.image_url}
-                  alt={pkg.name || "Interior Bundle"}
+                  alt={pkg.name}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent opacity-60" />
+                
+                {/* Subtle Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-700" />
+                
+                {pkg.badge && (
+                  <div className="absolute top-6 left-6 z-20">
+                    <Badge variant="secondary" className="bg-white/90 backdrop-blur-sm text-[#2d1b4e] border-none px-4 py-1.5 rounded-full text-[9px] font-bold tracking-[0.15em] shadow-sm">
+                      {pkg.badge}
+                    </Badge>
+                  </div>
+                )}
 
-                {/* Price Tag */}
-                <div className="absolute bottom-6 left-6 bg-[#ee6669] px-4 py-2 text-white shadow-lg">
-                  <p className="text-xs uppercase tracking-widest font-bold">Starting at</p>
-                  <p className="text-xl font-serif">₹{(pkg.price / 100000).toFixed(2)}L*</p>
+                {/* Refined Price Tag - Bottom Left */}
+                <div className="absolute bottom-8 left-8 text-white z-10">
+                  <p className="text-[9px] uppercase tracking-[0.2em] font-medium opacity-80 mb-1">Starting From</p>
+                  <p className="text-2xl font-serif">₹{(pkg.price / 100000).toFixed(1)}L</p>
                 </div>
               </div>
 
-              {/* Content */}
-              <div className="p-8 md:p-10 flex-grow flex flex-col">
-                <h3 className="text-2xl font-serif font-light mb-4 group-hover:text-[#ee6669] transition-colors">  
-                  {pkg.name}
-                </h3>
-                <p className="text-zinc-600 text-sm leading-relaxed mb-8">
-                  {pkg.description}
-                </p>
+              {/* Content Detail */}
+              <div className="p-8 flex flex-col flex-grow pt-0">
+                <div className="mb-4">
+                  <h3 className="text-2xl font-serif font-light mb-3 text-[#2d1b4e]">  
+                    {pkg.name}
+                  </h3>
+                  <p className="text-zinc-500 text-sm leading-relaxed font-light line-clamp-2">
+                    {pkg.description}
+                  </p>
+                </div>
 
-                {/* Items List */}
-                <div className="space-y-4 mb-10 flex-grow">
-                  {pkg.items?.map((item, idx) => (
-                    <div key={idx} className="flex items-center gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#ee6669]/40" />
-                      <span className="text-sm text-zinc-600 font-light">{item}</span>
-                    </div>
+                {/* Space Tags */}
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {(pkg.features as any)?.items ? (pkg.features as any).items.map((item: string, idx: number) => (
+                    <Badge key={idx} variant="outline" className="border-zinc-200 text-zinc-500 font-light text-[10px] px-3 py-1 rounded-full bg-white/50">
+                      {item}
+                    </Badge>
+                  )) : pkg.items?.map((item: any, idx: any) => (
+                    <Badge key={idx} variant="outline" className="border-zinc-200 text-zinc-500 font-light text-[10px] px-3 py-1 rounded-full bg-white/50">
+                      {item}
+                    </Badge>
                   ))}
                 </div>
 
-                {/* CTA */}
-                <Button 
-                  onClick={() => window.dispatchEvent(new CustomEvent('open-lead-modal'))}
-                  className="w-full bg-transparent border border-zinc-200 hover:border-[#ee6669] hover:bg-[#ee6669] hover:text-white text-[#2d1b4e] py-6 rounded-lg transition-all duration-300 group/btn"
-                >
-                  <span className="uppercase tracking-widest text-xs font-bold mr-2">Shop This Bundle</span>       
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
-                </Button>
+                {/* Actions */}
+                <div className="flex flex-col xl:flex-row items-center gap-3 mt-auto">
+                  <Button 
+                    variant="default"
+                    onClick={() => window.dispatchEvent(new CustomEvent('open-lead-modal', { detail: { package: pkg.name } }))}
+                    className="w-full xl:flex-1 bg-[#2d1b4e] text-white hover:bg-[#ee6669] h-14 rounded-full transition-all duration-500 text-[10px] uppercase tracking-[0.15em] font-bold shadow-lg shadow-[#2d1b4e]/10"
+                  >
+                    View Details
+                  </Button>
+                  <Button 
+                    variant="outline"
+                    onClick={() => window.dispatchEvent(new CustomEvent('open-lead-modal', { detail: { package: pkg.name, type: 'estimate' } }))}
+                    className="w-full xl:flex-1 h-14 rounded-full border-zinc-200 hover:border-[#ee6669] hover:text-[#ee6669] transition-all duration-500 text-[10px] uppercase tracking-[0.15em] font-bold"
+                  >
+                    Estimate Budget
+                  </Button>
+                </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
-        {/* Note */}
-        <p className="mt-12 text-center text-xs text-zinc-400 italic">
-          *Prices are indicative and subject to change based on specific materials and site conditions. GST extra as applicable.
-        </p>
+        {/* Footer Note */}
+        <motion.p 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.5 }}
+          className="mt-20 text-center text-[10px] tracking-[0.1em] text-zinc-400 uppercase font-medium"
+        >
+          *Indicative pricing based on standard floor plans. Final quote subject to site measurements.
+        </motion.p>
       </div>
+
+      {/* Subtle Background Elements */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#ee6669]/5 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#2d1b4e]/5 rounded-full blur-[140px] -z-10 -translate-x-1/2 translate-y-1/2" />
     </section>
   )
 }
+

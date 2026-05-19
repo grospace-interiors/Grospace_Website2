@@ -12,171 +12,96 @@ import { ServiceCTA } from '@/components/service-cta'
 import { FAQSection } from '@/components/faq-section'
 import { TestimonialsSection } from '@/components/testimonials-section'
 import { ProjectsSection } from '@/components/projects-section'
+import Image from 'next/image'
+import { CheckCircle2, ShieldCheck, Heart, Sparkles, Layout, Zap, Clock, Diamond, Star, Award, PenTool } from 'lucide-react'
 
 const services = {
-  'modular-interiors': {
-    title: 'Modular Interiors',
-    headline: 'Smart, Functional & Efficient Modular Solutions',
-    description: 'Transform your home with our factory-finished modular solutions. From ergonomic kitchens to space-saving wardrobes, we bring precision and style to every corner.',
-    image: '/images/modular-interiors-hero.jpg',
-    inclusions: [
-      'Modular Kitchen Systems',
-      'Custom Wardrobes',
-      'Ergonomic TV Units',
-      'Pantry & Crockery Units',
-      'Smart Storage Solutions',
-      'Study & Workstations',
-      'Vanity Units',
-      'Shoe Racks'
-    ],
-    process: [
-      { title: "Consultation", description: "Understanding your space and lifestyle requirements." },
-      { title: "Space Planning", description: "Optimizing layouts for maximum functionality and flow." },
-      { title: "Modular Design Selection", description: "Choosing from our curated range of modular configurations." },
-      { title: "Factory Manufacturing", description: "Precision crafting using advanced European machinery." },
-      { title: "Quality Check", description: "Rigorous inspection of every component before dispatch." },
-      { title: "45-Day Installation", description: "Swift on-site assembly with zero mess and total precision." }
-    ],
-    materials: [
-      { name: "HDHMR", properties: ["High Density", "Water Resistant"], description: "Ideal for kitchens and bathrooms, offering superior durability." },
-      { name: "BWR Plywood", properties: ["Boiling Water Resistant", "Termite Proof"], description: "Premium core material for long-lasting modular cabinets." },
-      { name: "Acrylic Finishes", properties: ["High Gloss", "Scratch Resistant"], description: "A mirror-like reflective finish for a sleek, modern aesthetic." },
-      { name: "Laminates", properties: ["Durable", "Textured Options"], description: "Versatile and easy-to-maintain finishes for everyday use." }
-    ],
-    challenges: [
-      { icon: "clock", challenge: "Delayed Timelines", solution: "Our factory-first approach ensures strict adherence to our 45-day delivery promise." },
-      { icon: "sparkles", challenge: "Dust & On-site Mess", solution: "90% of work happens at the factory; we only do clean assembly at your home." },
-      { icon: "layout", challenge: "Poor Space Utilization", solution: "Smart modular engineering designed to utilize every inch of your urban home." },
-      { icon: "shield", challenge: "Maintenance Issues", solution: "Industrial-grade edge banding and precision finishes make cleaning effortless." }
-    ],
-    comparisons: [
-      { traditional: "Inconsistent manual finish", grospace: "Precision factory finish" },
-      { traditional: "Unpredictable delivery dates", grospace: "Guaranteed 45-day delivery" },
-      { traditional: "On-site carpentry mess", grospace: "Swift, clean installation" },
-      { traditional: "Limited storage engineering", grospace: "Optimized modular storage" },
-      { traditional: "No structured warranty", grospace: "Comprehensive service warranty" }
-    ]
-  },
   'full-home-interiors': {
     title: 'Full Home Interiors',
-    headline: 'End-to-End Home Transformation',
-    description: 'Experience a complete home makeover where every detail is curated to reflect your personality. Our experts handle everything from design to final handover.',
+    headline: 'Complete Home Interiors Designed Around Your Lifestyle',
+    description: 'A complete home transformation experience focused on comfort, functionality, and coordinated aesthetics. We handle every detail, from design to final handover.',
     image: '/images/full home interior.jpg',
     inclusions: [
-      'Modular Kitchen & Wardrobes',
-      'False Ceiling & Lighting',
-      'Wall Treatments & Paint',
-      'Custom Furniture & Decor',
-      'Electrical & Plumbing',
-      'Flooring & Tiling',
-      'Soft Furnishings',
-      'Home Automation'
+      { title: 'Living Room', desc: 'Heart of the home with custom TV units and curated lighting.' },
+      { title: 'Bedrooms', desc: 'Personalized sanctuaries with bespoke wardrobes and beds.' },
+      { title: 'Modular Kitchen', desc: 'Ergonomic designs with world-class smart storage.' },
+      { title: 'Dining Areas', desc: 'Coordinated spaces for shared meals and memories.' },
+      { title: 'Study & Work', desc: 'Quiet, functional corners for productivity.' },
+      { title: 'Storage Solutions', desc: 'Hidden and smart storage that grows with you.' }
     ],
     process: [
-      { title: "Design Consultation", description: "Deep dive into your family's lifestyle and aesthetic preferences." },
-      { title: "3D Visualization", description: "Realistic previews of your entire home before we start." },
-      { title: "Civil & Electrical Coordination", description: "Handling structural changes and wiring seamlessly." },
-      { title: "False Ceiling & Lighting", description: "Creating ambiance with professional lighting design." },
-      { title: "Furniture Installation", description: "Coordinated assembly of all modular and custom units." },
-      { title: "Final Styling & Handover", description: "The finishing touches that make your house a home." }
+      { title: "Coordination & Planning", description: "Deep dive into your family's lifestyle to create a cohesive home-wide plan." },
+      { title: "Design Language", description: "Choosing unified colors, textures, and themes for every room." },
+      { title: "Complete Project Management", description: "Handling all civil, electrical, and interior work seamlessly." },
+      { title: "Hassle-free Execution", description: "Transparent updates and dedicated leads for your entire project." },
+      { title: "Final Styling", description: "The finishing touches that bring your entire vision together." }
     ],
+    extraSection: {
+      title: "Designed As One Complete Experience",
+      content: "We believe a home should feel cohesive. From the foyer to the balcony, our design language ensures every space flows into the next, balancing coordinated finishes with personalized functionality.",
+      items: [
+        { icon: Layout, title: "Consistent Aesthetics", desc: "Unified design language across all rooms." },
+        { icon: ShieldCheck, title: "Coordinated Execution", desc: "All vendors managed under a single point of contact." },
+        { icon: Heart, title: "Balanced Comfort", desc: "Spaces that grow with your family's needs." }
+      ]
+    }
+  },
+  'modular-interiors': {
+    title: 'Modular Interiors',
+    headline: 'Modern Modular Interiors Built For Everyday Functionality',
+    description: 'Smart, efficient storage and organized living systems. Precision-engineered modular solutions for the modern Indian household.',
+    image: '/images/modular-interiors-hero.jpg',
+    inclusions: [
+      { title: 'Smart Kitchens', desc: 'High-performance layouts with European hardware.' },
+      { title: 'Efficient Wardrobes', desc: 'Maximized internal organization and sleek finishes.' },
+      { title: 'Storage Intelligence', desc: 'Corner units, pantry systems, and hidden drawers.' },
+      { title: 'Modern TV Units', desc: 'Clean aesthetics with integrated cable management.' }
+    ],
+    process: [
+      { title: "Smart Assessment", description: "Understanding your storage needs and space constraints." },
+      { title: "Modular Planning", description: "Creating layouts using standard and custom modular units." },
+      { title: "Precision Manufacturing", description: "Factory-finished components with zero on-site mess." },
+      { title: "Fast Installation", description: "Quick, clean, and millimeter-perfect assembly." }
+    ],
+    extraSection: {
+      title: "Why Modular Interiors Work Better",
+      content: "Modular systems are the backbone of modern efficient homes. They offer precision that manual carpentry cannot match, combined with speed and long-term durability.",
+      items: [
+        { icon: Zap, title: "Faster Delivery", desc: "90% of manufacturing happens off-site." },
+        { icon: CheckCircle2, title: "Millimeter Precision", desc: "Factory machine-cutting ensures perfect alignment." },
+        { icon: Clock, title: "Maintenance Friendly", desc: "Easy to clean and upgrade in the future." }
+      ]
+    },
     materials: [
-      { name: "Premium Plywood", properties: ["BWR/BWP Grades", "Structural Strength"], description: "Foundation for all custom and modular woodwork." },
-      { name: "Wall Textures & Paint", properties: ["Designer Finishes", "Eco-friendly"], description: "Curated palettes from leading brands for a premium feel." },
-      { name: "Designer Lighting", properties: ["Ambient", "Task", "Accent"], description: "Integrated lighting systems for every mood and function." },
-      { name: "Modular Components", properties: ["Precision Made", "High-end Hardware"], description: "Blending factory modularity with site-specific needs." }
-    ],
-    challenges: [
-      { icon: "layers", challenge: "Managing Multiple Vendors", solution: "A single point of contact for everything from civil work to final decor." },
-      { icon: "zap", challenge: "Coordination Delays", solution: "Integrated project management ensures all teams work in perfect sync." },
-      { icon: "palette", challenge: "Design Inconsistency", solution: "Unified design language across all rooms for a cohesive home experience." },
-      { icon: "shieldCheck", challenge: "Budget Overruns", solution: "Detailed itemized estimates with locked-in pricing before execution." }
-    ],
-    comparisons: [
-      { traditional: "Hiring separate contractors", grospace: "Unified turnkey execution" },
-      { traditional: "Frequent design mismatches", grospace: "Cohesive aesthetic planning" },
-      { traditional: "Managing site daily", grospace: "Professional project management" },
-      { traditional: "Unclear final costs", grospace: "Transparent, itemized pricing" },
-      { traditional: "Multiple warranty points", grospace: "Single-window service support" }
+      { name: "Premium Finishes", properties: ["Acrylic", "Laminate", "PU"], description: "A range of durable and easy-to-maintain surface options." },
+      { name: "Soft-Close Hardware", properties: ["World-class series"], description: "Smooth, silent operations for drawers and shutters." },
+      { name: "Durable Core", properties: ["BWR/BWP Grade"], description: "Moisture-resistant materials built to last a lifetime." }
     ]
   },
   'luxury-interiors': {
     title: 'Luxury Interiors',
-    headline: 'Signature Designs for an Elite Lifestyle',
-    description: 'Bespoke interiors that define sophistication. We combine exquisite design, premium finishes, and timeless aesthetics to create your dream luxury residence.',
+    headline: 'Luxury Interiors Designed With Timeless Elegance',
+    description: 'A bespoke experience where refinement meets personalization. We combine signature design philosophy with white-glove service for elite residences.',
     image: '/images/luxary interion.jpg',
     inclusions: [
-      'Signature Living Room Design',
-      'Master Suites & Walk-in Closets',
-      'Premium Modular Kitchens',
-      'Custom Wall Art & Paneling',
-      'Automated Lighting Design',
-      'Designer False Ceilings',
-      'Bespoke Accent Furniture',
-      'Premium Flooring Solutions'
+      { title: 'Signature Living', desc: 'Spacious, editorial-grade designs with premium lighting.' },
+      { title: 'Master Suites', desc: 'Elegant textures and walk-in closets for refined living.' },
+      { title: 'Bespoke Detailing', desc: 'One-of-a-kind concepts tailored to your personal aesthetic.' }
     ],
     process: [
-      { title: "Private Consultation", description: "Exclusively tailored sessions to capture your vision of luxury." },
-      { title: "Concept Development", description: "Creating a unique design language for your signature space." },
-      { title: "Bespoke Detailing", description: "Meticulous design of custom elements and intricate finishes." },
-      { title: "Premium Finish Selection", description: "Choosing from a curated library of high-end textures and tones." },
-      { title: "Artisan Craftsmanship", description: "Exquisite execution by our most skilled finishing teams." },
-      { title: "White-Glove Handover", description: "A seamless, premium experience from first meeting to final reveal." }
+      { title: "Curated Design Consultation", description: "Exclusive sessions to define your signature luxury language." },
+      { title: "Personalized Detailing", description: "Meticulous design of textures, lighting, and transitions." },
+      { title: "White-Glove Delivery", description: "A slow, refined execution process focused on perfection." }
     ],
-    materials: [
-      { name: "Premium Finishes", properties: ["PU / Glass / High-End Veneers"], description: "Exquisite surface treatments for a sophisticated visual depth." },
-      { name: "Signature Paneling", properties: ["Fluted / Upholstered / Metallic"], description: "Statement wall treatments that define the luxury character." },
-      { name: "Designer Hardware", properties: ["Blum / High-end Series"], description: "The silent luxury of effortless, smooth-operating systems." },
-      { name: "Ambient Lighting", properties: ["Smart Control", "Custom Fixtures"], description: "Intelligent lighting that enhances textures and sets the mood." }
-    ],
-    challenges: [
-      { icon: "diamond", challenge: "Generic Template Designs", solution: "100% bespoke design approach where no two luxury homes are alike." },
-      { icon: "penTool", challenge: "Lack of Fine Detailing", solution: "Obsessive focus on joinery, edge finishing, and material transitions." },
-      { icon: "star", challenge: "Average Finish Quality", solution: "Utilizing advanced finishing techniques for a perfectly smooth, rich feel." },
-      { icon: "heart", challenge: "Inexperienced Teams", solution: "Execution led by our 'Elite Squad' of veteran interior professionals." }
-    ],
-    comparisons: [
-      { traditional: "Standard market designs", grospace: "One-of-a-kind signature spaces" },
-      { traditional: "Visible joints & rough edges", grospace: "Flawless, seamless craftsmanship" },
-      { traditional: "Basic off-the-shelf finishes", grospace: "Exclusive premium textures" },
-      { traditional: "Standard execution speed", grospace: "White-glove, personalized service" },
-      { traditional: "General project handling", grospace: "Dedicated elite management" }
-    ]
-  },
-  'renovations': {
-    title: 'Home Renovations',
-    headline: 'Breathe New Life into Your Existing Space',
-    description: 'Update and upgrade your home without the hassle. Our renovation experts specialize in modernizing layouts, improving functionality, and refreshing aesthetics.',
-    image: '/images/renovation.jpg',
-    inclusions: [
-      'Space Remodeling',
-      'Structural Enhancements',
-      'Modern Kitchen Upgrades',
-      'Bathroom Refurbishment',
-      'Electrical & Plumbing Overhaul',
-      'Fresh Paint & Wall Finishes',
-      'Flooring Replacement',
-      'Balcony Transformations'
-    ],
-    process: [
-      { title: "Structural Audit", description: "Assessing the current state and identifying improvement areas." },
-      { title: "Modernization Plan", description: "Designing layout changes for better flow and space." },
-      { title: "Hassle-free Execution", description: "Phased work to minimize disruption to your daily life." },
-      { title: "Quality Upgrades", description: "Replacing old materials with modern, durable alternatives." }
-    ],
-    materials: [
-      { name: "HDHMR & Plywood", properties: ["Moisture Proof", "Strong"], description: "Replacing aging woodwork with industrial-grade materials." },
-      { name: "Modern Hardware", properties: ["Soft-close", "Anti-rust"], description: "Upgrading hinges and sliders for a contemporary feel." },
-      { name: "Premium Paint", properties: ["Washable", "Low VOC"], description: "Refreshing walls with high-durability, beautiful finishes." }
-    ],
-    challenges: [
-      { icon: "clock", challenge: "Unpredictable Issues", solution: "Experienced renovation teams that can handle hidden site surprises." },
-      { icon: "sparkles", challenge: "Dust Management", solution: "Strict site protection protocols to keep the rest of your home clean." }
-    ],
-    comparisons: [
-      { traditional: "Messy, unplanned patches", grospace: "Structured, holistic upgrade" },
-      { traditional: "Hidden cost surprises", grospace: "Clear, upfront renovation scope" }
-    ]
+    extraSection: {
+      title: "The Luxury Experience",
+      content: "Luxury is not about more features; it's about spatial calm, refined aesthetics, and absolute personalization. Our design philosophy focuses on balance, lighting, and textures that stand the test of time.",
+      items: [
+        { icon: Diamond, title: "Refined Detailing", desc: "Obsessive focus on material transitions and joinery." },
+        { icon: Star, title: "Personalized Aesthetics", desc: "Every home is a unique reflection of its owner." },
+        { icon: Award, title: "Timeless Philosophy", desc: "Designs that transcend temporary trends." }
+      ]
+    }
   }
 }
 
@@ -198,35 +123,82 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
           image={service.image}
         />
 
-        <ServiceTrustStrip />
-        
+        {/* 1. Editorial Introduction */}
+        <section className="py-24 lg:py-40 border-b border-zinc-50">
+           <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+              <div className="max-w-3xl space-y-12">
+                 <span className="text-[#ee6669] text-xs font-bold uppercase tracking-[0.4em] mb-4 block">Our Approach</span>
+                 <h2 className="text-4xl lg:text-7xl font-serif font-light text-[#2d1b4e] leading-tight tracking-tight">
+                    {service.description.split('.')[0]}.
+                 </h2>
+                 <p className="text-xl text-zinc-500 font-light leading-relaxed max-w-2xl">
+                    {service.description.split('.').slice(1).join('.')}
+                 </p>
+              </div>
+           </div>
+        </section>
+
+        {/* 2. Page Specific Extra Section */}
+        {service.extraSection && (
+          <section className="py-24 lg:py-40 bg-zinc-50 relative overflow-hidden">
+             <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
+                <div className="grid lg:grid-cols-2 gap-20 items-center">
+                   <div className="space-y-12">
+                      <h3 className="text-4xl lg:text-6xl font-serif font-light text-[#2d1b4e] leading-tight">
+                         {service.extraSection.title}
+                      </h3>
+                      <p className="text-xl text-zinc-500 font-light leading-relaxed">
+                         {service.extraSection.content}
+                      </p>
+                      <div className="grid sm:grid-cols-2 gap-8 pt-8">
+                         {service.extraSection.items.map((item, idx) => (
+                           <div key={idx} className="space-y-4">
+                              <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center shadow-sm">
+                                 <item.icon className="w-5 h-5 text-[#ee6669]" />
+                              </div>
+                              <h4 className="font-bold uppercase tracking-widest text-[11px] text-[#2d1b4e]">{item.title}</h4>
+                              <p className="text-sm text-zinc-400 font-light leading-relaxed">{item.desc}</p>
+                           </div>
+                         ))}
+                      </div>
+                   </div>
+                   <div className="relative aspect-[4/5] lg:aspect-square rounded-[3rem] overflow-hidden shadow-2xl">
+                      <Image 
+                        src={service.image} 
+                        alt={service.extraSection.title} 
+                        fill 
+                        className="object-cover"
+                      />
+                   </div>
+                </div>
+             </div>
+          </section>
+        )}
+
         <ServiceInclusions 
           title={service.title}
           items={service.inclusions}
         />
 
         <ServiceProcess 
-          title={slug === 'modular-interiors' ? "Precision Workflow" : "Transformation Journey"}
+          title={slug === 'luxury-interiors' ? "The Journey" : "Transformation Path"}
           steps={service.process} 
         />
 
-        <ServiceMaterials 
-          materials={service.materials}
-        />
+        {/* 3. Materials Section (Only if present and not luxury) */}
+        {service.materials && slug !== 'luxury-interiors' && (
+           <ServiceMaterials materials={service.materials} />
+        )}
 
-        <ServiceChallenges 
-          challenges={service.challenges}
-        />
-
+        {/* 4. Portfolio Showcase */}
         <ProjectsSection />
 
-        <ServiceComparison 
-          comparisons={service.comparisons}
-        />
+        {/* 5. Advantage Comparison (Omitted for Luxury) */}
+        {slug !== 'luxury-interiors' && (
+          <ServiceComparison />
+        )}
 
         <TestimonialsSection />
-
-        <FAQSection />
 
         <ServiceCTA />
       </main>

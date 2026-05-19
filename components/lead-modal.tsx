@@ -18,17 +18,22 @@ import Image from 'next/image'
 
 export function LeadModal() {
   const [isOpen, setIsOpen] = useState(false)
-  const [formData, setFormData] = useState({ name: '', phone: '', bhkType: '' })
+  const [formData, setFormData] = useState({ name: '', phone: '', bhkType: '', whatsapp_opt_in: true, package: '' })
   const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle')
   const searchParams = useSearchParams()
   const pathname = usePathname()
 
-  const triggerModal = useCallback(() => {
+  const triggerModal = useCallback((e?: any) => {
     const hasShown = localStorage.getItem('leadModalShown')
     const hasSubmitted = localStorage.getItem('leadFormSubmitted')
     
-    if (hasShown || hasSubmitted) return
+    // If opened manually via event, allow it even if shown before
+    if (!e && (hasShown || hasSubmitted)) return
     
+    if (e?.detail?.package) {
+      setFormData(prev => ({ ...prev, package: e.detail.package }))
+    }
+
     setIsOpen(true)
     localStorage.setItem('leadModalShown', 'true')
   }, [])
@@ -56,13 +61,13 @@ export function LeadModal() {
 
     window.addEventListener('mouseout', handleMouseLeave)
     window.addEventListener('open-lead-modal-engagement', handleEngagement)
-    window.addEventListener('open-lead-modal', triggerModal)
+    window.addEventListener('open-lead-modal', triggerModal as any)
 
     return () => {
       clearTimeout(timer)
       window.removeEventListener('mouseout', handleMouseLeave)
       window.removeEventListener('open-lead-modal-engagement', handleEngagement)
-      window.removeEventListener('open-lead-modal', triggerModal)
+      window.removeEventListener('open-lead-modal', triggerModal as any)
     }
   }, [triggerModal, pathname])
 
@@ -78,7 +83,15 @@ export function LeadModal() {
           name: formData.name,
           phone: formData.phone,
           typeOfSpace: formData.bhkType,
-          source: 'engagement_popup'
+          source: formData.package ? 'shop_section' : 'engagement_popup',
+          whatsapp_opt_in: formData.whatsapp_opt_in,
+          details: {
+            package_interest: formData.package || null,
+            preferences: {
+              whatsapp_opt_in: formData.whatsapp_opt_in,
+              bhk_type: formData.bhkType
+            }
+          }
         }),
       })
 
@@ -145,7 +158,7 @@ export function LeadModal() {
                 >
                   <div className="space-y-4">
                     <div className="inline-flex items-center gap-2 bg-[#ee6669]/10 px-4 py-1.5 rounded-full text-[#ee6669] text-[10px] font-bold uppercase tracking-[0.2em]">
-                      Exclusive Invitation
+                      {formData.package ? `Interest in ${formData.package}` : 'Exclusive Invitation'}
                     </div>
                     <h2 className="text-3xl lg:text-5xl font-serif font-light text-zinc-900 leading-[1.1] tracking-tight">
                       Book Your <span className="text-[#ee6669]">Free Site Visit.</span>
@@ -197,6 +210,17 @@ export function LeadModal() {
                           <option value="Exploring">Just Exploring</option>
                         </select>
                       </div>
+                    </div>
+
+                    <div className="flex items-center gap-3 px-2">
+                       <input 
+                        type="checkbox" 
+                        id="whatsapp_opt" 
+                        checked={formData.whatsapp_opt_in}
+                        onChange={(e) => setFormData({...formData, whatsapp_opt_in: e.target.checked})}
+                        className="w-4 h-4 accent-[#ee6669]" 
+                       />
+                       <label htmlFor="whatsapp_opt" className="text-[10px] text-zinc-400 font-medium cursor-pointer">I agree to receive updates on WhatsApp</label>
                     </div>
 
                     <Button 

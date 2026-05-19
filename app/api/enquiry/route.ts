@@ -20,7 +20,7 @@ const supabase = createClient(supabaseUrl, supabaseServiceRoleKey);
 
 export async function POST(request: Request) {
   try {
-    const { id, name, phone, email, city, typeOfSpace, source, details, budget, status } = await request.json();
+    const { id, name, phone, email, city, typeOfSpace, source, details, budget, status, whatsapp_opt_in } = await request.json();
 
     // Basic validation
     if (!name || !phone) {
@@ -37,6 +37,7 @@ export async function POST(request: Request) {
       budget_range: budget || null,
       status: status || 'new',
       details: details || {},
+      whatsapp_opt_in: whatsapp_opt_in !== undefined ? whatsapp_opt_in : true,
       updated_at: new Date().toISOString()
     };
 

@@ -129,10 +129,28 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
           city: formData.city,
           source: 'calculator',
           typeOfSpace: category === 'home' ? formData.bhk : category,
+          whatsapp_opt_in: formData.whatsappPreferred,
           details: {
-            whatsappPreferred: formData.whatsappPreferred,
-            category,
-            projectDetails: formData
+            calculator: {
+              category,
+              package: formData.style || 'Standard',
+              bhk: formData.bhk,
+              material: formData.material,
+              kitchen_layout: formData.layout,
+              spaces: formData.spaces,
+              addons: [
+                ...formData.kitchenAccessories,
+                ...formData.wardrobeAccessories
+              ]
+            },
+            preferences: {
+              whatsapp_preferred: formData.whatsappPreferred,
+              style_preference: formData.style
+            },
+            pricing: {
+              budget_range: formData.budget > 50 ? 'Luxury' : 'Standard',
+              raw_budget_value: formData.budget
+            }
           }
         }),
       })
