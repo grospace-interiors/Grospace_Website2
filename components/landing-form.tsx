@@ -96,22 +96,21 @@ export function LandingForm() {
       <motion.div 
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="bg-white p-12 rounded-[2.5rem] shadow-2xl text-center space-y-6 border border-zinc-100"
+        className="space-y-6 rounded-3xl border border-zinc-100 bg-white p-6 text-center shadow-2xl sm:p-12 sm:rounded-[2.5rem]"
       >
         <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mx-auto">
           <CheckCircle2 className="w-10 h-10 text-green-500" />
         </div>
         <div className="space-y-2">
           <h3 className="text-3xl font-serif font-light text-zinc-900 leading-tight">Request Received!</h3>
-          <p className="text-zinc-500 font-light">Our design expert will call you within 24 hours to schedule your free consultation.</p>
-        </div>
-      </motion.div>
+          <p className="text-zinc-500 font-light">Our design expert will call you within 24 hours to schedule your free site visit.</p>
+        </div>      </motion.div>
     )
   }
 
   return (
-    <div className="bg-white p-8 lg:p-12 rounded-[2.5rem] shadow-2xl border border-zinc-100 relative">
-      <div className="space-y-8">
+    <div className="relative rounded-3xl border border-zinc-100 bg-white p-5 shadow-2xl sm:p-8 lg:rounded-[2.5rem] lg:p-12">
+      <div className="space-y-6 sm:space-y-8">
         {/* Step Indicator */}
         <div className="flex items-center gap-3">
           <div className={cn("h-1 flex-grow rounded-full transition-all duration-700", step >= 1 ? "bg-[#ee6669]" : "bg-zinc-100")} />
@@ -127,10 +126,10 @@ export function LandingForm() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               onSubmit={handleStep1Submit} 
-              className="space-y-6"
+              className="space-y-5 sm:space-y-6"
             >
               <div className="space-y-2">
-                <h3 className="text-3xl font-serif font-light text-zinc-900 leading-tight tracking-tight">Let's start your <span className="text-[#ee6669]">design journey</span></h3>
+                <h3 className="text-2xl font-serif font-light leading-tight tracking-tight text-zinc-900 sm:text-3xl">Let's start your <span className="text-[#ee6669]">design journey</span></h3>
                 <p className="text-zinc-500 text-sm font-light">Enter your details to get a personalized estimate.</p>
               </div>
 
@@ -183,7 +182,7 @@ export function LandingForm() {
                 </div>
               </div>
 
-              <Button type="submit" className="w-full h-16 bg-[#ee6669] hover:bg-[#dd5558] text-white font-bold uppercase tracking-[0.2em] text-[11px] rounded-xl group transition-all shadow-xl shadow-[#ee6669]/20">
+              <Button type="submit" className="h-14 w-full rounded-xl bg-[#ee6669] text-[10px] font-bold uppercase tracking-[0.14em] text-white shadow-xl shadow-[#ee6669]/20 transition-all hover:bg-[#dd5558] sm:h-16 sm:text-[11px] sm:tracking-[0.2em]">
                 Continue Planning <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </motion.form>
@@ -194,15 +193,15 @@ export function LandingForm() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               onSubmit={handleFinalSubmit} 
-              className="space-y-6"
+              className="space-y-5 sm:space-y-6"
             >
               <div className="space-y-2 text-center">
-                <h3 className="text-3xl font-serif font-light text-zinc-900 leading-tight tracking-tight">Tell us about <span className="text-[#ee6669]">your needs</span></h3>
+                <h3 className="text-2xl font-serif font-light leading-tight tracking-tight text-zinc-900 sm:text-3xl">Tell us about <span className="text-[#ee6669]">your needs</span></h3>
                 <p className="text-zinc-500 text-sm font-light">This helps us prepare a better estimate for you.</p>
               </div>
 
               <div className="grid gap-4">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div className="relative group">
                     <Building2 className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 group-focus-within:text-[#ee6669] transition-colors" />
                     <select 
@@ -291,11 +290,11 @@ export function LandingForm() {
               </div>
 
               <div className="flex gap-4">
-                <Button type="button" variant="ghost" onClick={() => setStep(1)} className="h-16 px-6 rounded-xl hover:bg-zinc-100 text-zinc-400 text-xs font-bold uppercase tracking-widest">
+                <Button type="button" variant="ghost" onClick={() => setStep(1)} className="h-14 rounded-xl px-5 text-xs font-bold uppercase tracking-[0.14em] text-zinc-400 hover:bg-zinc-100 sm:h-16 sm:px-6 sm:tracking-widest">
                   Back
                 </Button>
-                <Button type="submit" disabled={status === 'loading'} className="flex-grow h-16 bg-[#ee6669] hover:bg-[#dd5558] text-white font-bold uppercase tracking-[0.2em] text-[11px] rounded-xl transition-all shadow-xl shadow-[#ee6669]/20">
-                  {status === 'loading' ? 'Submitting...' : 'Get Free Consultation'}
+                <Button type="submit" disabled={status === 'loading'} className="h-14 flex-grow rounded-xl bg-[#ee6669] text-[10px] font-bold uppercase tracking-[0.14em] text-white shadow-xl shadow-[#ee6669]/20 transition-all hover:bg-[#dd5558] sm:h-16 sm:text-[11px] sm:tracking-[0.2em]">
+                  {status === 'loading' ? 'Submitting...' : 'Get Free Quote'}
                 </Button>
               </div>
             </motion.form>

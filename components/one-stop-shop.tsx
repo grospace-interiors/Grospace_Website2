@@ -32,21 +32,21 @@ export function OneStopShop() {
   ]
 
   return (
-    <section className="w-full bg-white py-20 lg:py-28">
-      <div className="max-w-[1400px] mx-auto px-4 lg:px-8 text-center">
-        <h2 className="text-4xl lg:text-6xl font-serif font-light text-[#2d1b4e] mb-6 tracking-tight leading-tight">
+    <section className="w-full overflow-hidden bg-white py-16 lg:py-28">
+      <div className="mx-auto max-w-[1400px] px-4 text-center lg:px-8">
+        <h2 className="mb-4 text-3xl font-serif font-light leading-tight tracking-tight text-[#2d1b4e] sm:mb-6 sm:text-4xl lg:text-6xl">
           Everything your <span className="text-[#ee6669]">Home Needs.</span>
         </h2>
-        <p className="text-zinc-500 max-w-2xl mx-auto mb-16 text-lg font-light leading-relaxed">
+        <p className="mx-auto mb-10 max-w-2xl text-sm font-light leading-relaxed text-zinc-500 sm:mb-16 sm:text-lg">
           From modular kitchens to complete luxury home transformations — we handle everything from design to final handover.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 no-scrollbar md:mx-0 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-4 lg:gap-8">
           {categories.map((category) => (
             <Link 
               key={category.title} 
               href={category.href}
-              className="group relative h-[450px] overflow-hidden rounded-xl shadow-sm cursor-pointer hover:shadow-xl transition-all"
+              className="group relative h-[320px] min-w-[84%] snap-center cursor-pointer overflow-hidden rounded-xl shadow-sm transition-all hover:shadow-xl md:min-w-0 sm:h-[450px]"
             >
               <Image 
                 src={category.image} 
@@ -57,10 +57,10 @@ export function OneStopShop() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
               
-              <div className="absolute inset-x-0 bottom-0 p-8 text-center">
-                <div className="bg-white/95 backdrop-blur-sm rounded-lg p-6 py-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 shadow-lg">
+              <div className="absolute inset-x-0 bottom-0 p-4 text-center sm:p-8">
+                <div className="translate-y-0 rounded-lg bg-white/95 p-5 py-6 shadow-lg backdrop-blur-sm transition-transform duration-500 group-hover:translate-y-0 sm:translate-y-4 sm:p-6 sm:py-8">
                   <h3 className="text-xl font-bold text-[#333] mb-2">{category.title}</h3>
-                  <p className="text-sm text-zinc-500 line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <p className="line-clamp-2 text-sm text-zinc-500 opacity-100 transition-opacity duration-500 sm:opacity-0 sm:group-hover:opacity-100">
                     {category.description}
                   </p>
                 </div>

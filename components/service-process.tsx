@@ -49,14 +49,14 @@ const defaultSteps = [
 
 export function ServiceProcess({ title = "Process", steps = defaultSteps }: ServiceProcessProps) {
   return (
-    <section className="py-20 lg:py-32 bg-white overflow-hidden">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-        <div className="text-center mb-16 lg:mb-24">
+    <section className="overflow-hidden bg-white py-16 lg:py-32">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-12">
+        <div className="mb-12 text-center lg:mb-24">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl lg:text-6xl font-serif font-light text-zinc-900 mb-4"
+            className="mb-4 text-3xl font-serif font-light text-zinc-900 sm:text-4xl lg:text-6xl"
           >
             Our <span className="text-[#ee6669]">{title}</span>
           </motion.h2>
@@ -75,7 +75,7 @@ export function ServiceProcess({ title = "Process", steps = defaultSteps }: Serv
           {/* Central Connecting Line - Perfectly Centered */}
           <div className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-[1px] bg-zinc-100 md:-translate-x-1/2" />
 
-          <div className="space-y-6 md:space-y-12 relative">
+          <div className="relative space-y-6 md:space-y-12">
             {steps.map((step, index) => (
               <motion.div 
                 key={index}

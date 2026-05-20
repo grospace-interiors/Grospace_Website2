@@ -40,14 +40,14 @@ const brands = ["Hettich", "Hafele", "Blum", "Ebco"]
 
 export function ServiceMaterials({ materials = defaultMaterials }: ServiceMaterialsProps) {
   return (
-    <section className="py-24 lg:py-40 bg-white">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-        <div className="text-center mb-24">
+    <section className="overflow-hidden bg-white py-16 lg:py-40">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-12">
+        <div className="mb-12 text-center lg:mb-24">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl lg:text-6xl font-serif font-light text-[#2d1b4e] mb-6"
+            className="mb-4 text-3xl font-serif font-light text-[#2d1b4e] sm:text-4xl lg:mb-6 lg:text-6xl"
           >
             The <span className="text-[#ee6669]">Grospace</span> Material Standard
           </motion.h2>
@@ -56,13 +56,13 @@ export function ServiceMaterials({ materials = defaultMaterials }: ServiceMateri
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-zinc-500 max-w-2xl mx-auto font-light"
+            className="mx-auto max-w-2xl text-sm font-light text-zinc-500 sm:text-base"
           >
             We partner with world-class hardware brands and use industrial-grade materials to ensure your interiors last a lifetime.
           </motion.p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-24">
+        <div className="-mx-4 mb-16 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 no-scrollbar md:mx-0 md:grid md:grid-cols-2 md:gap-8 md:overflow-visible md:px-0 md:pb-0 lg:mb-24 lg:grid-cols-4">
           {materials.map((material, index) => (
             <motion.div
               key={index}
@@ -70,7 +70,7 @@ export function ServiceMaterials({ materials = defaultMaterials }: ServiceMateri
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="group p-8 rounded-[2.5rem] bg-zinc-50 border border-zinc-100 hover:border-[#ee6669]/20 hover:bg-white hover:shadow-2xl transition-all duration-500"
+              className="group min-w-[82%] snap-center rounded-3xl border border-zinc-100 bg-zinc-50 p-6 transition-all duration-500 hover:border-[#ee6669]/20 hover:bg-white hover:shadow-2xl md:min-w-0 sm:p-8 sm:rounded-[2.5rem]"
             >
               <h3 className="text-2xl font-serif font-light text-[#2d1b4e] mb-4">{material.name}</h3>
               <div className="flex flex-wrap gap-2 mb-6">
@@ -88,10 +88,10 @@ export function ServiceMaterials({ materials = defaultMaterials }: ServiceMateri
         </div>
 
         <div className="pt-12 border-t border-zinc-100">
-          <p className="text-center text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-400 mb-12">Global Hardware Partners</p>
-          <div className="flex flex-wrap justify-center items-center gap-16 lg:gap-32 grayscale opacity-30">
+          <p className="mb-8 text-center text-[9px] font-bold uppercase tracking-[0.18em] text-zinc-400 sm:mb-12 sm:text-[10px] sm:tracking-[0.4em]">Global Hardware Partners</p>
+          <div className="flex flex-wrap items-center justify-center gap-8 opacity-30 grayscale sm:gap-16 lg:gap-32">
              {brands.map(brand => (
-               <span key={brand} className="text-3xl lg:text-5xl font-serif font-light tracking-tighter text-[#2d1b4e]">{brand}</span>
+               <span key={brand} className="font-serif text-2xl font-light tracking-tighter text-[#2d1b4e] sm:text-3xl lg:text-5xl">{brand}</span>
              ))}
           </div>
         </div>

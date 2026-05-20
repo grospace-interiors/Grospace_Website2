@@ -69,26 +69,26 @@ export function ContactSection() {
     if (submissionStatus === 'error') {
       return 'Submission failed. Please try again.';
     }
-    return 'Book Free Consultation';
+    return 'Book Free Site Visit';
   };
 
   return (
-    <section id="contact" className="w-full py-24 px-4 sm:px-6 lg:px-8 bg-white text-zinc-900">
+    <section id="contact" className="w-full overflow-hidden bg-white px-4 py-16 text-zinc-900 sm:px-6 md:py-24 lg:px-8">
       <div className="max-w-2xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <p className="text-primary uppercase tracking-widest text-xs font-medium mb-4">Direct Enquiry</p>
-          <h2 className="text-4xl sm:text-5xl font-serif font-light text-zinc-900 text-balance mb-6">
+          <p className="mb-4 text-xs font-medium uppercase tracking-[0.16em] text-primary sm:tracking-widest">Direct Enquiry</p>
+          <h2 className="mb-6 text-3xl font-serif font-light text-zinc-900 text-balance md:text-5xl">
             Let's Start Your Dream Project
           </h2>
-          <p className="text-lg text-zinc-600 leading-relaxed max-w-xl mx-auto">
+          <p className="mx-auto max-w-xl text-sm leading-relaxed text-zinc-600 sm:text-lg">
             Ready to grow your space? Fill out the form below and our Bhopal experts will reach out to you.
           </p>
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-6 mb-12">
-          <div className="grid sm:grid-cols-2 gap-6">
+        <form onSubmit={handleSubmit} className="mb-12 space-y-6">
+          <div className="grid gap-6 sm:grid-cols-2">
             {/* Full Name */}
             <div>
               <label htmlFor="name" className="block text-xs uppercase tracking-widest text-zinc-500 mb-2">
@@ -124,7 +124,7 @@ export function ContactSection() {
             </div>
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-6">
+          <div className="grid gap-6 sm:grid-cols-2">
             {/* Email */}
             <div>
               <label htmlFor="email" className="block text-xs uppercase tracking-widest text-zinc-500 mb-2">
@@ -178,7 +178,7 @@ export function ContactSection() {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-4 font-bold uppercase tracking-widest text-sm transition-all duration-300 transform hover:scale-[1.02] rounded-lg shadow-lg hover:shadow-xl"
+            className="w-full rounded-lg bg-primary px-6 py-4 text-xs font-bold uppercase tracking-[0.14em] text-primary-foreground shadow-lg transition-all duration-300 hover:scale-[1.02] hover:bg-primary/90 hover:shadow-xl sm:text-sm sm:tracking-widest"
             disabled={submissionStatus === 'loading' || submissionStatus === 'success'}
           >
             {getButtonText()}

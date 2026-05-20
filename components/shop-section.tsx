@@ -74,10 +74,10 @@ export function ShopSection() {
   }
 
   return (
-    <section id="collections" className="w-full bg-[#fafafa] py-24 md:py-36 text-[#2d1b4e] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+    <section id="collections" className="relative w-full overflow-hidden bg-[#fafafa] py-16 text-[#2d1b4e] md:py-36">
+      <div className="mx-auto max-w-7xl px-4 md:px-12">
         {/* Section Header */}
-        <div className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-10">
+        <div className="mb-12 flex flex-col justify-between gap-8 md:mb-20 md:flex-row md:items-end md:gap-10">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -85,14 +85,14 @@ export function ShopSection() {
             transition={{ duration: 0.8 }}
             className="max-w-3xl"
           >
-            <span className="text-[10px] uppercase tracking-[0.3em] text-[#ee6669] font-bold mb-6 block">
+            <span className="mb-4 block text-[9px] font-bold uppercase tracking-[0.18em] text-[#ee6669] sm:mb-6 sm:text-[10px] sm:tracking-[0.3em]">
               Curated Solutions
             </span>
-            <h2 className="text-4xl md:text-6xl font-serif font-light text-[#2d1b4e] leading-[1.1] mb-8">
+            <h2 className="mb-5 text-3xl font-serif font-light leading-[1.1] text-[#2d1b4e] sm:text-4xl md:mb-8 md:text-6xl">
               Interior Collections for <br />
               <span className="italic">Modern Living</span>
             </h2>
-            <p className="text-lg text-zinc-500 font-light max-w-xl leading-relaxed">
+            <p className="max-w-xl text-sm font-light leading-relaxed text-zinc-500 sm:text-lg">
               Thoughtfully designed setups that blend architectural precision with lived-in comfort. Each collection is a complete narrative for your home.
             </p>
           </motion.div>
@@ -103,8 +103,8 @@ export function ShopSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-             <Button variant="link" className="text-[#2d1b4e] group p-0 h-auto hover:no-underline">
-                <span className="uppercase tracking-[0.2em] text-[10px] font-bold mr-4">View All Solutions</span>
+             <Button variant="link" className="group h-auto p-0 text-[#2d1b4e] hover:no-underline">
+                <span className="mr-3 text-[9px] font-bold uppercase tracking-[0.14em] sm:mr-4 sm:text-[10px] sm:tracking-[0.2em]">View All Solutions</span>
                 <div className="w-10 h-10 rounded-full border border-zinc-200 flex items-center justify-center group-hover:bg-[#2d1b4e] group-hover:text-white transition-all duration-500">
                   <ArrowRight className="w-4 h-4" />
                 </div>
@@ -113,7 +113,7 @@ export function ShopSection() {
         </div>
 
         {/* Collections Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-14">
+        <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 no-scrollbar md:mx-0 md:grid md:grid-cols-2 md:gap-8 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3 lg:gap-14">
           {displayPackages.map((pkg: any, index: number) => (
             <motion.div
               key={pkg.id}
@@ -121,10 +121,10 @@ export function ShopSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: index * 0.1 }}
-              className="group flex flex-col"
+              className="group flex min-w-[86%] snap-center flex-col md:min-w-0"
             >
               {/* Image Showcase */}
-              <div className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl mb-8 shadow-sm group-hover:shadow-2xl transition-all duration-700">
+              <div className="relative mb-5 aspect-[3/2] w-full overflow-hidden rounded-2xl shadow-sm transition-all duration-700 group-hover:shadow-2xl sm:mb-8">
                 <Image
                   src={pkg.image_url}
                   alt={pkg.name}
@@ -144,16 +144,16 @@ export function ShopSection() {
                 )}
 
                 {/* Refined Price Tag - Bottom Left */}
-                <div className="absolute bottom-8 left-8 text-white z-10">
+                <div className="absolute bottom-5 left-5 z-10 text-white sm:bottom-8 sm:left-8">
                   <p className="text-[9px] uppercase tracking-[0.2em] font-medium opacity-80 mb-1">Starting From</p>
                   <p className="text-2xl font-serif">₹{(pkg.price / 100000).toFixed(1)}L</p>
                 </div>
               </div>
 
               {/* Content Detail */}
-              <div className="p-8 flex flex-col flex-grow pt-0">
+              <div className="flex flex-grow flex-col p-4 pt-0 sm:p-8 sm:pt-0">
                 <div className="mb-4">
-                  <h3 className="text-2xl font-serif font-light mb-3 text-[#2d1b4e]">  
+                  <h3 className="mb-3 text-xl font-serif font-light text-[#2d1b4e] sm:text-2xl">  
                     {pkg.name}
                   </h3>
                   <p className="text-zinc-500 text-sm leading-relaxed font-light line-clamp-2">
@@ -179,16 +179,16 @@ export function ShopSection() {
                   <Button 
                     variant="default"
                     onClick={() => window.dispatchEvent(new CustomEvent('open-lead-modal', { detail: { package: pkg.name } }))}
-                    className="w-full xl:flex-1 bg-[#2d1b4e] text-white hover:bg-[#ee6669] h-14 rounded-full transition-all duration-500 text-[10px] uppercase tracking-[0.15em] font-bold shadow-lg shadow-[#2d1b4e]/10"
+                    className="h-12 w-full rounded-full bg-[#2d1b4e] text-[9px] font-bold uppercase tracking-[0.12em] text-white shadow-lg shadow-[#2d1b4e]/10 transition-all duration-500 hover:bg-[#ee6669] sm:h-14 sm:text-[10px] sm:tracking-[0.15em] xl:flex-1"
                   >
                     View Details
                   </Button>
                   <Button 
                     variant="outline"
                     onClick={() => window.dispatchEvent(new CustomEvent('open-lead-modal', { detail: { package: pkg.name, type: 'estimate' } }))}
-                    className="w-full xl:flex-1 h-14 rounded-full border-zinc-200 hover:border-[#ee6669] hover:text-[#ee6669] transition-all duration-500 text-[10px] uppercase tracking-[0.15em] font-bold"
+                    className="h-12 w-full rounded-full border-zinc-200 text-[9px] font-bold uppercase tracking-[0.12em] transition-all duration-500 hover:border-[#ee6669] hover:text-[#ee6669] sm:h-14 sm:text-[10px] sm:tracking-[0.15em] xl:flex-1"
                   >
-                    Estimate Budget
+                    Calculate Your Estimate
                   </Button>
                 </div>
               </div>

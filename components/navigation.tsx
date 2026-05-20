@@ -49,22 +49,22 @@ export function Navigation() {
   }
 
   return (
-    <nav className="sticky top-0 z-50 w-full bg-white shadow-sm font-sans">
+    <nav className="sticky top-0 z-50 w-full max-w-full overflow-visible bg-white font-sans shadow-sm">
       {/* Top Bar */}
-      <div className="bg-[#2d1b4e] text-white text-[10px] py-1.5 px-4 text-center">
-        India's First Lifetime Warranty* | Quality Materials | On-Time Delivery
-        <button className="float-right"><X className="w-3 h-3" /></button>
+      <div className="relative bg-[#2d1b4e] px-8 py-1.5 text-center text-[9px] leading-relaxed text-white sm:text-[10px]">
+        <span className="block truncate sm:whitespace-normal">India's First Lifetime Warranty* | Quality Materials | On-Time Delivery</span>
+        <button type="button" className="absolute right-3 top-1/2 -translate-y-1/2" aria-label="Close offer bar"><X className="h-3 w-3" /></button>
       </div>
 
       {/* Main Navigation */}
       <div className="max-w-[1400px] mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-full border-2 border-[#ee6669] flex items-center justify-center">
-               <div className="w-6 h-6 rounded-full border border-[#ee6669]" />
+          <Link href="/" className="flex min-w-0 items-center gap-2">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-[#ee6669] sm:h-10 sm:w-10">
+               <div className="h-5 w-5 rounded-full border border-[#ee6669] sm:h-6 sm:w-6" />
             </div>
-            <span className="text-xl lg:text-2xl font-bold tracking-tighter text-[#2d1b4e] uppercase">
+            <span className="min-w-0 truncate text-lg font-bold uppercase tracking-tighter text-[#2d1b4e] sm:text-xl lg:text-2xl">
               Grospace Interiors
             </span>
           </Link>
@@ -158,8 +158,9 @@ export function Navigation() {
 
             {/* Mobile Menu Button */}
             <button
+              type="button"
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2 text-zinc-700"
+              className="shrink-0 p-2 text-zinc-700 lg:hidden"
               aria-label="Toggle menu"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -175,16 +176,16 @@ export function Navigation() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed inset-0 z-[60] lg:hidden bg-white min-h-screen"
+              className="fixed inset-0 z-[120] min-h-screen bg-white lg:hidden"
             >
               <div className="p-6">
                 <div className="flex justify-between items-center mb-12">
-                   <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center gap-2">
-                    <span className="text-2xl font-bold tracking-tighter text-[#2d1b4e] uppercase">
+                   <Link href="/" onClick={() => setIsOpen(false)} className="flex min-w-0 items-center gap-2">
+                    <span className="min-w-0 truncate text-xl font-bold uppercase tracking-tighter text-[#2d1b4e]">
                       Grospace Interiors
                     </span>
                   </Link>
-                  <button onClick={() => setIsOpen(false)} className="p-2"><X className="w-8 h-8 text-zinc-900" /></button>
+                  <button type="button" onClick={() => setIsOpen(false)} className="p-2"><X className="w-8 h-8 text-zinc-900" /></button>
                 </div>
 
                 <div className="space-y-8 overflow-y-auto max-h-[calc(100vh-200px)]">

@@ -16,7 +16,7 @@ export function WhatsAppFab() {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white rounded-full p-4 shadow-lg hover:bg-[#128C7E] transition-colors duration-300"
+            className="fixed bottom-6 right-6 z-50 hidden rounded-full bg-[#25D366] p-4 text-white shadow-lg transition-colors duration-300 hover:bg-[#128C7E] md:flex"
           >
             <MessageCircle className="w-8 h-8" />
           </a>

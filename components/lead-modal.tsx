@@ -43,8 +43,8 @@ export function LeadModal() {
     const pageViews = Number(sessionStorage.getItem('pageViews') || '0') + 1
     sessionStorage.setItem('pageViews', pageViews.toString())
     
-    // 2. Trigger after 15 seconds on the first page OR 3 pages
-    const showDelay = pageViews >= 3 ? 2000 : 15000
+    // 2. Trigger after 30 seconds on the first page OR 3 pages
+    const showDelay = pageViews >= 3 ? 5000 : 30000
     const timer = setTimeout(triggerModal, showDelay)
 
     // 3. Exit Intent Trigger
@@ -109,6 +109,10 @@ export function LeadModal() {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogContent className="max-w-[95vw] sm:max-w-[900px] p-0 overflow-hidden rounded-[2.5rem] sm:rounded-[3rem] border-none shadow-2xl bg-white max-sm:fixed max-sm:bottom-0 max-sm:left-0 max-sm:right-0 max-sm:top-auto max-sm:translate-x-0 max-sm:translate-y-0 max-sm:rounded-b-none max-sm:max-w-none">
+        <DialogHeader className="sr-only">
+          <DialogTitle>Book Free Site Visit</DialogTitle>
+          <DialogDescription>Fill out the form to book your free site visit in Bhopal.</DialogDescription>
+        </DialogHeader>
         <div className="flex flex-col lg:flex-row min-h-[400px] lg:h-[600px]">
           
           {/* Left Side: Premium Image (Desktop Only) */}
@@ -228,7 +232,7 @@ export function LeadModal() {
                       disabled={status === 'loading'}
                       className="w-full h-16 bg-[#ee6669] hover:bg-zinc-900 text-white font-bold uppercase tracking-[0.2em] text-[11px] rounded-2xl shadow-xl shadow-[#ee6669]/10 transition-all active:scale-[0.98] group"
                     >
-                      {status === 'loading' ? 'Scheduling...' : 'Schedule Free Visit'} 
+                      {status === 'loading' ? 'Scheduling...' : 'Book Free Site Visit'} 
                       <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                     </Button>
                     

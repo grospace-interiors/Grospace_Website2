@@ -21,7 +21,7 @@ export default function HomeInteriorsLandingPage() {
   }
 
   return (
-    <div className="bg-white font-sans selection:bg-[#ee6669]/30">
+    <div className="overflow-x-clip bg-white font-sans selection:bg-[#ee6669]/30">
       <LandingNavigation />
       
       <main>
@@ -29,9 +29,9 @@ export default function HomeInteriorsLandingPage() {
         <LandingHero />
 
         {/* Brand Story & Lead Form Section - PRIMARY CONVERSION */}
-        <section id="get-quote" className="py-24 lg:py-32 bg-white relative overflow-hidden">
-          <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
-            <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+        <section id="get-quote" className="relative overflow-hidden bg-white py-16 lg:py-32">
+          <div className="relative z-10 mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-12">
+            <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-24">
               
               {/* Left Column: Storytelling & Stats */}
               <motion.div 
@@ -39,30 +39,30 @@ export default function HomeInteriorsLandingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="space-y-12"
+                className="space-y-8 lg:space-y-12"
               >
-                <div className="space-y-6">
-                  <div className="inline-flex items-center gap-2 bg-[#ee6669]/10 px-4 py-1 rounded-full text-[#ee6669] text-[10px] font-bold uppercase tracking-widest">
+                <div className="space-y-4 lg:space-y-6">
+                  <div className="inline-flex items-center gap-2 rounded-full bg-[#ee6669]/10 px-4 py-1 text-[9px] font-bold uppercase tracking-[0.14em] text-[#ee6669] sm:text-[10px] sm:tracking-widest">
                     <Sparkles className="w-3 h-3" /> Our Philosophy
                   </div>
-                  <h2 className="text-4xl lg:text-6xl font-serif font-light text-zinc-900 leading-[1.1] tracking-tight">
+                  <h2 className="text-3xl font-serif font-light leading-[1.1] tracking-tight text-zinc-900 sm:text-4xl lg:text-6xl">
                     Interiors that reflect <span className="text-[#ee6669]">who you are.</span>
                   </h2>
-                  <p className="text-lg text-zinc-500 font-light leading-relaxed max-w-xl">
+                  <p className="max-w-xl text-sm font-light leading-relaxed text-zinc-500 sm:text-lg">
                     At Grospace, we don't just design rooms; we create sanctuaries for families. Our design philosophy balances premium aesthetics with the practical needs of a modern Indian household.
                   </p>
                 </div>
 
                 {/* Trust Points */}
-                <div className="grid sm:grid-cols-2 gap-8 pt-4">
-                  <div className="space-y-3 p-6 rounded-2xl bg-zinc-50 border border-zinc-100 transition-colors hover:bg-white hover:shadow-xl group">
+                <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 pt-2 no-scrollbar sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-8 sm:overflow-visible sm:px-0 sm:pb-0 sm:pt-4">
+                  <div className="group min-w-[82%] snap-center space-y-3 rounded-2xl border border-zinc-100 bg-zinc-50 p-6 transition-colors hover:bg-white hover:shadow-xl sm:min-w-0">
                     <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm group-hover:bg-[#ee6669]/10 transition-colors">
                       <ShieldCheck className="w-6 h-6 text-[#ee6669]" />
                     </div>
                     <h4 className="font-serif text-xl text-zinc-900">10-Year Warranty</h4>
                     <p className="text-sm text-zinc-500 font-light">Comprehensive coverage for your peace of mind.</p>
                   </div>
-                  <div className="space-y-3 p-6 rounded-2xl bg-zinc-50 border border-zinc-100 transition-colors hover:bg-white hover:shadow-xl group">
+                  <div className="group min-w-[82%] snap-center space-y-3 rounded-2xl border border-zinc-100 bg-zinc-50 p-6 transition-colors hover:bg-white hover:shadow-xl sm:min-w-0">
                     <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm group-hover:bg-[#ee6669]/10 transition-colors">
                       <Heart className="w-6 h-6 text-[#ee6669]" />
                     </div>
@@ -112,22 +112,22 @@ export default function HomeInteriorsLandingPage() {
         <LandingWarranty />
 
         {/* Price Estimator Section - CREATIVE HERO MOTO */}
-        <section className="bg-zinc-50 py-32 lg:py-48 relative overflow-hidden">
+        <section className="relative overflow-hidden bg-zinc-50 py-16 lg:py-48">
            {/* Creative Background Elements */}
            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none select-none overflow-hidden opacity-[0.03] z-0">
              <span className="absolute -top-10 -left-20 text-[300px] font-serif font-bold text-[#2d1b4e]">BUDGET</span>
            </div>
            
-           <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10 mb-32">
-              <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+           <div className="relative z-10 mx-auto mb-12 max-w-[1400px] px-4 sm:px-6 lg:mb-32 lg:px-12">
+              <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-24">
                 
                 {/* Left Column: Moto & Story */}
-                <div className="space-y-10 text-left">
+                <div className="space-y-6 text-left lg:space-y-10">
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    className="inline-flex items-center gap-3 bg-white border border-[#ee6669]/20 px-8 py-3 rounded-full text-[#ee6669] text-[10px] font-bold uppercase tracking-[0.4em] shadow-sm"
+                    className="inline-flex items-center gap-2 rounded-full border border-[#ee6669]/20 bg-white px-5 py-2.5 text-[9px] font-bold uppercase tracking-[0.16em] text-[#ee6669] shadow-sm sm:gap-3 sm:px-8 sm:py-3 sm:text-[10px] sm:tracking-[0.4em]"
                   >
                     <Sparkles className="w-4 h-4" /> Transparency at its Heart
                   </motion.div>
@@ -137,7 +137,7 @@ export default function HomeInteriorsLandingPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    className="text-6xl lg:text-[84px] font-serif font-light text-[#2d1b4e] leading-[1] tracking-tight"
+                    className="text-4xl font-serif font-light leading-[1.05] tracking-tight text-[#2d1b4e] sm:text-6xl lg:text-[84px]"
                   >
                     Plan with <span className="text-[#ee6669] italic">Confidence,</span> <br/>
                     Design without <span className="text-[#ee6669] italic">Compromise.</span>
@@ -148,7 +148,7 @@ export default function HomeInteriorsLandingPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="text-xl lg:text-2xl text-zinc-500 font-light max-w-xl leading-relaxed"
+                    className="max-w-xl text-sm font-light leading-relaxed text-zinc-500 sm:text-xl lg:text-2xl"
                   >
                     No hidden costs. No guesswork. Use our premium estimator to discover the real investment for your dream home in Bhopal.
                   </motion.p>
@@ -170,7 +170,7 @@ export default function HomeInteriorsLandingPage() {
                   transition={{ duration: 1 }}
                   className="relative group"
                 >
-                  <div className="relative h-[600px] w-full rounded-[4rem] overflow-hidden shadow-2xl border-8 border-white group-hover:border-[#ee6669]/10 transition-colors duration-700">
+                  <div className="relative h-[320px] w-full overflow-hidden rounded-3xl border-4 border-white shadow-2xl transition-colors duration-700 group-hover:border-[#ee6669]/10 sm:h-[600px] sm:rounded-[4rem] sm:border-8">
                     <Image 
                       src="/images/living%20room.jpg" 
                       alt="Premium Interior Budgeting" 
@@ -218,14 +218,13 @@ export default function HomeInteriorsLandingPage() {
           initial={{ y: 100 }}
           animate={{ y: 0 }}
           transition={{ delay: 1, duration: 0.5 }}
-          className="lg:hidden fixed bottom-6 left-6 right-6 z-50"
+          className="hidden"
         >
            <Button 
             onClick={scrollToForm}
             className="w-full bg-[#ee6669] hover:bg-[#dd5558] text-white font-bold py-7 rounded-2xl shadow-2xl shadow-[#ee6669]/40 uppercase tracking-widest text-xs flex items-center justify-center gap-3"
            >
-             Book Free Consultation <ArrowRight className="w-4 h-4" />
-           </Button>
+             Book Free Site Visit <ArrowRight className="w-4 h-4" />           </Button>
         </motion.div>
       </main>
       

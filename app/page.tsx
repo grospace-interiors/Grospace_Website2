@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <>
       <Navigation />
-      <main>
+      <main className="overflow-x-clip">
         <HeroSection />
         <TrustStrip />
         <WhyGrospaceInteriors />

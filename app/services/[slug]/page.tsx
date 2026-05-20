@@ -116,7 +116,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
   return (
     <>
       <Navigation />
-      <main className="bg-white">
+      <main className="overflow-x-clip bg-white">
         <ServiceHero 
           title={service.title}
           subtitle={service.headline}
@@ -124,14 +124,14 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         />
 
         {/* 1. Editorial Introduction */}
-        <section className="py-24 lg:py-40 border-b border-zinc-50">
-           <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-              <div className="max-w-3xl space-y-12">
-                 <span className="text-[#ee6669] text-xs font-bold uppercase tracking-[0.4em] mb-4 block">Our Approach</span>
-                 <h2 className="text-4xl lg:text-7xl font-serif font-light text-[#2d1b4e] leading-tight tracking-tight">
+        <section className="border-b border-zinc-50 py-16 lg:py-40">
+           <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-12">
+              <div className="max-w-3xl space-y-6 lg:space-y-12">
+                 <span className="mb-4 block text-[10px] font-bold uppercase tracking-[0.18em] text-[#ee6669] sm:text-xs sm:tracking-[0.4em]">Our Approach</span>
+                 <h2 className="text-3xl font-serif font-light leading-tight tracking-tight text-[#2d1b4e] sm:text-4xl lg:text-7xl">
                     {service.description.split('.')[0]}.
                  </h2>
-                 <p className="text-xl text-zinc-500 font-light leading-relaxed max-w-2xl">
+                 <p className="max-w-2xl text-sm font-light leading-relaxed text-zinc-500 sm:text-xl">
                     {service.description.split('.').slice(1).join('.')}
                  </p>
               </div>
@@ -140,19 +140,19 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
 
         {/* 2. Page Specific Extra Section */}
         {service.extraSection && (
-          <section className="py-24 lg:py-40 bg-zinc-50 relative overflow-hidden">
-             <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
-                <div className="grid lg:grid-cols-2 gap-20 items-center">
-                   <div className="space-y-12">
-                      <h3 className="text-4xl lg:text-6xl font-serif font-light text-[#2d1b4e] leading-tight">
+          <section className="relative overflow-hidden bg-zinc-50 py-16 lg:py-40">
+             <div className="relative z-10 mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-12">
+                <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-20">
+                   <div className="space-y-6 lg:space-y-12">
+                      <h3 className="text-3xl font-serif font-light leading-tight text-[#2d1b4e] sm:text-4xl lg:text-6xl">
                          {service.extraSection.title}
                       </h3>
-                      <p className="text-xl text-zinc-500 font-light leading-relaxed">
+                      <p className="text-sm font-light leading-relaxed text-zinc-500 sm:text-xl">
                          {service.extraSection.content}
                       </p>
-                      <div className="grid sm:grid-cols-2 gap-8 pt-8">
+                      <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 pt-4 no-scrollbar sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-8 sm:overflow-visible sm:px-0 sm:pb-0 sm:pt-8">
                          {service.extraSection.items.map((item, idx) => (
-                           <div key={idx} className="space-y-4">
+                           <div key={idx} className="min-w-[82%] snap-center space-y-4 rounded-2xl border border-zinc-100 bg-white p-5 shadow-sm sm:min-w-0 sm:border-0 sm:bg-transparent sm:p-0 sm:shadow-none">
                               <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center shadow-sm">
                                  <item.icon className="w-5 h-5 text-[#ee6669]" />
                               </div>
@@ -162,7 +162,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                          ))}
                       </div>
                    </div>
-                   <div className="relative aspect-[4/5] lg:aspect-square rounded-[3rem] overflow-hidden shadow-2xl">
+                   <div className="relative aspect-[4/5] overflow-hidden rounded-3xl shadow-2xl lg:aspect-square lg:rounded-[3rem]">
                       <Image 
                         src={service.image} 
                         alt={service.extraSection.title} 
@@ -186,7 +186,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         />
 
         {/* 3. Materials Section (Only if present and not luxury) */}
-        {service.materials && slug !== 'luxury-interiors' && (
+        {'materials' in service && service.materials && slug !== 'luxury-interiors' && (
            <ServiceMaterials materials={service.materials} />
         )}
 

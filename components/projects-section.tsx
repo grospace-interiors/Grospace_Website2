@@ -45,14 +45,14 @@ export function ProjectsSection({ limit }: { limit?: number }) {
   }
 
   return (
-    <section id="projects" className="w-full py-20 lg:py-28 bg-white">
-      <div className="max-w-[1400px] mx-auto px-4 lg:px-8 text-center">
+    <section id="projects" className="w-full overflow-hidden bg-white py-16 lg:py-28">
+      <div className="mx-auto max-w-[1400px] px-4 text-center lg:px-8">
         {limit && (
           <>
-            <h2 className="text-4xl lg:text-6xl font-serif font-light text-[#2d1b4e] mb-6 tracking-tight leading-tight">
+            <h2 className="mb-4 text-3xl font-serif font-light leading-tight tracking-tight text-[#2d1b4e] sm:mb-6 sm:text-4xl lg:text-6xl">
               Real Homes, <span className="text-[#ee6669]">Real Stories.</span>
             </h2>
-            <p className="text-zinc-500 max-w-2xl mx-auto mb-16 text-lg font-light leading-relaxed">
+            <p className="mx-auto mb-10 max-w-2xl text-sm font-light leading-relaxed text-zinc-500 sm:mb-16 sm:text-lg">
               Every home we design tells a story of a family's dreams coming to life. Discover our latest transformations across Bhopal.
             </p>
           </>
@@ -64,7 +64,7 @@ export function ProjectsSection({ limit }: { limit?: number }) {
           <div className="mt-20 text-center">
             <a 
               href="/projects" 
-              className="inline-flex items-center gap-3 px-10 py-5 bg-[#2d1b4e] text-white rounded-2xl font-bold uppercase tracking-[0.2em] text-[10px] shadow-xl hover:bg-[#ee6669] transition-all duration-500"
+              className="inline-flex max-w-full items-center gap-3 rounded-2xl bg-[#2d1b4e] px-8 py-4 text-[9px] font-bold uppercase tracking-[0.14em] text-white shadow-xl transition-all duration-500 hover:bg-[#ee6669] sm:px-10 sm:py-5 sm:text-[10px] sm:tracking-[0.2em]"
             >
               View Full Portfolio
             </a>

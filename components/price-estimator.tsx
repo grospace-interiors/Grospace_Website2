@@ -258,7 +258,7 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
       viewport={{ once: true }}
       whileHover={{ y: -15 }}
       transition={{ duration: 0.8 }}
-      className="group relative h-[650px] rounded-[3.5rem] overflow-hidden cursor-pointer shadow-2xl hover:shadow-[0_48px_80px_-20px_rgba(45,27,78,0.15)] transition-all duration-700"
+      className="group relative h-[360px] min-w-[86%] snap-center cursor-pointer overflow-hidden rounded-3xl shadow-2xl transition-all duration-700 hover:shadow-[0_48px_80px_-20px_rgba(45,27,78,0.15)] md:min-w-0 sm:h-[650px] sm:rounded-[3.5rem]"
       onClick={() => {
         const path = type === 'home' ? '/pc/home-interior' : `/pc/${type}`
         router.push(path)
@@ -267,13 +267,13 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
       <Image src={img} alt={title} fill className="object-cover transition-transform duration-[3000ms] group-hover:scale-110" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#2d1b4e] via-[#2d1b4e]/30 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-700" />
       
-      <div className="absolute inset-0 p-16 flex flex-col justify-end items-center text-center space-y-10">
-        <div className="w-24 h-24 rounded-[2rem] bg-white/10 backdrop-blur-2xl border border-white/20 flex items-center justify-center group-hover:bg-[#ee6669] group-hover:border-[#ee6669] transition-all duration-700 shadow-2xl rotate-6 group-hover:rotate-0">
-           <Icon className="w-10 h-10 text-white transition-colors duration-700" />
+      <div className="absolute inset-0 flex flex-col items-center justify-end space-y-5 p-6 text-center sm:space-y-10 sm:p-16">
+        <div className="flex h-16 w-16 rotate-6 items-center justify-center rounded-2xl border border-white/20 bg-white/10 shadow-2xl backdrop-blur-2xl transition-all duration-700 group-hover:rotate-0 group-hover:border-[#ee6669] group-hover:bg-[#ee6669] sm:h-24 sm:w-24 sm:rounded-[2rem]">
+           <Icon className="h-7 w-7 text-white transition-colors duration-700 sm:h-10 sm:w-10" />
         </div>
-        <div className="space-y-4">
-          <h3 className="text-4xl lg:text-5xl font-serif font-light text-white tracking-tight leading-tight">{title}</h3>
-          <p className="text-zinc-200 text-sm font-light max-w-[280px] leading-relaxed opacity-70 group-hover:opacity-100 transition-opacity">{desc}</p>
+        <div className="space-y-3 sm:space-y-4">
+          <h3 className="text-3xl font-serif font-light leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">{title}</h3>
+          <p className="max-w-[280px] text-xs font-light leading-relaxed text-zinc-200 opacity-90 transition-opacity group-hover:opacity-100 sm:text-sm sm:opacity-70">{desc}</p>
         </div>
         <Button 
           onClick={(e) => {
@@ -281,7 +281,7 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
             const path = type === 'home' ? '/pc/home-interior' : `/pc/${type}`
             router.push(path)
           }}
-          className="bg-white hover:bg-[#ee6669] text-[#2d1b4e] hover:text-white px-12 py-8 rounded-full font-bold uppercase tracking-[0.3em] text-[11px] shadow-2xl transition-all active:scale-95"
+          className="rounded-full bg-white px-8 py-6 text-[9px] font-bold uppercase tracking-[0.14em] text-[#2d1b4e] shadow-2xl transition-all hover:bg-[#ee6669] hover:text-white active:scale-95 sm:px-12 sm:py-8 sm:text-[11px] sm:tracking-[0.3em]"
         >
           Start Calculation
         </Button>
@@ -293,18 +293,18 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
 
   if (category === 'none') {
     return (
-      <section id="estimator" className="w-full bg-white pt-12 lg:pt-16 pb-24 overflow-hidden relative">
+      <section id="estimator" className="relative w-full overflow-hidden bg-white pb-16 pt-10 lg:pb-24 lg:pt-16">
         {/* Background Accents */}
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#ee6669]/5 rounded-full blur-[120px] -mr-64 -mt-64" />
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#2d1b4e]/5 rounded-full blur-[120px] -ml-64 -mb-64" />
 
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
-          <div className="text-center max-w-4xl mx-auto mb-20 space-y-8">
+        <div className="relative z-10 mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-12">
+          <div className="mx-auto mb-10 max-w-4xl space-y-5 text-center sm:mb-20 sm:space-y-8">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="inline-flex items-center gap-3 bg-zinc-50 border border-zinc-100 px-8 py-3 rounded-full text-[#ee6669] text-[11px] font-bold uppercase tracking-[0.3em] shadow-sm"
+              className="inline-flex items-center gap-2 rounded-full border border-zinc-100 bg-zinc-50 px-5 py-2.5 text-[9px] font-bold uppercase tracking-[0.14em] text-[#ee6669] shadow-sm sm:gap-3 sm:px-8 sm:py-3 sm:text-[11px] sm:tracking-[0.3em]"
             >
               <Calculator className="w-4 h-4" />
               Bhopal's Premium Interior Estimator
@@ -315,7 +315,7 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1, duration: 0.8 }}
-              className="text-6xl lg:text-[92px] font-serif font-light text-[#2d1b4e] leading-[1.05] tracking-tight"
+              className="text-4xl font-serif font-light leading-[1.05] tracking-tight text-[#2d1b4e] sm:text-6xl lg:text-[92px]"
             >
               Premium interiors, <br />
               <span className="text-[#ee6669]">honest pricing.</span>
@@ -326,13 +326,13 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-xl lg:text-2xl text-zinc-500 font-light max-w-2xl mx-auto leading-relaxed"
+              className="mx-auto max-w-2xl text-sm font-light leading-relaxed text-zinc-500 sm:text-xl lg:text-2xl"
             >
                Instant, transparent cost estimates for your luxury home project in Bhopal.
             </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 no-scrollbar md:mx-0 md:grid md:grid-cols-3 md:gap-10 md:overflow-visible md:px-0 md:pb-0">
             <CategoryCard 
               type="home"
               title="Home Interior"
@@ -361,7 +361,7 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4, duration: 0.8 }}
-            className="flex flex-wrap items-center justify-center gap-12 pt-20 text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-400"
+            className="flex flex-wrap items-center justify-center gap-x-6 gap-y-4 pt-10 text-[9px] font-bold uppercase tracking-[0.14em] text-zinc-400 sm:gap-12 sm:pt-20 sm:text-[10px] sm:tracking-[0.4em]"
           >
             <div className="flex items-center gap-3 group">
               <div className="w-10 h-10 rounded-full bg-zinc-50 border border-zinc-100 flex items-center justify-center group-hover:border-[#ee6669]/20 group-hover:bg-white transition-all">
@@ -835,11 +835,11 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
                   )}
 
                   {/* --- SHARED CONTACT FORM (FINAL STEP) --- */}
-                  {((category === 'home' && step === 6) || (category !== 'home' && category !== 'none' && step === 5)) && (
+                  {((category === 'home' && step === 6) || (category !== 'home' && step === 5)) && (
                      <div className="max-w-3xl space-y-16">
                         <div className="space-y-6">
                           <h3 className="text-5xl lg:text-[80px] font-serif font-light text-[#2d1b4e] leading-[1.1] tracking-tight">Your Estimate <br /><span className="text-[#ee6669]">is Ready.</span></h3>
-                          <p className="text-xl text-zinc-500 font-light leading-relaxed max-w-2xl">Enter your details to receive your personalized estimate breakdown and book a professional consultation for your project in Bhopal.</p>
+                          <p className="text-xl text-zinc-500 font-light leading-relaxed max-w-2xl">Enter your details to receive your personalized estimate breakdown and book a professional site visit for your project in Bhopal.</p>
                         </div>
                         
                         <form onSubmit={handleFinalSubmit} className="space-y-10">
@@ -912,7 +912,7 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
                           <div className="pt-8">
                              <Button type="submit" className="w-full h-24 bg-[#ee6669] hover:bg-[#2d1b4e] text-white font-bold uppercase tracking-[0.4em] text-[12px] rounded-[2rem] shadow-[0_24px_48px_-12px_rgba(238,102,105,0.25)] transition-all active:scale-[0.98] group relative overflow-hidden">
                                <span className="relative z-10 flex items-center justify-center">
-                                  GET MY DETAILED ESTIMATE <ArrowRight className="w-5 h-5 ml-4 group-hover:translate-x-1 transition-transform" />
+                                  GET MY DETAILED QUOTE <ArrowRight className="w-5 h-5 ml-4 group-hover:translate-x-1 transition-transform" />
                                </span>
                                <div className="absolute inset-0 bg-[#2d1b4e] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                              </Button>

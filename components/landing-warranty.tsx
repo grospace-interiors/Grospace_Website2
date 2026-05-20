@@ -28,7 +28,7 @@ export function LandingWarranty() {
   ]
 
   return (
-    <section className="w-full bg-[#332233] py-24 lg:py-32 overflow-hidden relative">
+    <section className="w-full bg-[#332233] py-16 md:py-32 overflow-hidden relative">
       {/* Decorative Background Elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-[#ee6669]/10 rounded-full blur-[100px] -mr-48 -mt-48" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#ee6669]/5 rounded-full blur-[100px] -ml-48 -mb-48" />
@@ -46,7 +46,7 @@ export function LandingWarranty() {
             <div className="inline-flex items-center gap-2 bg-[#ee6669] px-4 py-1 rounded-full text-white text-[10px] font-bold uppercase tracking-widest">
                India's First
             </div>
-            <h2 className="text-5xl lg:text-7xl font-serif font-light text-white leading-tight">
+            <h2 className="text-3xl md:text-7xl font-serif font-light text-white leading-tight">
               Once you buy, we <span className="text-[#ee6669] italic">never say goodbye.</span>
             </h2>
             <p className="text-zinc-400 text-lg font-light leading-relaxed max-w-lg">

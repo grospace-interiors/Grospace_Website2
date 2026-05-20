@@ -100,8 +100,8 @@ export function ProjectsClient({ projects, limit }: ProjectsClientProps) {
 
       {/* Projects Grid */}
       <div className={cn(
-        "grid grid-cols-1 gap-12 lg:gap-16",
-        limit ? "lg:grid-cols-12" : "md:grid-cols-2 lg:gap-12"
+        "-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 no-scrollbar md:mx-0 md:grid md:overflow-visible md:px-0 md:pb-0 lg:gap-16",
+        limit ? "md:grid-cols-2 lg:grid-cols-12" : "md:grid-cols-2 lg:gap-12"
       )}>
         <AnimatePresence mode="popLayout">
           {filteredProjects.map((project, index) => (
@@ -113,6 +113,7 @@ export function ProjectsClient({ projects, limit }: ProjectsClientProps) {
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className={cn(
+                "min-w-[86%] snap-center md:min-w-0",
                 limit && (
                   index % 4 === 0 ? "lg:col-span-7" :
                   index % 4 === 1 ? "lg:col-span-5" :

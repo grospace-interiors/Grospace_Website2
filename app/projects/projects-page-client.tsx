@@ -9,18 +9,18 @@ import { Button } from '@/components/ui/button'
 
 export function ProjectsPageClient() {
   return (
-    <main className="bg-white">
+    <main className="overflow-x-clip bg-white">
         {/* 1. PREMIUM HERO SECTION */}
-        <section className="w-full pt-32 lg:pt-56 pb-24 overflow-hidden relative">
+        <section className="relative w-full overflow-hidden pb-16 pt-20 lg:pb-24 lg:pt-56">
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#ee6669]/5 rounded-full blur-[120px] -mr-64 -mt-64" />
           <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#2d1b4e]/5 rounded-full blur-[120px] -ml-64 -mb-64" />
 
-          <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
-            <div className="max-w-4xl space-y-10">
+          <div className="relative z-10 mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-12">
+            <div className="max-w-4xl space-y-6 lg:space-y-10">
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="inline-flex items-center gap-3 bg-zinc-50 border border-zinc-100 px-8 py-3 rounded-full text-[#ee6669] text-[10px] font-bold uppercase tracking-[0.4em] shadow-sm"
+                className="inline-flex items-center gap-2 rounded-full border border-zinc-100 bg-zinc-50 px-5 py-2.5 text-[9px] font-bold uppercase tracking-[0.18em] text-[#ee6669] shadow-sm sm:gap-3 sm:px-8 sm:py-3 sm:text-[10px] sm:tracking-[0.4em]"
               >
                 <Star className="w-3.5 h-3.5" />
                 Portfolio Excellence
@@ -30,7 +30,7 @@ export function ProjectsPageClient() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1, duration: 0.8 }}
-                className="text-6xl lg:text-[100px] font-serif font-light text-[#2d1b4e] leading-[1] tracking-tighter"
+                className="text-4xl font-serif font-light leading-[1.05] tracking-tight text-[#2d1b4e] sm:text-6xl lg:text-[100px] lg:tracking-tighter"
               >
                 Spaces designed <br />
                 <span className="text-[#ee6669]">around modern living.</span>
@@ -40,7 +40,7 @@ export function ProjectsPageClient() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.8 }}
-                className="text-xl lg:text-2xl text-zinc-500 font-light max-w-2xl leading-relaxed"
+                className="max-w-2xl text-sm font-light leading-relaxed text-zinc-500 sm:text-xl lg:text-2xl"
               >
                  Explore thoughtfully crafted interiors designed for comfort, functionality and timeless aesthetics. From minimalist apartments to luxury villas in Bhopal.
               </motion.p>
@@ -49,7 +49,7 @@ export function ProjectsPageClient() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
-                className="flex flex-wrap items-center gap-12 pt-8 text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-400"
+                className="flex flex-wrap items-center gap-x-6 gap-y-4 pt-4 text-[9px] font-bold uppercase tracking-[0.16em] text-zinc-400 sm:gap-12 sm:pt-8 sm:text-[10px] sm:tracking-[0.4em]"
               >
                 <div className="flex items-center gap-3 group">
                   <div className="w-10 h-10 rounded-full bg-zinc-50 border border-zinc-100 flex items-center justify-center group-hover:border-[#ee6669]/20 group-hover:bg-white transition-all">
@@ -75,9 +75,9 @@ export function ProjectsPageClient() {
         </section>
 
         {/* 2. FEATURED PROJECT SECTION */}
-        <section className="py-24 lg:py-40 bg-zinc-50 relative overflow-hidden">
-           <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
-              <div className="grid lg:grid-cols-12 gap-16 items-center">
+        <section className="relative overflow-hidden bg-zinc-50 py-16 lg:py-40">
+           <div className="relative z-10 mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-12">
+              <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-16">
                  <motion.div 
                    initial={{ opacity: 0, scale: 0.95 }}
                    whileInView={{ opacity: 1, scale: 1 }}
@@ -85,7 +85,7 @@ export function ProjectsPageClient() {
                    transition={{ duration: 1 }}
                    className="lg:col-span-7 relative group"
                  >
-                    <div className="aspect-[16/10] rounded-[3.5rem] overflow-hidden shadow-2xl relative">
+                    <div className="relative aspect-[16/10] overflow-hidden rounded-3xl shadow-2xl lg:rounded-[3.5rem]">
                        <Image 
                          src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1200" 
                          alt="Featured Project" 
@@ -105,15 +105,15 @@ export function ProjectsPageClient() {
                    whileInView={{ opacity: 1, x: 0 }}
                    viewport={{ once: true }}
                    transition={{ duration: 0.8 }}
-                   className="lg:col-span-5 space-y-12"
+                   className="space-y-8 lg:col-span-5 lg:space-y-12"
                  >
                     <div className="space-y-6">
-                      <span className="text-[#ee6669] text-[10px] font-bold uppercase tracking-[0.4em]">Signature Collection</span>
-                      <h2 className="text-5xl lg:text-7xl font-serif font-light text-[#2d1b4e] leading-tight tracking-tight">Modern Zen <br /><span className="text-[#ee6669]">Arera Villa.</span></h2>
-                      <p className="text-xl text-zinc-500 font-light leading-relaxed">A masterclass in minimal luxury, this 4BHK villa in Arera Colony blends natural textures with smart modular functionality.</p>
+                      <span className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#ee6669] sm:text-[10px] sm:tracking-[0.4em]">Signature Collection</span>
+                      <h2 className="text-3xl font-serif font-light leading-tight tracking-tight text-[#2d1b4e] sm:text-5xl lg:text-7xl">Modern Zen <br /><span className="text-[#ee6669]">Arera Villa.</span></h2>
+                      <p className="text-sm font-light leading-relaxed text-zinc-500 sm:text-xl">A masterclass in minimal luxury, this 4BHK villa in Arera Colony blends natural textures with smart modular functionality.</p>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-10 pt-4">
+                    <div className="grid grid-cols-2 gap-5 pt-2 sm:gap-10 sm:pt-4">
                        <div className="space-y-2">
                           <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Location</p>
                           <p className="text-lg font-serif text-[#2d1b4e]">Arera Colony, Bhopal</p>
@@ -132,7 +132,7 @@ export function ProjectsPageClient() {
                        </div>
                     </div>
 
-                    <Button className="h-20 px-12 rounded-[1.5rem] bg-[#2d1b4e] hover:bg-[#ee6669] text-white font-bold uppercase tracking-[0.3em] text-[11px] shadow-2xl transition-all group">
+                    <Button className="h-12 w-full rounded-2xl bg-[#2d1b4e] px-8 text-[10px] font-bold uppercase tracking-[0.14em] text-white shadow-2xl transition-all hover:bg-[#ee6669] sm:h-20 sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[0.3em]">
                        View Full Project <ArrowRight className="w-4 h-4 ml-3 group-hover:translate-x-1 transition-transform" />
                     </Button>
                  </motion.div>
@@ -144,17 +144,17 @@ export function ProjectsPageClient() {
         <ProjectsSection />
 
         {/* 5. BEFORE & AFTER SECTION */}
-        <section className="py-24 lg:py-40 bg-zinc-950 text-white relative overflow-hidden">
+        <section className="relative overflow-hidden bg-zinc-950 py-16 text-white lg:py-40">
            <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')] opacity-30 pointer-events-none" />
-           <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
-              <div className="text-center max-w-3xl mx-auto mb-32 space-y-8">
-                 <h2 className="text-5xl lg:text-8xl font-serif font-light leading-tight tracking-tight">From empty spaces to <br /><span className="text-[#ee6669]">thoughtful homes.</span></h2>
-                 <p className="text-xl text-zinc-400 font-light">See how we transform cold structures into warm, functional and premium living environments.</p>
+           <div className="relative z-10 mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-12">
+              <div className="mx-auto mb-12 max-w-3xl space-y-5 text-center lg:mb-32 lg:space-y-8">
+                 <h2 className="text-3xl font-serif font-light leading-tight tracking-tight sm:text-5xl lg:text-8xl">From empty spaces to <br /><span className="text-[#ee6669]">thoughtful homes.</span></h2>
+                 <p className="text-sm font-light text-zinc-400 sm:text-xl">See how we transform cold structures into warm, functional and premium living environments.</p>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-12 lg:gap-24">
-                 <div className="space-y-10 group">
-                    <div className="relative aspect-[4/3] rounded-[3.5rem] overflow-hidden shadow-2xl">
+              <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 no-scrollbar md:mx-0 md:grid md:grid-cols-2 md:gap-12 md:overflow-visible md:px-0 md:pb-0 lg:gap-24">
+                 <div className="group min-w-[84%] snap-center space-y-6 md:min-w-0 lg:space-y-10">
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-2xl lg:rounded-[3.5rem]">
                        <Image 
                          src="https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=1200" 
                          alt="Before and After" 
@@ -171,8 +171,8 @@ export function ProjectsPageClient() {
                     </div>
                  </div>
                  
-                 <div className="space-y-10 group md:mt-32">
-                    <div className="relative aspect-[4/3] rounded-[3.5rem] overflow-hidden shadow-2xl">
+                 <div className="group min-w-[84%] snap-center space-y-6 md:mt-32 md:min-w-0 lg:space-y-10">
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-2xl lg:rounded-[3.5rem]">
                        <Image 
                          src="https://images.unsplash.com/photo-1556912177-c54035601844?q=80&w=1200" 
                          alt="Kitchen Transformation" 
@@ -193,15 +193,15 @@ export function ProjectsPageClient() {
         </section>
 
         {/* 7. CLIENT TESTIMONIAL STRIP */}
-        <section className="py-32 lg:py-48 bg-white border-y border-zinc-100">
-           <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-              <div className="flex flex-col items-center text-center space-y-12">
+        <section className="border-y border-zinc-100 bg-white py-16 lg:py-48">
+           <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-12">
+              <div className="flex flex-col items-center space-y-8 text-center lg:space-y-12">
                  <Quote className="w-16 h-16 text-[#ee6669]/20" />
                  <motion.p 
                    initial={{ opacity: 0, y: 20 }}
                    whileInView={{ opacity: 1, y: 0 }}
                    viewport={{ once: true }}
-                   className="text-3xl lg:text-5xl font-serif font-light text-[#2d1b4e] max-w-5xl leading-tight"
+                   className="max-w-5xl text-2xl font-light leading-tight text-[#2d1b4e] sm:text-3xl lg:text-5xl"
                  >
                    "Grospace transformed our empty Arera villa into a masterpiece. Their attention to detail in the modular kitchen and the choice of premium veneers was exceptional. Truly stress-free."
                  </motion.p>
@@ -214,10 +214,10 @@ export function ProjectsPageClient() {
         </section>
 
         {/* 8. TRUST & EXECUTION SECTION */}
-        <section className="py-24 lg:py-40 bg-white">
-           <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
-                 <div className="space-y-8 p-12 rounded-[3.5rem] bg-zinc-50 border border-zinc-100 transition-all hover:shadow-2xl hover:bg-white group">
+        <section className="overflow-hidden bg-white py-16 lg:py-40">
+           <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-12">
+              <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 no-scrollbar md:mx-0 md:grid md:grid-cols-2 md:gap-8 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-4 lg:gap-12">
+                 <div className="group min-w-[82%] snap-center space-y-6 rounded-3xl border border-zinc-100 bg-zinc-50 p-6 transition-all hover:bg-white hover:shadow-2xl md:min-w-0 lg:space-y-8 lg:rounded-[3.5rem] lg:p-12">
                     <div className="w-16 h-16 rounded-3xl bg-white border border-zinc-100 flex items-center justify-center group-hover:bg-[#ee6669] transition-colors">
                        <ShieldCheck className="w-8 h-8 text-[#ee6669] group-hover:text-white" />
                     </div>
@@ -227,7 +227,7 @@ export function ProjectsPageClient() {
                     </div>
                  </div>
                  
-                 <div className="space-y-8 p-12 rounded-[3.5rem] bg-zinc-50 border border-zinc-100 transition-all hover:shadow-2xl hover:bg-white group">
+                 <div className="group min-w-[82%] snap-center space-y-6 rounded-3xl border border-zinc-100 bg-zinc-50 p-6 transition-all hover:bg-white hover:shadow-2xl md:min-w-0 lg:space-y-8 lg:rounded-[3.5rem] lg:p-12">
                     <div className="w-16 h-16 rounded-3xl bg-white border border-zinc-100 flex items-center justify-center group-hover:bg-[#ee6669] transition-colors">
                        <Gem className="w-8 h-8 text-[#ee6669] group-hover:text-white" />
                     </div>
@@ -237,7 +237,7 @@ export function ProjectsPageClient() {
                     </div>
                  </div>
 
-                 <div className="space-y-8 p-12 rounded-[3.5rem] bg-zinc-50 border border-zinc-100 transition-all hover:shadow-2xl hover:bg-white group">
+                 <div className="group min-w-[82%] snap-center space-y-6 rounded-3xl border border-zinc-100 bg-zinc-50 p-6 transition-all hover:bg-white hover:shadow-2xl md:min-w-0 lg:space-y-8 lg:rounded-[3.5rem] lg:p-12">
                     <div className="w-16 h-16 rounded-3xl bg-white border border-zinc-100 flex items-center justify-center group-hover:bg-[#ee6669] transition-colors">
                        <PenTool className="w-8 h-8 text-[#ee6669] group-hover:text-white" />
                     </div>
@@ -247,7 +247,7 @@ export function ProjectsPageClient() {
                     </div>
                  </div>
 
-                 <div className="space-y-8 p-12 rounded-[3.5rem] bg-zinc-50 border border-zinc-100 transition-all hover:shadow-2xl hover:bg-white group">
+                 <div className="group min-w-[82%] snap-center space-y-6 rounded-3xl border border-zinc-100 bg-zinc-50 p-6 transition-all hover:bg-white hover:shadow-2xl md:min-w-0 lg:space-y-8 lg:rounded-[3.5rem] lg:p-12">
                     <div className="w-16 h-16 rounded-3xl bg-white border border-zinc-100 flex items-center justify-center group-hover:bg-[#ee6669] transition-colors">
                        <Calculator className="w-8 h-8 text-[#ee6669] group-hover:text-white" />
                     </div>

@@ -15,7 +15,7 @@ export default function ServicesPage() {
   return (
     <>
       <Navigation />
-      <main className="bg-white">
+      <main className="overflow-x-clip bg-white">
         <ServicesExplore />
         <TrustStrip />
         <TestimonialsSection />

@@ -28,14 +28,14 @@ export async function DesignConceptsSection({ limit }: { limit?: number }) {
   }))
 
   return (
-    <section className="w-full bg-white py-24 md:py-32 text-zinc-900">
+    <section className="w-full bg-white py-16 md:py-32 text-zinc-900">
       <div className="max-w-7xl mx-auto px-5 md:px-8">
         {/* Section Header */}
         <div className="mb-16">
           <p className="text-xs uppercase tracking-[0.15em] text-primary font-medium mb-4">
             Design Concepts
           </p>
-          <h2 className="text-4xl md:text-5xl font-serif font-light text-zinc-900 text-balance">
+          <h2 className="text-3xl md:text-5xl font-serif font-light text-zinc-900 text-balance">
             3D Visualizations
           </h2>
           <p className="text-lg text-zinc-600 mt-6 max-w-2xl">

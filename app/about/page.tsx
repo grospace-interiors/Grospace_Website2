@@ -12,7 +12,7 @@ export default function About() {
   return (
     <>
       <Navigation />
-      <main>
+      <main className="overflow-x-clip">
         <AboutSection />
       </main>
       <Footer />

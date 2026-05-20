@@ -6,20 +6,20 @@ import { ArrowRight, MessageSquare, Briefcase } from 'lucide-react'
 
 export function ServiceCTA() {
   return (
-    <section className="py-32 lg:py-56 bg-[#2d1b4e] relative overflow-hidden">
+    <section className="relative overflow-hidden bg-[#2d1b4e] py-16 lg:py-56">
       {/* Background Accents */}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#ee6669]/5 rounded-full blur-[160px] -mr-96 -mt-96" />
       <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-white/5 rounded-full blur-[160px] -ml-96 -mb-96" />
 
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10 text-center">
+      <div className="relative z-10 mx-auto max-w-[1400px] px-4 text-center sm:px-6 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="inline-flex items-center gap-3 bg-white/5 border border-white/10 px-8 py-3 rounded-full text-[#ee6669] text-[10px] font-bold uppercase tracking-[0.4em] mb-12 backdrop-blur-sm"
+          className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-[9px] font-bold uppercase tracking-[0.18em] text-[#ee6669] backdrop-blur-sm sm:mb-12 sm:gap-3 sm:px-8 sm:py-3 sm:text-[10px] sm:tracking-[0.4em]"
         >
           <Briefcase className="w-3.5 h-3.5" />
-          Start Your Premium Journey
+          Get Your Interior Quote
         </motion.div>
 
         <motion.h2 
@@ -27,7 +27,7 @@ export function ServiceCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-6xl lg:text-[100px] font-serif font-light text-white mb-10 leading-[1] tracking-tighter"
+          className="mb-6 text-4xl font-serif font-light leading-[1.05] tracking-tight text-white sm:text-6xl lg:mb-10 lg:text-[100px] lg:tracking-tighter"
         >
           Let’s Design Your <br />
           <span className="text-[#ee6669]">Signature Home.</span>
@@ -38,7 +38,7 @@ export function ServiceCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2, duration: 0.8 }}
-          className="text-purple-100/50 font-light text-xl lg:text-2xl max-w-2xl mx-auto mb-20 leading-relaxed"
+          className="mx-auto mb-10 max-w-2xl text-sm font-light leading-relaxed text-purple-100/60 sm:text-xl lg:mb-20 lg:text-2xl"
         >
           Book an exclusive 1-on-1 design verification session with our principal architects and turn your vision into a reality.
         </motion.p>
@@ -48,22 +48,23 @@ export function ServiceCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4, duration: 0.8 }}
-          className="flex flex-wrap items-center justify-center gap-8"
+          className="flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-8"
         >
           <Button 
             asChild
-            className="h-24 px-16 rounded-[2rem] bg-[#ee6669] hover:bg-white text-white hover:text-[#2d1b4e] font-bold uppercase tracking-[0.3em] text-[11px] shadow-2xl shadow-[#ee6669]/20 transition-all duration-500 group relative overflow-hidden"
+            className="relative h-14 w-full overflow-hidden rounded-2xl bg-[#ee6669] px-8 text-[10px] font-bold uppercase tracking-[0.14em] text-white shadow-2xl shadow-[#ee6669]/20 transition-all duration-500 hover:bg-white hover:text-[#2d1b4e] sm:h-24 sm:w-auto sm:px-16 sm:text-[11px] sm:tracking-[0.3em] sm:rounded-[2rem]"
           >
             <a href="#contact">
-               <span className="relative z-10 flex items-center">
-                  Book Verification Call <ArrowRight className="w-5 h-5 ml-4 group-hover:translate-x-1 transition-transform" />
+               <span className="relative z-10 flex items-center justify-center">
+                  Book Free Site Visit <ArrowRight className="w-5 h-5 ml-4 group-hover:translate-x-1 transition-transform" />
                </span>
             </a>
           </Button>
 
           <Button 
             variant="outline"
-            className="h-24 px-16 rounded-[2rem] border-white/10 bg-white/5 backdrop-blur-md hover:bg-white hover:text-[#2d1b4e] text-white font-bold uppercase tracking-[0.3em] text-[11px] transition-all duration-500"
+            onClick={() => window.open(`https://wa.me/918319032087?text=${encodeURIComponent("Hi, I'm interested in a free site visit.")}`, '_blank')}
+            className="flex h-14 w-full items-center justify-center rounded-2xl border-white/10 bg-white/5 px-8 text-[10px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md transition-all duration-500 hover:bg-white hover:text-[#2d1b4e] sm:h-24 sm:w-auto sm:px-16 sm:text-[11px] sm:tracking-[0.3em] sm:rounded-[2rem]"
           >
             <MessageSquare className="w-5 h-5 mr-4" /> WhatsApp Us
           </Button>
@@ -74,7 +75,7 @@ export function ServiceCTA() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.6 }}
-          className="mt-16 text-[10px] font-bold text-white/30 uppercase tracking-[0.5em]"
+          className="mt-10 text-[9px] font-bold uppercase tracking-[0.22em] text-white/30 sm:mt-16 sm:text-[10px] sm:tracking-[0.5em]"
         >
           Available in Bhopal & Surrounding Areas
         </motion.p>

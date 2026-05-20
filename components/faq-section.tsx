@@ -36,7 +36,7 @@ export function FAQSection() {
   ]
 
   return (
-    <section className="w-full bg-[#fcfcfc] py-20 lg:py-32 overflow-hidden relative">
+    <section className="w-full bg-[#fcfcfc] py-16 md:py-32 overflow-hidden relative">
       {/* Background Decor */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none select-none overflow-hidden opacity-[0.03]">
         <span className="absolute -top-20 -left-20 text-[400px] font-serif font-bold text-[#2d1b4e]">Q&A</span>
@@ -50,7 +50,7 @@ export function FAQSection() {
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-zinc-100 pb-10">
               <div className="space-y-2">
                 <span className="text-[#ee6669] text-[9px] font-bold uppercase tracking-[0.5em] block">Support Hub</span>
-                <h2 className="text-5xl lg:text-6xl font-serif font-light text-[#2d1b4e] tracking-tight">
+                <h2 className="text-3xl md:text-6xl font-serif font-light text-[#2d1b4e] tracking-tight">
                   Commonly <span className="text-[#ee6669] italic">Asked.</span>
                 </h2>
               </div>
@@ -134,7 +134,7 @@ export function FAQSection() {
                       className="flex items-center justify-center gap-3"
                     >
                       <MessageCircle className="w-4 h-4 text-[#25D366]" />
-                      SEND WHATSAPP
+                      CHAT ON WHATSAPP
                     </a>
                   </Button>
                 </div>

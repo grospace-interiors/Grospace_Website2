@@ -58,15 +58,15 @@ const specializedServices = [
 
 export function ServicesExplore() {
   return (
-    <section className="py-24 lg:py-40 bg-white">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-        <div className="flex flex-col lg:flex-row justify-between items-end mb-24 gap-8">
+    <section className="overflow-hidden bg-white py-16 lg:py-40">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-12">
+        <div className="mb-12 flex flex-col items-start justify-between gap-6 lg:mb-24 lg:flex-row lg:items-end lg:gap-8">
           <div className="max-w-2xl">
             <motion.span 
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="text-[#ee6669] text-xs font-bold uppercase tracking-[0.4em] mb-6 block"
+              className="mb-4 block text-[10px] font-bold uppercase tracking-[0.18em] text-[#ee6669] sm:text-xs sm:tracking-[0.4em] lg:mb-6"
             >
               Our Expertise
             </motion.span>
@@ -74,7 +74,7 @@ export function ServicesExplore() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-4xl lg:text-7xl font-serif font-light text-zinc-900 leading-tight"
+              className="text-3xl font-serif font-light leading-tight text-zinc-900 sm:text-4xl lg:text-7xl"
             >
               Designing Spaces That <span className="text-[#ee6669]">Inspire.</span>
             </motion.h2>
@@ -83,14 +83,14 @@ export function ServicesExplore() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-zinc-500 font-light text-lg max-w-sm mb-4"
+            className="mb-4 max-w-sm text-sm font-light text-zinc-500 sm:text-lg"
           >
             Explore our specialized interior solutions, from factory-perfect modular units to bespoke luxury residences.
           </motion.p>
         </div>
 
         {/* Main Categories */}
-        <div className="space-y-12 mb-32">
+        <div className="mb-20 space-y-6 lg:mb-32 lg:space-y-12">
           {serviceCategories.map((service, index) => (
             <motion.div
               key={service.slug}
@@ -101,14 +101,14 @@ export function ServicesExplore() {
             >
               <Link 
                 href={`/services/${service.slug}`}
-                className="group relative flex flex-col lg:flex-row items-center gap-12 p-8 lg:p-12 rounded-[3rem] bg-zinc-50 hover:bg-[#2d1b4e] transition-all duration-700 overflow-hidden"
+                className="group relative flex flex-col items-center gap-6 overflow-hidden rounded-3xl bg-zinc-50 p-5 transition-all duration-700 hover:bg-[#2d1b4e] sm:p-8 lg:flex-row lg:gap-12 lg:rounded-[3rem] lg:p-12"
               >
                 {/* Number Background */}
-                <span className="absolute right-12 top-12 text-[10rem] font-serif leading-none text-zinc-100 group-hover:text-white/5 transition-colors duration-700 pointer-events-none select-none">
+                <span className="pointer-events-none absolute right-6 top-6 select-none font-serif text-7xl leading-none text-zinc-100 transition-colors duration-700 group-hover:text-white/5 sm:right-12 sm:top-12 sm:text-[10rem]">
                   {service.count}
                 </span>
 
-                <div className="relative w-full lg:w-[450px] aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl">
+                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-2xl lg:w-[450px] lg:rounded-[2rem]">
                   <Image 
                     src={service.image} 
                     alt={service.title} 
@@ -117,15 +117,15 @@ export function ServicesExplore() {
                   />
                 </div>
 
-                <div className="relative z-10 flex-1 space-y-6">
-                  <h3 className="text-3xl lg:text-5xl font-serif font-light text-zinc-900 group-hover:text-white transition-colors duration-700">
+                <div className="relative z-10 flex-1 space-y-4 lg:space-y-6">
+                  <h3 className="text-2xl font-serif font-light text-zinc-900 transition-colors duration-700 group-hover:text-white sm:text-3xl lg:text-5xl">
                     {service.title}
                   </h3>
-                  <p className="text-zinc-500 font-light text-lg group-hover:text-purple-100/60 transition-colors duration-700 max-w-xl">
+                  <p className="max-w-xl text-sm font-light text-zinc-500 transition-colors duration-700 group-hover:text-purple-100/60 sm:text-lg">
                     {service.description}
                   </p>
                   <div className="pt-4">
-                    <div className="inline-flex items-center gap-4 text-[#ee6669] group-hover:text-white font-bold text-xs uppercase tracking-[0.3em] transition-colors duration-700">
+                    <div className="inline-flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.16em] text-[#ee6669] transition-colors duration-700 group-hover:text-white sm:gap-4 sm:text-xs sm:tracking-[0.3em]">
                       Explore Service <ArrowRight className="w-5 h-5 group-hover:translate-x-3 transition-transform duration-500" />
                     </div>
                   </div>
@@ -136,13 +136,13 @@ export function ServicesExplore() {
         </div>
 
         {/* Specialized Sub-Services Section */}
-        <div className="pt-24 border-t border-zinc-100">
-          <div className="mb-16">
-             <span className="text-[#ee6669] text-[10px] font-bold uppercase tracking-[0.4em] mb-4 block">Specialized Solutions</span>
-             <h3 className="text-3xl lg:text-5xl font-serif font-light text-zinc-900">Core Modular <span className="text-[#ee6669]">&</span> Technical Services</h3>
+        <div className="border-t border-zinc-100 pt-16 lg:pt-24">
+          <div className="mb-10 lg:mb-16">
+             <span className="mb-4 block text-[9px] font-bold uppercase tracking-[0.18em] text-[#ee6669] sm:text-[10px] sm:tracking-[0.4em]">Specialized Solutions</span>
+             <h3 className="text-3xl font-serif font-light text-zinc-900 lg:text-5xl">Core Modular <span className="text-[#ee6669]">&</span> Technical Services</h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 no-scrollbar md:mx-0 md:grid md:grid-cols-2 md:gap-8 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-4">
             {specializedServices.map((service, index) => (
               <motion.div
                 key={service.slug}
@@ -153,9 +153,9 @@ export function ServicesExplore() {
               >
                 <Link 
                   href="/lp/landing-page"
-                  className="group block space-y-6"
+                  className="group block min-w-[82%] snap-center space-y-4 md:min-w-0 lg:space-y-6"
                 >
-                  <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-lg">
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-2xl shadow-lg lg:rounded-[2rem]">
                     <Image 
                       src={service.image} 
                       alt={service.title} 

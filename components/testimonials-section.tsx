@@ -79,21 +79,21 @@ export function TestimonialsSection() {
   }
 
   return (
-    <section className="w-full bg-zinc-50 py-24 lg:py-32 overflow-hidden">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+    <section className="w-full overflow-hidden bg-zinc-50 py-16 lg:py-32">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-12">
+        <div className="mb-10 flex flex-col items-start justify-between gap-8 md:mb-16 md:flex-row md:items-end">
           <div className="max-w-2xl space-y-4">
-            <h2 className="text-4xl lg:text-6xl font-serif font-light text-[#2d1b4e] leading-tight">
+            <h2 className="text-3xl font-serif font-light leading-tight text-[#2d1b4e] sm:text-4xl lg:text-6xl">
               Stories from our <span className="text-[#ee6669]">happy families.</span>
             </h2>
-            <p className="text-zinc-500 text-lg font-light">See how we've helped homeowners across Bhopal build their dream spaces.</p>
+            <p className="text-sm font-light text-zinc-500 sm:text-lg">See how we've helped homeowners across Bhopal build their dream spaces.</p>
           </div>
           <Link href="/projects" className="hidden md:flex items-center gap-3 text-[#ee6669] font-bold uppercase text-[10px] tracking-[0.2em] group">
             View All Stories <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 no-scrollbar md:mx-0 md:grid md:grid-cols-3 md:gap-10 md:overflow-visible md:px-0 md:pb-0">
           {displayTestimonials.map((testimonial, idx) => (
             <motion.div
               key={testimonial.id}
@@ -101,9 +101,10 @@ export function TestimonialsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
+              className="min-w-[86%] snap-center md:min-w-0"
             >
               <Card
-                className="bg-white border-zinc-100 p-10 shadow-xl hover:shadow-2xl transition-all duration-500 rounded-[2rem] relative group"
+                className="group relative rounded-3xl border-zinc-100 bg-white p-6 shadow-xl transition-all duration-500 hover:shadow-2xl sm:rounded-[2rem] sm:p-10"
               >
                 <Quote className="absolute top-8 right-8 w-12 h-12 text-zinc-50 opacity-10 group-hover:opacity-20 transition-opacity" />
                 <div className="space-y-8 relative z-10">
@@ -113,7 +114,7 @@ export function TestimonialsSection() {
                      ))}
                   </div>
                   {/* Quote */}
-                  <blockquote className="text-lg text-zinc-800 font-light leading-relaxed italic">
+                  <blockquote className="text-base font-light italic leading-relaxed text-zinc-800 sm:text-lg">
                     "{testimonial.review}"
                   </blockquote>
 
@@ -128,7 +129,7 @@ export function TestimonialsSection() {
                     </div>
                     <div>
                       <p className="font-serif text-lg text-[#2d1b4e] leading-none">{testimonial.client_name}</p>
-                      <p className="text-[10px] text-zinc-400 font-bold uppercase tracking-widest mt-1">
+                      <p className="mt-1 text-[9px] font-bold uppercase tracking-[0.12em] text-zinc-400 sm:text-[10px] sm:tracking-widest">
                         {testimonial.city || 'Bhopal'} • {testimonial.project_type}
                       </p>
                     </div>

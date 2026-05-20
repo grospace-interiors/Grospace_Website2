@@ -11,7 +11,7 @@ export function LandingHero() {
   }
 
   return (
-    <section className="relative w-full h-[85vh] lg:h-[90vh] flex items-center overflow-hidden">
+    <section className="relative flex h-[calc(100svh-96px)] min-h-[540px] w-full items-center overflow-hidden lg:h-[90vh]">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <Image 
@@ -24,18 +24,18 @@ export function LandingHero() {
         <div className="absolute inset-0 bg-black/40" />
       </div>
 
-      <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12 w-full">
-        <div className="max-w-3xl space-y-8">
+      <div className="relative z-10 mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-12">
+        <div className="max-w-3xl space-y-6 sm:space-y-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-6"
+            className="space-y-4 sm:space-y-6"
           >
-            <h1 className="text-5xl lg:text-8xl font-serif font-light text-white leading-[1.1] tracking-tight">
+            <h1 className="text-4xl font-serif font-light leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-8xl">
               Design a home that tells <span className="text-[#ee6669] italic">your story.</span>
             </h1>
-            <p className="text-xl lg:text-2xl text-zinc-200 font-light leading-relaxed max-w-2xl">
+            <p className="max-w-2xl text-sm font-light leading-relaxed text-zinc-200 sm:text-lg lg:text-2xl">
               Affordable luxury for Bhopal families. Experience premium interior design with transparent pricing and end-to-end execution.
             </p>
           </motion.div>
@@ -44,17 +44,17 @@ export function LandingHero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col sm:flex-row gap-4 pt-4"
+            className="flex flex-col gap-3 pt-2 sm:flex-row sm:gap-4 sm:pt-4"
           >
             <Button 
               onClick={scrollToForm}
-              className="bg-[#ee6669] hover:bg-white hover:text-[#332233] text-white px-10 py-8 text-sm font-bold uppercase tracking-[0.2em] rounded-full transition-all shadow-2xl shadow-[#ee6669]/20 group"
+              className="h-12 rounded-full bg-[#ee6669] px-8 text-[10px] font-bold uppercase tracking-[0.14em] text-white shadow-2xl shadow-[#ee6669]/20 transition-all hover:bg-white hover:text-[#332233] sm:h-auto sm:px-10 sm:py-8 sm:text-sm sm:tracking-[0.2em]"
             >
-              Book Free Consultation <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              Book Free Site Visit <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button 
               variant="outline"
-              className="bg-transparent border-white/30 text-white hover:bg-white/10 px-10 py-8 text-sm font-bold uppercase tracking-[0.2em] rounded-full backdrop-blur-sm"
+              className="h-12 rounded-full border-white/30 bg-transparent px-8 text-[10px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-sm hover:bg-white/10 sm:h-auto sm:px-10 sm:py-8 sm:text-sm sm:tracking-[0.2em]"
             >
               View Packages
             </Button>

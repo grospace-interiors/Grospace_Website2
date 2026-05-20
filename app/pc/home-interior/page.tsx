@@ -6,7 +6,7 @@ export default function HomeInteriorPC() {
   return (
     <>
       <Navigation />
-      <main className="pt-20">
+      <main className="overflow-x-clip pt-20">
         <PriceEstimator initialCategory="home" />
       </main>
       <Footer />

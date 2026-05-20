@@ -21,7 +21,7 @@ export default function ProjectClientPage({ project }: { project: ProjectData })
 
   if (!project) {
     return (
-      <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
         <p className="text-center text-muted-foreground">Project not found.</p>
       </div>
     );
@@ -33,22 +33,22 @@ export default function ProjectClientPage({ project }: { project: ProjectData })
   }
 
   return (
-    <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
-      <h1 className="text-4xl font-serif font-light text-foreground mb-8 text-center">
+    <div className="container mx-auto overflow-x-clip px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
+      <h1 className="mb-5 text-center font-serif text-3xl font-light text-foreground sm:mb-8 sm:text-4xl">
         {project.title}
       </h1>
 
       {project.description && (
-        <p className="text-lg text-muted-foreground mb-8 text-center">
+        <p className="mb-8 text-center text-sm text-muted-foreground sm:text-lg">
           {project.description}
         </p>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 project-images-grid">
+      <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 no-scrollbar md:mx-0 md:grid md:grid-cols-2 md:gap-8 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3 project-images-grid">
         {project.images && project.images.map((imgSrc, index) => (
           <button 
             key={index} 
-            className="relative w-full aspect-video overflow-hidden rounded-lg shadow-lg cursor-zoom-in hover:opacity-90 transition-opacity text-left"
+            className="relative aspect-video min-w-[86%] snap-center cursor-zoom-in overflow-hidden rounded-lg text-left shadow-lg transition-opacity hover:opacity-90 md:min-w-0"
             onClick={() => openImageViewer(imgSrc)}
           >
             <Image

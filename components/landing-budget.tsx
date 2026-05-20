@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
-import { motion } from 'framer-motion'
+import { motion, type Variants } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase'
@@ -113,7 +113,7 @@ export function LandingBudget() {
     },
   ] as any[]
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -123,42 +123,42 @@ export function LandingBudget() {
     }
   }
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } }
   }
 
   if (loading) {
     return (
-      <section className="w-full bg-[#fafafa] py-24 lg:py-36 flex items-center justify-center">
+      <section className="w-full bg-[#fafafa] py-16 md:py-36 flex items-center justify-center">
         <div className="text-[10px] uppercase tracking-[0.4em] text-zinc-400 font-bold animate-pulse">Loading Collections...</div>
       </section>
     )
   }
 
   return (
-    <section className="w-full bg-[#fafafa] py-24 lg:py-36 overflow-hidden">
+    <section className="w-full bg-[#fafafa] py-16 md:py-36 overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         {/* Header Area */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-12">
+        <div className="mb-12 flex flex-col items-start justify-between gap-8 md:mb-24 md:flex-row md:items-end md:gap-12">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="max-w-2xl space-y-6"
+            className="max-w-2xl space-y-4 md:space-y-6"
           >
-            <span className="text-[10px] uppercase tracking-[0.4em] text-[#ee6669] font-bold block">Tailored Investment</span>
-            <h2 className="text-4xl lg:text-7xl font-serif font-light text-zinc-900 leading-[1.1]">
+            <span className="block text-[9px] font-bold uppercase tracking-[0.18em] text-[#ee6669] sm:text-[10px] sm:tracking-[0.4em]">Tailored Investment</span>
+            <h2 className="text-3xl md:text-7xl font-serif font-light text-zinc-900 leading-[1.1]">
               Homes for <br/><span className="text-[#ee6669] italic">every lifestyle.</span>
             </h2>
-            <p className="text-zinc-500 text-lg font-light leading-relaxed">
+            <p className="text-sm font-light leading-relaxed text-zinc-500 sm:text-lg">
               Premium interior solutions curated for Bhopal homes. Transparent pricing meet exceptional design precision.
             </p>
           </motion.div>
           
           <Button 
             onClick={() => document.getElementById('get-quote')?.scrollIntoView({ behavior: 'smooth' })}
-            className="bg-[#2d1b4e] hover:bg-[#ee6669] text-white px-12 h-16 text-[10px] font-bold uppercase tracking-[0.25em] rounded-full transition-all duration-500 shadow-xl shadow-zinc-200"
+            className="h-12 w-full rounded-full bg-[#2d1b4e] px-8 text-[9px] font-bold uppercase tracking-[0.14em] text-white shadow-xl shadow-zinc-200 transition-all duration-500 hover:bg-[#ee6669] sm:h-16 sm:w-auto sm:px-12 sm:text-[10px] sm:tracking-[0.25em]"
           >
             Request Full Price List <ArrowRight className="w-4 h-4 ml-3" />
           </Button>
@@ -170,13 +170,13 @@ export function LandingBudget() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 lg:gap-10"
+          className="-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-4 no-scrollbar md:mx-0 md:grid md:grid-cols-2 md:gap-8 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3 lg:gap-10 xl:grid-cols-4"
         >
           {displayBudgets.map((item, idx) => (
             <motion.div 
               key={item.id || idx} 
               variants={itemVariants}
-              className="group relative flex flex-col bg-white rounded-[2rem] overflow-hidden border border-zinc-100 hover:border-[#ee6669]/20 transition-all duration-700 hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)]"
+              className="group relative flex min-w-[84%] snap-center flex-col overflow-hidden rounded-[2rem] border border-zinc-100 bg-white transition-all duration-700 hover:border-[#ee6669]/20 hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)] md:min-w-0"
             >
               {/* Image Container */}
               <div className="relative h-64 w-full overflow-hidden">
@@ -229,7 +229,7 @@ export function LandingBudget() {
           {/* Custom Requirement Card */}
           <motion.div 
             variants={itemVariants}
-            className="group relative flex flex-col bg-[#2d1b4e] rounded-[2rem] overflow-hidden p-10 text-center justify-center items-center gap-6"
+            className="group relative flex min-w-[84%] snap-center flex-col items-center justify-center gap-6 overflow-hidden rounded-[2rem] bg-[#2d1b4e] p-8 text-center md:min-w-0 md:p-10"
           >
              <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mb-2">
                 <ArrowRight className="w-6 h-6 text-[#ee6669]" />
