@@ -62,17 +62,17 @@ export function ProcessSection() {
   }, [steps.length])
 
   return (
-    <section id="process" className="w-full overflow-hidden bg-white py-16 md:py-32">
+    <section id="process" className="w-full overflow-hidden bg-white py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-4 md:px-8">
         {/* Section Header */}
-        <div className="mb-12 text-center md:mb-20">
+        <div className="mb-12 text-center md:mb-16">
           <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.16em] text-primary sm:text-xs sm:tracking-[0.2em]">
             The Journey
           </p>
-          <h2 className="text-3xl font-serif font-light text-zinc-900 md:text-5xl">
+          <h2 className="text-3xl font-serif font-light text-zinc-900 md:text-4xl">
             How It Works
           </h2>
-          <div className="mt-6 w-24 h-0.5 bg-primary mx-auto" />
+          <div className="mt-4 w-24 h-0.5 bg-primary mx-auto" />
         </div>
 
         {/* Steps Grid */}

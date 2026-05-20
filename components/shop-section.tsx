@@ -74,7 +74,7 @@ export function ShopSection() {
   }
 
   return (
-    <section id="collections" className="relative w-full overflow-hidden bg-[#fafafa] py-16 text-[#2d1b4e] md:py-36">
+    <section id="collections" className="relative w-full overflow-hidden bg-[#fafafa] py-16 text-[#2d1b4e] md:py-24">
       <div className="mx-auto max-w-7xl px-4 md:px-12">
         {/* Section Header */}
         <div className="mb-12 flex flex-col justify-between gap-8 md:mb-20 md:flex-row md:items-end md:gap-10">
@@ -88,7 +88,7 @@ export function ShopSection() {
             <span className="mb-4 block text-[9px] font-bold uppercase tracking-[0.18em] text-[#ee6669] sm:mb-6 sm:text-[10px] sm:tracking-[0.3em]">
               Curated Solutions
             </span>
-            <h2 className="mb-5 text-3xl font-serif font-light leading-[1.1] text-[#2d1b4e] sm:text-4xl md:mb-8 md:text-6xl">
+            <h2 className="mb-5 text-3xl font-serif font-light leading-[1.1] text-[#2d1b4e] sm:text-4xl md:mb-8 md:text-5xl">
               Interior Collections for <br />
               <span className="italic">Modern Living</span>
             </h2>
@@ -113,7 +113,7 @@ export function ShopSection() {
         </div>
 
         {/* Collections Grid */}
-        <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 no-scrollbar md:mx-0 md:grid md:grid-cols-2 md:gap-8 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3 lg:gap-14">
+        <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 no-scrollbar md:mx-0 md:grid md:grid-cols-2 md:gap-8 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3 lg:gap-8">
           {displayPackages.map((pkg: any, index: number) => (
             <motion.div
               key={pkg.id}
@@ -151,7 +151,7 @@ export function ShopSection() {
               </div>
 
               {/* Content Detail */}
-              <div className="flex flex-grow flex-col p-4 pt-0 sm:p-8 sm:pt-0">
+              <div className="flex flex-grow flex-col p-4 pt-0 sm:p-6 sm:pt-0">
                 <div className="mb-4">
                   <h3 className="mb-3 text-xl font-serif font-light text-[#2d1b4e] sm:text-2xl">  
                     {pkg.name}
@@ -185,7 +185,7 @@ export function ShopSection() {
                   </Button>
                   <Button 
                     variant="outline"
-                    onClick={() => window.dispatchEvent(new CustomEvent('open-lead-modal', { detail: { package: pkg.name, type: 'estimate' } }))}
+                    onClick={() => window.dispatchEvent(new CustomEvent('open-estimate-modal', { detail: { package: pkg.name } }))}
                     className="h-auto min-h-12 w-full py-2 rounded-full border-zinc-200 text-[9px] font-bold uppercase tracking-tight transition-all duration-500 hover:border-[#ee6669] hover:text-[#ee6669] sm:min-h-14 sm:text-[10px] sm:tracking-normal xl:flex-1 whitespace-normal leading-tight px-4"
                   >
                     Calculate Your Estimate
@@ -202,7 +202,7 @@ export function ShopSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="mt-20 text-center text-[10px] tracking-[0.1em] text-zinc-400 uppercase font-medium"
+          className="mt-12 text-center text-[10px] tracking-[0.1em] text-zinc-400 uppercase font-medium"
         >
           *Indicative pricing based on standard floor plans. Final quote subject to site measurements.
         </motion.p>

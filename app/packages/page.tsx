@@ -119,7 +119,7 @@ export default function PackagesPage() {
       <main className="bg-white text-[#2d1b4e] overflow-hidden">
         
         {/* 1. HERO SECTION */}
-        <section className="relative h-[65vh] lg:h-[85vh] flex items-center justify-center overflow-hidden bg-white">
+        <section className="relative h-[65vh] lg:h-[75vh] flex items-center justify-center overflow-hidden bg-white">
           <Image 
             src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1600"
             alt="Premium Interior Background"
@@ -138,11 +138,11 @@ export default function PackagesPage() {
               <span className="text-[9px] lg:text-[10px] uppercase tracking-[0.4em] lg:tracking-[0.5em] text-[#ee6669] font-bold mb-4 lg:mb-6 block">
                 Exclusive Studio Collections
               </span>
-              <h1 className="text-3xl md:text-6xl lg:text-8xl font-serif font-light leading-[1.1] tracking-tight mb-6 lg:mb-8 text-[#2d1b4e]">
-                Interior Packages Designed <br className="hidden sm:block" />
+              <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-serif font-light leading-[1.2] lg:leading-[1.1] tracking-tight mb-6 lg:mb-8 text-[#2d1b4e] px-2">
+                Interior Packages Designed <br className="hidden xs:block sm:block" />
                 <span className="text-[#ee6669] italic">Around Your Home</span>
               </h1>
-              <p className="text-sm lg:text-xl text-zinc-500 font-light max-w-2xl mx-auto leading-relaxed px-2">
+              <p className="text-sm lg:text-lg text-zinc-500 font-light max-w-2xl mx-auto leading-relaxed px-2">
                 Smart, modern, and space-efficient interior solutions for 1BHK to luxury homes in Bhopal.
               </p>
             </motion.div>
@@ -173,10 +173,10 @@ export default function PackagesPage() {
         </section>
 
         {/* 2. HOME TYPE PACKAGE SECTION */}
-        <section id="home-packages" className="py-16 lg:py-48 bg-white">
+        <section id="home-packages" className="py-16 lg:py-24 bg-white">
           <div className="max-w-[1400px] mx-auto px-5 lg:px-12">
-            <div className="text-center mb-12 lg:mb-24 space-y-3 lg:space-y-4">
-              <h2 className="text-3xl lg:text-6xl font-serif font-light text-[#2d1b4e] leading-tight">Choose Your Home Interior Package</h2>
+            <div className="text-center mb-12 lg:mb-16 space-y-3 lg:space-y-4">
+              <h2 className="text-3xl lg:text-5xl font-serif font-light text-[#2d1b4e] leading-tight">Choose Your Home Interior Package</h2>
               <p className="text-zinc-500 text-sm lg:text-lg font-light tracking-wide italic">Tailored solutions based on your home size, lifestyle, and budget.</p>
             </div>
 
@@ -227,7 +227,13 @@ export default function PackagesPage() {
 
                   <div className="pt-6 lg:pt-10 space-y-3">
                     <Button 
-                      onClick={() => window.dispatchEvent(new CustomEvent('open-lead-modal', { detail: { package: pkg.name } }))}
+                      onClick={() => {
+                        if (pkg.cta === 'Calculate Your Estimate') {
+                          window.dispatchEvent(new CustomEvent('open-estimate-modal', { detail: { package: pkg.name } }));
+                        } else {
+                          window.dispatchEvent(new CustomEvent('open-lead-modal', { detail: { package: pkg.name } }));
+                        }
+                      }}
                       className={`w-full h-auto min-h-11 lg:min-h-14 py-2 rounded-full font-bold uppercase tracking-tight text-[8px] lg:text-[10px] transition-all duration-500 whitespace-normal leading-tight px-4 ${pkg.isPopular ? 'bg-[#ee6669] hover:bg-[#2d1b4e] text-white' : 'bg-white border border-zinc-200 hover:border-[#ee6669] hover:text-[#ee6669] text-[#2d1b4e]'}`}
                     >
                       {pkg.cta} <ArrowRight className="w-3.5 h-3.5 lg:w-4 lg:h-4 ml-2 shrink-0" />
@@ -246,14 +252,14 @@ export default function PackagesPage() {
         </section>
 
         {/* 3. SPECIALIZED SOLUTIONS SECTION */}
-        <section className="py-16 lg:py-48 bg-[#fafafa] border-y border-zinc-100">
+        <section className="py-16 lg:py-24 bg-[#fafafa] border-y border-zinc-100">
            <div className="max-w-[1400px] mx-auto px-5 lg:px-12">
-              <div className="mb-12 lg:mb-24 space-y-3 lg:space-y-4">
+              <div className="mb-12 lg:mb-16 space-y-3 lg:space-y-4">
                 <span className="text-[9px] lg:text-[10px] uppercase tracking-[0.4em] lg:tracking-[0.5em] text-[#ee6669] font-bold block mb-4">Focused Craftsmanship</span>
-                <h2 className="text-3xl lg:text-6xl font-serif font-light text-[#2d1b4e]">Specialized Interior Solutions</h2>
+                <h2 className="text-3xl lg:text-5xl font-serif font-light text-[#2d1b4e]">Specialized Interior Solutions</h2>
               </div>
 
-              <div className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 no-scrollbar lg:mx-0 lg:block lg:space-y-24 lg:overflow-visible lg:px-0 lg:pb-0">
+              <div className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 no-scrollbar lg:mx-0 lg:block lg:space-y-16 lg:overflow-visible lg:px-0 lg:pb-0">
                 {specializedSolutions.map((sol, idx) => (
                   <motion.div 
                     key={sol.title}
@@ -294,9 +300,9 @@ export default function PackagesPage() {
         <ShopSection />
 
         {/* 4. WHY GROSPACE SECTION */}
-        <section className="py-16 lg:py-48 bg-white">
+        <section className="py-16 lg:py-24 bg-white">
           <div className="max-w-[1400px] mx-auto px-5 lg:px-12">
-            <h2 className="text-3xl lg:text-6xl font-serif font-light text-center mb-16 lg:mb-32 text-[#2d1b4e] leading-tight">Why Homeowners Choose Grospace</h2>
+            <h2 className="text-3xl lg:text-5xl font-serif font-light text-center mb-16 lg:mb-20 text-[#2d1b4e] leading-tight">Why Homeowners Choose Grospace</h2>
             
             <div className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 no-scrollbar sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-8 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4 lg:gap-12">
                {reasons.map((reason, idx) => (
@@ -322,10 +328,10 @@ export default function PackagesPage() {
         </section>
 
         {/* 5. REAL PROJECT PREVIEW */}
-        <section className="py-16 lg:py-48 bg-[#fdfdfd]">
+        <section className="py-16 lg:py-24 bg-[#fdfdfd]">
           <div className="max-w-[1400px] mx-auto px-5 lg:px-12 text-center">
-            <div className="max-w-3xl mx-auto mb-16 lg:mb-24 space-y-6 lg:space-y-8">
-              <h2 className="text-3xl lg:text-6xl font-serif font-light text-[#2d1b4e] leading-tight">From Concept to Reality</h2>
+            <div className="max-w-3xl mx-auto mb-16 lg:mb-20 space-y-6 lg:space-y-8">
+              <h2 className="text-3xl lg:text-5xl font-serif font-light text-[#2d1b4e] leading-tight">From Concept to Reality</h2>
               <p className="text-zinc-500 text-sm lg:text-lg font-light leading-relaxed px-2">
                 Experience the Grospace transformation. Our projects reflect the perfect harmony between architectural vision and functional design.
               </p>
@@ -363,12 +369,12 @@ export default function PackagesPage() {
         </section>
 
         {/* 6. FINAL CTA SECTION */}
-        <section className="relative py-16 lg:py-48 overflow-hidden bg-[#2d1b4e]">
+        <section className="relative py-16 lg:py-24 overflow-hidden bg-[#2d1b4e]">
            <div className="absolute inset-0 bg-gradient-to-r from-[#ee6669]/20 to-transparent opacity-30" />
            
            <div className="relative z-10 max-w-[1400px] mx-auto px-5 lg:px-12 text-center space-y-10 lg:space-y-12">
               <div className="space-y-4 lg:space-y-6">
-                <h2 className="text-4xl md:text-6xl lg:text-8xl font-serif font-light text-white leading-tight">Ready to price your <br /><span className="text-[#ee6669] italic">home interiors?</span></h2>
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-white leading-tight">Ready to price your <br /><span className="text-[#ee6669] italic">home interiors?</span></h2>
                 <p className="text-white/60 text-sm lg:text-xl font-light max-w-2xl mx-auto leading-relaxed">
                   Get a personalized site visit and estimated budget for your home interiors.
                 </p>

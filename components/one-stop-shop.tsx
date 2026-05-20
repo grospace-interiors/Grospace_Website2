@@ -32,21 +32,21 @@ export function OneStopShop() {
   ]
 
   return (
-    <section className="w-full overflow-hidden bg-white py-16 lg:py-28">
+    <section className="w-full overflow-hidden bg-white py-16 lg:py-20">
       <div className="mx-auto max-w-[1400px] px-4 text-center lg:px-8">
-        <h2 className="mb-4 text-3xl font-serif font-light leading-tight tracking-tight text-[#2d1b4e] sm:mb-6 sm:text-4xl lg:text-6xl">
+        <h2 className="mb-4 text-3xl font-serif font-light leading-tight tracking-tight text-[#2d1b4e] sm:mb-6 sm:text-4xl lg:text-5xl">
           Everything your <span className="text-[#ee6669]">Home Needs.</span>
         </h2>
-        <p className="mx-auto mb-10 max-w-2xl text-sm font-light leading-relaxed text-zinc-500 sm:mb-16 sm:text-lg">
+        <p className="mx-auto mb-10 max-w-2xl text-sm font-light leading-relaxed text-zinc-500 sm:mb-12 sm:text-lg">
           From modular kitchens to complete luxury home transformations — we handle everything from design to final handover.
         </p>
 
-        <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 no-scrollbar md:mx-0 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-4 lg:gap-8">
+        <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 no-scrollbar md:mx-0 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-4 lg:gap-6">
           {categories.map((category) => (
             <Link 
               key={category.title} 
               href={category.href}
-              className="group relative h-[320px] min-w-[84%] snap-center cursor-pointer overflow-hidden rounded-xl shadow-sm transition-all hover:shadow-xl md:min-w-0 sm:h-[450px]"
+              className="group relative h-[320px] min-w-[84%] snap-center cursor-pointer overflow-hidden rounded-xl shadow-sm transition-all hover:shadow-xl md:min-w-0 sm:h-[400px]"
             >
               <Image 
                 src={category.image} 
@@ -57,8 +57,8 @@ export function OneStopShop() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
               
-              <div className="absolute inset-x-0 bottom-0 p-4 text-center sm:p-8">
-                <div className="translate-y-0 rounded-lg bg-white/95 p-5 py-6 shadow-lg backdrop-blur-sm transition-transform duration-500 group-hover:translate-y-0 sm:translate-y-4 sm:p-6 sm:py-8">
+              <div className="absolute inset-x-0 bottom-0 p-4 text-center sm:p-6">
+                <div className="translate-y-0 rounded-lg bg-white/95 p-5 py-6 shadow-lg backdrop-blur-sm transition-transform duration-500 group-hover:translate-y-0 sm:translate-y-4 sm:p-5 sm:py-6">
                   <h3 className="text-xl font-bold text-[#333] mb-2">{category.title}</h3>
                   <p className="line-clamp-2 text-sm text-zinc-500 opacity-100 transition-opacity duration-500 sm:opacity-0 sm:group-hover:opacity-100">
                     {category.description}

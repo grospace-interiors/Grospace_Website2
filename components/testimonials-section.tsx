@@ -79,11 +79,11 @@ export function TestimonialsSection() {
   }
 
   return (
-    <section className="w-full overflow-hidden bg-zinc-50 py-16 lg:py-32">
+    <section className="w-full overflow-hidden bg-zinc-50 py-16 lg:py-24">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-12">
-        <div className="mb-10 flex flex-col items-start justify-between gap-8 md:mb-16 md:flex-row md:items-end">
+        <div className="mb-10 flex flex-col items-start justify-between gap-8 md:mb-10 md:flex-row md:items-end">
           <div className="max-w-2xl space-y-4">
-            <h2 className="text-3xl font-serif font-light leading-tight text-[#2d1b4e] sm:text-4xl lg:text-6xl">
+            <h2 className="text-3xl font-serif font-light leading-tight text-[#2d1b4e] sm:text-4xl lg:text-5xl">
               Stories from our <span className="text-[#ee6669]">happy families.</span>
             </h2>
             <p className="text-sm font-light text-zinc-500 sm:text-lg">See how we've helped homeowners across Bhopal build their dream spaces.</p>
@@ -93,7 +93,7 @@ export function TestimonialsSection() {
           </Link>
         </div>
 
-        <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 no-scrollbar md:mx-0 md:grid md:grid-cols-3 md:gap-10 md:overflow-visible md:px-0 md:pb-0">
+        <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 no-scrollbar md:mx-0 md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:px-0 md:pb-0">
           {displayTestimonials.map((testimonial, idx) => (
             <motion.div
               key={testimonial.id}
@@ -104,7 +104,7 @@ export function TestimonialsSection() {
               className="min-w-[86%] snap-center md:min-w-0"
             >
               <Card
-                className="group relative rounded-3xl border-zinc-100 bg-white p-6 shadow-xl transition-all duration-500 hover:shadow-2xl sm:rounded-[2rem] sm:p-10"
+                className="group relative rounded-3xl border-zinc-100 bg-white p-6 shadow-xl transition-all duration-500 hover:shadow-2xl sm:rounded-[2rem] sm:p-8"
               >
                 <Quote className="absolute top-8 right-8 w-12 h-12 text-zinc-50 opacity-10 group-hover:opacity-20 transition-opacity" />
                 <div className="space-y-8 relative z-10">

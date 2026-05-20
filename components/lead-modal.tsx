@@ -132,13 +132,6 @@ export function LeadModal() {
 
           {/* Right Side: Content & Form */}
           <div className="flex-grow p-8 lg:p-14 flex flex-col justify-center relative">
-            <button 
-              onClick={() => setIsOpen(false)}
-              className="absolute top-6 right-6 p-2 text-zinc-400 hover:text-zinc-900 transition-colors lg:hidden"
-            >
-              <X className="w-6 h-6" />
-            </button>
-
             <AnimatePresence mode="wait">
               {status === 'success' ? (
                 <motion.div 

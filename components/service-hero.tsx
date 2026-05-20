@@ -13,7 +13,7 @@ interface ServiceHeroProps {
 
 export function ServiceHero({ title, subtitle, image }: ServiceHeroProps) {
   return (
-    <section className="relative flex h-[calc(100svh-96px)] min-h-[520px] items-center justify-center overflow-hidden lg:h-[85vh] lg:min-h-[600px]">
+    <section className="relative flex h-[calc(100svh-96px)] min-h-[520px] items-center justify-center overflow-hidden lg:h-[75vh] lg:min-h-[550px]">
       <motion.div 
         initial={{ scale: 1.1 }}
         animate={{ scale: 1 }}
@@ -36,7 +36,7 @@ export function ServiceHero({ title, subtitle, image }: ServiceHeroProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h1 className="mb-4 text-4xl font-serif font-light leading-[1.08] tracking-tight md:text-7xl lg:mb-6 lg:text-8xl">
+          <h1 className="mb-4 text-4xl font-serif font-light leading-[1.08] tracking-tight md:text-7xl lg:mb-6 lg:text-6xl">
             {title}
           </h1>
           <p className="mx-auto mb-8 max-w-2xl text-sm font-light leading-relaxed text-purple-50/80 sm:text-lg md:text-2xl lg:mb-12">
@@ -52,7 +52,7 @@ export function ServiceHero({ title, subtitle, image }: ServiceHeroProps) {
         >
           <Button 
             asChild
-            className="h-12 rounded-full bg-[#ee6669] px-8 text-[10px] font-bold uppercase tracking-[0.14em] text-white shadow-2xl shadow-[#ee6669]/20 hover:bg-[#dd5558] sm:h-16 sm:px-10 sm:text-[11px] sm:tracking-[0.2em]"
+            className="h-12 rounded-full bg-[#ee6669] px-8 text-[10px] font-bold uppercase tracking-[0.14em] text-white shadow-2xl shadow-[#ee6669]/20 hover:bg-[#dd5558] sm:h-14 sm:px-10 sm:text-[11px] sm:tracking-[0.2em]"
           >
             <a href="#contact">
               Book Free Site Visit <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -60,7 +60,8 @@ export function ServiceHero({ title, subtitle, image }: ServiceHeroProps) {
           </Button>
           <Button 
             variant="outline"
-            className="h-12 rounded-full border-white/20 bg-white/10 px-8 text-[10px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-[#2d1b4e] sm:h-16 sm:px-10 sm:text-[11px] sm:tracking-[0.2em]"
+            onClick={() => window.dispatchEvent(new CustomEvent('open-estimate-modal', { detail: { package: title } }))}
+            className="h-12 rounded-full border-white/20 bg-white/10 px-8 text-[10px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-[#2d1b4e] sm:h-14 sm:px-10 sm:text-[11px] sm:tracking-[0.2em]"
           >
             Calculate Your Estimate
           </Button>

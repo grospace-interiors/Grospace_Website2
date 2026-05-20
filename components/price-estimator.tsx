@@ -162,7 +162,7 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
   // --- RENDERING COMPONENTS ---
 
   const Sidebar = () => (
-    <div className="lg:sticky lg:top-32 h-fit bg-white/80 backdrop-blur-2xl rounded-[3rem] p-10 border border-zinc-100 text-zinc-900 overflow-hidden relative shadow-[0_32px_64px_-16px_rgba(45,27,78,0.08)]">
+    <div className="lg:sticky lg:top-32 h-fit bg-white/80 backdrop-blur-2xl rounded-[2.5rem] p-8 border border-zinc-100 text-zinc-900 overflow-hidden relative shadow-[0_32px_64px_-16px_rgba(45,27,78,0.08)]">
       <div className="absolute top-0 right-0 w-48 h-48 bg-[#ee6669]/5 rounded-full blur-[80px] -mr-24 -mt-24" />
       
       <div className="relative z-10 space-y-10">
@@ -315,7 +315,7 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1, duration: 0.8 }}
-              className="text-4xl font-serif font-light leading-[1.05] tracking-tight text-[#2d1b4e] sm:text-6xl lg:text-[92px]"
+              className="text-4xl font-serif font-light leading-[1.05] tracking-tight text-[#2d1b4e] sm:text-6xl lg:text-7xl"
             >
               Premium interiors, <br />
               <span className="text-[#ee6669]">honest pricing.</span>
@@ -388,7 +388,7 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
   }
 
   return (
-    <section className="w-full bg-white py-24 min-h-screen">
+    <section className="w-full bg-white py-16 min-h-[80vh]">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         
         {/* Top Navigation & Progress */}

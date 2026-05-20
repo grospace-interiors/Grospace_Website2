@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { WhatsAppFab } from '@/components/whatsapp-fab'
 import { LeadModal } from '@/components/lead-modal'
+import { EstimateModal } from '@/components/estimate-modal'
 import { MobileCtaBar } from '@/components/mobile-cta-bar'
 import { Suspense } from 'react'
 import './globals.css'
@@ -74,6 +75,7 @@ export default function RootLayout({
           <WhatsAppFab />
           <MobileCtaBar />
           <LeadModal />
+          <EstimateModal />
         </Suspense>
         <Analytics />
       </body>
