@@ -228,9 +228,9 @@ export default function PackagesPage() {
                   <div className="pt-6 lg:pt-10 space-y-3">
                     <Button 
                       onClick={() => window.dispatchEvent(new CustomEvent('open-lead-modal', { detail: { package: pkg.name } }))}
-                      className={`w-full h-11 lg:h-14 rounded-full font-bold uppercase tracking-[0.2em] text-[8px] lg:text-[9px] transition-all duration-500 ${pkg.isPopular ? 'bg-[#ee6669] hover:bg-[#2d1b4e] text-white' : 'bg-white border border-zinc-200 hover:border-[#ee6669] hover:text-[#ee6669] text-[#2d1b4e]'}`}
+                      className={`w-full h-auto min-h-11 lg:min-h-14 py-2 rounded-full font-bold uppercase tracking-tight text-[8px] lg:text-[10px] transition-all duration-500 whitespace-normal leading-tight px-4 ${pkg.isPopular ? 'bg-[#ee6669] hover:bg-[#2d1b4e] text-white' : 'bg-white border border-zinc-200 hover:border-[#ee6669] hover:text-[#ee6669] text-[#2d1b4e]'}`}
                     >
-                      {pkg.cta} <ArrowRight className="w-3.5 h-3.5 lg:w-4 lg:h-4 ml-2" />
+                      {pkg.cta} <ArrowRight className="w-3.5 h-3.5 lg:w-4 lg:h-4 ml-2 shrink-0" />
                     </Button>
                     <button
                       onClick={() => window.open(`https://wa.me/918319032087?text=${encodeURIComponent(`Hi, I'm interested in the ${pkg.name} package.`)}`, '_blank')}

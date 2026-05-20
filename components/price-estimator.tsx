@@ -523,10 +523,10 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
                              <Button onClick={nextStep} disabled={formData.spaces.length === 0} className="bg-[#2d1b4e] hover:bg-[#ee6669] text-white px-16 h-20 rounded-[1.5rem] font-bold uppercase tracking-[0.3em] text-[11px] transition-all shadow-xl group">
                                NEXT SELECTION <ArrowRight className="w-4 h-4 ml-3 group-hover:translate-x-1 transition-transform" />
                              </Button>
-                             <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.4em] flex items-center gap-3">
+                             <div className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.4em] flex items-center gap-3">
                                 <div className="w-1.5 h-1.5 rounded-full bg-zinc-200" />
                                 Select one or more spaces
-                             </p>
+                             </div>
                           </div>
                         </div>
                       )}
@@ -644,11 +644,11 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
                               className="w-full h-2"
                               onValueChange={(val) => setFormData({...formData, kitchenSize: val[0]})}
                              />
-                             <p className="text-[10px] text-zinc-400 uppercase tracking-[0.3em] font-bold flex items-center justify-center gap-4">
+                             <div className="text-[10px] text-zinc-400 uppercase tracking-[0.3em] font-bold flex items-center justify-center gap-4">
                                 <div className="w-1.5 h-1.5 rounded-full bg-zinc-100" />
                                 Slide to adjust your floor area
                                 <div className="w-1.5 h-1.5 rounded-full bg-zinc-100" />
-                             </p>
+                             </div>
                           </div>
                           <Button onClick={nextStep} className="bg-[#2d1b4e] hover:bg-[#ee6669] text-white px-20 h-24 rounded-[2.5rem] font-bold uppercase tracking-[0.4em] text-[12px] shadow-2xl group transition-all">
                             SET AREA & PROCEED <ArrowRight className="w-5 h-5 ml-4 group-hover:translate-x-1 transition-transform" />

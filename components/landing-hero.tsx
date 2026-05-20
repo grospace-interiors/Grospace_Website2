@@ -24,8 +24,8 @@ export function LandingHero() {
         <div className="absolute inset-0 bg-black/40" />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-12">
-        <div className="max-w-3xl space-y-6 sm:space-y-8">
+      <div className="relative z-10 mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-12 text-center">
+        <div className="max-w-4xl mx-auto space-y-6 sm:space-y-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -35,7 +35,7 @@ export function LandingHero() {
             <h1 className="text-4xl font-serif font-light leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-8xl">
               Design a home that tells <span className="text-[#ee6669] italic">your story.</span>
             </h1>
-            <p className="max-w-2xl text-sm font-light leading-relaxed text-zinc-200 sm:text-lg lg:text-2xl">
+            <p className="max-w-2xl mx-auto text-sm font-light leading-relaxed text-zinc-200 sm:text-lg lg:text-2xl">
               Affordable luxury for Bhopal families. Experience premium interior design with transparent pricing and end-to-end execution.
             </p>
           </motion.div>
@@ -44,7 +44,7 @@ export function LandingHero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col gap-3 pt-2 sm:flex-row sm:gap-4 sm:pt-4"
+            className="flex flex-col items-center justify-center gap-3 pt-2 sm:flex-row sm:gap-4 sm:pt-4"
           >
             <Button 
               onClick={scrollToForm}

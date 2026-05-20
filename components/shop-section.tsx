@@ -186,7 +186,7 @@ export function ShopSection() {
                   <Button 
                     variant="outline"
                     onClick={() => window.dispatchEvent(new CustomEvent('open-lead-modal', { detail: { package: pkg.name, type: 'estimate' } }))}
-                    className="h-12 w-full rounded-full border-zinc-200 text-[9px] font-bold uppercase tracking-[0.12em] transition-all duration-500 hover:border-[#ee6669] hover:text-[#ee6669] sm:h-14 sm:text-[10px] sm:tracking-[0.15em] xl:flex-1"
+                    className="h-auto min-h-12 w-full py-2 rounded-full border-zinc-200 text-[9px] font-bold uppercase tracking-tight transition-all duration-500 hover:border-[#ee6669] hover:text-[#ee6669] sm:min-h-14 sm:text-[10px] sm:tracking-normal xl:flex-1 whitespace-normal leading-tight px-4"
                   >
                     Calculate Your Estimate
                   </Button>
