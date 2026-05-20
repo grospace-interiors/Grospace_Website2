@@ -28,13 +28,13 @@ export function LandingWarranty() {
   ]
 
   return (
-    <section className="w-full bg-[#332233] py-16 md:py-32 overflow-hidden relative">
+    <section className="w-full bg-[#222222] py-16 md:py-24 overflow-hidden relative">
       {/* Decorative Background Elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-[#ee6669]/10 rounded-full blur-[100px] -mr-48 -mt-48" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#ee6669]/5 rounded-full blur-[100px] -ml-48 -mb-48" />
 
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           
           <motion.div
             initial={{ opacity: 0, x: -20 }}

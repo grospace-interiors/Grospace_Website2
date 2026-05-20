@@ -15,7 +15,7 @@ export function MobileCtaBar() {
       <div className="grid grid-cols-[1fr_1fr_1.35fr] gap-2">
         <a
           href={`tel:${PHONE_NUMBER}`}
-          className="flex h-12 items-center justify-center gap-1.5 rounded-xl border border-zinc-200 bg-white text-[10px] font-bold uppercase tracking-[0.12em] text-[#2d1b4e]"
+          className="flex h-12 items-center justify-center gap-1.5 rounded-xl border border-zinc-200 bg-white text-[10px] font-bold uppercase tracking-[0.12em] text-[#222222]"
           aria-label="Call Grospace Interiors"
         >
           <Phone className="h-4 w-4 text-[#ee6669]" />

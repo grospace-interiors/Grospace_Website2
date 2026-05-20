@@ -58,7 +58,7 @@ const specializedServices = [
 
 export function ServicesExplore() {
   return (
-    <section className="overflow-hidden bg-white py-16 lg:py-40">
+    <section className="overflow-hidden bg-white py-16 lg:py-28">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-12">
         <div className="mb-12 flex flex-col items-start justify-between gap-6 lg:mb-24 lg:flex-row lg:items-end lg:gap-8">
           <div className="max-w-2xl">
@@ -90,7 +90,7 @@ export function ServicesExplore() {
         </div>
 
         {/* Main Categories */}
-        <div className="mb-20 space-y-6 lg:mb-32 lg:space-y-12">
+        <div className="mb-20 space-y-6 lg:mb-32 lg:space-y-8">
           {serviceCategories.map((service, index) => (
             <motion.div
               key={service.slug}
@@ -101,7 +101,7 @@ export function ServicesExplore() {
             >
               <Link 
                 href={`/services/${service.slug}`}
-                className="group relative flex flex-col items-center gap-6 overflow-hidden rounded-3xl bg-zinc-50 p-5 transition-all duration-700 hover:bg-[#2d1b4e] sm:p-8 lg:flex-row lg:gap-12 lg:rounded-[3rem] lg:p-12"
+                className="group relative flex flex-col items-center gap-6 overflow-hidden rounded-3xl bg-zinc-50 p-5 transition-all duration-700 hover:bg-[#222222] sm:p-8 lg:flex-row lg:gap-12 lg:rounded-[3rem] lg:p-12"
               >
                 {/* Number Background */}
                 <span className="pointer-events-none absolute right-6 top-6 select-none font-serif text-7xl leading-none text-zinc-100 transition-colors duration-700 group-hover:text-white/5 sm:right-12 sm:top-12 sm:text-[10rem]">
@@ -137,7 +137,7 @@ export function ServicesExplore() {
 
         {/* Specialized Sub-Services Section */}
         <div className="border-t border-zinc-100 pt-16 lg:pt-24">
-          <div className="mb-10 lg:mb-16">
+          <div className="mb-10 lg:mb-12">
              <span className="mb-4 block text-[9px] font-bold uppercase tracking-[0.18em] text-[#ee6669] sm:text-[10px] sm:tracking-[0.4em]">Specialized Solutions</span>
              <h3 className="text-3xl font-serif font-light text-zinc-900 lg:text-5xl">Core Modular <span className="text-[#ee6669]">&</span> Technical Services</h3>
           </div>
@@ -162,7 +162,7 @@ export function ServicesExplore() {
                       fill 
                       className="object-cover group-hover:scale-110 transition-transform duration-700"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#2d1b4e]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#222222]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   </div>
                   <div className="space-y-2">
                     <h4 className="text-xl font-serif font-light text-zinc-900 group-hover:text-[#ee6669] transition-colors">{service.title}</h4>

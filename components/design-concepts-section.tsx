@@ -28,7 +28,7 @@ export async function DesignConceptsSection({ limit }: { limit?: number }) {
   }))
 
   return (
-    <section className="w-full bg-white py-16 md:py-32 text-zinc-900">
+    <section className="w-full bg-white py-16 md:py-24 text-zinc-900">
       <div className="max-w-7xl mx-auto px-5 md:px-8">
         {/* Section Header */}
         <div className="mb-16">

@@ -6,7 +6,7 @@ import { ArrowRight, MessageSquare, Briefcase } from 'lucide-react'
 
 export function ServiceCTA() {
   return (
-    <section className="relative overflow-hidden bg-[#2d1b4e] py-16 lg:py-56">
+    <section className="relative overflow-hidden bg-[#222222] py-16 lg:py-24">
       {/* Background Accents */}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#ee6669]/5 rounded-full blur-[160px] -mr-96 -mt-96" />
       <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-white/5 rounded-full blur-[160px] -ml-96 -mb-96" />
@@ -27,7 +27,7 @@ export function ServiceCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-6 text-4xl font-serif font-light leading-[1.05] tracking-tight text-white sm:text-6xl lg:mb-10 lg:text-[100px] lg:tracking-tighter"
+          className="mb-6 text-4xl font-serif font-light leading-[1.05] tracking-tight text-white sm:text-5xl lg:mb-8 lg:text-7xl"
         >
           Let’s Design Your <br />
           <span className="text-[#ee6669]">Signature Home.</span>
@@ -38,7 +38,7 @@ export function ServiceCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2, duration: 0.8 }}
-          className="mx-auto mb-10 max-w-2xl text-sm font-light leading-relaxed text-purple-100/60 sm:text-xl lg:mb-20 lg:text-2xl"
+          className="mx-auto mb-9 max-w-2xl text-sm font-light leading-relaxed text-purple-100/60 sm:text-lg lg:mb-12 lg:text-xl"
         >
           Book an exclusive 1-on-1 design verification session with our principal architects and turn your vision into a reality.
         </motion.p>
@@ -52,7 +52,7 @@ export function ServiceCTA() {
         >
           <Button 
             asChild
-            className="relative h-14 w-full overflow-hidden rounded-2xl bg-[#ee6669] px-8 text-[10px] font-bold uppercase tracking-[0.14em] text-white shadow-2xl shadow-[#ee6669]/20 transition-all duration-500 hover:bg-white hover:text-[#2d1b4e] sm:h-24 sm:w-auto sm:px-16 sm:text-[11px] sm:tracking-[0.3em] sm:rounded-[2rem]"
+            className="relative h-14 w-full overflow-hidden rounded-2xl bg-[#ee6669] px-8 text-[10px] font-bold uppercase tracking-[0.14em] text-white shadow-2xl shadow-[#ee6669]/20 transition-all duration-500 hover:bg-white hover:text-[#222222] sm:h-16 sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[0.22em]"
           >
             <a href="#contact">
                <span className="relative z-10 flex items-center justify-center">
@@ -64,7 +64,7 @@ export function ServiceCTA() {
           <Button 
             variant="outline"
             onClick={() => window.open(`https://wa.me/918319032087?text=${encodeURIComponent("Hi, I'm interested in a free site visit.")}`, '_blank')}
-            className="flex h-14 w-full items-center justify-center rounded-2xl border-white/10 bg-white/5 px-8 text-[10px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md transition-all duration-500 hover:bg-white hover:text-[#2d1b4e] sm:h-24 sm:w-auto sm:px-16 sm:text-[11px] sm:tracking-[0.3em] sm:rounded-[2rem]"
+            className="flex h-14 w-full items-center justify-center rounded-2xl border-white/10 bg-white/5 px-8 text-[10px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md transition-all duration-500 hover:bg-white hover:text-[#222222] sm:h-16 sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[0.22em]"
           >
             <MessageSquare className="w-5 h-5 mr-4" /> WhatsApp Us
           </Button>

@@ -27,7 +27,7 @@ export function MagazineSection() {
   ]
 
   return (
-    <section className="w-full bg-[#fdfdfd] py-20 lg:py-28">
+    <section className="w-full bg-[#F6F4E8] py-20 lg:py-28">
       <div className="max-w-[1400px] mx-auto px-4 lg:px-8">
         <div className="flex justify-between items-end mb-12">
           <div className="space-y-4">

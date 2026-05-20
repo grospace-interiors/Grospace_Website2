@@ -88,7 +88,7 @@ export function ProjectsClient({ projects, limit }: ProjectsClientProps) {
               className={cn(
                 "px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-[0.3em] transition-all duration-500 border",
                 activeCategory === cat 
-                  ? "bg-[#2d1b4e] text-white border-[#2d1b4e] shadow-xl shadow-[#2d1b4e]/20" 
+                  ? "bg-[#222222] text-white border-[#222222] shadow-xl shadow-[#222222]/20" 
                   : "bg-white text-zinc-400 border-zinc-100 hover:border-[#ee6669]/30 hover:text-[#ee6669]"
               )}
             >
@@ -100,7 +100,7 @@ export function ProjectsClient({ projects, limit }: ProjectsClientProps) {
 
       {/* Projects Grid */}
       <div className={cn(
-        "-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 no-scrollbar md:mx-0 md:grid md:overflow-visible md:px-0 md:pb-0 lg:gap-16",
+        "-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 no-scrollbar md:mx-0 md:grid md:overflow-visible md:px-0 md:pb-0 lg:gap-12",
         limit ? "md:grid-cols-2 lg:grid-cols-12" : "md:grid-cols-2 lg:gap-12"
       )}>
         <AnimatePresence mode="popLayout">
@@ -141,7 +141,7 @@ export function ProjectsClient({ projects, limit }: ProjectsClientProps) {
                   />
                   
                   {/* Premium Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#2d1b4e]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#222222]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700" />
                   
                   {/* Hover Content */}
                   <div className="absolute inset-0 p-12 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-8 group-hover:translate-y-0">
@@ -169,11 +169,11 @@ export function ProjectsClient({ projects, limit }: ProjectsClientProps) {
                    <div className="flex items-baseline justify-between border-b border-zinc-100 pb-4">
                       <div className="space-y-1">
                         <span className="text-[10px] font-bold text-[#ee6669] uppercase tracking-[0.3em]">{project.category || 'Full Home'}</span>
-                        <h4 className="text-2xl lg:text-3xl font-serif text-[#2d1b4e]">{project.title}</h4>
+                        <h4 className="text-2xl lg:text-3xl font-serif text-[#222222]">{project.title}</h4>
                       </div>
                       <div className="text-right">
                          <p className="text-[9px] font-bold text-zinc-400 uppercase tracking-widest mb-1">Area</p>
-                         <p className="text-sm font-serif text-[#2d1b4e]">{project.area_size || '1,250 SQFT'}</p>
+                         <p className="text-sm font-serif text-[#222222]">{project.area_size || '1,250 SQFT'}</p>
                       </div>
                    </div>
                    <div className="flex items-center gap-6 pt-1">
@@ -207,11 +207,11 @@ export function ProjectsClient({ projects, limit }: ProjectsClientProps) {
                  <div className="w-1.5 h-1.5 rounded-full bg-zinc-200" />
                  <span className="text-zinc-400 text-[10px] font-bold uppercase tracking-[0.4em]">{selectedProject?.style_type || 'Modern'}</span>
               </div>
-              <DialogTitle className="text-3xl lg:text-5xl font-serif font-light text-[#2d1b4e]">{selectedProject?.title}</DialogTitle>
+              <DialogTitle className="text-3xl lg:text-5xl font-serif font-light text-[#222222]">{selectedProject?.title}</DialogTitle>
             </div>
             <div className="hidden lg:flex flex-col items-end space-y-2 text-right">
                 <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest flex items-center gap-2"><MapPin className="w-3 h-3" /> Location</p>
-                <p className="text-lg font-serif text-[#2d1b4e]">Bhopal, Madhya Pradesh</p>
+                <p className="text-lg font-serif text-[#222222]">Bhopal, Madhya Pradesh</p>
             </div>
           </div>
           
@@ -230,25 +230,25 @@ export function ProjectsClient({ projects, limit }: ProjectsClientProps) {
                      <div className="space-y-6">
                         <div className="flex justify-between items-center">
                            <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Home Type</span>
-                           <span className="text-sm font-bold text-[#2d1b4e]">{selectedProject?.bhk_type || '3BHK'}</span>
+                           <span className="text-sm font-bold text-[#222222]">{selectedProject?.bhk_type || '3BHK'}</span>
                         </div>
                         <div className="flex justify-between items-center">
                            <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Area Size</span>
-                           <span className="text-sm font-bold text-[#2d1b4e]">{selectedProject?.area_size || '1,200 sqft'}</span>
+                           <span className="text-sm font-bold text-[#222222]">{selectedProject?.area_size || '1,200 sqft'}</span>
                         </div>
                         <div className="flex justify-between items-center">
                            <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Timeline</span>
-                           <span className="text-sm font-bold text-[#2d1b4e]">{selectedProject?.timeline || '60 Days'}</span>
+                           <span className="text-sm font-bold text-[#222222]">{selectedProject?.timeline || '60 Days'}</span>
                         </div>
                         <div className="flex justify-between items-center">
                            <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Material</span>
-                           <span className="text-sm font-bold text-[#2d1b4e]">HDHMR & Acrylic</span>
+                           <span className="text-sm font-bold text-[#222222]">HDHMR & Acrylic</span>
                         </div>
                      </div>
                   </div>
                   
                   <div className="pt-8">
-                     <Button className="w-full h-18 bg-[#ee6669] hover:bg-[#2d1b4e] text-white rounded-2xl font-bold uppercase tracking-[0.2em] text-[10px] shadow-xl shadow-[#ee6669]/20 transition-all">
+                     <Button className="h-14 w-full rounded-2xl bg-[#ee6669] text-[10px] font-bold uppercase tracking-[0.16em] text-white shadow-xl shadow-[#ee6669]/20 transition-all hover:bg-[#222222]">
                         BOOK SIMILAR DESIGN
                      </Button>
                   </div>

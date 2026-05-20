@@ -16,23 +16,23 @@ export default function PriceCalculatorMain() {
         <PriceEstimator initialCategory="none" />
         
         {/* Why Transparent Pricing Matters Section */}
-        <section className="relative overflow-hidden bg-zinc-50 py-16 lg:py-32">
+        <section className="relative overflow-hidden bg-zinc-50 py-16 lg:py-24">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-zinc-200 to-transparent" />
           <div className="mx-auto max-w-[1400px] px-4 text-center sm:px-6 lg:px-12">
             <div className="mx-auto mb-12 max-w-3xl space-y-5 lg:mb-24 lg:space-y-8">
-              <h2 className="text-3xl font-serif font-light leading-tight tracking-tight text-[#2d1b4e] sm:text-5xl lg:text-7xl">How our pricing <br /><span className="text-[#ee6669]">Empowers you.</span></h2>
+              <h2 className="text-3xl font-serif font-light leading-tight tracking-tight text-[#222222] sm:text-5xl lg:text-7xl">How our pricing <br /><span className="text-[#ee6669]">Empowers you.</span></h2>
               <p className="text-sm font-light leading-relaxed text-zinc-500 sm:text-xl">No hidden fees, no last-minute "surprises." We believe that luxury interiors should come with absolute financial clarity from day one.</p>
             </div>
             <ServiceProcess />
           </div>
         </section>
 
-        <section className="overflow-hidden bg-white py-16 lg:py-32">
+        <section className="overflow-hidden bg-white py-16 lg:py-24">
            <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-12">
               <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-24">
-                <div className="space-y-8 lg:space-y-12">
+                <div className="space-y-8 lg:space-y-8">
                    <div className="space-y-4 lg:space-y-6">
-                      <h2 className="text-3xl font-serif font-light leading-tight tracking-tight text-[#2d1b4e] sm:text-5xl lg:text-7xl">The Grospace <br /><span className="text-[#ee6669]">Material Guarantee.</span></h2>
+                      <h2 className="text-3xl font-serif font-light leading-tight tracking-tight text-[#222222] sm:text-5xl lg:text-7xl">The Grospace <br /><span className="text-[#ee6669]">Material Guarantee.</span></h2>
                       <p className="text-sm font-light leading-relaxed text-zinc-500 sm:text-xl">We source only from certified premium partners to ensure your home isn't just beautiful, but built to last a lifetime.</p>
                    </div>
                    <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 pt-4 no-scrollbar sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-8 sm:overflow-visible sm:px-0 sm:pb-0 sm:pt-8">
@@ -40,14 +40,14 @@ export default function PriceCalculatorMain() {
                          <div className="w-12 h-12 rounded-2xl bg-zinc-50 flex items-center justify-center border border-zinc-100">
                             <ShieldCheck className="w-6 h-6 text-[#ee6669]" />
                          </div>
-                         <h4 className="font-bold text-[#2d1b4e] uppercase tracking-widest text-xs">Anti-Termite</h4>
+                         <h4 className="font-bold text-[#222222] uppercase tracking-widest text-xs">Anti-Termite</h4>
                          <p className="text-[11px] text-zinc-400 font-medium uppercase tracking-wider">Lifetime Protection</p>
                       </div>
                       <div className="min-w-[70%] snap-center space-y-3 rounded-2xl border border-zinc-100 bg-white p-5 shadow-sm sm:min-w-0 sm:border-0 sm:p-0 sm:shadow-none">
                          <div className="w-12 h-12 rounded-2xl bg-zinc-50 flex items-center justify-center border border-zinc-100">
                             <CheckCircle2 className="w-6 h-6 text-[#ee6669]" />
                          </div>
-                         <h4 className="font-bold text-[#2d1b4e] uppercase tracking-widest text-xs">Eco-Friendly</h4>
+                         <h4 className="font-bold text-[#222222] uppercase tracking-widest text-xs">Eco-Friendly</h4>
                          <p className="text-[11px] text-zinc-400 font-medium uppercase tracking-wider">E1 Grade Material</p>
                       </div>
                    </div>

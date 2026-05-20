@@ -44,10 +44,10 @@ export function WhyGrospaceInteriors() {
   ]
 
   return (
-    <section className="w-full overflow-hidden bg-[#fdfdfd] py-16 lg:py-24">
+    <section className="w-full overflow-hidden bg-[#F6F4E8] py-16 lg:py-24">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-12">
         <div className="mb-12 space-y-4 text-center sm:mb-16">
-          <h2 className="text-3xl font-serif font-light leading-tight tracking-tight text-[#2d1b4e] sm:text-4xl lg:text-5xl">
+          <h2 className="text-3xl font-serif font-light leading-tight tracking-tight text-[#222222] sm:text-4xl lg:text-5xl">
             Why Homeowners Choose <br/>
             <span className="text-[#ee6669]">Grospace Interiors</span>
           </h2>
@@ -63,7 +63,7 @@ export function WhyGrospaceInteriors() {
               <div className="w-14 h-14 rounded-2xl bg-zinc-50 flex items-center justify-center mb-8 group-hover:bg-[#ee6669] group-hover:text-white transition-all duration-500">
                 <reason.icon className="w-6 h-6" />
               </div>
-              <h3 className="text-xl font-serif font-light text-[#2d1b4e] mb-4 group-hover:text-[#ee6669] transition-colors">
+              <h3 className="text-xl font-serif font-light text-[#222222] mb-4 group-hover:text-[#ee6669] transition-colors">
                 {reason.title}
               </h3>
               <p className="text-sm text-zinc-500 leading-relaxed font-light">

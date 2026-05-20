@@ -51,7 +51,7 @@ export function Navigation() {
   return (
     <nav className="sticky top-0 z-50 w-full max-w-full overflow-visible bg-white font-sans shadow-sm">
       {/* Top Bar */}
-      <div className="relative bg-[#2d1b4e] px-8 py-1.5 text-center text-[9px] leading-relaxed text-white sm:text-[10px]">
+      <div className="relative bg-[#222222] px-8 py-1.5 text-center text-[9px] leading-relaxed text-white sm:text-[10px]">
         <span className="block truncate sm:whitespace-normal">India's First Lifetime Warranty* | Quality Materials | On-Time Delivery</span>
         <button type="button" className="absolute right-3 top-1/2 -translate-y-1/2" aria-label="Close offer bar"><X className="h-3 w-3" /></button>
       </div>
@@ -64,7 +64,7 @@ export function Navigation() {
             <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-[#ee6669] sm:h-10 sm:w-10">
                <div className="h-5 w-5 rounded-full border border-[#ee6669] sm:h-6 sm:w-6" />
             </div>
-            <span className="min-w-0 truncate text-lg font-bold uppercase tracking-tighter text-[#2d1b4e] sm:text-xl lg:text-2xl">
+            <span className="min-w-0 truncate text-lg font-bold uppercase tracking-tighter text-[#222222] sm:text-xl lg:text-2xl">
               Grospace Interiors
             </span>
           </Link>
@@ -108,7 +108,7 @@ export function Navigation() {
                           href={item.href}
                           className="block p-4 rounded-xl hover:bg-zinc-50 transition-colors group"
                         >
-                          <span className="text-sm font-medium text-zinc-900 group-hover:text-[#2d1b4e] block">{item.label}</span>
+                          <span className="text-sm font-medium text-zinc-900 group-hover:text-[#222222] block">{item.label}</span>
                           <span className="text-[10px] text-zinc-400 font-light">End-to-end design & execution</span>
                         </Link>
                       ))}
@@ -125,7 +125,7 @@ export function Navigation() {
                         </Link>
                       ))}
                       <div className="pt-4 mt-4 border-t border-zinc-100">
-                        <Link href="/services" className="text-[10px] font-bold text-[#2d1b4e] uppercase tracking-widest hover:text-[#ee6669] transition-colors">
+                        <Link href="/services" className="text-[10px] font-bold text-[#222222] uppercase tracking-widest hover:text-[#ee6669] transition-colors">
                           View All Services →
                         </Link>
                       </div>
@@ -148,7 +148,7 @@ export function Navigation() {
             
             <Button 
                 asChild
-                className="bg-[#ee6669] hover:bg-[#2d1b4e] text-white rounded-full px-8 py-2 h-12 text-[11px] font-bold uppercase tracking-widest shadow-lg shadow-[#ee6669]/20 transition-all active:scale-95"
+                className="bg-[#ee6669] hover:bg-[#222222] text-white rounded-full px-8 py-2 h-12 text-[11px] font-bold uppercase tracking-widest shadow-lg shadow-[#ee6669]/20 transition-all active:scale-95"
               >
                 <Link href="/lp/landing-page">
                   Get Free Quote
@@ -181,7 +181,7 @@ export function Navigation() {
               <div className="p-6">
                 <div className="flex justify-between items-center mb-12">
                    <Link href="/" onClick={() => setIsOpen(false)} className="flex min-w-0 items-center gap-2">
-                    <span className="min-w-0 truncate text-xl font-bold uppercase tracking-tighter text-[#2d1b4e]">
+                    <span className="min-w-0 truncate text-xl font-bold uppercase tracking-tighter text-[#222222]">
                       Grospace Interiors
                     </span>
                   </Link>
@@ -225,7 +225,7 @@ export function Navigation() {
                 <div className="absolute bottom-8 left-6 right-6">
                   <Button 
                     asChild
-                    className="w-full bg-[#ee6669] hover:bg-[#2d1b4e] text-white h-16 rounded-2xl text-[11px] font-bold uppercase tracking-widest shadow-xl shadow-[#ee6669]/20"
+                    className="w-full bg-[#ee6669] hover:bg-[#222222] text-white h-16 rounded-2xl text-[11px] font-bold uppercase tracking-widest shadow-xl shadow-[#ee6669]/20"
                   >
                     <Link href="/lp/landing-page" onClick={() => setIsOpen(false)}>
                       Get Free Quote

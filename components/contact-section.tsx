@@ -73,12 +73,12 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="w-full overflow-hidden bg-white px-4 py-16 text-zinc-900 sm:px-6 md:py-24 lg:px-8">
+    <section id="contact" className="w-full overflow-hidden bg-white px-4 py-16 text-zinc-900 sm:px-6 md:py-20 lg:px-8">
       <div className="max-w-2xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <p className="mb-4 text-xs font-medium uppercase tracking-[0.16em] text-primary sm:tracking-widest">Direct Enquiry</p>
-          <h2 className="mb-6 text-3xl font-serif font-light text-zinc-900 text-balance md:text-5xl">
+          <h2 className="mb-6 text-3xl font-serif font-light text-zinc-900 text-balance md:text-4xl">
             Let's Start Your Dream Project
           </h2>
           <p className="mx-auto max-w-xl text-sm leading-relaxed text-zinc-600 sm:text-lg">

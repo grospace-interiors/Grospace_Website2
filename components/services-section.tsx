@@ -36,12 +36,12 @@ export function ServicesSection() {
   ]
 
   return (
-    <section id="services" className="w-full py-24 px-4 sm:px-6 lg:px-8 bg-white text-[#2d1b4e]">
+    <section id="services" className="w-full py-24 px-4 sm:px-6 lg:px-8 bg-white text-[#222222]">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="mb-16">
           <p className="text-primary uppercase tracking-widest text-xs font-medium mb-4">Our Expertise</p>
-          <h2 className="text-4xl sm:text-5xl font-serif font-light text-[#2d1b4e] text-balance">
+          <h2 className="text-4xl sm:text-5xl font-serif font-light text-[#222222] text-balance">
             Our Core Services
           </h2>
           <div className="mt-6 w-16 h-0.5 bg-primary" />
@@ -57,7 +57,7 @@ export function ServicesSection() {
             return (
               <Card
                 key={index}
-                className="p-10 bg-white border border-zinc-100 hover:border-primary/20 transition-all duration-500 hover:shadow-xl text-[#2d1b4e] group rounded-3xl"
+                className="p-10 bg-white border border-zinc-100 hover:border-primary/20 transition-all duration-500 hover:shadow-xl text-[#222222] group rounded-3xl"
               >
                 <div className="space-y-6">
                   <div className="w-16 h-16 rounded-2xl bg-zinc-50 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-500">

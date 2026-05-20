@@ -124,11 +124,11 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         />
 
         {/* 1. Editorial Introduction */}
-        <section className="border-b border-zinc-50 py-16 lg:py-40">
+        <section className="border-b border-zinc-50 py-16 lg:py-28">
            <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-12">
-              <div className="max-w-3xl space-y-6 lg:space-y-12">
+              <div className="max-w-3xl space-y-6 lg:space-y-8">
                  <span className="mb-4 block text-[10px] font-bold uppercase tracking-[0.18em] text-[#ee6669] sm:text-xs sm:tracking-[0.4em]">Our Approach</span>
-                 <h2 className="text-3xl font-serif font-light leading-tight tracking-tight text-[#2d1b4e] sm:text-4xl lg:text-7xl">
+                 <h2 className="text-3xl font-serif font-light leading-tight tracking-tight text-[#222222] sm:text-4xl lg:text-7xl">
                     {service.description.split('.')[0]}.
                  </h2>
                  <p className="max-w-2xl text-sm font-light leading-relaxed text-zinc-500 sm:text-xl">
@@ -140,11 +140,11 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
 
         {/* 2. Page Specific Extra Section */}
         {service.extraSection && (
-          <section className="relative overflow-hidden bg-zinc-50 py-16 lg:py-40">
+          <section className="relative overflow-hidden bg-zinc-50 py-16 lg:py-28">
              <div className="relative z-10 mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-12">
-                <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-20">
-                   <div className="space-y-6 lg:space-y-12">
-                      <h3 className="text-3xl font-serif font-light leading-tight text-[#2d1b4e] sm:text-4xl lg:text-6xl">
+                <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+                   <div className="space-y-6 lg:space-y-8">
+                      <h3 className="text-3xl font-serif font-light leading-tight text-[#222222] sm:text-4xl lg:text-6xl">
                          {service.extraSection.title}
                       </h3>
                       <p className="text-sm font-light leading-relaxed text-zinc-500 sm:text-xl">
@@ -156,7 +156,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                               <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center shadow-sm">
                                  <item.icon className="w-5 h-5 text-[#ee6669]" />
                               </div>
-                              <h4 className="font-bold uppercase tracking-widest text-[11px] text-[#2d1b4e]">{item.title}</h4>
+                              <h4 className="font-bold uppercase tracking-widest text-[11px] text-[#222222]">{item.title}</h4>
                               <p className="text-sm text-zinc-400 font-light leading-relaxed">{item.desc}</p>
                            </div>
                          ))}

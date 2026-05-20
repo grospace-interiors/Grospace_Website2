@@ -8,7 +8,7 @@ export function AboutSection() {
   return (
     <section id="about" className="w-full overflow-hidden bg-white px-4 py-16 text-zinc-900 sm:px-6 md:py-24 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-16 grid items-center gap-10 lg:mb-24 lg:grid-cols-2 lg:gap-20">
+        <div className="mb-16 grid items-center gap-10 lg:mb-24 lg:grid-cols-2 lg:gap-14">
           {/* Left Content */}
           <div className="order-2 space-y-6 lg:order-1 lg:space-y-8">
             <div className="space-y-6">
@@ -43,9 +43,9 @@ export function AboutSection() {
         </div>
 
         {/* CTA & Trust Badges Section */}
-        <div className="space-y-8 rounded-3xl bg-zinc-50 p-6 text-center md:p-16 lg:space-y-12 lg:rounded-[4rem]">
+        <div className="space-y-8 rounded-3xl bg-zinc-50 p-6 text-center md:p-16 lg:space-y-8 lg:rounded-[4rem]">
            <div className="space-y-4">
-              <h3 className="text-2xl md:text-4xl font-serif font-light text-[#2d1b4e]">Ready to price your home interiors?</h3>
+              <h3 className="text-2xl md:text-4xl font-serif font-light text-[#222222]">Ready to price your home interiors?</h3>
               <p className="mx-auto max-w-xl text-sm font-light leading-relaxed text-zinc-500 sm:text-base">
                 Connect with our Bhopal-based design team for a personalized site visit and transparent quotation.
               </p>
@@ -54,14 +54,14 @@ export function AboutSection() {
            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button 
                 onClick={() => window.dispatchEvent(new CustomEvent('open-lead-modal'))}
-                className="w-full sm:w-auto h-14 px-10 rounded-full bg-[#ee6669] hover:bg-[#2d1b4e] text-white font-bold uppercase tracking-[0.2em] text-[10px] shadow-xl shadow-[#ee6669]/20 transition-all"
+                className="w-full sm:w-auto h-14 px-10 rounded-full bg-[#ee6669] hover:bg-[#222222] text-white font-bold uppercase tracking-[0.2em] text-[10px] shadow-xl shadow-[#ee6669]/20 transition-all"
               >
                 Book Free Site Visit
               </Button>
               <Button 
                 variant="outline"
                 onClick={() => window.open('https://wa.me/918319032087', '_blank')}
-                className="w-full sm:w-auto h-14 px-10 rounded-full border-zinc-200 text-[#2d1b4e] hover:border-[#ee6669] hover:text-[#ee6669] font-bold uppercase tracking-[0.2em] text-[10px] transition-all"
+                className="w-full sm:w-auto h-14 px-10 rounded-full border-zinc-200 text-[#222222] hover:border-[#ee6669] hover:text-[#ee6669] font-bold uppercase tracking-[0.2em] text-[10px] transition-all"
               >
                 Talk to a Designer
               </Button>

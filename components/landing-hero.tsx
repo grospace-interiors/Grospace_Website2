@@ -11,7 +11,7 @@ export function LandingHero() {
   }
 
   return (
-    <section className="relative flex h-[calc(100svh-96px)] min-h-[540px] w-full items-center overflow-hidden lg:h-[90vh]">
+    <section className="relative flex h-[calc(100svh-96px)] min-h-[500px] w-full items-center overflow-hidden sm:h-[72vh] lg:h-[70vh]">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <Image 
@@ -32,7 +32,7 @@ export function LandingHero() {
             transition={{ duration: 0.8 }}
             className="space-y-4 sm:space-y-6"
           >
-            <h1 className="text-4xl font-serif font-light leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-8xl">
+            <h1 className="text-4xl font-serif font-light leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">
               Design a home that tells <span className="text-[#ee6669] italic">your story.</span>
             </h1>
             <p className="max-w-2xl mx-auto text-sm font-light leading-relaxed text-zinc-200 sm:text-lg lg:text-2xl">
@@ -48,7 +48,7 @@ export function LandingHero() {
           >
             <Button 
               onClick={scrollToForm}
-              className="h-12 rounded-full bg-[#ee6669] px-8 text-[10px] font-bold uppercase tracking-[0.14em] text-white shadow-2xl shadow-[#ee6669]/20 transition-all hover:bg-white hover:text-[#332233] sm:h-auto sm:px-10 sm:py-8 sm:text-sm sm:tracking-[0.2em]"
+              className="h-12 rounded-full bg-[#ee6669] px-8 text-[10px] font-bold uppercase tracking-[0.14em] text-white shadow-2xl shadow-[#ee6669]/20 transition-all hover:bg-white hover:text-[#222222] sm:h-auto sm:px-10 sm:py-8 sm:text-sm sm:tracking-[0.2em]"
             >
               Book Free Site Visit <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>

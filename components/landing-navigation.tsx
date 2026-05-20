@@ -43,7 +43,7 @@ export function LandingNavigation() {
           <div className="flex flex-col -space-y-1">
             <span className={cn(
               "text-2xl font-bold tracking-tighter uppercase transition-colors",
-              isScrolled ? "text-[#2d1b4e]" : "text-white"
+              isScrolled ? "text-[#222222]" : "text-white"
             )}>
               Grospace
             </span>
@@ -68,7 +68,7 @@ export function LandingNavigation() {
 
           <Button 
             asChild 
-            className="bg-[#ee6669] hover:bg-[#2d1b4e] text-white px-8 py-3 h-auto text-[10px] font-bold uppercase tracking-[0.2em] rounded-full transition-all shadow-xl shadow-[#ee6669]/20 group"
+            className="bg-[#ee6669] hover:bg-[#222222] text-white px-8 py-3 h-auto text-[10px] font-bold uppercase tracking-[0.2em] rounded-full transition-all shadow-xl shadow-[#ee6669]/20 group"
           >
             <Link href="#get-quote" onClick={(e) => {
               e.preventDefault();

@@ -10,7 +10,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronRight, Filter, Sparkles, ArrowRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-const PURPLE = '#2d1b4e'
+const CHARCOAL = '#222222'
 const PINK = '#ee6669'
 
 const categories = [
@@ -122,7 +122,7 @@ export default function DesignLibraryPage() {
       <main className="min-h-screen overflow-x-clip bg-white">
         
         {/* HERO SECTION */}
-        <section className="relative py-20 lg:py-40 bg-[#fafafa] overflow-hidden">
+        <section className="relative py-20 lg:py-28 bg-[#E5EEE4] overflow-hidden">
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#ee6669]/5 rounded-full blur-[120px] -mr-64 -mt-64" />
           <div className="max-w-[1400px] mx-auto px-5 lg:px-12 relative z-10 text-center space-y-6 lg:space-y-8">
             <motion.div
@@ -134,7 +134,7 @@ export default function DesignLibraryPage() {
               <div className="inline-flex items-center gap-2 bg-[#ee6669]/10 px-4 py-1.5 rounded-full text-[#ee6669] text-[9px] lg:text-[10px] font-bold uppercase tracking-[0.3em]">
                 <Sparkles className="w-3 h-3" /> The Design Library
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-8xl font-serif font-light text-[#2d1b4e] leading-[1.1] tracking-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-8xl font-serif font-light text-[#222222] leading-[1.1] tracking-tight">
                 Interior Design Inspiration <br className="hidden sm:block" />
                 <span className="text-[#ee6669] italic">for Modern Homes</span>
               </h1>
@@ -146,7 +146,7 @@ export default function DesignLibraryPage() {
         </section>
 
         {/* CATEGORY FILTERS */}
-        <section className="sticky top-20 z-40 bg-white/90 backdrop-blur-xl border-y border-zinc-100 py-4 lg:py-6">
+        <section className="sticky top-12 z-40 bg-white/90 backdrop-blur-xl border-y border-zinc-100 py-4 lg:py-6">
           <div className="max-w-[1400px] mx-auto px-5 lg:px-12">
             <div className="flex items-center gap-3 overflow-x-auto no-scrollbar pb-1 lg:pb-0">
                <div className="flex items-center gap-2 pr-4 border-r border-zinc-100 shrink-0">
@@ -160,8 +160,8 @@ export default function DesignLibraryPage() {
                    className={cn(
                      "whitespace-nowrap px-5 py-2.5 rounded-full text-[9px] lg:text-[10px] font-bold uppercase tracking-widest transition-all duration-300",
                      activeCategory === cat 
-                       ? "bg-[#2d1b4e] text-white shadow-lg shadow-[#2d1b4e]/20" 
-                       : "bg-zinc-50 text-zinc-400 hover:bg-zinc-100 hover:text-[#2d1b4e]"
+                       ? "bg-[#222222] text-white shadow-lg shadow-[#222222]/20" 
+                       : "bg-zinc-50 text-zinc-400 hover:bg-zinc-100 hover:text-[#222222]"
                    )}
                  >
                    {cat}
@@ -172,7 +172,7 @@ export default function DesignLibraryPage() {
         </section>
 
         {/* IMAGE GRID */}
-        <section className="py-12 lg:py-32">
+        <section className="py-12 lg:py-24">
           <div className="max-w-[1400px] mx-auto px-5 lg:px-12">
             <motion.div 
               layout
@@ -196,17 +196,17 @@ export default function DesignLibraryPage() {
                         fill 
                         className="object-cover transition-transform duration-[1.5s] group-hover:scale-110"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#2d1b4e]/60 via-transparent to-transparent opacity-0 lg:group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#222222]/60 via-transparent to-transparent opacity-0 lg:group-hover:opacity-100 transition-opacity duration-500" />
                       
                       <div className="absolute top-5 right-5 lg:top-6 lg:right-6">
-                        <span className="bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-full text-[8px] lg:text-[9px] font-bold text-[#2d1b4e] uppercase tracking-widest shadow-sm">
+                        <span className="bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-full text-[8px] lg:text-[9px] font-bold text-[#222222] uppercase tracking-widest shadow-sm">
                           {item.category}
                         </span>
                       </div>
                     </div>
                     
                     <div className="px-2 lg:px-4 space-y-1.5 lg:space-y-2">
-                       <h3 className="text-xl lg:text-2xl font-serif font-light text-[#2d1b4e] group-hover:text-[#ee6669] transition-colors">{item.title}</h3>
+                       <h3 className="text-xl lg:text-2xl font-serif font-light text-[#222222] group-hover:text-[#ee6669] transition-colors">{item.title}</h3>
                        <p className="text-xs lg:text-sm text-zinc-500 font-light leading-relaxed line-clamp-2">{item.description}</p>
                     </div>
 
@@ -217,7 +217,7 @@ export default function DesignLibraryPage() {
                            initial={{ opacity: 0, y: 20 }}
                            whileInView={{ opacity: 1, y: 0 }}
                            viewport={{ once: true }}
-                           className="bg-[#2d1b4e] rounded-[2rem] lg:rounded-[3rem] p-10 md:p-20 text-center relative overflow-hidden"
+                           className="bg-[#222222] rounded-[2rem] lg:rounded-[3rem] p-10 md:p-12 text-center relative overflow-hidden"
                          >
                             <div className="absolute inset-0 bg-gradient-to-r from-[#ee6669]/10 to-transparent opacity-30" />
                             <div className="relative z-10 space-y-6 lg:space-y-8">
@@ -229,7 +229,7 @@ export default function DesignLibraryPage() {
                                </div>
                                <Button 
                                  onClick={() => window.dispatchEvent(new CustomEvent('open-lead-modal'))}
-                                 className="bg-[#ee6669] hover:bg-white hover:text-[#2d1b4e] text-white h-14 lg:h-16 px-10 lg:px-12 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-500"
+                                 className="bg-[#ee6669] hover:bg-white hover:text-[#222222] text-white h-14 lg:h-16 px-10 lg:px-12 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-500"
                                >
                                  Book Free Site Visit <ArrowRight className="w-4 h-4 ml-2" />
                                </Button>
@@ -243,10 +243,10 @@ export default function DesignLibraryPage() {
             </motion.div>
 
             {/* FINAL CALL TO ACTION */}
-            <div className="mt-24 lg:mt-32 text-center space-y-8 lg:space-y-12">
+            <div className="mt-24 lg:mt-32 text-center space-y-8 lg:space-y-8">
                <div className="w-px h-16 lg:h-24 bg-zinc-200 mx-auto" />
                <div className="space-y-3 lg:space-y-4">
-                  <h2 className="text-3xl lg:text-6xl font-serif font-light text-[#2d1b4e] leading-tight">Haven't found what you're <br /><span className="text-[#ee6669] italic">looking for?</span></h2>
+                  <h2 className="text-3xl lg:text-6xl font-serif font-light text-[#222222] leading-tight">Haven't found what you're <br /><span className="text-[#ee6669] italic">looking for?</span></h2>
                   <p className="text-zinc-500 text-sm lg:text-lg font-light max-w-2xl mx-auto leading-relaxed px-4 lg:px-0">
                     Our designers can help you visualize any concept. We specialize in bringing your Pinterest moodboards to life with practical engineering.
                   </p>
@@ -254,14 +254,14 @@ export default function DesignLibraryPage() {
                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 lg:gap-6 px-4">
                   <Button 
                     onClick={() => window.dispatchEvent(new CustomEvent('open-lead-modal'))}
-                    className="w-full sm:w-auto bg-[#ee6669] hover:bg-[#2d1b4e] text-white h-14 lg:h-16 px-10 lg:px-12 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all duration-500 shadow-xl shadow-[#ee6669]/20"
+                    className="w-full sm:w-auto bg-[#ee6669] hover:bg-[#222222] text-white h-14 lg:h-16 px-10 lg:px-12 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all duration-500 shadow-xl shadow-[#ee6669]/20"
                   >
                     Book Free Site Visit
                   </Button>
                   <Link href="/projects" className="w-full sm:w-auto">
                     <Button 
                       variant="outline"
-                      className="w-full sm:w-auto border-zinc-200 text-[#2d1b4e] hover:border-[#ee6669] hover:text-[#ee6669] h-14 lg:h-16 px-10 lg:px-12 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all duration-500"
+                      className="w-full sm:w-auto border-zinc-200 text-[#222222] hover:border-[#ee6669] hover:text-[#ee6669] h-14 lg:h-16 px-10 lg:px-12 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all duration-500"
                     >
                       Browse Portfolio
                     </Button>

@@ -89,7 +89,7 @@ export function ProcessSection() {
               return (
                 <div key={index} className="group relative flex min-w-[72%] snap-center flex-col items-center rounded-3xl border border-zinc-100 bg-white p-6 text-center shadow-sm md:min-w-0 md:border-0 md:bg-transparent md:p-0 md:shadow-none">
                   {/* Icon Circle */}
-                  <div className="relative z-10 mb-6 flex h-20 w-20 items-center justify-center rounded-full border border-zinc-200 bg-white shadow-sm transition-all duration-500 group-hover:border-primary group-hover:bg-primary/5 sm:mb-8 sm:h-24 sm:w-24">
+                  <div className="relative z-10 mb-6 flex h-16 w-16 items-center justify-center rounded-full border border-zinc-200 bg-white shadow-sm transition-all duration-500 group-hover:border-primary group-hover:bg-primary/5 sm:mb-8 sm:h-20 sm:w-20">
                     <Icon className="w-8 h-8 text-zinc-400 group-hover:text-primary transition-colors duration-500" />
                     {/* Step Number */}
                     <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-zinc-900 text-white text-xs flex items-center justify-center font-bold">
@@ -138,8 +138,8 @@ export function ProcessSection() {
         </div>
 
         {/* Bottom CTA */}
-        <div className="mt-20 text-center">
-          <p className="text-zinc-400 text-sm mb-6 italic">Ready to start your journey with us?</p>
+        <div className="mt-12 text-center">
+          <p className="text-zinc-400 text-sm mb-4 italic">Ready to start your journey with us?</p>
           <a href="#contact" className="inline-flex max-w-full items-center justify-center bg-primary px-8 py-4 text-center text-xs font-bold uppercase tracking-[0.14em] text-primary-foreground transition-all duration-300 hover:bg-zinc-900 hover:text-white sm:px-10 sm:text-sm sm:tracking-widest">
             Book Free Site Visit
           </a>

@@ -39,11 +39,11 @@ export function InspirationGallery() {
   ]
 
   return (
-    <section className="w-full overflow-hidden bg-[#fdfdfd] py-16 md:py-28">
+    <section className="w-full overflow-hidden bg-[#F6F4E8] py-16 md:py-28">
       <div className="mx-auto max-w-[1400px] px-4 lg:px-8">
         <div className="mb-10 flex flex-col items-start justify-between gap-6 md:mb-16 md:flex-row md:items-end">
           <div className="space-y-4">
-            <h2 className="text-3xl md:text-6xl font-serif font-light text-[#2d1b4e] tracking-tight leading-tight">
+            <h2 className="text-3xl md:text-6xl font-serif font-light text-[#222222] tracking-tight leading-tight">
               Inspiration for <br/>
               <span className="text-[#ee6669]">Modern Living.</span>
             </h2>
@@ -68,7 +68,7 @@ export function InspirationGallery() {
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="object-cover transition-transform duration-[1.5s] group-hover:scale-110" 
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#2d1b4e]/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#222222]/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
               
               <div className="absolute bottom-6 left-6 translate-y-0 transition-transform duration-500 group-hover:translate-y-0 sm:bottom-10 sm:left-10 sm:translate-y-4">
                 <span className="text-white text-lg lg:text-2xl font-serif font-light tracking-wide block mb-2">

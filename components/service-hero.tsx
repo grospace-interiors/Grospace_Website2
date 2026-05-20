@@ -13,7 +13,7 @@ interface ServiceHeroProps {
 
 export function ServiceHero({ title, subtitle, image }: ServiceHeroProps) {
   return (
-    <section className="relative flex h-[calc(100svh-96px)] min-h-[520px] items-center justify-center overflow-hidden lg:h-[75vh] lg:min-h-[550px]">
+    <section className="relative flex h-[calc(100svh-96px)] min-h-[480px] items-center justify-center overflow-hidden sm:h-[68vh] lg:h-[66vh] lg:min-h-[500px]">
       <motion.div 
         initial={{ scale: 1.1 }}
         animate={{ scale: 1 }}
@@ -27,7 +27,7 @@ export function ServiceHero({ title, subtitle, image }: ServiceHeroProps) {
           className="object-cover" 
           priority 
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#2d1b4e]/70 via-[#2d1b4e]/40 to-[#2d1b4e]/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#222222]/70 via-[#222222]/40 to-[#222222]/70" />
       </motion.div>
 
       <div className="relative z-10 mx-auto w-full max-w-[1400px] px-4 text-center text-white sm:px-6 lg:px-12">
@@ -36,10 +36,10 @@ export function ServiceHero({ title, subtitle, image }: ServiceHeroProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h1 className="mb-4 text-4xl font-serif font-light leading-[1.08] tracking-tight md:text-7xl lg:mb-6 lg:text-6xl">
+          <h1 className="mb-4 text-4xl font-serif font-light leading-[1.08] tracking-tight md:text-6xl lg:mb-5 lg:text-6xl">
             {title}
           </h1>
-          <p className="mx-auto mb-8 max-w-2xl text-sm font-light leading-relaxed text-purple-50/80 sm:text-lg md:text-2xl lg:mb-12">
+          <p className="mx-auto mb-7 max-w-2xl text-sm font-light leading-relaxed text-purple-50/80 sm:text-lg md:text-xl lg:mb-9">
             {subtitle}
           </p>
         </motion.div>
@@ -61,7 +61,7 @@ export function ServiceHero({ title, subtitle, image }: ServiceHeroProps) {
           <Button 
             variant="outline"
             onClick={() => window.dispatchEvent(new CustomEvent('open-estimate-modal', { detail: { package: title } }))}
-            className="h-12 rounded-full border-white/20 bg-white/10 px-8 text-[10px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-[#2d1b4e] sm:h-14 sm:px-10 sm:text-[11px] sm:tracking-[0.2em]"
+            className="h-12 rounded-full border-white/20 bg-white/10 px-8 text-[10px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-[#222222] sm:h-14 sm:px-10 sm:text-[11px] sm:tracking-[0.2em]"
           >
             Calculate Your Estimate
           </Button>

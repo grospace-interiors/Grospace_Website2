@@ -48,7 +48,7 @@ export function HeroSection() {
   }, [api])
 
   return (
-    <section id="home" className="relative h-[calc(100svh-112px)] min-h-[560px] w-full overflow-hidden bg-zinc-950 sm:h-[76vh] lg:h-[80vh]">
+    <section id="home" className="relative h-[calc(100svh-112px)] min-h-[520px] w-full overflow-hidden bg-zinc-950 sm:h-[70vh] lg:h-[68vh]">
       <Carousel 
         setApi={setApi} 
         opts={{ loop: true }}
@@ -81,7 +81,7 @@ export function HeroSection() {
         <div className="absolute inset-0 z-20 w-full h-full flex flex-col justify-center pointer-events-none">
           <div className="mx-auto max-w-[1400px] space-y-6 px-4 text-center sm:space-y-8 lg:px-8">
             <div className="space-y-3 sm:space-y-6">
-              <h1 className="text-3xl font-serif font-light leading-[1.1] tracking-tight text-white drop-shadow-2xl transition-all duration-500 sm:text-5xl lg:text-7xl">
+              <h1 className="text-3xl font-serif font-light leading-[1.1] tracking-tight text-white drop-shadow-2xl transition-all duration-500 sm:text-5xl lg:text-6xl">
                 Design Homes That Feel <br/>
                 <span className="text-[#ee6669] italic font-serif">Premium, Practical & Personal</span>
               </h1>

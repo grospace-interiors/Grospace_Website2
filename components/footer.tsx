@@ -41,9 +41,9 @@ export function Footer() {
   return (
     <footer className="w-full">
       {/* Main Footer */}
-      <div className="bg-[#332233] text-white pt-20 pb-10">
+      <div className="bg-[#222222] text-white pt-16 pb-10">
         <div className="max-w-[1400px] mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
             {/* Brand & Social */}
             <div className="lg:col-span-1 space-y-8">
               <Link href="/" className="text-3xl font-bold tracking-tighter uppercase">

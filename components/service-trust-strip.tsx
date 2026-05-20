@@ -35,7 +35,7 @@ export function ServiceTrustStrip() {
               <div className="w-12 h-12 rounded-2xl bg-[#ee6669]/5 flex items-center justify-center group-hover:bg-[#ee6669]/10 transition-colors duration-500">
                 <item.icon className="w-5 h-5 text-[#ee6669]" />
               </div>
-              <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-[#2d1b4e]/60 group-hover:text-[#2d1b4e] transition-colors duration-500">
+              <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-[#222222]/60 group-hover:text-[#222222] transition-colors duration-500">
                 {item.label}
               </span>
             </motion.div>

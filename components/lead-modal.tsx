@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { User, Phone, X, ArrowRight, Sparkles, Layout, ShieldCheck, HeartHandshake, BadgeCheck } from 'lucide-react'
+import { User, Phone, ArrowRight, Sparkles, Layout, ShieldCheck, HeartHandshake, BadgeCheck } from 'lucide-react'
 import { useSearchParams, usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
@@ -108,12 +108,12 @@ export function LeadModal() {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="max-w-[95vw] sm:max-w-[900px] p-0 overflow-hidden rounded-[2.5rem] sm:rounded-[3rem] border-none shadow-2xl bg-white max-sm:fixed max-sm:bottom-0 max-sm:left-0 max-sm:right-0 max-sm:top-auto max-sm:translate-x-0 max-sm:translate-y-0 max-sm:rounded-b-none max-sm:max-w-none">
+      <DialogContent className="max-h-[92dvh] max-w-[95vw] overflow-hidden rounded-[2rem] border-none bg-white p-0 shadow-2xl sm:max-w-[860px] sm:rounded-[2.25rem] max-sm:fixed max-sm:bottom-0 max-sm:left-0 max-sm:right-0 max-sm:top-auto max-sm:max-h-[88dvh] max-sm:max-w-none max-sm:translate-x-0 max-sm:translate-y-0 max-sm:rounded-b-none">
         <DialogHeader className="sr-only">
           <DialogTitle>Book Free Site Visit</DialogTitle>
           <DialogDescription>Fill out the form to book your free site visit in Bhopal.</DialogDescription>
         </DialogHeader>
-        <div className="flex flex-col lg:flex-row min-h-[400px] lg:h-[600px]">
+        <div className="flex max-h-[92dvh] min-h-0 flex-col overflow-y-auto lg:h-[560px] lg:flex-row lg:overflow-hidden">
           
           {/* Left Side: Premium Image (Desktop Only) */}
           <div className="hidden lg:block lg:w-5/12 relative">
@@ -131,7 +131,7 @@ export function LeadModal() {
           </div>
 
           {/* Right Side: Content & Form */}
-          <div className="flex-grow p-8 lg:p-14 flex flex-col justify-center relative">
+          <div className="relative flex flex-grow flex-col justify-center p-5 sm:p-7 lg:p-10">
             <AnimatePresence mode="wait">
               {status === 'success' ? (
                 <motion.div 
@@ -151,13 +151,13 @@ export function LeadModal() {
                 <motion.div 
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="space-y-8"
+                  className="space-y-5 sm:space-y-6"
                 >
-                  <div className="space-y-4">
-                    <div className="inline-flex items-center gap-2 bg-[#ee6669]/10 px-4 py-1.5 rounded-full text-[#ee6669] text-[10px] font-bold uppercase tracking-[0.2em]">
+                  <div className="space-y-3">
+                    <div className="inline-flex items-center gap-2 rounded-full bg-[#ee6669]/10 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.14em] text-[#ee6669] sm:px-4 sm:text-[10px]">
                       {formData.package ? `Interest in ${formData.package}` : 'Exclusive Invitation'}
                     </div>
-                    <h2 className="text-3xl lg:text-5xl font-serif font-light text-zinc-900 leading-[1.1] tracking-tight">
+                    <h2 className="text-3xl font-serif font-light leading-[1.1] tracking-tight text-zinc-900 lg:text-4xl">
                       Book Your <span className="text-[#ee6669]">Free Site Visit.</span>
                     </h2>
                     <p className="text-zinc-500 text-sm lg:text-base font-light leading-relaxed max-w-md">
@@ -165,14 +165,14 @@ export function LeadModal() {
                     </p>
                   </div>
 
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid gap-4">
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div className="grid gap-3.5">
                       <div className="relative group">
                         <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 group-focus-within:text-[#ee6669] transition-colors" />
                         <Input 
                           required
                           placeholder="Full Name"
-                          className="h-14 pl-12 bg-zinc-50/50 border-zinc-100 focus:border-[#ee6669] focus:ring-0 rounded-2xl transition-all"
+                          className="h-12 rounded-xl border-zinc-100 bg-zinc-50/50 pl-12 transition-all focus:border-[#ee6669] focus:ring-0 sm:h-14"
                           value={formData.name}
                           onChange={(e) => setFormData({...formData, name: e.target.value})}
                         />
@@ -187,7 +187,7 @@ export function LeadModal() {
                           type="tel"
                           maxLength={10}
                           placeholder="98765 43210"
-                          className="h-14 pl-24 bg-zinc-50/50 border-zinc-100 focus:border-[#ee6669] focus:ring-0 rounded-2xl transition-all"
+                          className="h-12 rounded-xl border-zinc-100 bg-zinc-50/50 pl-24 transition-all focus:border-[#ee6669] focus:ring-0 sm:h-14"
                           value={formData.phone}
                           onChange={(e) => setFormData({...formData, phone: e.target.value})}
                         />
@@ -195,7 +195,7 @@ export function LeadModal() {
                       <div className="relative group">
                         <Layout className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 group-focus-within:text-[#ee6669] transition-colors" />
                         <select
-                          className="w-full h-14 pl-12 pr-4 bg-zinc-50/50 border border-zinc-100 focus:border-[#ee6669] text-sm text-zinc-600 rounded-2xl outline-none appearance-none transition-all"
+                          className="h-12 w-full appearance-none rounded-xl border border-zinc-100 bg-zinc-50/50 pl-12 pr-4 text-sm text-zinc-600 outline-none transition-all focus:border-[#ee6669] sm:h-14"
                           value={formData.bhkType}
                           onChange={(e) => setFormData({...formData, bhkType: e.target.value})}
                         >
@@ -223,14 +223,14 @@ export function LeadModal() {
                     <Button 
                       type="submit"
                       disabled={status === 'loading'}
-                      className="w-full h-16 bg-[#ee6669] hover:bg-zinc-900 text-white font-bold uppercase tracking-[0.2em] text-[11px] rounded-2xl shadow-xl shadow-[#ee6669]/10 transition-all active:scale-[0.98] group"
+                      className="h-12 w-full sm:h-14 rounded-xl bg-[#ee6669] text-[10px] font-bold uppercase tracking-[0.16em] text-white shadow-xl shadow-[#ee6669]/10 transition-all hover:bg-zinc-900 active:scale-[0.98] sm:h-14"
                     >
                       {status === 'loading' ? 'Scheduling...' : 'Book Free Site Visit'} 
                       <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                     </Button>
                     
                     {/* Trust Indicators */}
-                    <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 pt-4 border-t border-zinc-100">
+                    <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 border-t border-zinc-100 pt-3">
                        <div className="flex items-center gap-1.5 text-[9px] font-bold text-zinc-400 uppercase tracking-widest">
                           <BadgeCheck className="w-3 h-3 text-green-500" /> Personalized Guidance
                        </div>

@@ -83,7 +83,7 @@ export function TestimonialsSection() {
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-12">
         <div className="mb-10 flex flex-col items-start justify-between gap-8 md:mb-10 md:flex-row md:items-end">
           <div className="max-w-2xl space-y-4">
-            <h2 className="text-3xl font-serif font-light leading-tight text-[#2d1b4e] sm:text-4xl lg:text-5xl">
+            <h2 className="text-3xl font-serif font-light leading-tight text-[#222222] sm:text-4xl lg:text-5xl">
               Stories from our <span className="text-[#ee6669]">happy families.</span>
             </h2>
             <p className="text-sm font-light text-zinc-500 sm:text-lg">See how we've helped homeowners across Bhopal build their dream spaces.</p>
@@ -128,7 +128,7 @@ export function TestimonialsSection() {
                        />
                     </div>
                     <div>
-                      <p className="font-serif text-lg text-[#2d1b4e] leading-none">{testimonial.client_name}</p>
+                      <p className="font-serif text-lg text-[#222222] leading-none">{testimonial.client_name}</p>
                       <p className="mt-1 text-[9px] font-bold uppercase tracking-[0.12em] text-zinc-400 sm:text-[10px] sm:tracking-widest">
                         {testimonial.city || 'Bhopal'} • {testimonial.project_type}
                       </p>

@@ -12,11 +12,11 @@
   --popover-foreground: #18181B;
   --primary: #ee6669;
   --primary-foreground: #FFFFFF;
-  --secondary: #F4F4F5;
+  --secondary: #E5EEE4;
   --secondary-foreground: #18181B;
-  --muted: #F4F4F5;
+  --muted: #F6F4E8;
   --muted-foreground: #71717A;
-  --accent: #FDF2F2;
+  --accent: #E5EEE4;
   --accent-foreground: #ee6669;
   --destructive: hsl(0 84.2% 60.2%);
   --destructive-foreground: hsl(0 0% 98%);
@@ -133,6 +133,15 @@
 
 .no-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+.main-page-palette {
+  --primary: #ee6669;
+  --primary-foreground: #FFFFFF;
+  --ring: #ee6669;
+  --accent: #E5EEE4;
+  --accent-foreground: #222222;
+  --muted: #F6F4E8;
 }
 
 @media (max-width: 767px) {

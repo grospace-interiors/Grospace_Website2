@@ -36,7 +36,7 @@ export function TrustStrip() {
                  <item.icon className="w-6 h-6 text-[#ee6669]" />
               </div>
               <div className="space-y-1">
-                 <p className="text-xl font-serif font-light tracking-tight text-[#2d1b4e] sm:text-2xl">{item.label}</p>
+                 <p className="text-xl font-serif font-light tracking-tight text-[#222222] sm:text-2xl">{item.label}</p>
                  <p className="text-[9px] font-bold uppercase tracking-[0.12em] text-zinc-500 sm:text-[10px] sm:tracking-[0.2em]">{item.sublabel}</p>
               </div>
             </div>

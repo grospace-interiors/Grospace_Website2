@@ -37,7 +37,7 @@ const defaultComparisons = [
 
 export function ServiceComparison({ comparisons = defaultComparisons }: ServiceComparisonProps) {
   return (
-    <section className="overflow-hidden bg-zinc-50 py-16 lg:py-40">
+    <section className="overflow-hidden bg-zinc-50 py-16 lg:py-28">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-12">
         <div className="mb-12 text-center lg:mb-24">
           <motion.h2 
@@ -61,7 +61,7 @@ export function ServiceComparison({ comparisons = defaultComparisons }: ServiceC
 
         <div className="grid overflow-hidden rounded-3xl border border-zinc-200 bg-zinc-200 shadow-2xl lg:grid-cols-2 lg:rounded-[3rem]">
           {/* Traditional Column */}
-          <div className="bg-white p-6 sm:p-12 lg:p-20">
+          <div className="bg-white p-6 sm:p-12 lg:p-12">
             <h3 className="mb-8 text-center font-serif text-xl font-light uppercase tracking-[0.18em] text-zinc-400 sm:mb-12 sm:text-2xl sm:tracking-widest">Traditional Approach</h3>
             <div className="space-y-5 sm:space-y-8">
               {comparisons.map((item, index) => (
@@ -83,7 +83,7 @@ export function ServiceComparison({ comparisons = defaultComparisons }: ServiceC
           </div>
 
           {/* Grospace Interiors Column */}
-          <div className="relative overflow-hidden bg-[#2d1b4e] p-6 sm:p-12 lg:p-20">
+          <div className="relative overflow-hidden bg-[#222222] p-6 sm:p-12 lg:p-12">
              {/* Subtle gradient background */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-[#ee6669]/10 rounded-full blur-[120px] -mr-48 -mt-48" />
             

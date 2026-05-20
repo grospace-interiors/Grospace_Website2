@@ -17,7 +17,7 @@ export function ServiceInclusions({ title, items }: ServiceInclusionsProps) {
   const isDetailed = typeof items[0] !== 'string'
 
   return (
-    <section className="overflow-hidden bg-white py-16 lg:py-40">
+    <section className="overflow-hidden bg-white py-16 lg:py-28">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-12">
         <div className="flex flex-col gap-10 lg:flex-row lg:gap-32">
           {/* Left: Sticky Heading */}
@@ -29,7 +29,7 @@ export function ServiceInclusions({ title, items }: ServiceInclusionsProps) {
               className="lg:sticky lg:top-32"
             >
               <span className="mb-4 block text-[10px] font-bold uppercase tracking-[0.18em] text-[#ee6669] sm:text-xs sm:tracking-[0.4em] lg:mb-6">What's Included</span>
-              <h2 className="mb-5 text-3xl font-serif font-light leading-tight text-[#2d1b4e] sm:text-4xl lg:mb-8 lg:text-6xl">
+              <h2 className="mb-5 text-3xl font-serif font-light leading-tight text-[#222222] sm:text-4xl lg:mb-8 lg:text-6xl">
                 Scope of <br />
                 <span className="text-[#ee6669]">{title}</span>
               </h2>
@@ -58,7 +58,7 @@ export function ServiceInclusions({ title, items }: ServiceInclusionsProps) {
                         <Plus className="w-4 h-4 text-zinc-300 group-hover:text-white transition-colors" />
                       </div>
                       <div className="space-y-3">
-                        <h3 className="text-xl font-medium text-[#2d1b4e] tracking-tight group-hover:text-[#ee6669] transition-colors">{inclusion.title}</h3>
+                        <h3 className="text-xl font-medium text-[#222222] tracking-tight group-hover:text-[#ee6669] transition-colors">{inclusion.title}</h3>
                         {inclusion.desc && (
                           <p className="text-sm text-zinc-400 font-light leading-relaxed">{inclusion.desc}</p>
                         )}

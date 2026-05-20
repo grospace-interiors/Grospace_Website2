@@ -70,11 +70,11 @@ export function ShopSection() {
   ]
 
   if (loading) {
-    return <section className="w-full bg-white py-24 md:py-32 text-[#2d1b4e]"><div className="text-center font-light tracking-widest uppercase text-xs opacity-50">Discovering Collections...</div></section>
+    return <section className="w-full bg-white py-24 md:py-24 text-[#222222]"><div className="text-center font-light tracking-widest uppercase text-xs opacity-50">Discovering Collections...</div></section>
   }
 
   return (
-    <section id="collections" className="relative w-full overflow-hidden bg-[#fafafa] py-16 text-[#2d1b4e] md:py-24">
+    <section id="collections" className="relative w-full overflow-hidden bg-[#E5EEE4] py-16 text-[#222222] md:py-24">
       <div className="mx-auto max-w-7xl px-4 md:px-12">
         {/* Section Header */}
         <div className="mb-12 flex flex-col justify-between gap-8 md:mb-20 md:flex-row md:items-end md:gap-10">
@@ -88,7 +88,7 @@ export function ShopSection() {
             <span className="mb-4 block text-[9px] font-bold uppercase tracking-[0.18em] text-[#ee6669] sm:mb-6 sm:text-[10px] sm:tracking-[0.3em]">
               Curated Solutions
             </span>
-            <h2 className="mb-5 text-3xl font-serif font-light leading-[1.1] text-[#2d1b4e] sm:text-4xl md:mb-8 md:text-5xl">
+            <h2 className="mb-5 text-3xl font-serif font-light leading-[1.1] text-[#222222] sm:text-4xl md:mb-8 md:text-5xl">
               Interior Collections for <br />
               <span className="italic">Modern Living</span>
             </h2>
@@ -103,9 +103,9 @@ export function ShopSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-             <Button variant="link" className="group h-auto p-0 text-[#2d1b4e] hover:no-underline">
+             <Button variant="link" className="group h-auto p-0 text-[#222222] hover:no-underline">
                 <span className="mr-3 text-[9px] font-bold uppercase tracking-[0.14em] sm:mr-4 sm:text-[10px] sm:tracking-[0.2em]">View All Solutions</span>
-                <div className="w-10 h-10 rounded-full border border-zinc-200 flex items-center justify-center group-hover:bg-[#2d1b4e] group-hover:text-white transition-all duration-500">
+                <div className="w-10 h-10 rounded-full border border-zinc-200 flex items-center justify-center group-hover:bg-[#222222] group-hover:text-white transition-all duration-500">
                   <ArrowRight className="w-4 h-4" />
                 </div>
              </Button>
@@ -137,7 +137,7 @@ export function ShopSection() {
                 
                 {pkg.badge && (
                   <div className="absolute top-6 left-6 z-20">
-                    <Badge variant="secondary" className="bg-white/90 backdrop-blur-sm text-[#2d1b4e] border-none px-4 py-1.5 rounded-full text-[9px] font-bold tracking-[0.15em] shadow-sm">
+                    <Badge variant="secondary" className="bg-white/90 backdrop-blur-sm text-[#222222] border-none px-4 py-1.5 rounded-full text-[9px] font-bold tracking-[0.15em] shadow-sm">
                       {pkg.badge}
                     </Badge>
                   </div>
@@ -153,7 +153,7 @@ export function ShopSection() {
               {/* Content Detail */}
               <div className="flex flex-grow flex-col p-4 pt-0 sm:p-6 sm:pt-0">
                 <div className="mb-4">
-                  <h3 className="mb-3 text-xl font-serif font-light text-[#2d1b4e] sm:text-2xl">  
+                  <h3 className="mb-3 text-xl font-serif font-light text-[#222222] sm:text-2xl">  
                     {pkg.name}
                   </h3>
                   <p className="text-zinc-500 text-sm leading-relaxed font-light line-clamp-2">
@@ -179,7 +179,7 @@ export function ShopSection() {
                   <Button 
                     variant="default"
                     onClick={() => window.dispatchEvent(new CustomEvent('open-lead-modal', { detail: { package: pkg.name } }))}
-                    className="h-12 w-full rounded-full bg-[#2d1b4e] text-[9px] font-bold uppercase tracking-[0.12em] text-white shadow-lg shadow-[#2d1b4e]/10 transition-all duration-500 hover:bg-[#ee6669] sm:h-14 sm:text-[10px] sm:tracking-[0.15em] xl:flex-1"
+                    className="h-12 w-full rounded-full bg-[#222222] text-[9px] font-bold uppercase tracking-[0.12em] text-white shadow-lg shadow-[#222222]/10 transition-all duration-500 hover:bg-[#ee6669] sm:h-14 sm:text-[10px] sm:tracking-[0.15em] xl:flex-1"
                   >
                     View Details
                   </Button>
@@ -210,7 +210,7 @@ export function ShopSection() {
 
       {/* Subtle Background Elements */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#ee6669]/5 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#2d1b4e]/5 rounded-full blur-[140px] -z-10 -translate-x-1/2 translate-y-1/2" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#222222]/5 rounded-full blur-[140px] -z-10 -translate-x-1/2 translate-y-1/2" />
     </section>
   )
 }

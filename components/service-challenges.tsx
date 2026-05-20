@@ -73,7 +73,7 @@ const defaultChallenges: Challenge[] = [
 
 export function ServiceChallenges({ challenges = defaultChallenges }: ServiceChallengesProps) {
   return (
-    <section className="py-24 lg:py-40 bg-zinc-50">
+    <section className="py-24 lg:py-28 bg-zinc-50">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div className="flex flex-col lg:flex-row gap-16 lg:gap-32">
           {/* Left Column: Heading */}

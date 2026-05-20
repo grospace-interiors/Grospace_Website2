@@ -40,14 +40,14 @@ const brands = ["Hettich", "Hafele", "Blum", "Ebco"]
 
 export function ServiceMaterials({ materials = defaultMaterials }: ServiceMaterialsProps) {
   return (
-    <section className="overflow-hidden bg-white py-16 lg:py-40">
+    <section className="overflow-hidden bg-white py-16 lg:py-28">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-12">
         <div className="mb-12 text-center lg:mb-24">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-4 text-3xl font-serif font-light text-[#2d1b4e] sm:text-4xl lg:mb-6 lg:text-6xl"
+            className="mb-4 text-3xl font-serif font-light text-[#222222] sm:text-4xl lg:mb-6 lg:text-6xl"
           >
             The <span className="text-[#ee6669]">Grospace</span> Material Standard
           </motion.h2>
@@ -72,7 +72,7 @@ export function ServiceMaterials({ materials = defaultMaterials }: ServiceMateri
               transition={{ delay: index * 0.1 }}
               className="group min-w-[82%] snap-center rounded-3xl border border-zinc-100 bg-zinc-50 p-6 transition-all duration-500 hover:border-[#ee6669]/20 hover:bg-white hover:shadow-2xl md:min-w-0 sm:p-8 sm:rounded-[2.5rem]"
             >
-              <h3 className="text-2xl font-serif font-light text-[#2d1b4e] mb-4">{material.name}</h3>
+              <h3 className="text-2xl font-serif font-light text-[#222222] mb-4">{material.name}</h3>
               <div className="flex flex-wrap gap-2 mb-6">
                 {material.properties.map((prop, idx) => (
                   <span key={idx} className="text-[10px] font-bold uppercase tracking-widest px-3 py-1 bg-white border border-zinc-100 rounded-full text-zinc-400 group-hover:text-[#ee6669] group-hover:border-[#ee6669]/20 transition-colors">
@@ -91,7 +91,7 @@ export function ServiceMaterials({ materials = defaultMaterials }: ServiceMateri
           <p className="mb-8 text-center text-[9px] font-bold uppercase tracking-[0.18em] text-zinc-400 sm:mb-12 sm:text-[10px] sm:tracking-[0.4em]">Global Hardware Partners</p>
           <div className="flex flex-wrap items-center justify-center gap-8 opacity-30 grayscale sm:gap-16 lg:gap-32">
              {brands.map(brand => (
-               <span key={brand} className="font-serif text-2xl font-light tracking-tighter text-[#2d1b4e] sm:text-3xl lg:text-5xl">{brand}</span>
+               <span key={brand} className="font-serif text-2xl font-light tracking-tighter text-[#222222] sm:text-3xl lg:text-5xl">{brand}</span>
              ))}
           </div>
         </div>

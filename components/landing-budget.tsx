@@ -130,14 +130,14 @@ export function LandingBudget() {
 
   if (loading) {
     return (
-      <section className="w-full bg-[#fafafa] py-16 md:py-36 flex items-center justify-center">
+      <section className="w-full bg-[#E5EEE4] py-16 md:py-24 flex items-center justify-center">
         <div className="text-[10px] uppercase tracking-[0.4em] text-zinc-400 font-bold animate-pulse">Loading Collections...</div>
       </section>
     )
   }
 
   return (
-    <section className="w-full bg-[#fafafa] py-16 md:py-36 overflow-hidden">
+    <section className="w-full bg-[#E5EEE4] py-16 md:py-24 overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         {/* Header Area */}
         <div className="mb-12 flex flex-col items-start justify-between gap-8 md:mb-24 md:flex-row md:items-end md:gap-12">
@@ -158,7 +158,7 @@ export function LandingBudget() {
           
           <Button 
             onClick={() => document.getElementById('get-quote')?.scrollIntoView({ behavior: 'smooth' })}
-            className="h-12 w-full rounded-full bg-[#2d1b4e] px-8 text-[9px] font-bold uppercase tracking-[0.14em] text-white shadow-xl shadow-zinc-200 transition-all duration-500 hover:bg-[#ee6669] sm:h-16 sm:w-auto sm:px-12 sm:text-[10px] sm:tracking-[0.25em]"
+            className="h-12 w-full rounded-full bg-[#222222] px-8 text-[9px] font-bold uppercase tracking-[0.14em] text-white shadow-xl shadow-zinc-200 transition-all duration-500 hover:bg-[#ee6669] sm:h-16 sm:w-auto sm:px-12 sm:text-[10px] sm:tracking-[0.25em]"
           >
             Request Full Price List <ArrowRight className="w-4 h-4 ml-3" />
           </Button>
@@ -229,7 +229,7 @@ export function LandingBudget() {
           {/* Custom Requirement Card */}
           <motion.div 
             variants={itemVariants}
-            className="group relative flex min-w-[84%] snap-center flex-col items-center justify-center gap-6 overflow-hidden rounded-[2rem] bg-[#2d1b4e] p-8 text-center md:min-w-0 md:p-10"
+            className="group relative flex min-w-[84%] snap-center flex-col items-center justify-center gap-6 overflow-hidden rounded-[2rem] bg-[#222222] p-8 text-center md:min-w-0 md:p-10"
           >
              <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mb-2">
                 <ArrowRight className="w-6 h-6 text-[#ee6669]" />
@@ -238,7 +238,7 @@ export function LandingBudget() {
              <p className="text-zinc-400 text-xs font-light leading-relaxed">
                Our designers can build a bespoke plan tailored perfectly to your unique floor plan and material preferences.
              </p>
-             <Button className="w-full bg-[#ee6669] hover:bg-white hover:text-[#2d1b4e] h-14 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all">
+             <Button className="w-full bg-[#ee6669] hover:bg-white hover:text-[#222222] h-14 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all">
                 Discuss Your Project
              </Button>
           </motion.div>

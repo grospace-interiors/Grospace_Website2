@@ -109,8 +109,8 @@ export function LandingForm() {
   }
 
   return (
-    <div className="relative rounded-3xl border border-zinc-100 bg-white p-5 shadow-2xl sm:p-8 lg:rounded-[2.5rem] lg:p-12">
-      <div className="space-y-6 sm:space-y-8">
+    <div className="relative rounded-3xl border border-zinc-100 bg-white p-5 shadow-2xl sm:p-7 lg:rounded-[2rem] lg:p-8">
+      <div className="space-y-5 sm:space-y-6">
         {/* Step Indicator */}
         <div className="flex items-center gap-3">
           <div className={cn("h-1 flex-grow rounded-full transition-all duration-700", step >= 1 ? "bg-[#ee6669]" : "bg-zinc-100")} />
@@ -126,7 +126,7 @@ export function LandingForm() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               onSubmit={handleStep1Submit} 
-              className="space-y-5 sm:space-y-6"
+              className="space-y-4 sm:space-y-5"
             >
               <div className="space-y-2">
                 <h3 className="text-2xl font-serif font-light leading-tight tracking-tight text-zinc-900 sm:text-3xl">Let's start your <span className="text-[#ee6669]">design journey</span></h3>
@@ -140,7 +140,7 @@ export function LandingForm() {
                     name="name" 
                     placeholder="Full Name" 
                     required 
-                    className="pl-12 h-14 rounded-xl border-zinc-100 bg-zinc-50/50 focus:border-[#ee6669] focus:ring-0 transition-all"
+                    className="h-12 rounded-xl border-zinc-100 bg-zinc-50/50 pl-12 transition-all focus:border-[#ee6669] focus:ring-0 sm:h-14"
                     value={formData.name}
                     onChange={handleChange}
                   />
@@ -152,7 +152,7 @@ export function LandingForm() {
                     type="tel" 
                     placeholder="Mobile Number" 
                     required 
-                    className="pl-12 h-14 rounded-xl border-zinc-100 bg-zinc-50/50 focus:border-[#ee6669] focus:ring-0 transition-all"
+                    className="h-12 rounded-xl border-zinc-100 bg-zinc-50/50 pl-12 transition-all focus:border-[#ee6669] focus:ring-0 sm:h-14"
                     value={formData.phone}
                     onChange={handleChange}
                   />
@@ -164,7 +164,7 @@ export function LandingForm() {
                     type="email" 
                     placeholder="Email Address" 
                     required 
-                    className="pl-12 h-14 rounded-xl border-zinc-100 bg-zinc-50/50 focus:border-[#ee6669] focus:ring-0 transition-all"
+                    className="h-12 rounded-xl border-zinc-100 bg-zinc-50/50 pl-12 transition-all focus:border-[#ee6669] focus:ring-0 sm:h-14"
                     value={formData.email}
                     onChange={handleChange}
                   />
@@ -175,14 +175,14 @@ export function LandingForm() {
                     name="location" 
                     placeholder="Project Location (City)" 
                     required 
-                    className="pl-12 h-14 rounded-xl border-zinc-100 bg-zinc-50/50 focus:border-[#ee6669] focus:ring-0 transition-all"
+                    className="h-12 rounded-xl border-zinc-100 bg-zinc-50/50 pl-12 transition-all focus:border-[#ee6669] focus:ring-0 sm:h-14"
                     value={formData.location}
                     onChange={handleChange}
                   />
                 </div>
               </div>
 
-              <Button type="submit" className="h-14 w-full rounded-xl bg-[#ee6669] text-[10px] font-bold uppercase tracking-[0.14em] text-white shadow-xl shadow-[#ee6669]/20 transition-all hover:bg-[#dd5558] sm:h-16 sm:text-[11px] sm:tracking-[0.2em]">
+              <Button type="submit" className="h-12 w-full rounded-xl bg-[#ee6669] text-[10px] font-bold uppercase tracking-[0.14em] text-white shadow-xl shadow-[#ee6669]/20 transition-all hover:bg-[#dd5558] sm:h-14 sm:text-[11px] sm:tracking-[0.2em]">
                 Continue Planning <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </motion.form>
@@ -193,7 +193,7 @@ export function LandingForm() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               onSubmit={handleFinalSubmit} 
-              className="space-y-5 sm:space-y-6"
+              className="space-y-4 sm:space-y-5"
             >
               <div className="space-y-2 text-center">
                 <h3 className="text-2xl font-serif font-light leading-tight tracking-tight text-zinc-900 sm:text-3xl">Tell us about <span className="text-[#ee6669]">your needs</span></h3>

@@ -49,7 +49,7 @@ const defaultSteps = [
 
 export function ServiceProcess({ title = "Process", steps = defaultSteps }: ServiceProcessProps) {
   return (
-    <section className="overflow-hidden bg-white py-16 lg:py-32">
+    <section className="overflow-hidden bg-white py-16 lg:py-24">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-12">
         <div className="mb-12 text-center lg:mb-24">
           <motion.h2 
@@ -88,7 +88,7 @@ export function ServiceProcess({ title = "Process", steps = defaultSteps }: Serv
                 {/* Number Marker - Absolute Positioned to stay perfectly on the line */}
                 <div className="absolute left-0 md:left-1/2 top-0 md:top-1/2 -translate-y-0 md:-translate-y-1/2 md:-translate-x-1/2 z-10">
                    <div className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-white border border-zinc-100 shadow-sm flex items-center justify-center">
-                      <span className="text-xs md:text-base font-bold text-[#2d1b4e]">
+                      <span className="text-xs md:text-base font-bold text-[#222222]">
                         {index + 1}
                       </span>
                    </div>

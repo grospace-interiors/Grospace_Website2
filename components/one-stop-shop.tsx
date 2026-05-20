@@ -34,7 +34,7 @@ export function OneStopShop() {
   return (
     <section className="w-full overflow-hidden bg-white py-16 lg:py-20">
       <div className="mx-auto max-w-[1400px] px-4 text-center lg:px-8">
-        <h2 className="mb-4 text-3xl font-serif font-light leading-tight tracking-tight text-[#2d1b4e] sm:mb-6 sm:text-4xl lg:text-5xl">
+        <h2 className="mb-4 text-3xl font-serif font-light leading-tight tracking-tight text-[#222222] sm:mb-6 sm:text-4xl lg:text-5xl">
           Everything your <span className="text-[#ee6669]">Home Needs.</span>
         </h2>
         <p className="mx-auto mb-10 max-w-2xl text-sm font-light leading-relaxed text-zinc-500 sm:mb-12 sm:text-lg">

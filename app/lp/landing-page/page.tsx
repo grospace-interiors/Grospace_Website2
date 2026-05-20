@@ -29,7 +29,7 @@ export default function HomeInteriorsLandingPage() {
         <LandingHero />
 
         {/* Brand Story & Lead Form Section - PRIMARY CONVERSION */}
-        <section id="get-quote" className="relative overflow-hidden bg-white py-16 lg:py-32">
+        <section id="get-quote" className="relative overflow-hidden bg-white py-16 lg:py-24">
           <div className="relative z-10 mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-12">
             <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-24">
               
@@ -39,7 +39,7 @@ export default function HomeInteriorsLandingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="space-y-8 lg:space-y-12"
+                className="space-y-8 lg:space-y-8"
               >
                 <div className="space-y-4 lg:space-y-6">
                   <div className="inline-flex items-center gap-2 rounded-full bg-[#ee6669]/10 px-4 py-1 text-[9px] font-bold uppercase tracking-[0.14em] text-[#ee6669] sm:text-[10px] sm:tracking-widest">
@@ -115,14 +115,14 @@ export default function HomeInteriorsLandingPage() {
         <section className="relative overflow-hidden bg-zinc-50 py-16 lg:py-48">
            {/* Creative Background Elements */}
            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none select-none overflow-hidden opacity-[0.03] z-0">
-             <span className="absolute -top-10 -left-20 text-[300px] font-serif font-bold text-[#2d1b4e]">BUDGET</span>
+             <span className="absolute -top-10 -left-20 text-[300px] font-serif font-bold text-[#222222]">BUDGET</span>
            </div>
            
            <div className="relative z-10 mx-auto mb-12 max-w-[1400px] px-4 sm:px-6 lg:mb-32 lg:px-12">
               <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-24">
                 
                 {/* Left Column: Moto & Story */}
-                <div className="space-y-6 text-left lg:space-y-10">
+                <div className="space-y-6 text-left lg:space-y-8">
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -137,7 +137,7 @@ export default function HomeInteriorsLandingPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    className="text-4xl font-serif font-light leading-[1.05] tracking-tight text-[#2d1b4e] sm:text-6xl lg:text-[84px]"
+                    className="text-4xl font-serif font-light leading-[1.05] tracking-tight text-[#222222] sm:text-6xl lg:text-[84px]"
                   >
                     Plan with <span className="text-[#ee6669] italic">Confidence,</span> <br/>
                     Design without <span className="text-[#ee6669] italic">Compromise.</span>
@@ -178,7 +178,7 @@ export default function HomeInteriorsLandingPage() {
                       sizes="(max-width: 1024px) 100vw, 800px"
                       className="object-cover transition-transform duration-[3s] group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#2d1b4e]/40 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#222222]/40 to-transparent" />
                   </div>
                   
                   {/* Floating Trust Badge */}
@@ -195,7 +195,7 @@ export default function HomeInteriorsLandingPage() {
                         </div>
                         <p className="text-[10px] font-bold text-[#ee6669] uppercase tracking-widest leading-none">Price Promise</p>
                      </div>
-                     <p className="text-sm font-serif text-[#2d1b4e] leading-relaxed italic">"Get exact quotes delivered to your inbox within minutes."</p>
+                     <p className="text-sm font-serif text-[#222222] leading-relaxed italic">"Get exact quotes delivered to your inbox within minutes."</p>
                   </motion.div>
                 </motion.div>
 
