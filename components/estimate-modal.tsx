@@ -72,15 +72,15 @@ export function EstimateModal() {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="max-h-[92dvh] max-w-[95vw] overflow-hidden rounded-[2rem] border-none bg-white p-0 shadow-2xl sm:max-w-[820px] sm:rounded-[2.25rem]">
+      <DialogContent className="max-h-[90vh] max-w-[95vw] overflow-hidden rounded-[2rem] border-none bg-white p-0 shadow-2xl sm:max-w-[820px] sm:rounded-[2.25rem]">
         <DialogHeader className="sr-only">
           <DialogTitle>Request Detailed Estimate</DialogTitle>
           <DialogDescription>Get a personalized cost breakdown for your chosen plan.</DialogDescription>
         </DialogHeader>
 
-        <div className="flex max-h-[92dvh] min-h-0 flex-col overflow-y-auto md:h-[520px] md:flex-row md:overflow-hidden">
+        <div className="flex max-h-[90vh] min-h-0 flex-col overflow-y-auto lg:h-[560px] lg:flex-row lg:overflow-hidden">
           {/* Left Panel: Visual & Info */}
-          <div className="relative flex bg-[#222222] p-6 text-white md:w-5/12 md:flex-col md:justify-between lg:p-8">
+          <div className="relative flex bg-[#222222] p-6 text-white lg:w-5/12 lg:flex-col lg:justify-between lg:p-8">
             <div className="relative z-10 space-y-4">
               <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center backdrop-blur-sm">
                 <Calculator className="w-6 h-6 text-[#ee6669]" />

@@ -6,7 +6,7 @@ import Link from 'next/link'
 export function OneStopShop() {
   const categories = [
     {
-      title: 'Modular Interiors',
+      title: 'Modular Kitchens',
       description: 'Functional kitchen and wardrobe solutions.',
       image: '/images/modular-interiors-hero.jpg',
       href: '/services/modular-interiors'
@@ -58,9 +58,9 @@ export function OneStopShop() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
               
               <div className="absolute inset-x-0 bottom-0 p-4 text-center sm:p-6">
-                <div className="translate-y-0 rounded-lg bg-white/95 p-5 py-6 shadow-lg backdrop-blur-sm transition-transform duration-500 group-hover:translate-y-0 sm:translate-y-4 sm:p-5 sm:py-6">
-                  <h3 className="text-xl font-bold text-[#333] mb-2">{category.title}</h3>
-                  <p className="line-clamp-2 text-sm text-zinc-500 opacity-100 transition-opacity duration-500 sm:opacity-0 sm:group-hover:opacity-100">
+                <div className="translate-y-0 rounded-lg p-5 py-6 shadow-lg backdrop-blur-md transition-all duration-500 group-hover:translate-y-0 sm:translate-y-4 sm:p-5 sm:py-6 bg-[#ee6669]/60">
+                  <h3 className="text-xl font-bold mb-2 text-white">{category.title}</h3>
+                  <p className="line-clamp-2 text-sm opacity-100 transition-opacity duration-500 sm:opacity-0 sm:group-hover:opacity-100 text-white/90">
                     {category.description}
                   </p>
                 </div>

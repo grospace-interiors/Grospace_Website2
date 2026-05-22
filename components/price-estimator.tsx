@@ -253,11 +253,20 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
 
   const CategoryCard = ({ type, title, desc, icon: Icon, img }: any) => (
     <motion.div 
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      whileHover={{ y: -15 }}
-      transition={{ duration: 0.8 }}
+      initial={{ opacity: 0, y: 40, scale: 0.95 }}
+      whileInView={{ 
+        opacity: 1, 
+        y: 0, 
+        scale: 1,
+      }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ 
+        type: "spring",
+        stiffness: 260,
+        damping: 20,
+        duration: 0.8 
+      }}
+      whileHover={{ y: -15, scale: 1.02 }}
       className="group relative h-[360px] min-w-[86%] snap-center cursor-pointer overflow-hidden rounded-3xl shadow-2xl transition-all duration-700 hover:shadow-[0_48px_80px_-20px_rgba(45,27,78,0.15)] md:min-w-0 sm:h-[650px] sm:rounded-[3.5rem]"
       onClick={() => {
         const path = type === 'home' ? '/pc/home-interior' : `/pc/${type}`
@@ -265,15 +274,28 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
       }}
     >
       <Image src={img} alt={title} fill className="object-cover transition-transform duration-[3000ms] group-hover:scale-110" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#222222] via-[#222222]/30 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-700" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#222222] via-[#222222]/60 to-transparent opacity-95 group-hover:opacity-100 transition-opacity duration-700" />
       
       <div className="absolute inset-0 flex flex-col items-center justify-end space-y-5 p-6 text-center sm:space-y-10 sm:p-16">
-        <div className="flex h-16 w-16 rotate-6 items-center justify-center rounded-2xl border border-white/20 bg-white/10 shadow-2xl backdrop-blur-2xl transition-all duration-700 group-hover:rotate-0 group-hover:border-[#ee6669] group-hover:bg-[#ee6669] sm:h-24 sm:w-24 sm:rounded-[2rem]">
+        {/* Mobile Icon Animation (Pop & Stay Pink) */}
+        <motion.div 
+          initial={{ rotate: 15, scale: 0.8, backgroundColor: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.2)" }}
+          whileInView={{ rotate: 0, scale: 1, backgroundColor: "#ee6669", borderColor: "#ee6669" }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4, type: "spring", stiffness: 200, damping: 15 }}
+          className="md:hidden flex h-16 w-16 items-center justify-center rounded-2xl border shadow-2xl backdrop-blur-2xl sm:h-24 sm:w-24 sm:rounded-[2rem]"
+        >
+           <Icon className="h-7 w-7 text-white sm:h-10 sm:w-10" />
+        </motion.div>
+
+        {/* Desktop Icon Animation (Hover to Pink) */}
+        <div className="hidden md:flex h-16 w-16 rotate-6 items-center justify-center rounded-2xl border border-white/20 bg-white/10 shadow-2xl backdrop-blur-2xl transition-all duration-700 group-hover:rotate-0 group-hover:border-[#ee6669] group-hover:bg-[#ee6669] sm:h-24 sm:w-24 sm:rounded-[2rem]">
            <Icon className="h-7 w-7 text-white transition-colors duration-700 sm:h-10 sm:w-10" />
         </div>
+
         <div className="space-y-3 sm:space-y-4">
           <h3 className="text-3xl font-serif font-light leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">{title}</h3>
-          <p className="max-w-[280px] text-xs font-light leading-relaxed text-zinc-200 opacity-90 transition-opacity group-hover:opacity-100 sm:text-sm sm:opacity-70">{desc}</p>
+          <p className="mx-auto max-w-[280px] text-lg font-light leading-relaxed text-zinc-100 opacity-95 transition-opacity group-hover:opacity-100 sm:max-w-[320px] sm:text-xl sm:opacity-70">{desc}</p>
         </div>
         <Button 
           onClick={(e) => {
@@ -336,21 +358,21 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
             <CategoryCard 
               type="home"
               title="Home Interior"
-              desc="Comprehensive premium renovation for apartments, villas and independent homes."
+              desc="Full home renovation for apartments & villas."
               icon={Home}
               img="/images/living%20room.jpg"
             />
             <CategoryCard 
               type="kitchen"
               title="Modular Kitchen"
-              desc="High-performance, elegant kitchen designs with world-class smart storage."
+              desc="Smart kitchens with world-class storage."
               icon={Zap}
               img="/images/kitchen.jpg"
             />
             <CategoryCard 
               type="wardrobe"
               title="Luxury Wardrobes"
-              desc="Bespoke sliding and hinged wardrobes with sophisticated internal shelving."
+              desc="Bespoke designer wardrobes for premium homes."
               icon={Award}
               img="/images/wardrobe.jpg"
             />
@@ -478,7 +500,7 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
                                 key={item} 
                                 onClick={() => { setFormData({...formData, bhk: item}); nextStep(); }}
                                 className={cn(
-                                  "h-56 rounded-[2rem] border-2 transition-all duration-500 flex flex-col items-center justify-center gap-5 group relative overflow-hidden",
+                                  "h-56 rounded-[2rem] border-2 transition-all duration-500 flex flex-col items-center justify-center gap-5 group relative overflow-hidden active:scale-95 md:active:scale-100",
                                   formData.bhk === item ? "border-[#ee6669] bg-[#ee6669]/5 text-[#ee6669] shadow-[0_24px_48px_-12px_rgba(238,102,105,0.15)]" : "border-zinc-50 bg-white text-zinc-400 hover:border-[#ee6669]/20 hover:shadow-xl"
                                 )}
                               >
@@ -507,7 +529,7 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
                                 key={item.id} 
                                 onClick={() => toggleSelection('spaces', item.id)}
                                 className={cn(
-                                  "p-8 rounded-[2rem] border-2 transition-all duration-500 flex flex-col items-center gap-8 text-center group relative overflow-hidden",
+                                  "p-8 rounded-[2rem] border-2 transition-all duration-500 flex flex-col items-center gap-8 text-center group relative overflow-hidden active:scale-95 md:active:scale-100",
                                   formData.spaces.includes(item.id) ? "border-[#ee6669] bg-[#ee6669]/5 text-[#ee6669] shadow-[0_24px_48px_-12px_rgba(238,102,105,0.12)]" : "border-zinc-50 bg-white text-zinc-400 hover:border-[#ee6669]/20 hover:shadow-xl"
                                 )}
                               >
@@ -540,7 +562,7 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
                                 key={item} 
                                 onClick={() => { setFormData({...formData, style: item}); nextStep(); }}
                                 className={cn(
-                                  "p-14 rounded-[2rem] border-2 transition-all duration-500 font-bold uppercase tracking-[0.2em] text-[11px] group relative overflow-hidden",
+                                  "p-14 rounded-[2rem] border-2 transition-all duration-500 font-bold uppercase tracking-[0.2em] text-[11px] group relative overflow-hidden active:scale-95 md:active:scale-100",
                                   formData.style === item ? "border-[#ee6669] bg-[#ee6669]/5 text-[#ee6669]" : "border-zinc-50 bg-white text-zinc-400 hover:border-[#ee6669]/20 hover:shadow-xl"
                                 )}
                               >
@@ -561,7 +583,7 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
                                 key={item} 
                                 onClick={() => { setFormData({...formData, material: item}); nextStep(); }}
                                 className={cn(
-                                  "p-8 rounded-[2rem] border-2 transition-all duration-500 font-bold text-sm uppercase tracking-[0.24em] group relative",
+                                  "p-8 rounded-[2rem] border-2 transition-all duration-500 font-bold text-sm uppercase tracking-[0.24em] group relative active:scale-95 md:active:scale-100",
                                   formData.material === item ? "border-[#ee6669] bg-[#ee6669]/5 text-[#ee6669] shadow-xl" : "border-zinc-50 bg-white text-zinc-400 hover:border-[#ee6669]/20"
                                 )}
                               >
@@ -686,7 +708,7 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
                                 key={item} 
                                 onClick={() => toggleSelection('kitchenAccessories', item)}
                                 className={cn(
-                                  "p-8 rounded-[2rem] border-2 transition-all duration-500 flex items-center justify-center text-center group relative overflow-hidden",
+                                  "p-8 rounded-[2rem] border-2 transition-all duration-500 flex items-center justify-center text-center group relative overflow-hidden active:scale-95 md:active:scale-100",
                                   formData.kitchenAccessories.includes(item) ? "border-[#ee6669] bg-[#ee6669]/5 text-[#ee6669] shadow-xl" : "border-zinc-50 bg-white text-zinc-400 hover:border-[#ee6669]/20 hover:shadow-xl"
                                 )}
                               >

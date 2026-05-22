@@ -18,6 +18,15 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'zghazrxbuanzpyeuavzi.supabase.co',
+        pathname: '/storage/v1/object/public/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.grospaceinteriors.com',
+      },
+      {
+        protocol: 'https',
         hostname: 'images.unsplash.com',
       },
     ],

@@ -11,7 +11,7 @@ export function LandingHero() {
   }
 
   return (
-    <section className="relative flex h-[calc(100svh-96px)] min-h-[500px] w-full items-center overflow-hidden sm:h-[72vh] lg:h-[70vh]">
+    <section className="relative flex h-[75svh] min-h-[500px] w-full items-center overflow-hidden sm:h-[80vh] lg:h-[95vh]">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <Image 

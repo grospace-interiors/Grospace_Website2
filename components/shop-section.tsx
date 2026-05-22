@@ -44,27 +44,27 @@ export function ShopSection() {
   const displayPackages = packages.length > 0 ? packages : [
     {
       id: '1',
-      name: 'The Essential Collection',
+      name: 'Essential Bundle of 4',
       description: 'A thoughtful curation of fundamental interior elements designed for efficiency and modern aesthetics.',
-      price: 250000,
-      image_url: 'https://images.unsplash.com/photo-1556912177-c54035601844?q=80&w=800',
-      items: ['Modular Kitchen', '1 Wardrobe', 'Basic Storage', 'Living Unit'],
+      price: 149000,
+      image_url: '/images/shop/esential.jpg',
+      items: ['Modular Kitchen', 'Master Wardrobe', 'TV Unit', 'Basic False Ceiling'],
     },
     {
       id: '2',
-      name: 'The Smart Living Suite',
+      name: 'Premium Bundle of 6',
       description: 'Elevated space planning meeting sophisticated finishes for a balanced contemporary lifestyle.',
-      price: 350000,
-      image_url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=800',
-      items: ['Modular Kitchen', '2 Wardrobes', 'TV Unit', 'Study Nook'],
+      price: 289000,
+      image_url: '/images/shop/smart.jpg',
+      items: ['Modular Kitchen', '2 Wardrobes', 'TV Unit', 'Study Nook', 'Premium False Ceiling', 'Shoe Rack'],
       badge: 'CURATED FAVORITE',
     },
     {
       id: '3',
-      name: 'The Signature Series',
+      name: 'Signature Series',
       description: 'Our most comprehensive interior solution, featuring artisanal details and complete home transformation.',
       price: 500000,
-      image_url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800',
+      image_url: '/images/shop/signature.jpg',
       items: ['Full Home Interior', 'Premium Kitchen', 'Master Wardrobe', 'False Ceiling'],
     }
   ]
@@ -144,9 +144,9 @@ export function ShopSection() {
                 )}
 
                 {/* Refined Price Tag - Bottom Left */}
-                <div className="absolute bottom-5 left-5 z-10 text-white sm:bottom-8 sm:left-8">
-                  <p className="text-[9px] uppercase tracking-[0.2em] font-medium opacity-80 mb-1">Starting From</p>
-                  <p className="text-2xl font-serif">₹{(pkg.price / 100000).toFixed(1)}L</p>
+                <div className="absolute bottom-4 left-4 z-10 text-white sm:bottom-6 sm:left-6 bg-[#ee6669] px-3 py-1.5 rounded-lg shadow-md">
+                  <p className="text-[7px] lg:text-[8px] uppercase tracking-[0.15em] font-bold opacity-90 mb-0">Starting From</p>
+                  <p className="text-base lg:text-xl font-serif font-medium leading-none">₹{(pkg.price / 100000).toFixed(1)}L</p>
                 </div>
               </div>
 

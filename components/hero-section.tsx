@@ -48,7 +48,7 @@ export function HeroSection() {
   }, [api])
 
   return (
-    <section id="home" className="relative h-[calc(100svh-112px)] min-h-[520px] w-full overflow-hidden bg-zinc-950 sm:h-[70vh] lg:h-[68vh]">
+    <section id="home" className="relative h-[75svh] min-h-[520px] w-full overflow-hidden bg-zinc-950 sm:h-[80vh] lg:h-[95vh]">
       <Carousel 
         setApi={setApi} 
         opts={{ loop: true }}

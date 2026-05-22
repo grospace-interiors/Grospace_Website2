@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Menu, X, ChevronDown } from 'lucide-react'
-import { useBackButtonModal } from '@/hooks/use-back-button-modal'
 import { Button } from '@/components/ui/button'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -11,10 +10,8 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const [isServicesOpen, setIsServicesOpen] = useState(false)
 
-  // Sync back button with mobile menu
-  useBackButtonModal(isOpen, () => setIsOpen(false));
-
   const mainNavItems = [
+
     { label: 'Home', href: '/' },
     { label: 'Packages', href: '/packages' },
     { label: 'Calculator', href: '/pc' },
@@ -49,13 +46,7 @@ export function Navigation() {
   }
 
   return (
-    <nav className="sticky top-0 z-50 w-full max-w-full overflow-visible bg-white font-sans shadow-sm">
-      {/* Top Bar */}
-      <div className="relative bg-[#222222] px-8 py-1.5 text-center text-[9px] leading-relaxed text-white sm:text-[10px]">
-        <span className="block truncate sm:whitespace-normal">India's First Lifetime Warranty* | Quality Materials | On-Time Delivery</span>
-        <button type="button" className="absolute right-3 top-1/2 -translate-y-1/2" aria-label="Close offer bar"><X className="h-3 w-3" /></button>
-      </div>
-
+    <nav className={`sticky top-0 w-full max-w-full overflow-visible bg-white font-sans shadow-sm transition-all duration-300 ${isOpen ? 'z-[1000]' : 'z-50'}`}>
       {/* Main Navigation */}
       <div className="max-w-[1400px] mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-20">
@@ -176,7 +167,7 @@ export function Navigation() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed inset-0 z-[120] min-h-screen bg-white lg:hidden"
+              className="fixed inset-0 z-[120] min-h-screen bg-white lg:hidden pointer-events-auto"
             >
               <div className="p-6">
                 <div className="flex justify-between items-center mb-12">

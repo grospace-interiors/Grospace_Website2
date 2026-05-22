@@ -13,7 +13,7 @@ interface ServiceHeroProps {
 
 export function ServiceHero({ title, subtitle, image }: ServiceHeroProps) {
   return (
-    <section className="relative flex h-[calc(100svh-96px)] min-h-[480px] items-center justify-center overflow-hidden sm:h-[68vh] lg:h-[66vh] lg:min-h-[500px]">
+    <section className="relative flex h-[75svh] min-h-[480px] items-center justify-center overflow-hidden sm:h-[80vh] lg:h-[95vh] lg:min-h-[500px]">
       <motion.div 
         initial={{ scale: 1.1 }}
         animate={{ scale: 1 }}

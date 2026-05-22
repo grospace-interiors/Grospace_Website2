@@ -108,12 +108,12 @@ export function LeadModal() {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="max-h-[92dvh] max-w-[95vw] overflow-hidden rounded-[2rem] border-none bg-white p-0 shadow-2xl sm:max-w-[860px] sm:rounded-[2.25rem] max-sm:fixed max-sm:bottom-0 max-sm:left-0 max-sm:right-0 max-sm:top-auto max-sm:max-h-[88dvh] max-sm:max-w-none max-sm:translate-x-0 max-sm:translate-y-0 max-sm:rounded-b-none">
+      <DialogContent className="max-h-[90vh] max-w-[95vw] overflow-hidden rounded-[2rem] border-none bg-white p-0 shadow-2xl sm:max-w-[860px] sm:rounded-[2.25rem]">
         <DialogHeader className="sr-only">
           <DialogTitle>Book Free Site Visit</DialogTitle>
           <DialogDescription>Fill out the form to book your free site visit in Bhopal.</DialogDescription>
         </DialogHeader>
-        <div className="flex max-h-[92dvh] min-h-0 flex-col overflow-y-auto lg:h-[560px] lg:flex-row lg:overflow-hidden">
+        <div className="flex max-h-[90vh] min-h-0 flex-col overflow-y-auto lg:h-[600px] lg:flex-row lg:overflow-hidden">
           
           {/* Left Side: Premium Image (Desktop Only) */}
           <div className="hidden lg:block lg:w-5/12 relative">
@@ -131,7 +131,7 @@ export function LeadModal() {
           </div>
 
           {/* Right Side: Content & Form */}
-          <div className="relative flex flex-grow flex-col justify-center p-5 sm:p-7 lg:p-10">
+          <div className="relative flex flex-grow flex-col justify-center p-6 sm:p-8 lg:p-12">
             <AnimatePresence mode="wait">
               {status === 'success' ? (
                 <motion.div 
