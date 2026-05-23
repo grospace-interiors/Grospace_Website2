@@ -72,10 +72,10 @@ export default function RootLayout({
       <body className="antialiased">
         <Suspense fallback={null}>
           {children}
+          <LeadModal />
         </Suspense>
         <WhatsAppFab />
         <MobileCtaBar />
-        <LeadModal />
         <EstimateModal />
         <Analytics />
       </body>
