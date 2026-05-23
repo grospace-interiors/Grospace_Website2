@@ -11,6 +11,7 @@ interface Material {
 
 interface ServiceMaterialsProps {
   materials?: Material[]
+  className?: string
 }
 
 const defaultMaterials = [
@@ -21,7 +22,7 @@ const defaultMaterials = [
   },
   {
     name: "BWP Plywood",
-    properties: ["Boiling Water Proof", "Marine Grade", "Lifelong Warranty"],
+    properties: ["Boiling Water Proof", "Marine Grade", "Lifelong Quality"],
     description: "Premium core material for areas exposed to constant water and humidity, ensuring zero swelling."
   },
   {
@@ -38,9 +39,9 @@ const defaultMaterials = [
 
 const brands = ["Hettich", "Hafele", "Blum", "Ebco"]
 
-export function ServiceMaterials({ materials = defaultMaterials }: ServiceMaterialsProps) {
+export function ServiceMaterials({ materials = defaultMaterials, className }: ServiceMaterialsProps) {
   return (
-    <section className="overflow-hidden bg-white py-16 lg:py-28">
+    <section className={`overflow-hidden py-16 lg:py-28 ${className || 'bg-white'}`}>
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-12">
         <div className="mb-12 text-center lg:mb-24">
           <motion.h2 
@@ -70,12 +71,12 @@ export function ServiceMaterials({ materials = defaultMaterials }: ServiceMateri
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="group min-w-[82%] snap-center rounded-3xl border border-zinc-100 bg-zinc-50 p-6 transition-all duration-500 hover:border-[#ee6669]/20 hover:bg-white hover:shadow-2xl md:min-w-0 sm:p-8 sm:rounded-[2.5rem]"
+              className="group min-w-[82%] snap-center rounded-3xl border border-[#222222]/5 bg-white p-6 transition-all duration-500 hover:border-[#ee6669]/20 hover:shadow-2xl md:min-w-0 sm:p-8 sm:rounded-[2.5rem]"
             >
               <h3 className="text-2xl font-serif font-light text-[#222222] mb-4">{material.name}</h3>
               <div className="flex flex-wrap gap-2 mb-6">
                 {material.properties.map((prop, idx) => (
-                  <span key={idx} className="text-[10px] font-bold uppercase tracking-widest px-3 py-1 bg-white border border-zinc-100 rounded-full text-zinc-400 group-hover:text-[#ee6669] group-hover:border-[#ee6669]/20 transition-colors">
+                  <span key={idx} className="text-[10px] font-bold uppercase tracking-widest px-3 py-1 bg-zinc-50 border border-zinc-100 rounded-full text-zinc-400 group-hover:text-[#ee6669] group-hover:border-[#ee6669]/20 transition-colors">
                     {prop}
                   </span>
                 ))}
@@ -87,7 +88,7 @@ export function ServiceMaterials({ materials = defaultMaterials }: ServiceMateri
           ))}
         </div>
 
-        <div className="pt-12 border-t border-zinc-100">
+        <div className="pt-12 border-t border-[#222222]/10">
           <p className="mb-8 text-center text-[9px] font-bold uppercase tracking-[0.18em] text-zinc-400 sm:mb-12 sm:text-[10px] sm:tracking-[0.4em]">Global Hardware Partners</p>
           <div className="flex flex-wrap items-center justify-center gap-8 opacity-30 grayscale sm:gap-16 lg:gap-32">
              {brands.map(brand => (

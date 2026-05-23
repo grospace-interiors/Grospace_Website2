@@ -62,16 +62,6 @@ export function LandingHero() {
         </div>
       </div>
 
-      {/* Scroll Down Indicator */}
-      <motion.div 
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 hidden lg:block"
-      >
-        <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center p-1">
-          <div className="w-1 h-2 bg-[#ee6669] rounded-full" />
-        </div>
-      </motion.div>
     </section>
   )
 }

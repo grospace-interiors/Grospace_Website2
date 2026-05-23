@@ -15,35 +15,78 @@ interface Testimonial {
   image?: string
   project_type?: string
   city?: string
+  is_comment?: boolean
+  created_at?: string
 }
 
 export function TestimonialsSection() {
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([])
+  const [items, setItems] = useState<Testimonial[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    async function loadTestimonials() {
+    async function loadContent() {
       try {
-        const { data, error } = await supabase
-          .from('testimonials')
-          .select('*')
-          .eq('is_featured', true)
-          .order('created_at', { ascending: false })
-          .limit(3)
+        let testimonialsData: any[] = []
+        let commentsData: any[] = []
 
-        if (error) throw error
-        setTestimonials(data || [])
+        // Fetch Featured Testimonials
+        try {
+          const { data, error } = await supabase
+            .from('testimonials')
+            .select('*')
+            .eq('is_featured', true)
+            .order('created_at', { ascending: false })
+          if (error) {
+            console.warn('Testimonials table fetch warning:', error.message)
+          } else {
+            testimonialsData = data || []
+          }
+        } catch (e) {
+          console.warn('Testimonials fetch failed:', e)
+        }
+
+        // Fetch Approved Comments
+        try {
+          const { data, error } = await supabase
+            .from('design_comments')
+            .select('id, user_name, comment_text, rating, created_at')
+            .eq('is_approved', true)
+            .order('created_at', { ascending: false })
+          if (error) {
+            console.warn('Design comments table fetch warning:', error.message)
+          } else {
+            commentsData = data || []
+          }
+        } catch (e) {
+          console.warn('Comments fetch failed:', e)
+        }
+
+        const mappedComments: Testimonial[] = commentsData.map(c => ({
+          id: c.id,
+          client_name: c.user_name,
+          review: c.comment_text,
+          rating: c.rating || 5,
+          project_type: 'Homeowner Story',
+          is_comment: true,
+          created_at: c.created_at
+        }))
+
+        const combined = [...testimonialsData, ...mappedComments]
+          .sort((a, b) => new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime())
+          .slice(0, 6)
+
+        setItems(combined)
       } catch (err) {
-        console.error('Error loading testimonials:', err)
+        console.error('Unexpected error loading content:', err)
       } finally {
         setLoading(false)
       }
     }
-    loadTestimonials()
+    loadContent()
   }, [])
 
   // Fallback if DB is empty
-  const displayTestimonials = testimonials.length > 0 ? testimonials : [
+  const displayItems = items.length > 0 ? items : [
     {
       id: '1',
       review: 'Grospace transformed our home into a space that feels both luxurious and lived-in. Their attention to material quality is unmatched.',
@@ -94,9 +137,9 @@ export function TestimonialsSection() {
         </div>
 
         <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 no-scrollbar md:mx-0 md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:px-0 md:pb-0">
-          {displayTestimonials.map((testimonial, idx) => (
+          {displayItems.map((item, idx) => (
             <motion.div
-              key={testimonial.id}
+              key={item.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -104,33 +147,42 @@ export function TestimonialsSection() {
               className="min-w-[86%] snap-center md:min-w-0"
             >
               <Card
-                className="group relative rounded-3xl border-zinc-100 bg-white p-6 shadow-xl transition-all duration-500 hover:shadow-2xl sm:rounded-[2rem] sm:p-8"
+                className="group relative h-full flex flex-col rounded-3xl border-zinc-100 bg-white p-6 shadow-xl transition-all duration-500 hover:shadow-2xl sm:rounded-[2rem] sm:p-8"
               >
                 <Quote className="absolute top-8 right-8 w-12 h-12 text-zinc-50 opacity-10 group-hover:opacity-20 transition-opacity" />
-                <div className="space-y-8 relative z-10">
-                  <div className="flex gap-1">
-                     {[...Array(testimonial.rating || 5)].map((_, i) => (
-                       <Star key={i} className="w-3 h-3 fill-[#ee6669] text-[#ee6669]" />
-                     ))}
+                <div className="space-y-8 relative z-10 flex flex-col h-full">
+                  <div className="flex justify-between items-start">
+                    <div className="flex gap-1">
+                       {[...Array(item.rating || 5)].map((_, i) => (
+                         <Star key={i} className="w-3 h-3 fill-[#ee6669] text-[#ee6669]" />
+                       ))}
+                    </div>
+                    {item.is_comment && (
+                      <span className="text-[8px] font-bold text-[#ee6669] uppercase tracking-widest bg-[#ee6669]/5 px-2 py-1 rounded-full">Homeowner Story</span>
+                    )}
                   </div>
                   {/* Quote */}
-                  <blockquote className="text-base font-light italic leading-relaxed text-zinc-800 sm:text-lg">
-                    "{testimonial.review}"
+                  <blockquote className="text-base font-light italic leading-relaxed text-zinc-800 sm:text-lg flex-grow">
+                    "{item.review}"
                   </blockquote>
 
                   {/* Client Info */}
-                  <div className="pt-8 border-t border-zinc-50 flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-zinc-100 overflow-hidden">
-                       <img 
-                        src={testimonial.image || `https://i.pravatar.cc/100?u=${testimonial.client_name}`} 
-                        alt={testimonial.client_name} 
-                        className="w-full h-full object-cover" 
-                       />
+                  <div className="pt-8 border-t border-zinc-50 flex items-center gap-4 mt-auto">
+                    <div className="w-12 h-12 rounded-full bg-[#ee6669]/10 overflow-hidden flex-shrink-0 flex items-center justify-center border border-[#ee6669]/20">
+                       {item.is_comment ? (
+                         <span className="text-[7px] font-bold text-[#ee6669] uppercase tracking-tighter">Grospace</span>
+                       ) : (
+                         <img 
+                          src={item.image || `https://i.pravatar.cc/100?u=${item.client_name}`} 
+                          alt={item.client_name} 
+                          className="w-full h-full object-cover" 
+                         />
+                       )}
                     </div>
                     <div>
-                      <p className="font-serif text-lg text-[#222222] leading-none">{testimonial.client_name}</p>
+                      <p className="font-serif text-lg text-[#222222] leading-none">{item.client_name}</p>
                       <p className="mt-1 text-[9px] font-bold uppercase tracking-[0.12em] text-zinc-400 sm:text-[10px] sm:tracking-widest">
-                        {testimonial.city || 'Bhopal'} • {testimonial.project_type}
+                        {item.city || 'Bhopal'} • {item.project_type}
                       </p>
                     </div>
                   </div>

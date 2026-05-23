@@ -231,7 +231,7 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
            </div>
            <div className="flex items-center justify-between text-[11px] py-1">
               <span className="text-zinc-500 font-bold uppercase tracking-widest">Quality Seal</span>
-              <span className="font-bold flex items-center gap-2.5 text-[#222222]"><ShieldCheck className="w-4 h-4 text-green-600" /> Lifetime Warranty*</span>
+              <span className="font-bold flex items-center gap-2.5 text-[#222222]"><ShieldCheck className="w-4 h-4 text-green-600" /> Expert Execution</span>
            </div>
         </div>
 

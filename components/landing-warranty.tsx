@@ -7,8 +7,8 @@ export function LandingWarranty() {
   const features = [
     {
       icon: ShieldCheck,
-      title: 'Lifetime Warranty*',
-      description: 'The first in India to offer true peace of mind for your home.'
+      title: '10-Year Excellence*',
+      description: 'Built on a decade of collective leadership experience in Bhopal.'
     },
     {
       icon: Award,
@@ -44,13 +44,13 @@ export function LandingWarranty() {
             className="space-y-8"
           >
             <div className="inline-flex items-center gap-2 bg-[#ee6669] px-4 py-1 rounded-full text-white text-[10px] font-bold uppercase tracking-widest">
-               India's First
+               Heritage of Quality
             </div>
             <h2 className="text-3xl md:text-7xl font-serif font-light text-white leading-tight">
-              Once you buy, we <span className="text-[#ee6669] italic">never say goodbye.</span>
+              Precision in <span className="text-[#ee6669] italic">every detail.</span>
             </h2>
             <p className="text-zinc-400 text-lg font-light leading-relaxed max-w-lg">
-              Our commitment to your home is lifelong. We stand behind our craftsmanship with India's first lifetime warranty* and unparalleled after-sales support.
+              Our commitment to your home is rooted in experience. We stand behind our craftsmanship with 10 years of collective design precision and unparalleled after-sales support.
             </p>
             <div className="pt-4">
                <p className="text-[10px] font-bold text-[#ee6669] uppercase tracking-[0.4em] mb-2">The Grospace Promise</p>

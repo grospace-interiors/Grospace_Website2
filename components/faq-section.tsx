@@ -22,8 +22,8 @@ export function FAQSection() {
       answer: "We follow a 4-step process: Consultation, Design & Estimation, Production, and Installation. Typically, we deliver your dream home within 45-60 days."
     },
     {
-      question: "Do you offer a warranty on your work?",
-      answer: "Yes, we are the first in India to offer a lifetime warranty on modular interiors. We stand by our material quality and craftsmanship."
+      question: "How much experience do you have?",
+      answer: "Our leadership team brings over 10 years of collective experience in premium interior design and modular execution, ensuring every project is handled with expert precision."
     },
     {
       question: "How do you ensure transparent pricing?",

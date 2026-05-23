@@ -2,9 +2,11 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { motion, AnimatePresence } from 'framer-motion'
+import { MobileQuickNav } from './mobile-quick-nav'
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -49,22 +51,33 @@ export function Navigation() {
     <nav className={`sticky top-0 w-full max-w-full overflow-visible bg-white font-sans shadow-sm transition-all duration-300 ${isOpen ? 'z-[1000]' : 'z-50'}`}>
       {/* Main Navigation */}
       <div className="max-w-[1400px] mx-auto px-4 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link href="/" className="flex min-w-0 items-center gap-2">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-[#ee6669] sm:h-10 sm:w-10">
-               <div className="h-5 w-5 rounded-full border border-[#ee6669] sm:h-6 sm:w-6" />
+        <div className="flex items-center justify-between h-16 lg:h-20 relative">
+          {/* Logo - Left */}
+          <Link href="/" className="flex items-center gap-2 lg:gap-3 group z-10">
+            <div className="relative h-8 w-8 lg:h-10 lg:w-10 shrink-0 overflow-hidden rounded-full border-2 border-[#ee6669] flex items-center justify-center bg-white shadow-sm transition-transform group-hover:scale-105">
+               <Image 
+                 src="/images/logo.png" 
+                 alt="Mark" 
+                 fill 
+                 className="object-cover"
+                 priority
+               />
             </div>
-            <span className="min-w-0 truncate text-lg font-bold uppercase tracking-tighter text-[#222222] sm:text-xl lg:text-2xl">
-              Grospace Interiors
-            </span>
+            <div className="flex flex-col -space-y-1">
+              <span className="text-lg lg:text-xl font-bold uppercase tracking-tighter text-[#222222]">
+                Grospace
+              </span>
+              <span className="text-[8px] lg:text-[9px] font-bold uppercase tracking-[0.3em] text-[#ee6669]">
+                Interiors
+              </span>
+            </div>
           </Link>
 
-          {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center gap-8">
+          {/* Desktop Menu - Center */}
+          <div className="hidden lg:flex items-center gap-8 absolute left-1/2 -translate-x-1/2 whitespace-nowrap">
             <Link 
               href="/"
-              className="text-[11px] font-bold uppercase tracking-widest text-zinc-700 hover:text-[#ee6669] transition-colors"
+              className="text-[10px] font-bold uppercase tracking-widest text-zinc-700 hover:text-[#ee6669] transition-colors"
             >
               Home
             </Link>
@@ -77,7 +90,7 @@ export function Navigation() {
             >
               <Link 
                 href="/services"
-                className="flex items-center gap-1 text-[11px] font-bold uppercase tracking-widest text-zinc-700 hover:text-[#ee6669] transition-colors py-8"
+                className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest text-zinc-700 hover:text-[#ee6669] transition-colors py-8"
               >
                 Services <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${isServicesOpen ? 'rotate-180' : ''}`} />
               </Link>
@@ -89,7 +102,7 @@ export function Navigation() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute top-full left-1/2 -translate-x-1/2 w-[600px] bg-white border border-zinc-100 shadow-2xl rounded-3xl overflow-hidden grid grid-cols-2 p-4"
+                    className="absolute top-full left-1/2 -translate-x-1/2 w-[600px] bg-white border border-zinc-100 shadow-2xl rounded-3xl overflow-hidden grid grid-cols-2 p-4 z-[100]"
                   >
                     <div className="p-4 space-y-2">
                       <span className="text-[10px] font-bold text-[#ee6669] uppercase tracking-widest mb-4 block">Main Categories</span>
@@ -131,21 +144,23 @@ export function Navigation() {
                 key={item.label} 
                 href={item.href}
                 onClick={item.label === 'Contact' ? handleContactClick : undefined}
-                className="text-[11px] font-bold uppercase tracking-widest text-zinc-700 hover:text-[#ee6669] transition-colors"
+                className="text-[10px] font-bold uppercase tracking-widest text-zinc-700 hover:text-[#ee6669] transition-colors"
               >
                 {item.label}
               </Link>
             ))}
-            
+          </div>
+
+          {/* CTA - Right */}
+          <div className="flex items-center gap-4 z-10">
             <Button 
                 asChild
-                className="bg-[#ee6669] hover:bg-[#222222] text-white rounded-full px-8 py-2 h-12 text-[11px] font-bold uppercase tracking-widest shadow-lg shadow-[#ee6669]/20 transition-all active:scale-95"
+                className="hidden lg:flex bg-[#ee6669] hover:bg-[#222222] text-white rounded-full px-8 py-2 h-12 text-[10px] font-bold uppercase tracking-widest shadow-lg shadow-[#ee6669]/20 transition-all active:scale-95"
               >
                 <Link href="/lp/landing-page">
                   Get Free Quote
                 </Link>
               </Button>
-            </div>
 
             {/* Mobile Menu Button */}
             <button
@@ -158,75 +173,93 @@ export function Navigation() {
             </button>
           </div>
         </div>
+        
+        {/* Mobile Quick Nav */}
+        <MobileQuickNav />
+      </div>
 
-        {/* Mobile Navigation */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div 
-              initial={{ opacity: 0, x: '100%' }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed inset-0 z-[120] min-h-screen bg-white lg:hidden pointer-events-auto"
-            >
-              <div className="p-6">
-                <div className="flex justify-between items-center mb-12">
-                   <Link href="/" onClick={() => setIsOpen(false)} className="flex min-w-0 items-center gap-2">
-                    <span className="min-w-0 truncate text-xl font-bold uppercase tracking-tighter text-[#222222]">
-                      Grospace Interiors
-                    </span>
-                  </Link>
-                  <button type="button" onClick={() => setIsOpen(false)} className="p-2"><X className="w-8 h-8 text-zinc-900" /></button>
-                </div>
-
-                <div className="space-y-8 overflow-y-auto max-h-[calc(100vh-200px)]">
-                  <Link href="/" onClick={() => setIsOpen(false)} className="block text-3xl font-serif font-light text-zinc-900">Home</Link>
-                  
-                  <div className="space-y-4">
-                    <span className="text-[10px] font-bold text-[#ee6669] uppercase tracking-widest block">Our Services</span>
-                    <div className="grid grid-cols-1 gap-4 pl-4 border-l border-zinc-100">
-                      {[...serviceItems, ...specializedItems].map((item) => (
-                        <Link 
-                          key={item.label} 
-                          href={item.href}
-                          onClick={() => setIsOpen(false)}
-                          className="text-lg text-zinc-600"
-                        >
-                          {item.label}
-                        </Link>
-                      ))}
-                    </div>
+      {/* Mobile Navigation */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            className="fixed inset-0 z-[120] min-h-screen bg-white lg:hidden pointer-events-auto"
+          >
+            <div className="p-6">
+              <div className="flex justify-between items-center mb-12">
+                  <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center gap-3 group">
+                  <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-[#ee6669] flex items-center justify-center bg-white shadow-sm">
+                      <Image 
+                        src="/images/logo.png" 
+                        alt="Mark" 
+                        fill 
+                        className="object-cover"
+                        priority
+                      />
                   </div>
-
-                  {mainNavItems.slice(1).map((item) => (
-                    <Link 
-                      key={item.label} 
-                      href={item.href}
-                      onClick={(e) => {
-                        if (item.label === 'Contact') handleContactClick(e);
-                        else setIsOpen(false);
-                      }}
-                      className="block text-3xl font-serif font-light text-zinc-900"
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-
-                <div className="absolute bottom-8 left-6 right-6">
-                  <Button 
-                    asChild
-                    className="w-full bg-[#ee6669] hover:bg-[#222222] text-white h-16 rounded-2xl text-[11px] font-bold uppercase tracking-widest shadow-xl shadow-[#ee6669]/20"
-                  >
-                    <Link href="/lp/landing-page" onClick={() => setIsOpen(false)}>
-                      Get Free Quote
-                    </Link>
-                  </Button>
-                </div>
+                  <div className="flex flex-col -space-y-1">
+                    <span className="text-xl font-bold uppercase tracking-tighter text-[#222222]">
+                      Grospace
+                    </span>
+                    <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-[#ee6669]">
+                      Interiors
+                    </span>
+                  </div>
+                </Link>
+                <button type="button" onClick={() => setIsOpen(false)} className="p-2"><X className="w-8 h-8 text-zinc-900" /></button>
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
-    )
-  }
+
+              <div className="space-y-8 overflow-y-auto max-h-[calc(100vh-200px)]">
+                <Link href="/" onClick={() => setIsOpen(false)} className="block text-3xl font-serif font-light text-zinc-900">Home</Link>
+                
+                <div className="space-y-4">
+                  <span className="text-[10px] font-bold text-[#ee6669] uppercase tracking-widest block">Our Services</span>
+                  <div className="grid grid-cols-1 gap-4 pl-4 border-l border-zinc-100">
+                    {[...serviceItems, ...specializedItems].map((item) => (
+                      <Link 
+                        key={item.label} 
+                        href={item.href}
+                        onClick={() => setIsOpen(false)}
+                        className="text-lg text-zinc-600"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+
+                {mainNavItems.slice(1).map((item) => (
+                  <Link 
+                    key={item.label} 
+                    href={item.href}
+                    onClick={(e) => {
+                      if (item.label === 'Contact') handleContactClick(e);
+                      else setIsOpen(false);
+                    }}
+                    className="block text-3xl font-serif font-light text-zinc-900"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+
+              <div className="absolute bottom-8 left-6 right-6">
+                <Button 
+                  asChild
+                  className="w-full bg-[#ee6669] hover:bg-[#222222] text-white h-16 rounded-2xl text-[11px] font-bold uppercase tracking-widest shadow-xl shadow-[#ee6669]/20"
+                >
+                  <Link href="/lp/landing-page" onClick={() => setIsOpen(false)}>
+                    Get Free Quote
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
+  )
+}

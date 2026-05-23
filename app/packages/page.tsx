@@ -20,74 +20,12 @@ import {
   ChevronRight
 } from 'lucide-react'
 import { ShopSection } from '@/components/shop-section'
+import { useEffect, useState } from 'react'
+import { supabase } from '@/lib/supabase'
+import { LandingBudgetCollection } from '@/lib/types'
 
 const CHARCOAL = '#222222'
 const PINK = '#ee6669'
-
-const homePackages = [
-  {
-    id: '1bhk',
-    name: '1BHK Interiors',
-    tagline: 'Compact Smart Living',
-    price: '₹2.15 Lakhs',
-    description: 'Designed for compact homes with practical and space-efficient interiors.',
-    features: ['Modular Kitchen', 'Smart Storage', 'Functional Wardrobes', 'Minimal Modern Layout'],
-    cta: 'Calculate Your Estimate',
-    image: 'https://images.unsplash.com/photo-1556912177-c54035601844?q=80&w=800'
-  },
-  {
-    id: '2bhk',
-    name: '2BHK Interiors',
-    tagline: 'Complete 2BHK Interiors',
-    price: '₹3.10 Lakhs',
-    description: 'Balanced interiors designed for comfort, functionality, and modern living.',
-    features: ['Modular Kitchen', '2 Wardrobes', 'TV Unit', 'False Ceiling Options'],
-    cta: 'Book Free Site Visit',
-    isPopular: true,
-    image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=800'
-  },
-  {
-    id: '3bhk',
-    name: '3BHK Interiors',
-    tagline: 'Premium Family Interiors',
-    price: '₹4.23 Lakhs',
-    description: 'Spacious and premium interior solutions with enhanced functionality and aesthetics.',
-    features: ['Full Modular Solutions', 'Multiple Wardrobes', 'Living Area Enhancement', 'Smart Space Planning'],
-    cta: 'Book Free Site Visit',
-    image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=800'
-  },
-  {
-    id: '4bhk',
-    name: '4BHK+ Interiors',
-    tagline: 'Signature Luxury Interiors',
-    price: '₹6.5 Lakhs',
-    description: 'Customized interior experiences crafted for large homes and luxury spaces.',
-    features: ['Bespoke Interior Concepts', 'Premium Finishes', 'Designer Ceiling Concepts', 'Personalized Planning'],
-    cta: 'Book Free Site Visit',
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800'
-  }
-]
-
-const specializedSolutions = [
-  {
-    title: 'Modular Kitchens',
-    price: '₹1.25 Lakhs',
-    description: 'Modern kitchens built for smart storage and seamless functionality. Precision-engineered for daily high-traffic use.',
-    image: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=800'
-  },
-  {
-    title: 'Modern Wardrobes',
-    price: '₹65,000',
-    description: 'Elegant storage solutions designed for organization and aesthetics. Available in sliding and hinged premium finishes.',
-    image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?q=80&w=800'
-  },
-  {
-    title: 'False Ceilings',
-    price: '₹85/sq.ft',
-    description: 'Modern ceiling concepts with integrated ambient lighting and premium gypsum finishes for a complete look.',
-    image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=800'
-  }
-]
 
 const reasons = [
   {
@@ -113,21 +51,78 @@ const reasons = [
 ]
 
 export default function PackagesPage() {
+  const [homePackages, setHomePackages] = useState<any[]>([])
+  const [specializedSolutions, setSpecializedSolutions] = useState<any[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data, error } = await supabase
+          .from('landing_budget_collections')
+          .select('*')
+          .eq('is_active', true)
+          .order('display_order', { ascending: true })
+
+        if (error) throw error
+
+        if (data) {
+          // Map data to the expected UI structure
+          const home = data.filter(item => item.display_order >= 1 && item.display_order <= 4).map(item => ({
+            id: item.id,
+            name: item.title,
+            tagline: item.subtitle,
+            price: item.price_text,
+            description: item.description,
+            features: Array.isArray(item.features) ? item.features : [],
+            cta: item.title.includes('1BHK') ? 'Calculate Your Estimate' : 'Book Free Site Visit',
+            isPopular: item.title.includes('2BHK'),
+            image: item.image_url
+          }))
+
+          const specialized = data.filter(item => item.display_order >= 5).map(item => ({
+            title: item.title,
+            price: item.price_text,
+            description: item.description,
+            image: item.image_url
+          }))
+
+          setHomePackages(home)
+          setSpecializedSolutions(specialized)
+        }
+      } catch (error) {
+        console.error('Error loading collections:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchData()
+  }, [])
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-white">
+        <div className="text-[#ee6669] font-serif italic text-2xl animate-pulse">Loading Studio Collections...</div>
+      </div>
+    )
+  }
+
   return (
     <>
       <Navigation />
       <main className="bg-white text-[#222222] overflow-hidden">
         
         {/* 1. HERO SECTION */}
-        <section className="relative flex min-h-[520px] items-center justify-center overflow-hidden bg-white py-16 lg:min-h-[580px] lg:py-20">
+        <section className="relative flex min-h-[520px] items-center justify-center overflow-hidden bg-[#222222] py-16 lg:min-h-[580px] lg:py-20">
           <Image 
             src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1600"
             alt="Premium Interior Background"
             fill
-            className="object-cover opacity-60"
+            className="object-cover opacity-40"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-transparent to-white" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#222222]/40 via-transparent to-[#222222]" />
           
           <div className="relative z-10 max-w-5xl mx-auto px-5 lg:px-6 text-center space-y-6 lg:space-y-8">
             <motion.div
@@ -138,11 +133,11 @@ export default function PackagesPage() {
               <span className="text-[9px] lg:text-[10px] uppercase tracking-[0.4em] lg:tracking-[0.5em] text-[#ee6669] font-bold mb-4 lg:mb-6 block">
                 Exclusive Studio Collections
               </span>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-light leading-[1.2] lg:leading-[1.1] tracking-tight mb-6 text-[#222222] px-2">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-light leading-[1.2] lg:leading-[1.1] tracking-tight mb-6 text-white px-2">
                 Interior Packages Designed <br className="hidden xs:block sm:block" />
                 <span className="text-[#ee6669] italic">Around Your Home</span>
               </h1>
-              <p className="text-sm lg:text-lg text-zinc-500 font-light max-w-2xl mx-auto leading-relaxed px-2">
+              <p className="text-sm lg:text-lg text-zinc-400 font-light max-w-2xl mx-auto leading-relaxed px-2">
                 Smart, modern, and space-efficient interior solutions for 1BHK to luxury homes in Bhopal.
               </p>
             </motion.div>

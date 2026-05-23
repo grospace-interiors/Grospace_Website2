@@ -13,7 +13,7 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: 'Interior Designers in Bhopal | Grospace Interiors',
-  description: 'Premium interior design and custom furniture studio in Bhopal. Expert modular kitchens, wardrobes, and full home interiors with transparent pricing and lifetime warranty.',
+  description: 'Premium interior design and custom furniture studio in Bhopal. Expert modular kitchens, wardrobes, and full home interiors with transparent pricing and 10-year design excellence.',
   icons: {
     icon: '/icon.png',
     apple: '/icon.png',
@@ -26,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <head>
         <script
           type="application/ld+json"
@@ -72,11 +72,11 @@ export default function RootLayout({
       <body className="antialiased">
         <Suspense fallback={null}>
           {children}
-          <WhatsAppFab />
-          <MobileCtaBar />
-          <LeadModal />
-          <EstimateModal />
         </Suspense>
+        <WhatsAppFab />
+        <MobileCtaBar />
+        <LeadModal />
+        <EstimateModal />
         <Analytics />
       </body>
     </html>

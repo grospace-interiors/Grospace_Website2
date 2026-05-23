@@ -17,8 +17,8 @@ export function LandingStats() {
     },
     {
       icon: Award,
-      value: '10 Year',
-      label: 'Material Warranty'
+      value: '10 Years',
+      label: 'Professional Experience'
     },
     {
       icon: Calendar,

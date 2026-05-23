@@ -1,7 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { Instagram, Facebook, Twitter, Youtube, Linkedin, Phone, Mail, MapPin, ChevronRight } from 'lucide-react'
+import Image from 'next/image'
+import { Instagram, Facebook, Youtube, Linkedin, Phone, Mail, MapPin, ChevronRight } from 'lucide-react'
 import { Button } from './ui/button'
 
 export function Footer() {
@@ -9,20 +10,18 @@ export function Footer() {
     {
       title: 'Offerings',
       links: [
-        { label: 'Modular Kitchen', href: '#' },
-        { label: 'Wardrobes', href: '#' },
-        { label: 'Full Home Interiors', href: '#' },
-        { label: 'Luxury Interiors', href: '#' },
-        { label: 'Commercial Interiors', href: '#' },
+        { label: 'Modular Kitchen', href: '/lp/landing-page' },
+        { label: 'Wardrobes', href: '/lp/landing-page' },
+        { label: 'Full Home Interiors', href: '/services/full-home-interiors' },
+        { label: 'Luxury Interiors', href: '/services/luxury-interiors' },
+        { label: 'Commercial Interiors', href: '/services' },
       ],
     },
     {
       title: 'Get Inspired',
       links: [
-        { label: 'Design Ideas', href: '#' },
-        { label: 'Magazine', href: '#' },
-        { label: 'Grospace TV', href: '#' },
-        { label: 'Customer Reviews', href: '#' },
+        { label: 'Design Ideas', href: '/design-library' },
+        { label: 'Customer Reviews', href: '/#testimonials' },
       ],
     },
     {
@@ -30,7 +29,7 @@ export function Footer() {
       links: [
         { label: 'About Us', href: '/about' },
         { label: 'Projects', href: '/projects' },
-        { label: 'How it works', href: '#' },
+        { label: 'How it works', href: '/#process' },
         { label: 'Careers', href: '#' },
         { label: 'Privacy Policy', href: '#' },
         { label: 'Terms & Conditions', href: '#' },
@@ -46,33 +45,34 @@ export function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
             {/* Brand & Social */}
             <div className="lg:col-span-1 space-y-8">
-              <Link href="/" className="text-3xl font-bold tracking-tighter uppercase">
-                Grospace Interiors
+              <Link href="/" className="flex items-center gap-3 group">
+                <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full border-2 border-[#ee6669] flex items-center justify-center bg-white shadow-lg">
+                   <Image 
+                     src="/images/logo.png" 
+                     alt="Mark" 
+                     fill 
+                     className="object-cover"
+                   />
+                </div>
+                <div className="flex flex-col -space-y-1">
+                  <span className="text-2xl font-bold uppercase tracking-tighter text-white">
+                    Grospace
+                  </span>
+                  <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#ee6669]">
+                    Interiors
+                  </span>
+                </div>
               </Link>
               <div className="flex gap-4">
-                <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center cursor-pointer hover:bg-white/10 transition-colors">
+                <a href="https://www.facebook.com/profile.php?id=61589078587056" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center cursor-pointer hover:bg-white/10 transition-colors">
                   <Facebook className="w-5 h-5" />
-                </div>
-                <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center cursor-pointer hover:bg-white/10 transition-colors">
+                </a>
+                <a href="https://www.instagram.com/grospace.interiors?igsh=dGloZzBncG85OXM=" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center cursor-pointer hover:bg-white/10 transition-colors">
                   <Instagram className="w-5 h-5" />
-                </div>
-                <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center cursor-pointer hover:bg-white/10 transition-colors">
-                  <Twitter className="w-5 h-5" />
-                </div>
+                </a>
                 <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center cursor-pointer hover:bg-white/10 transition-colors">
                   <Youtube className="w-5 h-5" />
                 </div>
-              </div>
-              <div className="space-y-4">
-                 <p className="text-xs text-zinc-400 uppercase tracking-widest font-bold">Download our app</p>
-                 <div className="flex gap-3">
-                   <div className="h-10 w-32 bg-zinc-800 rounded border border-white/10 flex items-center justify-center cursor-pointer">
-                      <span className="text-[10px] font-bold">GET IT ON Google Play</span>
-                   </div>
-                   <div className="h-10 w-32 bg-zinc-800 rounded border border-white/10 flex items-center justify-center cursor-pointer">
-                      <span className="text-[10px] font-bold">Download on App Store</span>
-                   </div>
-                 </div>
               </div>
             </div>
 
@@ -100,21 +100,24 @@ export function Footer() {
                   <Phone className="w-5 h-5 text-[#ee6669] flex-shrink-0" />
                   <div>
                     <p className="text-xs text-zinc-400 uppercase tracking-widest mb-1">Call us</p>
-                    <a href="tel:+919926987123" className="text-sm font-medium hover:text-[#ee6669] transition-colors">+91 99269 87123</a>
+                    <div className="flex flex-col gap-1">
+                      <a href="tel:+919926987123" className="text-sm font-medium hover:text-[#ee6669] transition-colors">+91 99269 87123</a>
+                      <a href="tel:+918319032087" className="text-sm font-medium hover:text-[#ee6669] transition-colors">+91 83190 32087</a>
+                    </div>
                   </div>
                 </li>
                 <li className="flex gap-4 items-start">
                   <Mail className="w-5 h-5 text-[#ee6669] flex-shrink-0" />
                   <div>
                     <p className="text-xs text-zinc-400 uppercase tracking-widest mb-1">Email us</p>
-                    <a href="mailto:care@grospaceinteriors.com" className="text-sm font-medium hover:text-[#ee6669] transition-colors">care@grospaceinteriors.com</a>
+                    <a href="mailto:grospaceinteriors@gmail.com" className="text-sm font-medium hover:text-[#ee6669] transition-colors">grospaceinteriors@gmail.com</a>
                   </div>
                 </li>
                 <li className="flex gap-4 items-start">
                   <MapPin className="w-5 h-5 text-[#ee6669] flex-shrink-0" />
                   <div>
                     <p className="text-xs text-zinc-400 uppercase tracking-widest mb-1">Visit us</p>
-                    <p className="text-sm text-zinc-400">Arera Colony, Bhopal, Madhya Pradesh</p>
+                    <p className="text-sm text-zinc-400">Sonagiri, Bhopal, Madhya Pradesh</p>
                   </div>
                 </li>
               </ul>

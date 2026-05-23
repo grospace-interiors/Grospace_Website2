@@ -131,41 +131,41 @@ export function LandingBudget() {
   if (loading) {
     return (
       <section className="w-full bg-[#E5EEE4] py-16 md:py-24 flex items-center justify-center">
-        <div className="text-[10px] uppercase tracking-[0.4em] text-zinc-400 font-bold animate-pulse">Loading Collections...</div>
+        <div className="text-[10px] uppercase tracking-[0.4em] text-[#ee6669] font-bold animate-pulse">Loading Collections...</div>
       </section>
     )
   }
 
   return (
-    <section className="w-full bg-[#E5EEE4] py-16 md:py-24 overflow-hidden">
+    <section className="w-full bg-[#E5EEE4] py-16 md:py-24 overflow-hidden border-y border-zinc-100">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         {/* Header Area */}
         <div className="mb-12 flex flex-col items-start justify-between gap-8 md:mb-24 md:flex-row md:items-end md:gap-12">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             className="max-w-2xl space-y-4 md:space-y-6"
           >
             <span className="block text-[9px] font-bold uppercase tracking-[0.18em] text-[#ee6669] sm:text-[10px] sm:tracking-[0.4em]">Tailored Investment</span>
-            <h2 className="text-3xl md:text-7xl font-serif font-light text-zinc-900 leading-[1.1]">
-              Homes for <br/><span className="text-[#ee6669] italic">every lifestyle.</span>
+            <h2 className="text-3xl md:text-7xl font-serif font-light text-[#222222] leading-[1.1]">
+              Homes for <br/><span className="italic">every lifestyle.</span>
             </h2>
             <p className="text-sm font-light leading-relaxed text-zinc-500 sm:text-lg">
               Premium interior solutions curated for Bhopal homes. Transparent pricing meet exceptional design precision.
             </p>
           </motion.div>
-          
-          <Button 
+
+          <Button
             onClick={() => document.getElementById('get-quote')?.scrollIntoView({ behavior: 'smooth' })}
-            className="h-12 w-full rounded-full bg-[#222222] px-8 text-[9px] font-bold uppercase tracking-[0.14em] text-white shadow-xl shadow-zinc-200 transition-all duration-500 hover:bg-[#ee6669] sm:h-16 sm:w-auto sm:px-12 sm:text-[10px] sm:tracking-[0.25em]"
+            className="h-12 w-full rounded-full bg-[#ee6669] px-8 text-[9px] font-bold uppercase tracking-[0.14em] text-white shadow-xl shadow-[#ee6669]/20 transition-all duration-500 hover:bg-[#222222] sm:h-16 sm:w-auto sm:px-12 sm:text-[10px] sm:tracking-[0.25em]"
           >
             Request Full Price List <ArrowRight className="w-4 h-4 ml-3" />
           </Button>
         </div>
 
         {/* Grid Area */}
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -173,28 +173,28 @@ export function LandingBudget() {
           className="-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-4 no-scrollbar md:mx-0 md:grid md:grid-cols-2 md:gap-8 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3 lg:gap-10 xl:grid-cols-4"
         >
           {displayBudgets.map((item, idx) => (
-            <motion.div 
-              key={item.id || idx} 
+            <motion.div
+              key={item.id || idx}
               variants={itemVariants}
               className="group relative flex min-w-[84%] snap-center flex-col overflow-hidden rounded-[2rem] border border-zinc-100 bg-white transition-all duration-700 hover:border-[#ee6669]/20 hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)] md:min-w-0"
             >
               {/* Image Container */}
               <div className="relative h-64 w-full overflow-hidden">
-                <Image 
-                  src={item.image_url} 
-                  alt={item.title} 
-                  fill 
-                  className="object-cover transition-transform duration-1000 group-hover:scale-110" 
+                <Image
+                  src={item.image_url}
+                  alt={item.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
-                
+
                 {/* Price Overlay */}
                 <div className="absolute bottom-6 left-6 text-white">
                   <p className="text-[8px] uppercase tracking-[0.2em] font-medium opacity-70 mb-1">Starting From</p>
                   <p className="text-xl font-serif">{item.price_text}</p>
                 </div>
               </div>
-
               {/* Content Area */}
               <div className="p-8 flex-grow flex flex-col">
                 <div className="mb-6">

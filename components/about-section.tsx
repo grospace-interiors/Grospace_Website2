@@ -84,7 +84,7 @@ export function AboutSection() {
                  <div className="w-12 h-12 rounded-2xl bg-white border border-zinc-100 flex items-center justify-center mx-auto shadow-sm">
                     <ShieldCheck className="w-6 h-6 text-blue-500" />
                  </div>
-                 <p className="text-[9px] font-bold text-zinc-400 uppercase tracking-widest">Lifetime Warranty</p>
+                 <p className="text-[9px] font-bold text-zinc-400 uppercase tracking-widest">10-Year Excellence</p>
               </div>
               <div className="min-w-[45%] snap-center space-y-3 md:min-w-0">
                  <div className="w-12 h-12 rounded-2xl bg-white border border-zinc-100 flex items-center justify-center mx-auto shadow-sm">

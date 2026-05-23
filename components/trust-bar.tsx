@@ -9,8 +9,8 @@ export function TrustBar() {
     },
     {
       icon: Shield,
-      label: '10-Year Warranty',
-      description: 'Quality materials & durability',
+      label: '10-Year Experience',
+      description: 'Expertise built over a decade',
     },
     {
       icon: Clock,

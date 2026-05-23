@@ -9,6 +9,7 @@ import { LandingForm } from '@/components/landing-form'
 import { PriceEstimator } from '@/components/price-estimator'
 import { TestimonialsSection } from '@/components/testimonials-section'
 import { FAQSection } from '@/components/faq-section'
+import { DesignCommentSection } from '@/components/design-comment-section'
 import { Button } from '@/components/ui/button'
 import { Footer } from '@/components/footer'
 import { motion } from 'framer-motion'
@@ -59,8 +60,8 @@ export default function HomeInteriorsLandingPage() {
                     <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm group-hover:bg-[#ee6669]/10 transition-colors">
                       <ShieldCheck className="w-6 h-6 text-[#ee6669]" />
                     </div>
-                    <h4 className="font-serif text-xl text-zinc-900">10-Year Warranty</h4>
-                    <p className="text-sm text-zinc-500 font-light">Comprehensive coverage for your peace of mind.</p>
+                    <h4 className="font-serif text-xl text-zinc-900">10-Year Experience</h4>
+                    <p className="text-sm text-zinc-500 font-light">A decade of delivering excellence in Bhopal.</p>
                   </div>
                   <div className="group min-w-[82%] snap-center space-y-3 rounded-2xl border border-zinc-100 bg-zinc-50 p-6 transition-colors hover:bg-white hover:shadow-xl sm:min-w-0">
                     <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm group-hover:bg-[#ee6669]/10 transition-colors">
@@ -212,6 +213,9 @@ export default function HomeInteriorsLandingPage() {
 
         {/* FAQ */}
         <FAQSection />
+
+        {/* DESIGN COMMENT SECTION */}
+        <DesignCommentSection />
 
         {/* Mobile Sticky CTA */}
         <motion.div 

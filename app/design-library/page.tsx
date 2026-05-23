@@ -109,6 +109,8 @@ const galleryItems = [
   }
 ]
 
+import { DesignCommentSection } from '@/components/design-comment-section'
+
 export default function DesignLibraryPage() {
   const [activeCategory, setActiveCategory] = useState('All Designs')
 
