@@ -15,19 +15,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { Maximize2, MapPin, Clock, Layout, Sparkles } from 'lucide-react'
 
-export interface Project {
-  id: string
-  title: string
-  description?: string
-  image: string
-  images?: string[]
-  category?: string
-  style_type?: string
-  bhk_type?: string
-  area_size?: string
-  budget_range?: string
-  timeline?: string
-}
+import { Project } from '@/lib/types'
 
 interface ProjectsClientProps {
   projects: Project[]

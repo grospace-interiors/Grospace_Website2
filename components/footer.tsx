@@ -46,7 +46,7 @@ export function Footer() {
             {/* Brand & Social */}
             <div className="lg:col-span-1 space-y-8">
               <Link href="/" className="flex items-center gap-3 group">
-                <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full border-2 border-[#ee6669] flex items-center justify-center bg-white shadow-lg">
+                <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full flex items-center justify-center bg-transparent">
                    <Image 
                      src="/images/logo.png" 
                      alt="Mark" 

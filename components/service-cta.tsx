@@ -51,20 +51,17 @@ export function ServiceCTA() {
           className="flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-8"
         >
           <Button 
-            asChild
+            onClick={() => window.dispatchEvent(new CustomEvent('open-lead-modal'))}
             className="relative h-14 w-full overflow-hidden rounded-2xl bg-[#ee6669] px-8 text-[10px] font-bold uppercase tracking-[0.14em] text-white shadow-2xl shadow-[#ee6669]/20 transition-all duration-500 hover:bg-white hover:text-[#222222] sm:h-16 sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[0.22em]"
           >
-            <a href="#contact">
-               <span className="relative z-10 flex items-center justify-center">
-                  Book Free Site Visit <ArrowRight className="w-5 h-5 ml-4 group-hover:translate-x-1 transition-transform" />
-               </span>
-            </a>
+             <span className="relative z-10 flex items-center justify-center">
+                Book Free Site Visit <ArrowRight className="w-5 h-5 ml-4 group-hover:translate-x-1 transition-transform" />
+             </span>
           </Button>
 
           <Button 
-            variant="outline"
             onClick={() => window.open(`https://wa.me/918319032087?text=${encodeURIComponent("Hi, I'm interested in a free site visit.")}`, '_blank')}
-            className="flex h-14 w-full items-center justify-center rounded-2xl border-white/10 bg-white/5 px-8 text-[10px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md transition-all duration-500 hover:bg-white hover:text-[#222222] sm:h-16 sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[0.22em]"
+            className="flex h-14 w-full items-center justify-center rounded-2xl border border-white/20 bg-white/5 px-8 text-[10px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md transition-all duration-500 hover:bg-[#25D366] hover:border-[#25D366] hover:text-white sm:h-16 sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[0.22em]"
           >
             <MessageSquare className="w-5 h-5 mr-4" /> WhatsApp Us
           </Button>

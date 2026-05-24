@@ -26,17 +26,29 @@ export function DesignCommentSection() {
     try {
       const { error } = await supabase
         .from('design_comments')
-        .insert([{ user_name: name, comment_text: text, rating: rating }])
+        .insert([{ 
+          user_name: name, 
+          comment_text: text, 
+          rating: rating 
+        }])
 
-      if (error) throw error
+      if (error) {
+        console.error('Supabase Insert Error:', {
+          message: error.message,
+          details: error.details,
+          hint: error.hint,
+          code: error.code
+        })
+        throw error
+      }
       
       setSubmitted(true)
       setName('')
       setText('')
       setRating(5)
-    } catch (err) {
-      console.error('Error posting comment:', err)
-      alert('Failed to post comment. Please try again.')
+    } catch (err: any) {
+      console.error('Detailed Error posting comment:', err)
+      alert(`Failed to post story: ${err.message || 'Database connection error'}`)
     } finally {
       setSubmitting(false)
     }

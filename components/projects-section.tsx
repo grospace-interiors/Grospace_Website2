@@ -1,26 +1,8 @@
 'use client'
 
-import { supabase } from '@/lib/supabase'
+import { getProjects } from '@/lib/projects'
 import { ProjectsClient } from './projects-client'
 import { useEffect, useState } from 'react'
-
-async function getProjects() {
-  try {
-    const { data, error } = await supabase
-      .from('projects')
-      .select('*')
-      .order('created_at', { ascending: false })
-
-    if (error) {
-      console.error('Error fetching projects:', error)
-      return []
-    }
-    return data
-  } catch (err) {
-    console.error('Unexpected error fetching projects:', err)
-    return []
-  }
-}
 
 export function ProjectsSection({ limit }: { limit?: number }) {
   const [projects, setProjects] = useState<any[]>([])
@@ -28,12 +10,17 @@ export function ProjectsSection({ limit }: { limit?: number }) {
 
   useEffect(() => {
     async function load() {
-      const data = await getProjects()
+      // Fetch projects. We don't force 'featured: true' anymore 
+      // so we can fill the 4 slots even if fewer than 4 are featured.
+      // The sorting logic in getProjects now puts featured ones first automatically.
+      const data = await getProjects({ 
+        limit: limit 
+      })
       setProjects(data || [])
       setLoading(false)
     }
     load()
-  }, [])
+  }, [limit])
 
   if (loading) {
     return (

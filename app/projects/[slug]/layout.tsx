@@ -1,14 +1,10 @@
-import { supabase } from '@/lib/supabase';
+import { getProjects } from '@/lib/projects';
 
 export async function generateStaticParams() {
-  const { data: projects } = await supabase
-    .from('project_profile_cards')
-    .select('project_id');
-
-  if (!projects) return [];
+  const projects = await getProjects();
 
   return projects.map((p) => ({
-    slug: p.project_id,
+    slug: p.id,
   }));
 }
 

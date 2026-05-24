@@ -54,7 +54,7 @@ export function Navigation() {
         <div className="flex items-center justify-between h-16 lg:h-20 relative">
           {/* Logo - Left */}
           <Link href="/" className="flex items-center gap-2 lg:gap-3 group z-10">
-            <div className="relative h-8 w-8 lg:h-10 lg:w-10 shrink-0 overflow-hidden rounded-full border-2 border-[#ee6669] flex items-center justify-center bg-white shadow-sm transition-transform group-hover:scale-105">
+            <div className="relative h-8 w-8 lg:h-10 lg:w-10 shrink-0 overflow-hidden rounded-full flex items-center justify-center bg-transparent transition-transform group-hover:scale-105">
                <Image 
                  src="/images/logo.png" 
                  alt="Mark" 
@@ -191,7 +191,7 @@ export function Navigation() {
             <div className="p-6">
               <div className="flex justify-between items-center mb-12">
                   <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center gap-3 group">
-                  <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-[#ee6669] flex items-center justify-center bg-white shadow-sm">
+                  <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full flex items-center justify-center bg-transparent shadow-sm">
                       <Image 
                         src="/images/logo.png" 
                         alt="Mark" 

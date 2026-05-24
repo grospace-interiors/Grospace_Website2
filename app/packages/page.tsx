@@ -383,8 +383,7 @@ export default function PackagesPage() {
                    Book Free Site Visit
                  </Button>
                  <Button 
-                   variant="outline"
-                   className="w-full sm:w-auto border-white/20 text-white hover:border-[#25D366] hover:text-[#25D366] h-12 lg:h-14 px-10 lg:px-12 rounded-full text-[10px] lg:text-[11px] font-bold uppercase tracking-[0.2em] lg:tracking-[0.22em] transition-all duration-500 group"
+                   className="w-full sm:w-auto border border-white/20 bg-white/5 text-white hover:bg-[#25D366] hover:border-[#25D366] hover:text-white h-12 lg:h-14 px-10 lg:px-12 rounded-full text-[10px] lg:text-[11px] font-bold uppercase tracking-[0.2em] lg:tracking-[0.22em] transition-all duration-500 group"
                    onClick={() => window.open('https://wa.me/918319032087', '_blank')}
                  >
                    <MessageSquare className="w-5 h-5 mr-3 group-hover:animate-bounce" /> Chat on WhatsApp

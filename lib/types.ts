@@ -34,3 +34,22 @@ export type LandingBudgetCollection = {
   display_order: number;
   is_active: boolean;
 }
+
+export type Project = {
+  id: string;
+  title: string;
+  client_name?: string;
+  location?: string;
+  description?: string;
+  image: string;
+  images?: string[];
+  category?: string;
+  style_type?: string;
+  bhk_type?: string;
+  area_size?: string;
+  budget_range?: string;
+  timeline?: string;
+  is_featured: boolean;
+  is_active: boolean;
+  created_at?: string;
+}

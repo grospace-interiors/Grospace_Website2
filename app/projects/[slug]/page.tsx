@@ -1,34 +1,22 @@
 import ProjectClientPage from './ProjectClientPage';
-import { supabase } from '@/lib/supabase';
 import { notFound } from 'next/navigation';
-import { getProxyImageUrl } from '@/lib/utils';
+import { getProjectById } from '@/lib/projects';
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
 
-  // 1. Fetch the project profile
-  const { data: project, error: projectError } = await supabase
-    .from('project_profile_cards')
-    .select('*')
-    .eq('project_id', slug)
-    .single();
+  // 1. Fetch the project using centralized logic
+  const project = await getProjectById(slug);
 
-  if (projectError || !project) {
+  if (!project) {
     notFound();
   }
 
-  // 2. Fetch the gallery images for this project
-  const { data: images, error: imagesError } = await supabase
-    .from('project_images')
-    .select('image_path')
-    .eq('project_id', slug)
-    .order('sort_order', { ascending: true });
-
   const projectData = {
-    id: project.project_id,
+    id: project.id,
     title: project.title,
     description: project.description,
-    images: images ? images.map(img => getProxyImageUrl(img.image_path)) : []
+    images: project.images || []
   };
 
   return <ProjectClientPage project={projectData} />;
