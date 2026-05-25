@@ -15,7 +15,7 @@ export function LandingHero() {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <Image 
-          src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000" 
+          src="/images/landing.webp" 
           alt="Premium Living Room Interior" 
           fill 
           className="object-cover object-center"

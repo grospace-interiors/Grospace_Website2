@@ -8,13 +8,11 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { ProjectImageViewer } from '@/components/project-image-viewer'
-import { useBackButtonModal } from '@/hooks/use-back-button-modal';
-import { Button } from '@/components/ui/button'
+import { ProjectImageViewer } from '@/components/project-image-viewer';
 import { motion, AnimatePresence } from 'framer-motion'
+import { Clock, Sparkles, MapPin, ArrowRight } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import { Maximize2, MapPin, Clock, Layout, Sparkles } from 'lucide-react'
-
 import { Project } from '@/lib/types'
 
 interface ProjectsClientProps {
@@ -27,25 +25,25 @@ const CATEGORIES = [
   'Full Home',
   'Kitchen',
   'Wardrobes',
-  'Renovation',
-  'Luxury Interiors'
+  'Living Room',
+  'Bedroom',
+  'Kids Room',
+  'Mandir',
+  'Renovation'
 ]
 
 export function ProjectsClient({ projects, limit }: ProjectsClientProps) {
   const [activeCategory, setActiveCategory] = useState('All Projects')
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
   
+  // Image Viewer State
   const [isViewerOpen, setIsViewerOpen] = useState(false)
   const [viewerImage, setViewerImage] = useState<string | null>(null)
-  const [viewerTitle, setViewerTitle] = useState<string>('')
-
-  // Sync back button with modals
-  useBackButtonModal(isDialogOpen, () => setIsDialogOpen(false));
-  useBackButtonModal(isViewerOpen, () => setIsViewerOpen(false));
+  const [viewerTitle, setViewerTitle] = useState('')
 
   const filteredProjects = useMemo(() => {
-    let filtered = projects
+    let filtered = projects;
     if (activeCategory !== 'All Projects') {
       filtered = projects.filter(p => p.category === activeCategory)
     }
@@ -53,9 +51,8 @@ export function ProjectsClient({ projects, limit }: ProjectsClientProps) {
   }, [projects, activeCategory, limit])
 
   const handleProjectClick = (project: Project) => {
-    window.dispatchEvent(new CustomEvent('open-lead-modal-engagement'));
-    setSelectedProject(project);
-    setIsDialogOpen(true);
+    setSelectedProject(project)
+    setIsDialogOpen(true)
   }
 
   const openImageViewer = (imgSrc: string, title: string) => {
@@ -66,16 +63,16 @@ export function ProjectsClient({ projects, limit }: ProjectsClientProps) {
 
   return (
     <>
-      {/* Category Filters */}
+      {/* Category Filters (Only show if no limit is provided) */}
       {!limit && (
-        <div className="flex flex-wrap items-center justify-center gap-4 mb-20">
-          {CATEGORIES.map(cat => (
+        <div className="flex flex-wrap justify-center gap-3 mb-16 lg:mb-24">
+          {CATEGORIES.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
               className={cn(
-                "px-8 py-3 rounded-full text-[10px] font-bold uppercase tracking-[0.3em] transition-all duration-500 border",
-                activeCategory === cat 
+                "px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all duration-300 border",
+                activeCategory === cat
                   ? "bg-[#222222] text-white border-[#222222] shadow-xl shadow-[#222222]/20" 
                   : "bg-white text-zinc-400 border-zinc-100 hover:border-[#ee6669]/30 hover:text-[#ee6669]"
               )}
@@ -87,101 +84,87 @@ export function ProjectsClient({ projects, limit }: ProjectsClientProps) {
       )}
 
       {/* Projects Grid */}
-      <div className={cn(
-        "-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 no-scrollbar md:mx-0 md:grid md:overflow-visible md:px-0 md:pb-0 lg:gap-12",
-        limit ? "md:grid-cols-2 lg:grid-cols-12" : "md:grid-cols-2 lg:gap-12"
-      )}>
+      <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:gap-16">
         <AnimatePresence mode="popLayout">
-          {filteredProjects.map((project, index) => (
-            <motion.div
-              layout
-              key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className={cn(
-                "min-w-[86%] snap-center md:min-w-0",
-                limit && (
-                  index % 4 === 0 ? "lg:col-span-7" :
-                  index % 4 === 1 ? "lg:col-span-5" :
-                  index % 4 === 2 ? "lg:col-span-5" :
-                  "lg:col-span-7"
-                )
-              )}
-            >
-              <button
-                type="button"
-                className="group relative w-full text-left outline-none"
-                onClick={() => handleProjectClick(project)}
+          {filteredProjects.length > 0 ? (
+            filteredProjects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                layout
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.4 }}
+                className="group"
               >
-                {/* Image Container */}
-                <div className={cn(
-                  "relative overflow-hidden rounded-[2.5rem] bg-zinc-100 transition-all duration-700 shadow-lg border border-zinc-100 group-hover:border-[#ee6669]/20 group-hover:shadow-[0_48px_80px_-20px_rgba(45,27,78,0.15)] group-hover:-translate-y-2",
-                  limit ? (index % 4 === 1 || index % 4 === 2 ? "aspect-[4/5]" : "aspect-[16/11]") : "aspect-[16/10]"
-                )}>
-                  <Image
-                    src={project.image || "/placeholder.svg"}
-                    alt={project.title || "Interior Design Project"}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-[2000ms] group-hover:scale-110"
-                  />
-                  
-                  {/* Premium Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#222222]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700" />
-                  
-                  {/* Hover Content */}
-                  <div className="absolute inset-0 p-12 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-8 group-hover:translate-y-0">
-                    <div className="space-y-4">
-                       <div className="flex items-center gap-3">
-                          <span className="px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-[9px] font-bold uppercase tracking-widest">
-                            {project.style_type || 'Modern Luxury'}
-                          </span>
-                          <span className="px-4 py-1.5 rounded-full bg-[#ee6669] text-white text-[9px] font-bold uppercase tracking-widest">
-                            {project.bhk_type || '3BHK'}
-                          </span>
-                       </div>
-                       <h3 className="text-3xl lg:text-4xl font-serif font-light text-white leading-tight">
-                         {project.title}
-                       </h3>
-                       <div className="pt-4 flex items-center gap-2 text-white/60 text-[10px] font-bold uppercase tracking-[0.3em]">
-                          View Full Project <Maximize2 className="w-3.5 h-3.5 ml-2" />
+                <button 
+                  onClick={() => handleProjectClick(project)}
+                  className="w-full text-left outline-none"
+                >
+                  <div className="relative aspect-[16/11] overflow-hidden rounded-[2.5rem] lg:rounded-[3.5rem] bg-zinc-100 shadow-lg lg:shadow-2xl">
+                    <Image 
+                      src={project.image} 
+                      alt={project.title} 
+                      fill 
+                      className="object-cover transition-transform duration-[2000ms] group-hover:scale-105"
+                      sizes="(max-width: 640px) 100vw, 800px"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
+                    
+                    {/* Floating Badge */}
+                    <div className="absolute top-8 left-8 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
+                       <div className="bg-white/20 backdrop-blur-xl border border-white/30 px-6 py-2 rounded-full shadow-2xl">
+                          <span className="text-[9px] font-bold text-white uppercase tracking-widest">Explore Details</span>
                        </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Bottom Metadata (Always visible, editorial style) */}
-                <div className="mt-8 px-2 space-y-3">
-                   <div className="flex items-baseline justify-between border-b border-zinc-100 pb-4">
-                      <div className="space-y-1">
-                        <span className="text-[10px] font-bold text-[#ee6669] uppercase tracking-[0.3em]">{project.category || 'Full Home'}</span>
-                        <h4 className="text-2xl lg:text-3xl font-serif text-[#222222]">{project.title}</h4>
-                      </div>
-                      <div className="text-right">
-                         <p className="text-[9px] font-bold text-zinc-400 uppercase tracking-widest mb-1">Area</p>
-                         <p className="text-sm font-serif text-[#222222]">{project.area_size || '1,250 SQFT'}</p>
-                      </div>
-                   </div>
-                   <div className="flex items-center gap-6 pt-1">
-                      <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-full bg-zinc-50 flex items-center justify-center">
-                          <Clock className="w-3.5 h-3.5 text-[#ee6669]" />
+                  {/* Bottom Metadata (Always visible, editorial style) */}
+                  <div className="mt-8 px-2 space-y-3">
+                     <div className="flex items-baseline justify-between border-b border-zinc-100 pb-4">
+                        <div className="space-y-1">
+                          <span className="text-[10px] font-bold text-[#ee6669] uppercase tracking-[0.3em]">{project.category || 'Full Home'}</span>
+                          <h4 className="text-2xl lg:text-3xl font-serif text-[#222222]">{project.title}</h4>
                         </div>
-                        <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">{project.timeline || '55 DAYS'}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-full bg-zinc-50 flex items-center justify-center">
-                          <Sparkles className="w-3.5 h-3.5 text-[#ee6669]" />
+                        <div className="text-right">
+                           <p className="text-[9px] font-bold text-zinc-400 uppercase tracking-widest mb-1">Area</p>
+                           <p className="text-sm font-serif text-[#222222]">{project.area_size || '1,250 SQFT'}</p>
                         </div>
-                        <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">{project.style_type || 'Modern'}</span>
-                      </div>
-                   </div>
-                </div>
-              </button>
+                     </div>
+                     <div className="flex items-center gap-6 pt-1">
+                        <div className="flex items-center gap-2">
+                          <div className="w-8 h-8 rounded-full bg-zinc-50 flex items-center justify-center">
+                            <Clock className="w-3.5 h-3.5 text-[#ee6669]" />
+                          </div>
+                          <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">{project.timeline || '55 DAYS'}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-8 h-8 rounded-full bg-zinc-50 flex items-center justify-center">
+                            <Sparkles className="w-3.5 h-3.5 text-[#ee6669]" />
+                          </div>
+                          <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">{project.style_type || 'Modern'}</span>
+                        </div>
+                     </div>
+                  </div>
+                </button>
+              </motion.div>
+            ))
+          ) : (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="col-span-full py-40 text-center"
+            >
+              <div className="mb-8 inline-flex h-24 w-24 items-center justify-center rounded-full bg-zinc-50 border border-zinc-100 shadow-sm">
+                 <Sparkles className="h-10 w-10 text-[#ee6669]/20" />
+              </div>
+              <h3 className="text-3xl font-serif font-light text-[#222222]">Designs Under Curation</h3>
+              <p className="mt-4 text-sm text-zinc-400 font-light max-w-sm mx-auto leading-relaxed">
+                Our design studio is currently documenting our latest {activeCategory !== 'All Projects' ? activeCategory.toLowerCase() : 'interior'} masterpieces. 
+                New reveals happening soon.
+              </p>
             </motion.div>
-          ))}
+          )}
         </AnimatePresence>
       </div>
 
@@ -222,7 +205,7 @@ export function ProjectsClient({ projects, limit }: ProjectsClientProps) {
                         </div>
                         <div className="flex justify-between items-center">
                            <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Area Size</span>
-                           <span className="text-sm font-bold text-[#222222]">{selectedProject?.area_size || '1,200 sqft'}</span>
+                           <span className="text-sm font-bold text-[#222222]">{selectedProject?.area_size || '1,250 sqft'}</span>
                         </div>
                         <div className="flex justify-between items-center">
                            <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Timeline</span>

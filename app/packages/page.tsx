@@ -116,7 +116,7 @@ export default function PackagesPage() {
         {/* 1. HERO SECTION */}
         <section className="relative flex min-h-[520px] items-center justify-center overflow-hidden bg-[#222222] py-16 lg:min-h-[580px] lg:py-20">
           <Image 
-            src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1600"
+            src="/images/landing-hero.webp"
             alt="Premium Interior Background"
             fill
             className="object-cover opacity-40"
@@ -211,7 +211,7 @@ export default function PackagesPage() {
                     </div>
 
                     <ul className="space-y-3 lg:space-y-4 pt-4 lg:pt-6 border-t border-zinc-100">
-                      {pkg.features.map(f => (
+                      {pkg.features.map((f: string) => (
                         <li key={f} className="flex items-center gap-2.5 lg:gap-3">
                           <Check className="w-2.5 h-2.5 lg:w-3 lg:h-3 text-[#ee6669]" />
                           <span className="text-[10px] lg:text-[11px] text-zinc-600 font-light">{f}</span>

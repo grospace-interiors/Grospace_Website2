@@ -201,7 +201,7 @@ export function ProjectsPageClient() {
                  <div className="group min-w-[84%] snap-center space-y-6 md:min-w-0 lg:space-y-8">
                     <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-2xl lg:rounded-[3.5rem] border border-white/5">
                        <Image 
-                         src="/images/transformations/B1.png" 
+                         src="/images/transformations/B1.webp" 
                          alt="Signature Living Transformation" 
                          fill 
                          className="object-cover transition-transform duration-[2000ms] group-hover:scale-105"
@@ -219,7 +219,7 @@ export function ProjectsPageClient() {
                  <div className="group min-w-[84%] snap-center space-y-6 md:mt-32 md:min-w-0 lg:space-y-8">
                     <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-2xl lg:rounded-[3.5rem] border border-white/5">
                        <Image 
-                         src="/images/transformations/b2.png" 
+                         src="/images/transformations/b2.webp" 
                          alt="Modern Haven Duplex" 
                          fill 
                          className="object-cover transition-transform duration-[2000ms] group-hover:scale-105"

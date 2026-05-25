@@ -73,6 +73,14 @@ export function LeadModal() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // 1. Strict Phone Validation (India 10 digits)
+    const phoneRegex = /^[6-9]\d{9}$/
+    if (!phoneRegex.test(formData.phone)) {
+      alert('Please enter a valid 10-digit mobile number starting with 6, 7, 8, or 9.')
+      return
+    }
+
     setStatus('loading')
     
     try {
@@ -118,7 +126,7 @@ export function LeadModal() {
           {/* Left Side: Premium Image (Desktop Only) */}
           <div className="hidden lg:block lg:w-5/12 relative">
             <Image 
-              src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1200"
+              src="/images/landing-hero.webp"
               alt="Luxury Interior Design"
               fill
               className="object-cover"

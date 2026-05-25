@@ -51,6 +51,7 @@ export function Footer() {
                      src="/images/logo.png" 
                      alt="Mark" 
                      fill 
+                     sizes="48px"
                      className="object-cover"
                    />
                 </div>

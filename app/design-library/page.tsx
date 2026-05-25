@@ -32,7 +32,7 @@ const galleryItems = [
     title: 'Modern Minimalist Living',
     description: 'Clean lines and warm oak textures for a spacious 2BHK living area.',
     category: 'Living Room',
-    image: '/images/living%20room.jpg',
+    image: '/images/living room.webp',
     tag: '2BHK'
   },
   {
@@ -40,7 +40,7 @@ const galleryItems = [
     title: 'Chef\'s Paradise Kitchen',
     description: 'High-gloss acrylic finish with smart pull-out storage solutions.',
     category: 'Kitchen',
-    image: '/images/modular%20kitchen.jpg',
+    image: '/images/modular kitchen.webp',
     tag: 'Luxury'
   },
   {
@@ -48,7 +48,7 @@ const galleryItems = [
     title: 'Serene Master Suite',
     description: 'Ambient lighting and upholstered headboard for ultimate relaxation.',
     category: 'Bedroom',
-    image: '/images/bedroom.jpg',
+    image: '/images/bedroom.webp',
     tag: 'Luxury'
   },
   {
@@ -56,7 +56,7 @@ const galleryItems = [
     title: 'Floating Gypsum Ceiling',
     description: 'Layered false ceiling with hidden COB strips for a dramatic effect.',
     category: 'False Ceiling',
-    image: '/images/false%20ceiling.jpg',
+    image: '/images/false ceiling.webp',
     tag: 'Modern'
   },
   {
@@ -72,7 +72,7 @@ const galleryItems = [
     title: 'Seamless Wardrobe',
     description: 'Floor-to-ceiling sliding wardrobe with tinted glass inserts.',
     category: 'Wardrobe',
-    image: '/images/wardrobe.jpg',
+    image: '/images/wardrobe.webp',
     tag: 'Smart Storage'
   },
   {
@@ -88,7 +88,7 @@ const galleryItems = [
     title: 'Kids Creative Zone',
     description: 'Vibrant colors meet functional study spaces for the little ones.',
     category: 'Bedroom',
-    image: '/images/kids%20room.jpg',
+    image: '/images/kids room.webp',
     tag: 'Kids Room'
   },
   {
@@ -104,7 +104,7 @@ const galleryItems = [
     title: 'Divine Mandir Corner',
     description: 'Traditional aesthetics blended with modern CNC cut patterns.',
     category: 'Living Room',
-    image: '/images/mandir.jpg',
+    image: '/images/mandir.webp',
     tag: 'Traditional'
   }
 ]

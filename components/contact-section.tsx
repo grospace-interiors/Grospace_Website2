@@ -25,6 +25,14 @@ export function ContactSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // 1. Phone Validation
+    const phoneRegex = /^[6-9]\d{9}$/
+    if (!phoneRegex.test(formData.phone)) {
+      alert('Please enter a valid 10-digit mobile number.')
+      return
+    }
+
     setSubmissionStatus('loading');
 
     try {

@@ -173,7 +173,7 @@ export default function HomeInteriorsLandingPage() {
                 >
                   <div className="relative h-[320px] w-full overflow-hidden rounded-3xl border-4 border-white shadow-2xl transition-colors duration-700 group-hover:border-[#ee6669]/10 sm:h-[600px] sm:rounded-[4rem] sm:border-8">
                     <Image 
-                      src="/images/living%20room.jpg" 
+                      src="/images/living room.webp" 
                       alt="Premium Interior Budgeting" 
                       fill 
                       sizes="(max-width: 1024px) 100vw, 800px"

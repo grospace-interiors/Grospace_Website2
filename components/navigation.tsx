@@ -29,10 +29,10 @@ export function Navigation() {
   ]
 
   const specializedItems = [
-    { label: 'Modular Kitchen', href: '/lp/landing-page' },
-    { label: 'Wardrobes', href: '/lp/landing-page' },
-    { label: 'False Ceiling', href: '/lp/landing-page' },
-    { label: 'Space Planning', href: '/lp/landing-page' },
+    { label: 'Modular Kitchen', href: '/services/modular-interiors' },
+    { label: 'Wardrobes', href: '/services/modular-interiors' },
+    { label: 'False Ceiling', href: '/services/full-home-interiors' },
+    { label: 'Space Planning', href: '/services/full-home-interiors' },
   ]
 
   const handleContactClick = (e: React.MouseEvent) => {
@@ -59,6 +59,7 @@ export function Navigation() {
                  src="/images/logo.png" 
                  alt="Mark" 
                  fill 
+                 sizes="(max-width: 768px) 32px, 40px"
                  className="object-cover"
                  priority
                />
@@ -154,12 +155,10 @@ export function Navigation() {
           {/* CTA - Right */}
           <div className="flex items-center gap-4 z-10">
             <Button 
-                asChild
+                onClick={() => window.dispatchEvent(new CustomEvent('open-lead-modal'))}
                 className="hidden lg:flex bg-[#ee6669] hover:bg-[#222222] text-white rounded-full px-8 py-2 h-12 text-[10px] font-bold uppercase tracking-widest shadow-lg shadow-[#ee6669]/20 transition-all active:scale-95"
               >
-                <Link href="/lp/landing-page">
-                  Get Free Quote
-                </Link>
+                Get Free Quote
               </Button>
 
             {/* Mobile Menu Button */}
@@ -196,6 +195,7 @@ export function Navigation() {
                         src="/images/logo.png" 
                         alt="Mark" 
                         fill 
+                        sizes="40px"
                         className="object-cover"
                         priority
                       />
@@ -248,12 +248,13 @@ export function Navigation() {
 
               <div className="absolute bottom-8 left-6 right-6">
                 <Button 
-                  asChild
+                  onClick={() => {
+                    setIsOpen(false);
+                    window.dispatchEvent(new CustomEvent('open-lead-modal'));
+                  }}
                   className="w-full bg-[#ee6669] hover:bg-[#222222] text-white h-16 rounded-2xl text-[11px] font-bold uppercase tracking-widest shadow-xl shadow-[#ee6669]/20"
                 >
-                  <Link href="/lp/landing-page" onClick={() => setIsOpen(false)}>
-                    Get Free Quote
-                  </Link>
+                  Get Free Quote
                 </Button>
               </div>
             </div>

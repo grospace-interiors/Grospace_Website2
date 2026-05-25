@@ -8,32 +8,32 @@ export function InspirationGallery() {
   const ideas = [
     {
       title: 'Living Room',
-      image: '/images/living%20room.jpg',
+      image: '/images/living room.webp',
       span: 'lg:col-span-2 lg:row-span-2',
     },
     {
       title: 'Kids Room',
-      image: '/images/kids%20room.jpg',
+      image: '/images/kids room.webp',
       span: 'lg:col-span-1 lg:row-span-1',
     },
     {
       title: 'Mandir Design',
-      image: '/images/mandir.jpg',
+      image: '/images/mandir.webp',
       span: 'lg:col-span-1 lg:row-span-2',
     },
     {
       title: 'Master Bedroom',
-      image: '/images/bedroom.jpg',
+      image: '/images/bedroom.webp',
       span: 'lg:col-span-1 lg:row-span-1',
     },
     {
       title: 'Modular Kitchen',
-      image: '/images/modular%20kitchen.jpg',
+      image: '/images/modular kitchen.webp',
       span: 'lg:col-span-2 lg:row-span-1',
     },
     {
       title: 'False Ceiling',
-      image: '/images/false%20ceiling.jpg',
+      image: '/images/false ceiling.webp',
       span: 'lg:col-span-2 lg:row-span-1',
     },
   ]

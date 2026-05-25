@@ -8,25 +8,25 @@ export function OneStopShop() {
     {
       title: 'Modular Kitchens',
       description: 'Functional kitchen and wardrobe solutions.',
-      image: '/images/modular-interiors-hero.jpg',
+      image: '/images/modular-interiors-hero.webp',
       href: '/services/modular-interiors'
     },
     {
       title: 'Full Home Interiors',
       description: 'End-to-end interior solutions for your home.',
-      image: '/images/full%20home%20interior.jpg',
+      image: '/images/full home interior.webp',
       href: '/services/full-home-interiors'
     },
     {
       title: 'Luxury Interiors',
       description: 'Tailored interiors that define your lifestyle.',
-      image: '/images/luxary%20interion.jpg',
+      image: '/images/luxary interion.webp',
       href: '/services/luxury-interiors'
     },
     {
       title: 'Renovations',
       description: 'Expert solutions to remodel your space.',
-      image: '/images/renovation.jpg',
+      image: '/images/renovation.webp',
       href: '/services/renovations'
     },
   ]

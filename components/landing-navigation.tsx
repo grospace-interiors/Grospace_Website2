@@ -11,15 +11,23 @@ import { MobileQuickNav } from './mobile-quick-nav'
 
 export function LandingNavigation() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isScrollingDown, setIsScrollingDown] = useState(false)
+  const [lastScrollY, setLastScrollY] = useState(0)
   const PHONE_NUMBER = '+918319032087'
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+      const currentScrollY = window.scrollY
+      const isTop = currentScrollY < 50
+      
+      setIsScrolled(!isTop)
+      setIsScrollingDown(currentScrollY > lastScrollY)
+      setLastScrollY(currentScrollY)
     }
-    window.addEventListener('scroll', handleScroll)
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [lastScrollY])
 
   return (
     <motion.nav 
@@ -48,6 +56,7 @@ export function LandingNavigation() {
                  src="/images/logo.png" 
                  alt="Mark" 
                  fill 
+                 sizes="(max-width: 768px) 32px, 40px"
                  className="object-cover"
                  priority
                />
@@ -93,8 +102,19 @@ export function LandingNavigation() {
         </div>
       </div>
       
-      {/* Mobile Quick Nav (Only visible on scroll or fixed on landing page) */}
-      <MobileQuickNav />
+      {/* Mobile Quick Nav - Only visible when header is white (scrolled) AND scrolling down */}
+      <AnimatePresence>
+        {isScrolled && isScrollingDown && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="overflow-hidden border-t border-zinc-50"
+          >
+            <MobileQuickNav />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   )
 }

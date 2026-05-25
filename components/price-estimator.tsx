@@ -360,21 +360,21 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
               title="Home Interior"
               desc="Full home renovation for apartments & villas."
               icon={Home}
-              img="/images/living%20room.jpg"
+              img="/images/living room.webp"
             />
             <CategoryCard 
               type="kitchen"
               title="Modular Kitchen"
               desc="Smart kitchens with world-class storage."
               icon={Zap}
-              img="/images/kitchen.jpg"
+              img="/images/kitchen.webp"
             />
             <CategoryCard 
               type="wardrobe"
               title="Luxury Wardrobes"
               desc="Bespoke designer wardrobes for premium homes."
               icon={Award}
-              img="/images/wardrobe.jpg"
+              img="/images/wardrobe.webp"
             />
           </div>
 

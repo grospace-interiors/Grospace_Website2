@@ -9,21 +9,21 @@ const serviceCategories = [
   {
     title: 'Modular Interiors',
     slug: 'modular-interiors',
-    image: '/images/modular-interiors-hero.jpg',
+    image: '/images/modular-interiors-hero.webp',
     description: 'Precision-engineered kitchens, wardrobes, and storage solutions manufactured with state-of-the-art technology.',
     count: '01'
   },
   {
     title: 'Full Home Interiors',
     slug: 'full-home-interiors',
-    image: '/images/full home interior.jpg',
+    image: '/images/full home interior.webp',
     description: 'Transform your entire living space with a cohesive design language that reflects your personality and lifestyle.',
     count: '02'
   },
   {
     title: 'Luxury Interiors',
     slug: 'luxury-interiors',
-    image: '/images/luxary interion.jpg',
+    image: '/images/luxary interion.webp',
     description: 'Exquisite, bespoke designs for an elite lifestyle, featuring rare materials and unparalleled craftsmanship.',
     count: '03'
   }
@@ -33,25 +33,25 @@ const specializedServices = [
   {
     title: 'Modular Kitchen',
     slug: 'modular-kitchen',
-    image: '/images/modular kitchen.jpg',
+    image: '/images/modular kitchen.webp',
     description: 'Ergonomic layouts & smart storage.'
   },
   {
     title: 'Wardrobes',
     slug: 'wardrobes',
-    image: '/images/wardrobe.jpg',
+    image: '/images/wardrobe.webp',
     description: 'Custom closets & sliding systems.'
   },
   {
     title: 'False Ceiling',
     slug: 'false-ceiling',
-    image: '/images/false ceiling.jpg',
+    image: '/images/false ceiling.webp',
     description: 'Designer lighting & layered aesthetics.'
   },
   {
     title: 'Space Planning',
     slug: 'space-planning',
-    image: '/images/kitchen.jpg',
+    image: '/images/kitchen.webp',
     description: 'Strategic layouts & optimization.'
   }
 ]

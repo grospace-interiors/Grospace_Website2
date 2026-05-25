@@ -17,17 +17,17 @@ import { cn } from '@/lib/utils'
 
 const slides = [
   {
-    src: '/hero-2.jpg',
+    src: '/hero-2.webp',
     title: 'Premium Finish for Modern Homes',
     subtitle: "Bhopal's Trusted Choice"
   },
   {
-    src: '/hero-3.jpg',
+    src: '/hero-3.webp',
     title: 'Designs that Fit Your Budget',
     subtitle: 'Transparent Pricing, No Hidden Costs'
   },
   {
-    src: '/hero-4.jpg',
+    src: '/hero-4.webp',
     title: 'Transform Your Space Today',
     subtitle: '50+ Homes Delivered on Time'
   }

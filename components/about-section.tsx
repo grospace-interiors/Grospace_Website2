@@ -34,7 +34,7 @@ export function AboutSection() {
           {/* Right Image */}
           <div className="relative order-1 h-72 overflow-hidden rounded-3xl sm:h-96 lg:order-2 lg:h-[500px] lg:rounded-[3rem]">
             <Image
-              src="/about-kalpvriksh.jpg"
+              src="/about-kalpvriksh.webp"
               alt="Grospace interior design detail and materials"
               fill
               className="object-cover"

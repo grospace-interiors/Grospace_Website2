@@ -47,7 +47,7 @@ export function ShopSection() {
       name: 'Essential Bundle of 4',
       description: 'A thoughtful curation of fundamental interior elements designed for efficiency and modern aesthetics.',
       price: 149000,
-      image_url: '/images/shop/esential.jpg',
+      image_url: '/images/shop/esential.webp',
       items: ['Modular Kitchen', 'Master Wardrobe', 'TV Unit', 'Basic False Ceiling'],
     },
     {
@@ -55,7 +55,7 @@ export function ShopSection() {
       name: 'Premium Bundle of 6',
       description: 'Elevated space planning meeting sophisticated finishes for a balanced contemporary lifestyle.',
       price: 289000,
-      image_url: '/images/shop/smart.jpg',
+      image_url: '/images/shop/smart.webp',
       items: ['Modular Kitchen', '2 Wardrobes', 'TV Unit', 'Study Nook', 'Premium False Ceiling', 'Shoe Rack'],
       badge: 'CURATED FAVORITE',
     },
@@ -64,7 +64,7 @@ export function ShopSection() {
       name: 'Signature Series',
       description: 'Our most comprehensive interior solution, featuring artisanal details and complete home transformation.',
       price: 500000,
-      image_url: '/images/shop/signature.jpg',
+      image_url: '/images/shop/signature.webp',
       items: ['Full Home Interior', 'Premium Kitchen', 'Master Wardrobe', 'False Ceiling'],
     }
   ]

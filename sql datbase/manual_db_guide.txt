@@ -1,0 +1,21 @@
+# Database Image Migration Guide
+
+If you are manually updating your Supabase database from JPG to WebP, follow these rules to ensure the website doesn't show broken images.
+
+### 1. The Projects Table
+Every project has a 'cover' image and a 'gallery' array.
+- Column `image`: Change `filename.jpg` to `filename.webp`
+- Column `images`: This is a list. Ensure every item in the list ends in `.webp` instead of `.jpg` or `.png`.
+
+### 2. The Packages Table
+- Column `image_url`: Change the path from `/images/shop/example.jpg` to `/images/shop/example.webp`.
+
+### 3. Why we switched to WebP?
+- **Speed:** WebP files are much smaller (KB vs MB).
+- **SEO:** Google gives higher rankings to fast-loading sites.
+- **Data:** Users on mobile will save data when browsing your portfolio.
+
+### SQL Helper (Run this in Supabase to save hours of manual work):
+UPDATE projects SET image = REPLACE(image, '.jpg', '.webp');
+UPDATE projects SET images = ARRAY(SELECT REPLACE(img, '.jpg', '.webp') FROM unnest(images) AS img);
+UPDATE packages SET image_url = REPLACE(image_url, '.jpg', '.webp');

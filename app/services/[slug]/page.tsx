@@ -20,7 +20,7 @@ const services = {
     title: 'Full Home Interiors',
     headline: 'Complete Home Interiors Designed Around Your Lifestyle',
     description: 'A complete home transformation experience focused on comfort, functionality, and coordinated aesthetics. We handle every detail, from design to final handover.',
-    image: '/images/full home interior.jpg',
+    image: '/images/full home interior.webp',
     inclusions: [
       { title: 'Living Room', desc: 'Heart of the home with custom TV units and curated lighting.' },
       { title: 'Bedrooms', desc: 'Personalized sanctuaries with bespoke wardrobes and beds.' },
@@ -50,7 +50,7 @@ const services = {
     title: 'Modular Interiors',
     headline: 'Modern Modular Interiors Built For Everyday Functionality',
     description: 'Smart, efficient storage and organized living systems. Precision-engineered modular solutions for the modern Indian household.',
-    image: '/images/modular-interiors-hero.jpg',
+    image: '/images/modular-interiors-hero.webp',
     inclusions: [
       { title: 'Smart Kitchens', desc: 'High-performance layouts with European hardware.' },
       { title: 'Efficient Wardrobes', desc: 'Maximized internal organization and sleek finishes.' },
@@ -82,7 +82,7 @@ const services = {
     title: 'Luxury Interiors',
     headline: 'Luxury Interiors Designed With Timeless Elegance',
     description: 'A bespoke experience where refinement meets personalization. We combine signature design philosophy with white-glove service for elite residences.',
-    image: '/images/luxary interion.jpg',
+    image: '/images/luxary interion.webp',
     inclusions: [
       { title: 'Signature Living', desc: 'Spacious, editorial-grade designs with premium lighting.' },
       { title: 'Master Suites', desc: 'Elegant textures and walk-in closets for refined living.' },
