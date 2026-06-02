@@ -11,20 +11,41 @@ import { getProjects } from '@/lib/projects'
 import { Project } from '@/lib/types'
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog'
 import { cn } from '@/lib/utils'
+import { supabase } from '@/lib/supabase'
+import Link from 'next/link'
 
 export function ProjectsPageClient() {
   const [featuredProject, setFeaturedProject] = useState<Project | null>(null)
   const [loading, setLoading] = useState(true)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const [isMaintenance, setIsMaintenance] = useState(false)
 
   useEffect(() => {
     async function loadFeatured() {
-      const data = await getProjects({ featured: true, limit: 1 })
-      if (data && data.length > 0) {
-        setFeaturedProject(data[0])
+      try {
+        // Fetch maintenance toggle
+        const { data: settings } = await supabase
+          .from('site_settings')
+          .select('value')
+          .eq('key', 'projects_maintenance')
+          .maybeSingle()
+
+        if (settings?.value?.enabled) {
+          setIsMaintenance(true)
+          setLoading(false)
+          return
+        }
+
+        const data = await getProjects({ featured: true, limit: 1 })
+        if (data && data.length > 0) {
+          setFeaturedProject(data[0])
+        }
+      } catch (error) {
+        console.error('Error loading featured project:', error)
+      } finally {
+        setLoading(false)
       }
-      setLoading(false)
     }
     loadFeatured()
   }, [])
@@ -33,6 +54,78 @@ export function ProjectsPageClient() {
     setSelectedProject(project)
     setIsDialogOpen(true)
     window.dispatchEvent(new CustomEvent('open-lead-modal-engagement'))
+  }
+
+  if (isMaintenance) {
+    return (
+      <main className="overflow-x-clip bg-white">
+        {/* HERO SECTION */}
+        <section className="relative w-full overflow-hidden pb-16 pt-20 lg:pb-24 lg:pt-56 bg-[#E5EEE4]">
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#ee6669]/5 rounded-full blur-[120px] -mr-64 -mt-64" />
+          <div className="relative z-10 mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-12 text-center">
+            <div className="max-w-4xl mx-auto space-y-8">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="inline-flex items-center gap-2 rounded-full border border-[#222222]/5 bg-white/50 backdrop-blur-md px-8 py-3 text-[10px] font-bold uppercase tracking-[0.4em] text-[#ee6669] shadow-sm"
+              >
+                <Star className="w-3.5 h-3.5" />
+                Portfolio Excellence
+              </motion.div>
+              
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1, duration: 0.8 }}
+                className="text-4xl font-serif font-light leading-[1.05] tracking-tight text-[#222222] sm:text-5xl lg:text-7xl"
+              >
+                Spaces designed <br />
+                <span className="text-[#ee6669]">around modern living.</span>
+              </motion.h1>
+            </div>
+          </div>
+        </section>
+
+        {/* MAINTENANCE CONTENT */}
+        <section className="py-24 lg:py-40 bg-white">
+           <div className="mx-auto max-w-[1400px] px-4 text-center">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex flex-col items-center justify-center space-y-10"
+              >
+                <div className="relative">
+                   <div className="absolute inset-0 bg-[#ee6669]/10 rounded-full blur-3xl" />
+                   <div className="w-24 h-24 rounded-3xl bg-zinc-50 border border-zinc-100 flex items-center justify-center relative z-10">
+                      <Sparkles className="w-10 h-10 text-[#ee6669]" />
+                   </div>
+                </div>
+                
+                <div className="space-y-6">
+                   <h2 className="text-3xl lg:text-6xl font-serif font-light text-[#222222]">
+                      Portfolio <span className="text-[#ee6669] italic">Under Curation</span>
+                   </h2>
+                   <p className="text-zinc-500 text-base lg:text-xl font-light max-w-2xl mx-auto leading-relaxed">
+                      We are currently updating our portfolio with our latest award-winning projects. 
+                      A new selection of real homes and real stories will be revealed very soon.
+                   </p>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-5 pt-4">
+                   <Button asChild className="bg-[#ee6669] hover:bg-[#222222] text-white rounded-2xl px-10 h-14 lg:h-16 uppercase tracking-[0.2em] text-[10px] font-bold shadow-xl shadow-[#ee6669]/20 transition-all duration-500">
+                      <Link href="/lp/landing-page">Book Free Site Visit</Link>
+                   </Button>
+                   <Button variant="outline" className="border-zinc-200 text-zinc-400 hover:text-[#222222] rounded-2xl px-10 h-14 lg:h-16 uppercase tracking-[0.2em] text-[10px] font-bold transition-all duration-500">
+                      Check Back Soon
+                   </Button>
+                </div>
+              </motion.div>
+           </div>
+        </section>
+
+        <ServiceCTA />
+      </main>
+    )
   }
 
   return (

@@ -116,10 +116,24 @@ export default function DesignLibraryPage() {
   const [activeCategory, setActiveCategory] = useState('All Designs')
   const [galleryItems, setGalleryItems] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
+  const [isMaintenance, setIsMaintenance] = useState(false)
 
   useEffect(() => {
     async function fetchDesigns() {
       try {
+        // Fetch maintenance toggle
+        const { data: settings } = await supabase
+          .from('site_settings')
+          .select('value')
+          .eq('key', 'design_library_maintenance')
+          .maybeSingle()
+
+        if (settings?.value?.enabled) {
+          setIsMaintenance(true)
+          setLoading(false)
+          return
+        }
+
         const { data, error } = await supabase
           .from('design_library')
           .select('*')
@@ -178,33 +192,34 @@ export default function DesignLibraryPage() {
           </div>
         </section>
 
-        {/* CATEGORY FILTERS */}
-        <section className="sticky top-12 z-40 bg-white/90 backdrop-blur-xl border-y border-zinc-100 py-4 lg:py-6">
-          <div className="max-w-[1400px] mx-auto px-5 lg:px-12">
-            <div className="flex items-center gap-3 overflow-x-auto no-scrollbar pb-1 lg:pb-0">
-               <div className="flex items-center gap-2 pr-4 border-r border-zinc-100 shrink-0">
-                  <Filter className="w-3.5 h-3.4 text-zinc-400" />
-                  <span className="text-[9px] font-bold uppercase tracking-widest text-zinc-400">Filter By</span>
-               </div>
-               {categories.map((cat) => (
-                 <button
-                   key={cat}
-                   onClick={() => setActiveCategory(cat)}
-                   className={cn(
-                     "whitespace-nowrap px-5 py-2.5 rounded-full text-[9px] lg:text-[10px] font-bold uppercase tracking-widest transition-all duration-300",
-                     activeCategory === cat 
-                       ? "bg-[#222222] text-white shadow-lg shadow-[#222222]/20" 
-                       : "bg-zinc-50 text-zinc-400 hover:bg-zinc-100 hover:text-[#222222]"
-                   )}
-                 >
-                   {cat}
-                 </button>
-               ))}
+        {!isMaintenance && (
+          <section className="sticky top-12 z-40 bg-white/90 backdrop-blur-xl border-y border-zinc-100 py-4 lg:py-6">
+            <div className="max-w-[1400px] mx-auto px-5 lg:px-12">
+              <div className="flex items-center gap-3 overflow-x-auto no-scrollbar pb-1 lg:pb-0">
+                 <div className="flex items-center gap-2 pr-4 border-r border-zinc-100 shrink-0">
+                    <Filter className="w-3.5 h-3.4 text-zinc-400" />
+                    <span className="text-[9px] font-bold uppercase tracking-widest text-zinc-400">Filter By</span>
+                 </div>
+                 {categories.map((cat) => (
+                   <button
+                     key={cat}
+                     onClick={() => setActiveCategory(cat)}
+                     className={cn(
+                       "whitespace-nowrap px-5 py-2.5 rounded-full text-[9px] lg:text-[10px] font-bold uppercase tracking-widest transition-all duration-300",
+                       activeCategory === cat 
+                         ? "bg-[#222222] text-white shadow-lg shadow-[#222222]/20" 
+                         : "bg-zinc-50 text-zinc-400 hover:bg-zinc-100 hover:text-[#222222]"
+                     )}
+                   >
+                     {cat}
+                   </button>
+                 ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
-        {/* IMAGE GRID */}
+        {/* IMAGE GRID OR MAINTENANCE */}
         <section className="py-12 lg:py-24 min-h-[400px]">
           <div className="max-w-[1400px] mx-auto px-5 lg:px-12">
             {loading ? (
@@ -212,6 +227,34 @@ export default function DesignLibraryPage() {
                 <Loader2 className="w-10 h-10 text-[#ee6669] animate-spin" />
                 <p className="text-zinc-400 font-serif italic">Loading inspirations...</p>
               </div>
+            ) : isMaintenance ? (
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="py-12 lg:py-20 flex flex-col items-center justify-center text-center max-w-4xl mx-auto"
+              >
+                <div className="mb-10 relative">
+                   <div className="absolute inset-0 bg-[#ee6669]/10 rounded-full blur-3xl" />
+                   <div className="w-24 h-24 rounded-3xl bg-zinc-50 border border-zinc-100 flex items-center justify-center relative z-10 shadow-sm">
+                      <Sparkles className="w-10 h-10 text-[#ee6669]" />
+                   </div>
+                </div>
+                <h2 className="text-3xl lg:text-6xl font-serif font-light text-[#222222] mb-6 leading-tight">
+                  Curating New <span className="text-[#ee6669] italic">Masterpieces</span>
+                </h2>
+                <p className="text-zinc-500 text-base lg:text-xl font-light max-w-2xl leading-relaxed">
+                  Our design studio is currently documenting our latest transformations. 
+                  Fresh inspiration is being added to our library and will be revealed very soon.
+                </p>
+                <div className="mt-12 flex flex-col sm:flex-row gap-5">
+                   <Button asChild className="bg-[#ee6669] hover:bg-[#222222] text-white rounded-2xl px-10 h-14 lg:h-16 uppercase tracking-[0.2em] text-[10px] font-bold shadow-xl shadow-[#ee6669]/20 transition-all duration-500">
+                      <Link href="/lp/landing-page">Book Free Site Visit</Link>
+                   </Button>
+                   <Button variant="outline" className="border-zinc-200 text-zinc-400 hover:text-[#222222] rounded-2xl px-10 h-14 lg:h-16 uppercase tracking-[0.2em] text-[10px] font-bold transition-all duration-500">
+                      Check Back Soon
+                   </Button>
+                </div>
+              </motion.div>
             ) : (
               <motion.div 
                 layout
@@ -285,7 +328,7 @@ export default function DesignLibraryPage() {
               </motion.div>
             )}
 
-            {!loading && (
+            {!loading && !isMaintenance && (
               <div className="mt-24 lg:mt-32 relative overflow-hidden rounded-[3rem] lg:rounded-[4rem] bg-[#222222] py-16 lg:py-24 px-6">
                 <div className="absolute inset-0 bg-gradient-to-tr from-[#ee6669]/10 via-transparent to-transparent opacity-40 pointer-events-none" />
                 
