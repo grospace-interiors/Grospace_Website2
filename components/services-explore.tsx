@@ -10,7 +10,7 @@ const serviceCategories = [
     title: 'Modular Interiors',
     slug: 'modular-interiors',
     image: '/images/modular-interiors-hero.webp',
-    description: 'Precision-engineered kitchens, wardrobes, and storage solutions manufactured with state-of-the-art technology.',
+    description: 'Custom kitchens, wardrobes, and storage solutions built with transparent materials and precise site execution.',
     count: '01'
   },
   {
@@ -85,7 +85,7 @@ export function ServicesExplore() {
             viewport={{ once: true }}
             className="mb-4 max-w-sm text-sm font-light text-zinc-500 sm:text-lg"
           >
-            Explore our specialized interior solutions, from factory-perfect modular units to bespoke luxury residences.
+            Explore our specialized interior solutions, from transparent modular work to bespoke luxury residences.
           </motion.p>
         </div>
 

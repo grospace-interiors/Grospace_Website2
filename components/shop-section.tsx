@@ -3,11 +3,18 @@
 import { supabase } from '@/lib/supabase'
 import { Package } from '@/lib/types'
 import Image from 'next/image'
-import { ArrowRight, Calculator } from 'lucide-react'
+import Link from 'next/link'
+import { ArrowRight, Calculator, Check, Sparkles } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Badge } from '@/components/ui/badge'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog'
 
 async function getPackages() {
   try {
@@ -31,6 +38,8 @@ async function getPackages() {
 export function ShopSection() {
   const [packages, setPackages] = useState<Package[]>([])
   const [loading, setLoading] = useState(true)
+  const [selectedPackage, setSelectedPackage] = useState<any | null>(null)
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   useEffect(() => {
     async function load() {
@@ -40,6 +49,11 @@ export function ShopSection() {
     }
     load()
   }, [])
+
+  const handleViewDetails = (pkg: any) => {
+    setSelectedPackage(pkg)
+    setIsDialogOpen(true)
+  }
 
   const displayPackages = packages.length > 0 ? packages : [
     {
@@ -103,11 +117,13 @@ export function ShopSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-             <Button variant="link" className="group h-auto p-0 text-[#222222] hover:no-underline">
+             <Button asChild variant="link" className="group h-auto p-0 text-[#222222] hover:no-underline">
+              <Link href="/packages">
                 <span className="mr-3 text-[9px] font-bold uppercase tracking-[0.14em] sm:mr-4 sm:text-[10px] sm:tracking-[0.2em]">View All Solutions</span>
                 <div className="w-10 h-10 rounded-full border border-zinc-200 flex items-center justify-center group-hover:bg-[#222222] group-hover:text-white transition-all duration-500">
                   <ArrowRight className="w-4 h-4" />
                 </div>
+              </Link>
              </Button>
           </motion.div>
         </div>
@@ -178,18 +194,18 @@ export function ShopSection() {
                 {/* Actions */}
                 <div className="flex flex-col xl:flex-row items-center gap-3 mt-auto">
                   <Button 
+                    onClick={() => handleViewDetails(pkg)}
                     variant="default"
-                    onClick={() => window.dispatchEvent(new CustomEvent('open-lead-modal', { detail: { package: pkg.name } }))}
                     className="h-12 w-full rounded-full bg-[#222222] text-[9px] font-bold uppercase tracking-[0.12em] text-white shadow-lg shadow-[#222222]/10 transition-all duration-500 hover:bg-[#ee6669] sm:h-14 sm:text-[10px] sm:tracking-[0.15em] xl:flex-1"
                   >
                     View Details
                   </Button>
                   <Button 
+                    asChild
                     variant="outline"
-                    onClick={() => window.dispatchEvent(new CustomEvent('open-estimate-modal', { detail: { package: pkg.name } }))}
                     className="h-auto min-h-12 w-full py-2 rounded-full border-zinc-200 text-[9px] font-bold uppercase tracking-tight transition-all duration-500 hover:border-[#ee6669] hover:text-[#ee6669] sm:min-h-14 sm:text-[10px] sm:tracking-normal xl:flex-1 whitespace-normal leading-tight px-4"
                   >
-                    Calculate Your Estimate
+                    <Link href="/pc">Calculate Your Estimate</Link>
                   </Button>
                 </div>
               </div>
@@ -208,6 +224,83 @@ export function ShopSection() {
           *Indicative pricing based on standard floor plans. Final quote subject to site measurements.
         </motion.p>
       </div>
+
+      {/* Dialog for showing package details */}
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent className="max-w-[95vw] sm:max-w-[1000px] h-[90vh] sm:h-[85vh] flex flex-col p-0 overflow-hidden !grid-cols-none !grid-rows-none rounded-[3.5rem] border-none shadow-2xl">
+          <div className="p-8 lg:p-12 border-b bg-white z-10 flex-shrink-0 flex justify-between items-end">
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                 <span className="text-[#ee6669] text-[10px] font-bold uppercase tracking-[0.4em]">Interior Package</span>
+                 <div className="w-1.5 h-1.5 rounded-full bg-zinc-200" />
+                 <span className="text-zinc-400 text-[10px] font-bold uppercase tracking-[0.4em]">Curated Solutions</span>
+              </div>
+              <DialogTitle className="text-3xl lg:text-5xl font-serif font-light text-[#222222]">{selectedPackage?.name}</DialogTitle>
+            </div>
+            <div className="hidden lg:flex flex-col items-end space-y-2 text-right">
+                <p className="text-[10px] font-bold text-[#ee6669] uppercase tracking-widest">Starting From</p>
+                <p className="text-3xl font-serif text-[#222222]">₹{(selectedPackage?.price / 100000).toFixed(1)}L</p>
+            </div>
+          </div>
+          
+          <div className="flex-1 overflow-y-auto overscroll-contain touch-pan-y bg-white p-8 lg:p-12" style={{ WebkitOverflowScrolling: 'touch' }}>
+            <div className="grid lg:grid-cols-12 gap-16">
+               <div className="lg:col-span-5 space-y-12">
+                  <div className="space-y-6">
+                     <p className="text-[10px] font-bold text-[#ee6669] uppercase tracking-[0.4em]">Overview</p>
+                     <p className="text-lg text-zinc-500 font-light leading-relaxed">{selectedPackage?.description}</p>
+                  </div>
+
+                  <div className="space-y-8 p-8 bg-zinc-50 rounded-[2.5rem] border border-zinc-100">
+                     <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest border-b border-zinc-200 pb-4">What's Included</p>
+                     <div className="space-y-4">
+                        {(selectedPackage?.features?.items || selectedPackage?.items || []).map((item: string, idx: number) => (
+                          <div key={idx} className="flex items-start gap-3">
+                             <div className="mt-1 flex-shrink-0">
+                               <Check className="w-4 h-4 text-[#ee6669]" />
+                             </div>
+                             <span className="text-sm font-medium text-[#222222]">{item}</span>
+                          </div>
+                        ))}
+                     </div>
+                  </div>
+                  
+                  <div className="pt-8 space-y-4">
+                     <Button className="h-14 w-full rounded-2xl bg-[#ee6669] text-[10px] font-bold uppercase tracking-[0.16em] text-white shadow-xl shadow-[#ee6669]/20 transition-all hover:bg-[#222222]">
+                        ENQUIRE ABOUT THIS PACKAGE
+                     </Button>
+                     <Button variant="outline" asChild className="h-14 w-full rounded-2xl border-zinc-200 text-[10px] font-bold uppercase tracking-[0.16em] text-[#222222] hover:bg-zinc-50">
+                        <Link href="/pc">CALCULATE CUSTOM ESTIMATE</Link>
+                     </Button>
+                  </div>
+               </div>
+
+               <div className="lg:col-span-7">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[2.5rem] shadow-xl">
+                    <Image
+                      src={selectedPackage?.image_url}
+                      alt={selectedPackage?.name || 'Package image'}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 1024px) 100vw, 600px"
+                    />
+                  </div>
+                  
+                  <div className="mt-8 grid grid-cols-2 gap-4">
+                    <div className="p-6 bg-zinc-50 rounded-2xl border border-zinc-100">
+                      <p className="text-[8px] font-bold text-zinc-400 uppercase tracking-widest mb-2">Warranty</p>
+                      <p className="text-sm font-bold text-[#222222]">10 Year Warranty</p>
+                    </div>
+                    <div className="p-6 bg-zinc-50 rounded-2xl border border-zinc-100">
+                      <p className="text-[8px] font-bold text-zinc-400 uppercase tracking-widest mb-2">Timeline</p>
+                      <p className="text-sm font-bold text-[#222222]">45-60 Days Delivery</p>
+                    </div>
+                  </div>
+               </div>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* Subtle Background Elements */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#ee6669]/5 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />

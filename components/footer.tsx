@@ -31,8 +31,8 @@ export function Footer() {
         { label: 'Projects', href: '/projects' },
         { label: 'How it works', href: '/#process' },
         { label: 'Careers', href: '#' },
-        { label: 'Privacy Policy', href: '#' },
-        { label: 'Terms & Conditions', href: '#' },
+        { label: 'Privacy Policy', href: '/privacy' },
+        { label: 'Terms & Conditions', href: '/terms' },
       ],
     },
   ]
@@ -131,9 +131,9 @@ export function Footer() {
               © 2024 Grospace Interiors. All rights reserved.
             </p>
             <div className="flex gap-8">
-               <Link href="#" className="text-xs text-zinc-500 hover:text-white">Terms of Use</Link>
-               <Link href="#" className="text-xs text-zinc-500 hover:text-white">Privacy Policy</Link>
-               <Link href="#" className="text-xs text-zinc-500 hover:text-white">Cookie Policy</Link>
+               <Link href="/terms" className="text-xs text-zinc-500 hover:text-white">Terms of Use</Link>
+               <Link href="/privacy" className="text-xs text-zinc-500 hover:text-white">Privacy Policy</Link>
+               <Link href="/cookies" className="text-xs text-zinc-500 hover:text-white">Cookie Policy</Link>
             </div>
           </div>
         </div>

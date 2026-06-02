@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Menu, X, ChevronDown } from 'lucide-react'
@@ -11,6 +11,21 @@ import { MobileQuickNav } from './mobile-quick-nav'
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const [isServicesOpen, setIsServicesOpen] = useState(false)
+  const [isScrollingDown, setIsScrollingDown] = useState(false)
+  const [isAtTop, setIsAtTop] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      setIsAtTop(currentScrollY < 50)
+      setIsScrollingDown(currentScrollY > lastScrollY && currentScrollY > 50)
+      setLastScrollY(currentScrollY)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [lastScrollY])
 
   const mainNavItems = [
 
@@ -155,10 +170,10 @@ export function Navigation() {
           {/* CTA - Right */}
           <div className="flex items-center gap-4 z-10">
             <Button 
-                onClick={() => window.dispatchEvent(new CustomEvent('open-lead-modal'))}
+                asChild
                 className="hidden lg:flex bg-[#ee6669] hover:bg-[#222222] text-white rounded-full px-8 py-2 h-12 text-[10px] font-bold uppercase tracking-widest shadow-lg shadow-[#ee6669]/20 transition-all active:scale-95"
               >
-                Get Free Quote
+                <Link href="/lp/landing-page">Get Free Quote</Link>
               </Button>
 
             {/* Mobile Menu Button */}
@@ -174,7 +189,19 @@ export function Navigation() {
         </div>
         
         {/* Mobile Quick Nav */}
-        <MobileQuickNav />
+        <AnimatePresence>
+          {(isScrollingDown || isAtTop) && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="overflow-hidden"
+            >
+              <MobileQuickNav />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       {/* Mobile Navigation */}
@@ -185,10 +212,11 @@ export function Navigation() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed inset-0 z-[120] min-h-screen bg-white lg:hidden pointer-events-auto"
+            className="fixed inset-0 z-[120] h-screen bg-white lg:hidden pointer-events-auto flex flex-col"
           >
-            <div className="p-6">
-              <div className="flex justify-between items-center mb-12">
+            <div className="flex flex-col h-full p-6">
+              {/* Mobile Menu Header */}
+              <div className="flex justify-between items-center mb-8 shrink-0">
                   <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center gap-3 group">
                   <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full flex items-center justify-center bg-transparent shadow-sm">
                       <Image 
@@ -209,10 +237,13 @@ export function Navigation() {
                     </span>
                   </div>
                 </Link>
-                <button type="button" onClick={() => setIsOpen(false)} className="p-2"><X className="w-8 h-8 text-zinc-900" /></button>
+                <button type="button" onClick={() => setIsOpen(false)} className="p-2 text-zinc-900">
+                  <X className="w-8 h-8" />
+                </button>
               </div>
 
-              <div className="space-y-8 overflow-y-auto max-h-[calc(100vh-200px)]">
+              {/* Scrollable Navigation Links */}
+              <div className="flex-grow overflow-y-auto space-y-8 pb-12 pr-2 custom-scrollbar">
                 <Link href="/" onClick={() => setIsOpen(false)} className="block text-3xl font-serif font-light text-zinc-900">Home</Link>
                 
                 <div className="space-y-4">
@@ -246,15 +277,14 @@ export function Navigation() {
                 ))}
               </div>
 
-              <div className="absolute bottom-8 left-6 right-6">
+              {/* Fixed Bottom CTA */}
+              <div className="pt-6 shrink-0">
                 <Button 
-                  onClick={() => {
-                    setIsOpen(false);
-                    window.dispatchEvent(new CustomEvent('open-lead-modal'));
-                  }}
+                  asChild
+                  onClick={() => setIsOpen(false)}
                   className="w-full bg-[#ee6669] hover:bg-[#222222] text-white h-16 rounded-2xl text-[11px] font-bold uppercase tracking-widest shadow-xl shadow-[#ee6669]/20"
                 >
-                  Get Free Quote
+                  <Link href="/lp/landing-page">Get Free Quote</Link>
                 </Button>
               </div>
             </div>

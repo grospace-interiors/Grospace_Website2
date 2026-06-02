@@ -116,6 +116,8 @@
     @apply bg-background text-foreground;
     max-width: 100%;
     overflow-x: clip;
+    position: relative;
+    min-height: 100vh;
   }
 }
 
@@ -147,13 +149,6 @@
 @media (max-width: 767px) {
   body {
     padding-bottom: calc(4.5rem + env(safe-area-inset-bottom));
-  }
-}
-
-@media (min-width: 1024px) {
-  body {
-    zoom: 0.75;
-    width: 133.333333%;
   }
 }
 

@@ -12,6 +12,7 @@ import { MobileQuickNav } from './mobile-quick-nav'
 export function LandingNavigation() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isScrollingDown, setIsScrollingDown] = useState(false)
+  const [isAtTop, setIsAtTop] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
   const PHONE_NUMBER = '+918319032087'
 
@@ -20,8 +21,9 @@ export function LandingNavigation() {
       const currentScrollY = window.scrollY
       const isTop = currentScrollY < 50
       
+      setIsAtTop(isTop)
       setIsScrolled(!isTop)
-      setIsScrollingDown(currentScrollY > lastScrollY)
+      setIsScrollingDown(currentScrollY > lastScrollY && currentScrollY > 50)
       setLastScrollY(currentScrollY)
     }
 

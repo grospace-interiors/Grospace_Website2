@@ -49,16 +49,16 @@ export function InspirationGallery() {
             </h2>
             <div className="w-24 h-1 bg-[#ee6669]" />
           </div>
-          <Link href="/projects" className="hidden items-center gap-3 rounded-full border border-zinc-100 bg-white px-8 py-4 text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400 shadow-sm transition-all hover:border-[#ee6669]/20 hover:text-[#ee6669] md:flex">
-            View All Concepts <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          <Link href="/design-library" className="hidden items-center gap-3 rounded-full border border-zinc-100 bg-white px-8 py-4 text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400 shadow-sm transition-all hover:border-[#ee6669]/20 hover:text-[#ee6669] md:flex group">
+            Explore Design Library <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
 
         <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 no-scrollbar md:mx-0 md:grid md:h-auto md:grid-cols-2 md:overflow-visible md:px-0 md:pb-0 lg:h-[800px] lg:grid-cols-4 lg:grid-rows-3 lg:gap-6">
           {ideas.map((idea, index) => (
-            <div 
+            <Link 
               key={idea.title} 
-              onClick={() => window.dispatchEvent(new CustomEvent('open-lead-modal-engagement'))}
+              href="/design-library"
               className={`group relative isolate min-h-[260px] min-w-[84%] snap-center cursor-pointer overflow-hidden rounded-3xl border border-zinc-100/50 shadow-md md:min-w-0 sm:rounded-[2.5rem] ${idea.span || ''}`}
             >
               <Image 
@@ -78,13 +78,13 @@ export function InspirationGallery() {
                   Explore Designs <ChevronRight className="w-3 h-3" />
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
         <div className="mt-8 flex md:hidden justify-center">
-           <Link href="/projects" className="flex items-center gap-2 text-[#ee6669] font-bold uppercase text-sm">
-            View All <ChevronRight className="w-4 h-4" />
+           <Link href="/design-library" className="flex items-center gap-2 text-[#ee6669] font-bold uppercase text-sm">
+            View Design Library <ChevronRight className="w-4 h-4" />
           </Link>
         </div>
       </div>

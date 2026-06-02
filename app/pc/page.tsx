@@ -16,15 +16,39 @@ export default function PriceCalculatorMain() {
         {/* Hero & Estimator - Cream Linen Base */}
         <PriceEstimator initialCategory="none" />
         
-        {/* Why Transparent Pricing Matters Section - Sage Green Contrast */}
+        {/* How it Works Section - Sage Green Contrast */}
         <section className="relative overflow-hidden bg-[#E5EEE4] py-16 lg:py-32">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-[#ee6669]/10 to-transparent" />
           <div className="mx-auto max-w-[1400px] px-4 text-center sm:px-6 lg:px-12">
             <div className="mx-auto mb-12 max-w-3xl space-y-5 lg:mb-24 lg:space-y-8">
-              <h2 className="text-3xl font-serif font-light leading-tight tracking-tight text-[#222222] sm:text-5xl lg:text-7xl">How our pricing <br /><span className="text-[#ee6669]">Empowers you.</span></h2>
-              <p className="text-sm font-light leading-relaxed text-[#222222]/60 sm:text-xl">No hidden fees, no last-minute "surprises." We believe that luxury interiors should come with absolute financial clarity from day one.</p>
+              <h2 className="text-3xl font-serif font-light leading-tight tracking-tight text-[#222222] sm:text-5xl lg:text-7xl">How our estimation <br /><span className="text-[#ee6669]">Works for you.</span></h2>
+              <p className="text-sm font-light leading-relaxed text-[#222222]/60 sm:text-xl">To provide a quote that is as realistic as your dream home, we follow a simple 5-step process tailored to your specific requirements.</p>
             </div>
-            <ServiceProcess />
+            <ServiceProcess 
+              title="Estimation Process"
+              steps={[
+                {
+                  title: "Select Your Space",
+                  description: "Choose between a Full Home Interior, Modular Kitchen, or a custom Wardrobe solution."
+                },
+                {
+                  title: "Customize Requirements",
+                  description: "Select your BHK type, layout preferences, and preferred materials from our premium library."
+                },
+                {
+                  title: "Share Project Details",
+                  description: "Provide your contact information so our design experts can analyze your specific configuration."
+                },
+                {
+                  title: "Expert Review",
+                  description: "Our specialists analyze your inputs to calculate a realistic estimate based on current market rates."
+                },
+                {
+                  title: "Receive Your Quote",
+                  description: "We will get back to you with a detailed price breakdown directly via Email or WhatsApp."
+                }
+              ]}
+            />
           </div>
           <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[#F6F4E8] to-transparent" />
         </section>

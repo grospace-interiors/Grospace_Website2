@@ -11,7 +11,7 @@ export default function NotFound() {
   return (
     <>
       <Navigation />
-      <main className="min-h-[80vh] flex items-center justify-center bg-white relative overflow-hidden">
+      <main className="min-h-[80vh] flex items-center justify-center bg-white relative overflow-x-clip">
         {/* Decorative Elements */}
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#ee6669]/5 rounded-full blur-[120px] -mr-64 -mt-64" />
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#222222]/5 rounded-full blur-[120px] -ml-64 -mb-64" />

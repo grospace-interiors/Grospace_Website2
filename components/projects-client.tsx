@@ -123,27 +123,33 @@ export function ProjectsClient({ projects, limit }: ProjectsClientProps) {
                   <div className="mt-8 px-2 space-y-3">
                      <div className="flex items-baseline justify-between border-b border-zinc-100 pb-4">
                         <div className="space-y-1">
-                          <span className="text-[10px] font-bold text-[#ee6669] uppercase tracking-[0.3em]">{project.category || 'Full Home'}</span>
+                          <span className="text-[10px] font-bold text-[#ee6669] uppercase tracking-[0.3em]">{project.category || 'Interior Design'}</span>
                           <h4 className="text-2xl lg:text-3xl font-serif text-[#222222]">{project.title}</h4>
                         </div>
-                        <div className="text-right">
-                           <p className="text-[9px] font-bold text-zinc-400 uppercase tracking-widest mb-1">Area</p>
-                           <p className="text-sm font-serif text-[#222222]">{project.area_size || '1,250 SQFT'}</p>
-                        </div>
+                        {project.area_size && (
+                          <div className="text-right">
+                             <p className="text-[9px] font-bold text-zinc-400 uppercase tracking-widest mb-1">Area</p>
+                             <p className="text-sm font-serif text-[#222222]">{project.area_size}</p>
+                          </div>
+                        )}
                      </div>
                      <div className="flex items-center gap-6 pt-1">
-                        <div className="flex items-center gap-2">
-                          <div className="w-8 h-8 rounded-full bg-zinc-50 flex items-center justify-center">
-                            <Clock className="w-3.5 h-3.5 text-[#ee6669]" />
+                        {project.timeline && (
+                          <div className="flex items-center gap-2">
+                            <div className="w-8 h-8 rounded-full bg-zinc-50 flex items-center justify-center">
+                              <Clock className="w-3.5 h-3.5 text-[#ee6669]" />
+                            </div>
+                            <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">{project.timeline}</span>
                           </div>
-                          <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">{project.timeline || '55 DAYS'}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="w-8 h-8 rounded-full bg-zinc-50 flex items-center justify-center">
-                            <Sparkles className="w-3.5 h-3.5 text-[#ee6669]" />
+                        )}
+                        {project.style_type && (
+                          <div className="flex items-center gap-2">
+                            <div className="w-8 h-8 rounded-full bg-zinc-50 flex items-center justify-center">
+                              <Sparkles className="w-3.5 h-3.5 text-[#ee6669]" />
+                            </div>
+                            <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">{project.style_type}</span>
                           </div>
-                          <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">{project.style_type || 'Modern'}</span>
-                        </div>
+                        )}
                      </div>
                   </div>
                 </button>
@@ -175,15 +181,21 @@ export function ProjectsClient({ projects, limit }: ProjectsClientProps) {
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                  <span className="text-[#ee6669] text-[10px] font-bold uppercase tracking-[0.4em]">{selectedProject?.category || 'Project'}</span>
-                 <div className="w-1.5 h-1.5 rounded-full bg-zinc-200" />
-                 <span className="text-zinc-400 text-[10px] font-bold uppercase tracking-[0.4em]">{selectedProject?.style_type || 'Modern'}</span>
+                 {selectedProject?.style_type && (
+                   <>
+                     <div className="w-1.5 h-1.5 rounded-full bg-zinc-200" />
+                     <span className="text-zinc-400 text-[10px] font-bold uppercase tracking-[0.4em]">{selectedProject.style_type}</span>
+                   </>
+                 )}
               </div>
               <DialogTitle className="text-3xl lg:text-5xl font-serif font-light text-[#222222]">{selectedProject?.title}</DialogTitle>
             </div>
-            <div className="hidden lg:flex flex-col items-end space-y-2 text-right">
-                <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest flex items-center gap-2"><MapPin className="w-3 h-3" /> Location</p>
-                <p className="text-lg font-serif text-[#222222]">Bhopal, Madhya Pradesh</p>
-            </div>
+            {selectedProject?.location && (
+              <div className="hidden lg:flex flex-col items-end space-y-2 text-right">
+                  <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest flex items-center gap-2"><MapPin className="w-3 h-3" /> Location</p>
+                  <p className="text-lg font-serif text-[#222222]">{selectedProject.location}</p>
+              </div>
+            )}
           </div>
           
           <div className="flex-1 overflow-y-auto overscroll-contain touch-pan-y bg-white p-8 lg:p-12" style={{ WebkitOverflowScrolling: 'touch' }}>
@@ -196,27 +208,31 @@ export function ProjectsClient({ projects, limit }: ProjectsClientProps) {
                     </div>
                   )}
 
-                  <div className="space-y-8 p-8 bg-zinc-50 rounded-[2.5rem] border border-zinc-100">
-                     <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest border-b border-zinc-200 pb-4">Project Highlights</p>
-                     <div className="space-y-6">
-                        <div className="flex justify-between items-center">
-                           <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Home Type</span>
-                           <span className="text-sm font-bold text-[#222222]">{selectedProject?.bhk_type || '3BHK'}</span>
-                        </div>
-                        <div className="flex justify-between items-center">
-                           <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Area Size</span>
-                           <span className="text-sm font-bold text-[#222222]">{selectedProject?.area_size || '1,250 sqft'}</span>
-                        </div>
-                        <div className="flex justify-between items-center">
-                           <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Timeline</span>
-                           <span className="text-sm font-bold text-[#222222]">{selectedProject?.timeline || '60 Days'}</span>
-                        </div>
-                        <div className="flex justify-between items-center">
-                           <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Material</span>
-                           <span className="text-sm font-bold text-[#222222]">HDHMR & Acrylic</span>
-                        </div>
-                     </div>
-                  </div>
+                  {(selectedProject?.bhk_type || selectedProject?.area_size || selectedProject?.timeline) && (
+                    <div className="space-y-8 p-8 bg-zinc-50 rounded-[2.5rem] border border-zinc-100">
+                       <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest border-b border-zinc-200 pb-4">Project Highlights</p>
+                       <div className="space-y-6">
+                          {selectedProject?.bhk_type && (
+                            <div className="flex justify-between items-center">
+                               <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Home Type</span>
+                               <span className="text-sm font-bold text-[#222222]">{selectedProject.bhk_type}</span>
+                            </div>
+                          )}
+                          {selectedProject?.area_size && (
+                            <div className="flex justify-between items-center">
+                               <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Area Size</span>
+                               <span className="text-sm font-bold text-[#222222]">{selectedProject.area_size}</span>
+                            </div>
+                          )}
+                          {selectedProject?.timeline && (
+                            <div className="flex justify-between items-center">
+                               <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Timeline</span>
+                               <span className="text-sm font-bold text-[#222222]">{selectedProject.timeline}</span>
+                            </div>
+                          )}
+                       </div>
+                    </div>
+                  )}
                   
                   <div className="pt-8">
                      <Button className="h-14 w-full rounded-2xl bg-[#ee6669] text-[10px] font-bold uppercase tracking-[0.16em] text-white shadow-xl shadow-[#ee6669]/20 transition-all hover:bg-[#222222]">

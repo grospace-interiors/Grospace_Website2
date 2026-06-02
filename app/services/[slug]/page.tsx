@@ -60,15 +60,15 @@ const services = {
     process: [
       { title: "Smart Assessment", description: "Understanding your storage needs and space constraints." },
       { title: "Modular Planning", description: "Creating layouts using standard and custom modular units." },
-      { title: "Precision Manufacturing", description: "Factory-finished components with zero on-site mess." },
+      { title: "Site Craftsmanship", description: "On-site manufacturing with clear material visibility and controlled execution." },
       { title: "Fast Installation", description: "Quick, clean, and millimeter-perfect assembly." }
     ],
     extraSection: {
       title: "Why Modular Interiors Work Better",
       content: "Modular systems are the backbone of modern efficient homes. They offer precision that manual carpentry cannot match, combined with speed and long-term durability.",
       items: [
-        { icon: Zap, title: "Faster Delivery", desc: "90% of manufacturing happens off-site." },
-        { icon: CheckCircle2, title: "Millimeter Precision", desc: "Factory machine-cutting ensures perfect alignment." },
+        { icon: Zap, title: "Clear Execution", desc: "Work happens transparently on site so you can see the materials being used." },
+        { icon: CheckCircle2, title: "Precise Finishing", desc: "Measured cutting, fitting, and finishing for clean alignment." },
         { icon: Clock, title: "Maintenance Friendly", desc: "Easy to clean and upgrade in the future." }
       ]
     },

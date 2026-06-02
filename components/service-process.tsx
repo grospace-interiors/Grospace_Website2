@@ -31,11 +31,11 @@ const defaultSteps = [
   },
   {
     title: "Final Quotation & Approval",
-    description: "Transparent pricing with no hidden costs, finalized before we begin manufacturing."
+    description: "Transparent pricing and material details, finalized before site execution begins."
   },
   {
-    title: "Manufacturing & Execution",
-    description: "Precision factory manufacturing using state-of-the-art European machinery."
+    title: "Site Manufacturing & Execution",
+    description: "Measured on-site work with visible materials, clean fitting, and professional supervision."
   },
   {
     title: "Installation & Finishing",

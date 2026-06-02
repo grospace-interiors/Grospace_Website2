@@ -129,6 +129,7 @@ export function LeadModal() {
               src="/images/landing-hero.webp"
               alt="Luxury Interior Design"
               fill
+              sizes="(max-width: 1024px) 100vw, 400px"
               className="object-cover"
             />
             <div className="absolute inset-0 bg-black/20" />

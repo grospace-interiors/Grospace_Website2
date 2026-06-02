@@ -15,7 +15,7 @@ interface ServiceComparisonProps {
 const defaultComparisons = [
   {
     traditional: "Delayed timelines",
-    grospace: "Factory-precision execution"
+    grospace: "Planned on-site execution"
   },
   {
     traditional: "Inconsistent finishing",
@@ -26,8 +26,8 @@ const defaultComparisons = [
     grospace: "Transparent, locked-in pricing"
   },
   {
-    traditional: "On-site mess",
-    grospace: "Swift installation with minimal disruption"
+    traditional: "Unclear material usage",
+    grospace: "Transparent material usage on site"
   },
   {
     traditional: "Manual dependency",

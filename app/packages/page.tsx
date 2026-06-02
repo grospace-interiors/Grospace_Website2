@@ -111,7 +111,7 @@ export default function PackagesPage() {
   return (
     <>
       <Navigation />
-      <main className="bg-white text-[#222222] overflow-hidden">
+      <main className="bg-white text-[#222222] overflow-x-clip">
         
         {/* 1. HERO SECTION */}
         <section className="relative flex min-h-[520px] items-center justify-center overflow-hidden bg-[#222222] py-16 lg:min-h-[580px] lg:py-20">
@@ -119,6 +119,7 @@ export default function PackagesPage() {
             src="/images/landing-hero.webp"
             alt="Premium Interior Background"
             fill
+            sizes="100vw"
             className="object-cover opacity-40"
             priority
           />
