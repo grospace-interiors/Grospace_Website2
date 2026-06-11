@@ -15,6 +15,7 @@ import { User, Phone, ArrowRight, Sparkles, Layout, ShieldCheck, HeartHandshake,
 import { useSearchParams, usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
+import * as fp from '@/lib/fpixel'
 
 export function LeadModal() {
   const [isOpen, setIsOpen] = useState(false)
@@ -105,6 +106,11 @@ export function LeadModal() {
 
       if (response.ok) {
         setStatus('success')
+        fp.event('Lead', {
+          content_name: 'Lead Modal Submission',
+          content_category: formData.package || 'Engagement Popup',
+          currency: 'INR'
+        })
         localStorage.setItem('leadFormSubmitted', 'true')
         setTimeout(() => setIsOpen(false), 4000)
       }

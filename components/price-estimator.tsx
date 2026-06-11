@@ -35,6 +35,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { motion, AnimatePresence } from 'framer-motion'
+import * as fp from '@/lib/fpixel'
 
 type Category = 'none' | 'home' | 'kitchen' | 'wardrobe'
 
@@ -43,6 +44,13 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
   const [category, setCategory] = useState<Category>(initialCategory)
   const [step, setStep] = useState(1)
   const [submitted, setSubmitted] = useState(false)
+
+  React.useEffect(() => {
+    if (category !== 'none') {
+      fp.customEvent('PriceCalculatorStarted', { category })
+    }
+  }, [category])
+
   const [formData, setFormData] = useState<any>({
     // Shared
     name: '',
@@ -118,6 +126,11 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
   const handleFinalSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setSubmitted(true)
+    fp.customEvent('PriceCalculatorCompleted', {
+      category,
+      typeOfSpace: category === 'home' ? formData.bhk : category,
+      budget_range: formData.budget > 50 ? 'Luxury' : 'Standard'
+    })
     try {
       await fetch('/api/enquiry', {
         method: 'POST',

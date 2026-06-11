@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input'
 import { ArrowRight, CheckCircle2, User, Phone, Mail, MapPin, Building2, Layout, Wallet, Clock, Sparkles } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { motion, AnimatePresence } from 'framer-motion'
+import * as fp from '@/lib/fpixel'
 
 export function LandingForm() {
   const [step, setStep] = useState(1)
@@ -84,6 +85,12 @@ export function LandingForm() {
 
       if (response.ok) {
         setStatus('success')
+        fp.event('Lead', {
+          content_name: 'Landing Page Lead',
+          content_category: formData.services,
+          value: formData.budget,
+          currency: 'INR'
+        })
       }
     } catch (error) {
       console.error('Error submitting final lead:', error)

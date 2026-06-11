@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, MessageSquare, Briefcase } from 'lucide-react'
+import * as fp from '@/lib/fpixel'
 
 export function ServiceCTA() {
   return (
@@ -60,7 +61,10 @@ export function ServiceCTA() {
           </Button>
 
           <Button 
-            onClick={() => window.open(`https://wa.me/918319032087?text=${encodeURIComponent("Hi, I'm interested in a free site visit.")}`, '_blank')}
+            onClick={() => {
+              fp.customEvent('WhatsAppClick', { location: 'service_cta' });
+              window.open(`https://wa.me/918319032087?text=${encodeURIComponent("Hi, I'm interested in a free site visit.")}`, '_blank');
+            }}
             className="flex h-14 w-full items-center justify-center rounded-2xl border border-white/20 bg-white/5 px-8 text-[10px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md transition-all duration-500 hover:bg-[#25D366] hover:border-[#25D366] hover:text-white sm:h-16 sm:w-auto sm:px-12 sm:text-[11px] sm:tracking-[0.22em]"
           >
             <MessageSquare className="w-5 h-5 mr-4" /> WhatsApp Us

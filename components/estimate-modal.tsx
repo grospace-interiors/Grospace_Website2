@@ -12,6 +12,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { User, Phone, Mail, ArrowRight, Calculator, CheckCircle2, ShieldCheck, Zap } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import * as fp from '@/lib/fpixel'
 
 export function EstimateModal() {
   const [isOpen, setIsOpen] = useState(false)
@@ -65,6 +66,11 @@ export function EstimateModal() {
 
       if (response.ok) {
         setStatus('success')
+        fp.event('Lead', {
+          content_name: 'Detailed Estimate Request',
+          content_category: formData.package,
+          currency: 'INR'
+        })
         setTimeout(() => {
           setIsOpen(false)
           setStatus('idle')

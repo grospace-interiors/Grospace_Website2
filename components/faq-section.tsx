@@ -3,6 +3,7 @@
 import { Phone, MessageCircle, ArrowRight } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { motion } from 'framer-motion'
+import * as fp from '@/lib/fpixel'
 import { 
   Accordion,
   AccordionContent,
@@ -116,7 +117,11 @@ export function FAQSection() {
                     asChild
                     className="h-14 w-full rounded-2xl bg-[#ee6669] hover:bg-white hover:text-[#222222] text-white font-bold uppercase tracking-[0.2em] text-[10px] transition-all shadow-xl shadow-black/20 group/btn"
                   >
-                    <a href={`tel:${PHONE_NUMBER}`} className="flex items-center justify-center gap-3">
+                    <a 
+                      href={`tel:${PHONE_NUMBER}`} 
+                      onClick={() => fp.customEvent('PhoneClick', { number: PHONE_NUMBER, location: 'faq' })}
+                      className="flex items-center justify-center gap-3"
+                    >
                       <Phone className="w-4 h-4" />
                       CALL NOW <ArrowRight className="w-3.5 h-3.5 ml-2 group-hover/btn:translate-x-1 transition-transform" />
                     </a>
@@ -131,6 +136,7 @@ export function FAQSection() {
                       href={whatsappUrl} 
                       target="_blank" 
                       rel="noopener noreferrer" 
+                      onClick={() => fp.customEvent('WhatsAppClick', { location: 'faq' })}
                       className="flex items-center justify-center gap-3"
                     >
                       <MessageCircle className="w-4 h-4 text-[#25D366]" />

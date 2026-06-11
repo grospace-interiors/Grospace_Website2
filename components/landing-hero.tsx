@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
+import * as fp from '@/lib/fpixel'
 
 export function LandingHero() {
   const scrollToForm = () => {
@@ -54,6 +55,7 @@ export function LandingHero() {
             </Button>
             <Button 
               variant="outline"
+              onClick={() => fp.customEvent('ViewPackagesClick', { location: 'landing_hero' })}
               className="h-12 rounded-full border-white/30 bg-transparent px-8 text-[10px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-sm hover:bg-white/10 sm:h-auto sm:px-10 sm:py-8 sm:text-sm sm:tracking-[0.2em]"
             >
               View Packages

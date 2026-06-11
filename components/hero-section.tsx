@@ -14,6 +14,7 @@ import {
   type CarouselApi,
 } from '@/components/ui/carousel'
 import { cn } from '@/lib/utils'
+import * as fp from '@/lib/fpixel'
 
 const slides = [
   {
@@ -100,6 +101,7 @@ export function HeroSection() {
               <Button 
                 asChild
                 variant="outline"
+                onClick={() => fp.customEvent('ViewPackagesClick', { location: 'hero' })}
                 className="h-12 rounded-full border-white/30 bg-transparent px-8 text-[10px] font-bold uppercase tracking-[0.12em] text-white shadow-lg transition-all hover:border-white sm:h-auto sm:px-10 sm:py-6 sm:text-xs sm:tracking-[0.2em]"
               >
                 <Link href="/packages">View Packages</Link>

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Instagram, Facebook, Youtube, Linkedin, Phone, Mail, MapPin, ChevronRight } from 'lucide-react'
 import { Button } from './ui/button'
+import * as fp from '@/lib/fpixel'
 
 export function Footer() {
   const footerLinks = [
@@ -102,8 +103,20 @@ export function Footer() {
                   <div>
                     <p className="text-xs text-zinc-400 uppercase tracking-widest mb-1">Call us</p>
                     <div className="flex flex-col gap-1">
-                      <a href="tel:+919926987123" className="text-sm font-medium hover:text-[#ee6669] transition-colors">+91 99269 87123</a>
-                      <a href="tel:+918319032087" className="text-sm font-medium hover:text-[#ee6669] transition-colors">+91 83190 32087</a>
+                      <a 
+                        href="tel:+919926987123" 
+                        onClick={() => fp.customEvent('PhoneClick', { number: '+919926987123', location: 'footer' })}
+                        className="text-sm font-medium hover:text-[#ee6669] transition-colors"
+                      >
+                        +91 99269 87123
+                      </a>
+                      <a 
+                        href="tel:+918319032087" 
+                        onClick={() => fp.customEvent('PhoneClick', { number: '+918319032087', location: 'footer' })}
+                        className="text-sm font-medium hover:text-[#ee6669] transition-colors"
+                      >
+                        +91 83190 32087
+                      </a>
                     </div>
                   </div>
                 </li>

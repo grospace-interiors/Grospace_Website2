@@ -1,6 +1,7 @@
 'use client'
 
 import { CalendarCheck, MessageCircle, Phone } from 'lucide-react'
+import * as fp from '@/lib/fpixel'
 
 const WHATSAPP_NUMBER = '918319032087'
 const PHONE_NUMBER = '+918319032087'
@@ -15,6 +16,7 @@ export function MobileCtaBar() {
       <div className="grid grid-cols-[1fr_1fr_1.35fr] gap-2">
         <a
           href={`tel:${PHONE_NUMBER}`}
+          onClick={() => fp.customEvent('PhoneClick', { number: PHONE_NUMBER, location: 'mobile_bar' })}
           className="flex h-12 items-center justify-center gap-1.5 rounded-xl border border-zinc-200 bg-white text-[10px] font-bold uppercase tracking-[0.12em] text-[#222222]"
           aria-label="Call Grospace Interiors"
         >
@@ -25,6 +27,7 @@ export function MobileCtaBar() {
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => fp.customEvent('WhatsAppClick', { location: 'mobile_bar' })}
           className="flex h-12 items-center justify-center gap-1.5 rounded-xl bg-[#25D366] text-[10px] font-bold uppercase tracking-[0.12em] text-white"
           aria-label="Chat on WhatsApp"
         >

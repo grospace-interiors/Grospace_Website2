@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, BadgeCheck, ShieldCheck, HeartHandshake, MapPin } from 'lucide-react'
+import * as fp from '@/lib/fpixel'
 
 export function AboutSection() {
   return (
@@ -60,7 +61,10 @@ export function AboutSection() {
               </Button>
               <Button 
                 variant="outline"
-                onClick={() => window.open('https://wa.me/918319032087', '_blank')}
+                onClick={() => {
+                  fp.customEvent('WhatsAppClick', { location: 'about' });
+                  window.open('https://wa.me/918319032087', '_blank');
+                }}
                 className="w-full sm:w-auto h-14 px-10 rounded-full border-zinc-200 text-[#222222] hover:border-[#ee6669] hover:text-[#ee6669] font-bold uppercase tracking-[0.2em] text-[10px] transition-all"
               >
                 Talk to a Designer
