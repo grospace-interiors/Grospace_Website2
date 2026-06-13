@@ -7,6 +7,7 @@ import { LeadModal } from '@/components/lead-modal'
 import { EstimateModal } from '@/components/estimate-modal'
 import { MobileCtaBar } from '@/components/mobile-cta-bar'
 import FacebookPixel from '@/components/facebook-pixel'
+import GoogleTagManager, { GTMNoScript } from '@/components/google-tag-manager'
 import { Suspense } from 'react'
 import './globals.css'
 
@@ -29,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <head>
+        <GoogleTagManager />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -71,6 +73,7 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
+        <GTMNoScript />
         <Suspense fallback={null}>
           <FacebookPixel />
           {children}
