@@ -33,6 +33,12 @@ export function LandingForm() {
     e.preventDefault()
     setStep(2)
     
+    // Track start of the journey
+    fp.event('DesignJourneyStarted', {
+      name: formData.name,
+      location: formData.location
+    })
+
     try {
       const response = await fetch('/api/enquiry', {
         method: 'POST',
@@ -85,6 +91,15 @@ export function LandingForm() {
 
       if (response.ok) {
         setStatus('success')
+        
+        // Custom Event for GTM
+        fp.event('LandingFormSubmitted', {
+          services: formData.services,
+          budget: formData.budget,
+          bhk: formData.bhkSize
+        })
+
+        // Standard Lead Event
         fp.event('Lead', {
           content_name: 'Landing Page Lead',
           content_category: formData.services,

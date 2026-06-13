@@ -47,7 +47,10 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
 
   React.useEffect(() => {
     if (category !== 'none') {
-      fp.customEvent('PriceCalculatorStarted', { category })
+      fp.customEvent('PriceCalculatorStarted', { 
+        category,
+        page_location: window.location.href
+      })
     }
   }, [category])
 
@@ -125,14 +128,8 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
 
   const handleFinalSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setSubmitted(true)
-    fp.customEvent('PriceCalculatorCompleted', {
-      category,
-      typeOfSpace: category === 'home' ? formData.bhk : category,
-      budget_range: formData.budget > 50 ? 'Luxury' : 'Standard'
-    })
     try {
-      await fetch('/api/enquiry', {
+      const response = await fetch('/api/enquiry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -167,6 +164,15 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
           }
         }),
       })
+
+      if (response.ok) {
+        setSubmitted(true)
+        fp.customEvent('PriceCalculatorCompleted', {
+          category,
+          typeOfSpace: category === 'home' ? formData.bhk : category,
+          budget_range: formData.budget > 50 ? 'Luxury' : 'Standard'
+        })
+      }
     } catch (err) {
       console.error(err)
     }

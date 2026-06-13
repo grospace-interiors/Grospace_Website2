@@ -8,6 +8,7 @@ import * as fp from '@/lib/fpixel'
 
 export function LandingHero() {
   const scrollToForm = () => {
+    fp.event('SiteVisitClicked', { location: 'landing_hero_primary' })
     document.getElementById('get-quote')?.scrollIntoView({ behavior: 'smooth' })
   }
 
