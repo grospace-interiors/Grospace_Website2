@@ -109,7 +109,6 @@ export function LeadModal() {
           source: formData.package || 'engagement_popup',
           form_name: 'Lead Modal'
         })
-      }
 
         fp.event('Lead', {
           content_name: 'Lead Modal Submission',
