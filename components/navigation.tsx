@@ -18,9 +18,14 @@ export function Navigation() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY
-      setIsAtTop(currentScrollY < 50)
-      setIsScrollingDown(currentScrollY > lastScrollY && currentScrollY > 50)
-      setLastScrollY(currentScrollY)
+      const scrollDiff = Math.abs(currentScrollY - lastScrollY)
+      
+      // Only trigger updates if we've scrolled a bit (threshold of 10px) to reduce jitter
+      if (scrollDiff > 10 || currentScrollY < 10) {
+        setIsAtTop(currentScrollY < 50)
+        setIsScrollingDown(currentScrollY > lastScrollY && currentScrollY > 50)
+        setLastScrollY(currentScrollY)
+      }
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
@@ -188,7 +193,7 @@ export function Navigation() {
           </div>
         </div>
         
-        {/* Mobile Quick Nav */}
+        {/* Mobile Quick Nav - Absolute positioning to prevent layout shift */}
         <AnimatePresence>
           {(isScrollingDown || isAtTop) && (
             <motion.div
@@ -196,7 +201,7 @@ export function Navigation() {
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="overflow-hidden"
+              className="absolute left-0 right-0 top-full overflow-hidden bg-white/95 backdrop-blur-md shadow-lg lg:hidden"
             >
               <MobileQuickNav />
             </motion.div>
