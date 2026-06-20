@@ -85,34 +85,6 @@ export function TestimonialsSection() {
     loadContent()
   }, [])
 
-  // Fallback if DB is empty
-  const displayItems = items.length > 0 ? items : [
-    {
-      id: '1',
-      review: 'Grospace transformed our home into a space that feels both luxurious and lived-in. Their attention to material quality is unmatched.',
-      client_name: 'Anjali Sharma',
-      city: 'Gulmohar',
-      project_type: '3BHK Interior',
-      rating: 5
-    },
-    {
-      id: '2',
-      review: 'Working with their team on our redesign was seamless. They understood our vision immediately and delivered beyond expectations.',
-      client_name: 'Rajesh Gupta',
-      city: 'Arera Colony',
-      project_type: 'Villa Redesign',
-      rating: 5
-    },
-    {
-      id: '3',
-      review: 'The custom furniture pieces are exceptional. Every detail feels thoughtfully executed. Highly recommend for anyone serious about quality.',
-      client_name: 'Priya Nair',
-      city: 'Bawadiya Kalan',
-      project_type: 'Modular Kitchen',
-      rating: 5
-    },
-  ]
-
   if (loading) {
     return (
       <section className="w-full bg-zinc-50 py-24 flex justify-center items-center">
@@ -120,6 +92,11 @@ export function TestimonialsSection() {
       </section>
     )
   }
+
+  // Hide the section entirely if no testimonials are loaded from the database
+  if (items.length === 0) return null
+
+  const displayItems = items
 
   return (
     <section className="w-full overflow-hidden bg-zinc-50 py-16 lg:py-24">

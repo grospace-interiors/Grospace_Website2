@@ -23,7 +23,7 @@ export function LandingWarranty() {
     {
       icon: HeartHandshake,
       title: 'Honest Support',
-      description: 'Our relationship doesn’t end when the project finishes.'
+      description: "Our relationship doesn't end when the project finishes."
     }
   ]
 

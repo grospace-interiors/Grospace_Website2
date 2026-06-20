@@ -15,16 +15,19 @@ export function LandingForm() {
     name: '',
     phone: '',
     email: '',
-    location: '',
+    location: 'Bhopal',
     propertyType: '',
     bhkSize: '',
     services: '',
     budget: '',
     timeline: '',
+    whatsapp_opt_in: true,
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
+    const { name, type, value } = e.target
+    const checked = type === 'checkbox' ? (e.target as HTMLInputElement).checked : undefined
+    setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value })
   }
 
   const [leadId, setLeadId] = useState<string | null>(null)
@@ -49,7 +52,11 @@ export function LandingForm() {
           email: formData.email,
           city: formData.location,
           source: 'landing_page_partial',
-          status: 'partial' // Mark as partial for follow-up
+          status: 'partial', // Mark as partial for follow-up
+          whatsapp_opt_in: formData.whatsapp_opt_in,
+          details: {
+            whatsapp_opt_in: formData.whatsapp_opt_in
+          }
         }),
       })
       
@@ -79,12 +86,14 @@ export function LandingForm() {
           typeOfSpace: formData.bhkSize,
           source: 'landing_page',
           budget: formData.budget,
+          whatsapp_opt_in: formData.whatsapp_opt_in,
           status: 'new', // Update status to new/complete
           details: {
             propertyType: formData.propertyType,
             services: formData.services,
             budgetRange: formData.budget,
-            timeline: formData.timeline
+            timeline: formData.timeline,
+            whatsapp_opt_in: formData.whatsapp_opt_in
           }
         }),
       })
@@ -96,7 +105,8 @@ export function LandingForm() {
         fp.event('LandingFormSubmitted', {
           services: formData.services,
           budget: formData.budget,
-          bhk: formData.bhkSize
+          bhk: formData.bhkSize,
+          whatsapp_opt_in: formData.whatsapp_opt_in
         })
 
         // Standard Lead Event
@@ -179,29 +189,16 @@ export function LandingForm() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="relative group">
-                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 group-focus-within:text-[#ee6669] transition-colors" />
-                  <Input 
-                    name="email" 
-                    type="email" 
-                    placeholder="Email Address" 
-                    required 
-                    className="h-12 rounded-xl border-zinc-100 bg-zinc-50/50 pl-12 transition-all focus:border-[#ee6669] focus:ring-0 sm:h-14"
-                    value={formData.email}
+                <label className="flex items-start gap-3 rounded-xl border border-zinc-100 bg-zinc-50/50 px-4 py-3 text-[10px] font-medium leading-relaxed text-zinc-500">
+                  <input
+                    type="checkbox"
+                    name="whatsapp_opt_in"
+                    checked={formData.whatsapp_opt_in}
                     onChange={handleChange}
+                    className="mt-0.5 h-4 w-4 shrink-0 accent-[#25D366]"
                   />
-                </div>
-                <div className="relative group">
-                  <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 group-focus-within:text-[#ee6669] transition-colors" />
-                  <Input 
-                    name="location" 
-                    placeholder="Project Location (City)" 
-                    required 
-                    className="h-12 rounded-xl border-zinc-100 bg-zinc-50/50 pl-12 transition-all focus:border-[#ee6669] focus:ring-0 sm:h-14"
-                    value={formData.location}
-                    onChange={handleChange}
-                  />
-                </div>
+                  <span>We can contact you on WhatsApp about your interior estimate and site visit.</span>
+                </label>
               </div>
 
               <Button type="submit" className="h-12 w-full rounded-xl bg-[#ee6669] text-[10px] font-bold uppercase tracking-[0.14em] text-white shadow-xl shadow-[#ee6669]/20 transition-all hover:bg-[#dd5558] sm:h-14 sm:text-[11px] sm:tracking-[0.2em]">
@@ -308,6 +305,18 @@ export function LandingForm() {
                     <option value="3-6 months">3-6 months</option>
                     <option value="After 6 months">After 6 months</option>
                   </select>
+                </div>
+
+                <div className="relative group">
+                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 group-focus-within:text-[#ee6669] transition-colors" />
+                  <Input 
+                    name="email" 
+                    type="email" 
+                    placeholder="Email Address (Optional)" 
+                    className="h-14 rounded-xl border-zinc-100 bg-zinc-50/50 pl-12 transition-all focus:border-[#ee6669] focus:ring-0"
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
                 </div>
               </div>
 

@@ -11,14 +11,38 @@ import GoogleTagManager, { GTMNoScript } from '@/components/google-tag-manager'
 import { Suspense } from 'react'
 import './globals.css'
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
+const geistSans = Geist({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: 'Interior Designers in Bhopal | Grospace Interiors',
   description: 'Premium interior design and custom furniture studio in Bhopal. Expert modular kitchens, wardrobes, and full home interiors with transparent pricing and 10-year design excellence.',
   icons: {
     icon: '/icon.png',
     apple: '/icon.png',
+  },
+  openGraph: {
+    title: 'Interior Designers in Bhopal | Grospace Interiors',
+    description: 'Premium interior design and custom furniture studio in Bhopal. Expert modular kitchens, wardrobes, and full home interiors with transparent pricing and 10-year design excellence.',
+    url: 'https://grospaceinteriors.com',
+    siteName: 'Grospace Interiors',
+    images: [
+      {
+        url: 'https://grospaceinteriors.com/images/landing-hero.webp',
+        width: 1200,
+        height: 630,
+        alt: 'Grospace Interiors Bhopal',
+      },
+    ],
+    locale: 'en_IN',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Interior Designers in Bhopal | Grospace Interiors',
+    description: 'Premium interior design and custom furniture studio in Bhopal. Expert modular kitchens, wardrobes, and full home interiors with transparent pricing and 10-year design excellence.',
+    images: ['https://grospaceinteriors.com/images/landing-hero.webp'],
+  },
+  alternates: {
+    canonical: 'https://grospaceinteriors.com',
   },
 }
 
@@ -31,6 +55,10 @@ export default function RootLayout({
     <html lang="en" data-scroll-behavior="smooth">
       <head>
         <GoogleTagManager />
+        <meta name="geo.region" content="IN-MP" />
+        <meta name="geo.placename" content="Bhopal" />
+        <meta name="geo.position" content="23.2167;77.4352" />
+        <meta name="ICBM" content="23.2167, 77.4352" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -72,7 +100,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="antialiased">
+      <body className={`${geistSans.className} antialiased`}>
         <GTMNoScript />
         <Suspense fallback={null}>
           <FacebookPixel />

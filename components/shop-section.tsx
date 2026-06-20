@@ -266,7 +266,15 @@ export function ShopSection() {
                   </div>
                   
                   <div className="pt-8 space-y-4">
-                     <Button className="h-14 w-full rounded-2xl bg-[#ee6669] text-[10px] font-bold uppercase tracking-[0.16em] text-white shadow-xl shadow-[#ee6669]/20 transition-all hover:bg-[#222222]">
+                     <Button 
+                       onClick={() => {
+                         setIsDialogOpen(false)
+                         window.dispatchEvent(new CustomEvent('open-lead-modal', { 
+                           detail: { package: selectedPackage?.name } 
+                         }))
+                       }}
+                       className="h-14 w-full rounded-2xl bg-[#ee6669] text-[10px] font-bold uppercase tracking-[0.16em] text-white shadow-xl shadow-[#ee6669]/20 transition-all hover:bg-[#222222]"
+                     >
                         ENQUIRE ABOUT THIS PACKAGE
                      </Button>
                      <Button variant="outline" asChild className="h-14 w-full rounded-2xl border-zinc-200 text-[10px] font-bold uppercase tracking-[0.16em] text-[#222222] hover:bg-zinc-50">

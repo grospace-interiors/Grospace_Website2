@@ -2,14 +2,12 @@
 
 import { LandingNavigation } from '@/components/landing-navigation'
 import { LandingHero } from '@/components/landing-hero'
-import { LandingStats } from '@/components/landing-stats'
 import { LandingBudget } from '@/components/landing-budget'
-import { LandingWarranty } from '@/components/landing-warranty'
 import { LandingForm } from '@/components/landing-form'
 import { PriceEstimator } from '@/components/price-estimator'
 import { TestimonialsSection } from '@/components/testimonials-section'
+import { ProjectsSection } from '@/components/projects-section'
 import { FAQSection } from '@/components/faq-section'
-import { DesignCommentSection } from '@/components/design-comment-section'
 import { Button } from '@/components/ui/button'
 import { Footer } from '@/components/footer'
 import { motion } from 'framer-motion'
@@ -103,14 +101,8 @@ export default function HomeInteriorsLandingPage() {
           <div className="absolute top-0 right-0 w-1/3 h-full bg-zinc-50/50 -z-10 skew-x-12 translate-x-1/2" />
         </section>
 
-        {/* Stats & Trust Bar */}
-        <LandingStats />
-
         {/* Budget Section */}
         <LandingBudget />
-
-        {/* Warranty Section - DARK PREMIUM */}
-        <LandingWarranty />
 
         {/* Price Estimator Section - CREATIVE HERO MOTO */}
         <section className="relative overflow-hidden bg-zinc-50 py-16 lg:py-48">
@@ -208,14 +200,14 @@ export default function HomeInteriorsLandingPage() {
            </div>
         </section>
 
+        {/* Projects Showcase Section */}
+        <ProjectsSection limit={3} />
+
         {/* Testimonials */}
         <TestimonialsSection />
 
         {/* FAQ */}
         <FAQSection />
-
-        {/* DESIGN COMMENT SECTION */}
-        <DesignCommentSection />
 
         {/* Mobile Sticky CTA */}
         <motion.div 

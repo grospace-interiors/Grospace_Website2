@@ -104,19 +104,7 @@ export function LandingNavigation() {
         </div>
       </div>
       
-      {/* Mobile Quick Nav - Only visible when header is white (scrolled) AND scrolling down */}
-      <AnimatePresence>
-        {isScrolled && isScrollingDown && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="overflow-hidden border-t border-zinc-50"
-          >
-            <MobileQuickNav />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Mobile Quick Nav has been disabled for PPC Landing Page to prevent lead leaks */}
     </motion.nav>
   )
 }

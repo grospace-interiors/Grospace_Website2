@@ -36,6 +36,7 @@ import { useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { motion, AnimatePresence } from 'framer-motion'
 import * as fp from '@/lib/fpixel'
+import { supabase } from '@/lib/supabase'
 
 type Category = 'none' | 'home' | 'kitchen' | 'wardrobe'
 
@@ -44,15 +45,15 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
   const [category, setCategory] = useState<Category>(initialCategory)
   const [step, setStep] = useState(1)
   const [submitted, setSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [configs, setConfigs] = useState<any[]>([])
+  const [predictedPrice, setPredictedPrice] = useState<number | null>(null)
 
-  React.useEffect(() => {
-    if (category !== 'none') {
-      fp.customEvent('PriceCalculatorStarted', { 
-        category,
-        page_location: window.location.href
-      })
-    }
-  }, [category])
+  const formatPriceRange = (price: number) => {
+    const low = Math.round(price * 0.95);
+    const high = Math.round(price * 1.10);
+    return `₹${low.toLocaleString('en-IN')} - ₹${high.toLocaleString('en-IN')}`;
+  };
 
   const [formData, setFormData] = useState<any>({
     // Shared
@@ -60,7 +61,7 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
     phone: '',
     email: '',
     city: 'Bhopal',
-    whatsappPreferred: false,
+    whatsappPreferred: true,
     
     // Home Interior
     bhk: '',
@@ -71,10 +72,13 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
 
     // Kitchen
     layout: '',
-    kitchenSize: 50, 
+    platformLength: 120, 
+    kitchenSideA: 120,
+    kitchenSideB: 60,
+    kitchenSideC: 60,
     kitchenFinish: '',
+    kitchenHardware: '',
     kitchenAccessories: [] as string[],
-    countertop: '',
 
     // Wardrobe
     wardrobeType: '',
@@ -83,6 +87,152 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
     wardrobeFinish: '',
     wardrobeAccessories: [] as string[],
   })
+
+  // Fetch Configs
+  React.useEffect(() => {
+    async function fetchConfigs() {
+      let tableName = ''
+      if (category === 'kitchen') tableName = 'kitchen_calculator_config'
+      else if (category === 'wardrobe') tableName = 'wardrobe_calculator_config'
+      else if (category === 'home') tableName = 'home_calculator_config'
+
+      if (tableName) {
+        const { data } = await supabase.from(tableName).select('*').eq('is_active', true)
+        if (data) setConfigs(data)
+      } else {
+        setConfigs([])
+      }
+    }
+    fetchConfigs()
+  }, [category])
+
+  // Centralized Kitchen SQFT Calculation
+  const kitchenMetrics = useMemo(() => {
+    if (category !== 'kitchen') return { baseSQFT: 0, wallSQFT: 0, loftSQFT: 0, totalSQFT: 0, totalInches: 0 };
+    
+    let totalInches = 0
+    let overlaps = { base: 0, wall: 0, loft: 0 }
+
+    if (formData.layout === 'Straight' || formData.layout === 'Island Kitchen') {
+      totalInches = formData.platformLength
+      overlaps = { base: 0, wall: 0, loft: 0 }
+    } 
+    else if (formData.layout === 'L Shape') {
+      totalInches = formData.kitchenSideA + formData.kitchenSideB
+      overlaps = { base: 48, wall: 11, loft: 17 }
+    }
+    else if (formData.layout === 'Parallel') {
+      totalInches = formData.kitchenSideA + formData.kitchenSideB
+      overlaps = { base: 0, wall: 0, loft: 0 }
+    }
+    else if (formData.layout === 'U Shape') {
+      totalInches = formData.kitchenSideA + formData.kitchenSideB + formData.kitchenSideC
+      overlaps = { base: 96, wall: 22, loft: 34 } // Double the L-shape overlap
+    }
+
+    // Applying the Formula: ((TotalL - Overlap) * Height) / 144
+    const baseSQFT = Math.max(0, (totalInches - overlaps.base) * 33) / 144
+    const wallSQFT = Math.max(0, (totalInches - overlaps.wall) * 23) / 144
+    const loftSQFT = Math.max(0, (totalInches - overlaps.loft) * 40) / 144
+    const totalSQFT = baseSQFT + wallSQFT + loftSQFT
+
+    return { baseSQFT, wallSQFT, loftSQFT, totalSQFT, totalInches }
+  }, [category, formData.layout, formData.platformLength, formData.kitchenSideA, formData.kitchenSideB, formData.kitchenSideC])
+
+  // Live Price Calculation
+  React.useEffect(() => {
+    if (configs.length === 0) return
+
+    let total = 0
+    if (category === 'kitchen') {
+      const finishConfig = configs.find(c => c.package_name === formData.kitchenFinish && c.item_type === 'finish')
+      const hardwareConfig = configs.find(c => c.package_name === formData.kitchenHardware && c.item_type === 'hardware')
+      const countertopConfig = configs.find(c => c.package_name === formData.countertop && c.item_type === 'countertop')
+
+      // Rate Calculation: Finish Base + Hardware Extra
+      let sqftRate = 850 // Default Mica base
+      if (finishConfig) sqftRate = Number(finishConfig.base_price)
+      if (hardwareConfig) sqftRate += Number(hardwareConfig.base_price) // Hardware adds to base
+
+      total = kitchenMetrics.totalSQFT * sqftRate
+
+      // Countertop (RFT based)
+      if (countertopConfig) {
+        total += Number(countertopConfig.base_price) * (kitchenMetrics.totalInches / 12)
+      }
+      
+      // Dynamic Addons
+      formData.kitchenAccessories.forEach((addonName: string) => {
+        const addonConfig = configs.find(c => c.package_name === addonName && c.item_type === 'addon')
+        if (addonConfig) {
+          total += Number(addonConfig.base_price)
+        }
+      })
+    }
+    else if (category === 'wardrobe') {
+      const finishConfig = configs.find(c => c.package_name === formData.wardrobeFinish && c.item_type === 'finish')
+      if (finishConfig) {
+        total = formData.wardrobeWidth * formData.wardrobeHeight * Number(finishConfig.base_price)
+      } else {
+        // Fallback
+        const baseRate = formData.wardrobeFinish.includes('Gloss') ? 1800 : 1500
+        total = formData.wardrobeWidth * formData.wardrobeHeight * baseRate
+      }
+      
+      // Dynamic Wardrobe Accessories from DB
+      formData.wardrobeAccessories.forEach((addonName: string) => {
+        const addonConfig = configs.find(c => c.package_name === addonName && c.item_type === 'addon')
+        if (addonConfig) {
+          total += Number(addonConfig.base_price)
+        } else {
+          total += 3000 // Fallback
+        }
+      })
+    }
+    else if (category === 'home') {
+      // 1. BHK Base Price
+      const bhkConfig = configs.find(c => c.package_name === formData.bhk && c.item_type === 'bhk')
+      let totalHome = bhkConfig ? Number(bhkConfig.base_price) : (formData.bhk === '1 BHK' ? 250000 : formData.bhk === '2 BHK' ? 450000 : 650000)
+
+      // 2. Add spaces prices
+      formData.spaces.forEach((spaceName: string) => {
+        const spaceConfig = configs.find(c => c.package_name === spaceName && c.item_type === 'space')
+        if (spaceConfig) {
+          totalHome += Number(spaceConfig.base_price)
+        }
+      })
+
+      // 3. Style multiplier
+      const styleConfig = configs.find(c => c.package_name === formData.style && c.item_type === 'style')
+      if (styleConfig) {
+        totalHome *= Number(styleConfig.base_price)
+      }
+
+      // 4. Material multiplier
+      const materialConfig = configs.find(c => c.package_name === formData.material && c.item_type === 'material')
+      if (materialConfig) {
+        totalHome *= Number(materialConfig.base_price)
+      }
+
+      // 5. Budget Slider multiplier
+      if (formData.budget > 50) {
+        totalHome *= 1.3
+      }
+
+      total = totalHome
+    }
+
+    setPredictedPrice(total > 0 ? total : null)
+  }, [formData, configs, category])
+
+  React.useEffect(() => {
+    if (category !== 'none') {
+      fp.customEvent('PriceCalculatorStarted', { 
+        category,
+        page_location: window.location.href
+      })
+    }
+  }, [category])
 
   const reset = () => {
     if (initialCategory === 'none') {
@@ -128,6 +278,9 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
 
   const handleFinalSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (isSubmitting) return; // Prevent double submission
+    setIsSubmitting(true)
+    
     try {
       const response = await fetch('/api/enquiry', {
         method: 'POST',
@@ -175,6 +328,8 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
       }
     } catch (err) {
       console.error(err)
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -199,19 +354,19 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
           <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Personalized Quotation</p>
           <div className="space-y-2">
              <motion.p 
-                key={submitted ? 'final' : 'mock'}
+                key={submitted ? 'final' : 'live'}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="text-2xl lg:text-3xl font-serif font-light text-[#222222] tracking-tight leading-tight"
              >
-                {submitted ? (
-                  "Quotation Requested"
+                {submitted && predictedPrice ? (
+                  formatPriceRange(predictedPrice)
                 ) : (
-                  'Pending Your Selections'
+                  'Pending Submission'
                 )}
              </motion.p>
              <p className="text-[10px] text-zinc-400 italic uppercase tracking-[0.2em] font-medium leading-relaxed">
-               {submitted ? 'Our experts will call you with the best price' : 'Complete steps for a tailored estimate'}
+               {submitted ? 'Estimated Investment' : 'Complete the form to reveal your estimate'}
              </p>
           </div>
         </div>
@@ -257,8 +412,8 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
         <Button 
           className="w-full h-14 sm:h-16 bg-[#ee6669] hover:bg-[#222222] text-white font-bold uppercase tracking-[0.2em] text-[10px] rounded-[1.5rem] shadow-xl shadow-[#ee6669]/20 transition-all duration-500 group relative overflow-hidden"
           onClick={() => {
-            if (category === 'home') setStep(6)
-            else setStep(5)
+            if (category === 'wardrobe') setStep(5)
+            else setStep(6)
           }}
         >
           <span className="relative z-10 flex items-center justify-center">
@@ -271,6 +426,7 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
   )
 
   const CategoryCard = ({ type, title, desc, icon: Icon, img }: any) => (
+
     <motion.div 
       initial={{ opacity: 0, y: 40, scale: 0.95 }}
       whileInView={{ 
@@ -434,26 +590,29 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
         
         {/* Top Navigation & Progress */}
         <div className="mb-12 flex flex-col md:flex-row items-center gap-10">
-           <button onClick={reset} className="flex items-center gap-2.5 text-zinc-400 hover:text-[#ee6669] font-bold text-[11px] uppercase tracking-[0.2em] transition-all group shrink-0">
+           <button 
+             onClick={() => step > 1 ? prevStep() : reset()} 
+             className="flex items-center gap-2.5 text-zinc-400 hover:text-[#ee6669] font-bold text-[11px] uppercase tracking-[0.2em] transition-all group shrink-0"
+           >
              <div className="w-8 h-8 rounded-full border border-zinc-100 flex items-center justify-center group-hover:border-[#ee6669] transition-all">
                 <ChevronLeft className="w-4 h-4" />
              </div>
-             Go Back
+             {step > 1 ? 'Go to Previous' : 'Change Category'}
            </button>
            
            <div className="flex-grow w-full space-y-4">
               <div className="flex justify-between items-end">
                  <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.2em]">
-                   Step 0{step} <span className="text-zinc-200 mx-2">/</span> 0{category === 'home' ? 6 : 5}
+                   Step 0{step} <span className="text-zinc-200 mx-2">/</span> 0{category === 'wardrobe' ? 5 : 6}
                  </p>
                  <p className="text-[11px] font-bold text-[#ee6669] uppercase tracking-[0.2em]">
-                   {Math.round((step / (category === 'home' ? 6 : 5)) * 100)}% Completed
+                   {Math.round((step / (category === 'wardrobe' ? 5 : 6)) * 100)}% Completed
                  </p>
               </div>
               <div className="h-1 w-full bg-zinc-100 rounded-full overflow-hidden">
                 <motion.div 
                   initial={{ width: 0 }}
-                  animate={{ width: `${(step / (category === 'home' ? 6 : 5)) * 100}%` }}
+                  animate={{ width: `${(step / (category === 'wardrobe' ? 5 : 6)) * 100}%` }}
                   className="h-full bg-[#ee6669]" 
                   transition={{ duration: 1, ease: "easeOut" }}
                 />
@@ -476,28 +635,28 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
             <AnimatePresence mode="wait">
               {submitted ? (
                 <motion.div 
-                  key="success"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="max-w-3xl space-y-10"
+                key="success"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="max-w-3xl space-y-10"
                 >
-                    <div className="w-32 h-32 bg-green-50 rounded-[2rem] flex items-center justify-center border border-green-100 shadow-2xl shadow-green-600/5 rotate-3">
-                      <CheckCircle2 className="w-16 h-16 text-green-500" />
-                    </div>
-                    <div className="space-y-8">
-                      <h3 className="text-4xl lg:text-6xl font-serif font-light text-[#222222] leading-[1.05] tracking-tight">Thank you, <br /><span className="text-[#ee6669]">{formData.name.split(' ')[0]}!</span></h3>
-                      <p className="text-2xl text-zinc-500 font-light leading-relaxed max-w-2xl">
-                        Your personalized cost estimate breakdown has been generated and sent to your email. One of our senior design experts will reach out within <span className="text-[#222222] font-medium underline decoration-[#ee6669] decoration-2 underline-offset-4">24 hours</span> to discuss your Bhopal home project.
-                      </p>
-                    </div>
-                    <div className="pt-12 border-t border-zinc-100 flex flex-col sm:flex-row gap-8">
-                      <Button className="bg-[#222222] hover:bg-[#ee6669] text-white px-10 h-14 sm:h-16 rounded-[2rem] font-bold uppercase tracking-[0.2em] text-[11px] shadow-2xl transition-all" onClick={() => router.push('/projects')}>
-                          VIEW COMPLETED PROJECTS
-                      </Button>
-                      <Button variant="outline" className="border-zinc-200 px-10 h-14 sm:h-16 rounded-[2rem] font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-zinc-50 transition-all" onClick={reset}>
-                          RESTART ESTIMATOR
-                      </Button>
-                    </div>
+                  <div className="w-32 h-32 bg-green-50 rounded-[2rem] flex items-center justify-center border border-green-100 shadow-2xl shadow-green-600/5 rotate-3">
+                    <CheckCircle2 className="w-16 h-16 text-green-500" />
+                  </div>
+                  <div className="space-y-8">
+                    <h3 className="text-4xl lg:text-6xl font-serif font-light text-[#222222] leading-[1.05] tracking-tight">Your Estimate: <br /><span className="text-[#ee6669]">{predictedPrice ? formatPriceRange(predictedPrice) : 'Contacting Experts...'}</span></h3>
+                    <p className="text-2xl text-zinc-500 font-light leading-relaxed max-w-2xl">
+                      Thank you, {formData.name.split(' ')[0]}! Your personalized cost estimate range has been generated. One of our senior design experts will reach out within <span className="text-[#222222] font-medium underline decoration-[#ee6669] decoration-2 underline-offset-4">24 hours</span> to discuss your Bhopal home project.
+                    </p>
+                  </div>
+                  <div className="pt-12 border-t border-zinc-100 flex flex-col sm:flex-row gap-8">
+                    <Button className="bg-[#222222] hover:bg-[#ee6669] text-white px-10 h-14 sm:h-16 rounded-[2rem] font-bold uppercase tracking-[0.2em] text-[11px] shadow-2xl transition-all" onClick={() => router.push('/projects')}>
+                        VIEW COMPLETED PROJECTS
+                    </Button>
+                    <Button variant="outline" className="border-zinc-200 px-10 h-14 sm:h-16 rounded-[2rem] font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-zinc-50 transition-all" onClick={reset}>
+                        RESTART ESTIMATOR
+                    </Button>
+                  </div>
                 </motion.div>
               ) : (
                 <motion.div
@@ -670,43 +829,249 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
                       )}
 
                       {step === 2 && (
-                        <div className="space-y-8">
-                          <h3 className="text-4xl lg:text-6xl font-serif font-light text-[#222222]">Estimated <span className="text-[#ee6669]">Size</span></h3>
-                          <div className="max-w-3xl p-24 bg-white border border-zinc-100 rounded-[2rem] space-y-10 text-center shadow-[0_32px_64px_-16px_rgba(45,27,78,0.05)]">
-                             <div className="space-y-4">
-                                <h4 className="text-[120px] font-serif font-light text-[#ee6669] tracking-tighter leading-none">{formData.kitchenSize}</h4>
-                                <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.5em]">Total Square Feet</p>
+                        <div className="space-y-10">
+                          <h3 className="text-4xl lg:text-6xl font-serif font-light text-[#222222]">Platform <span className="text-[#ee6669]">Dimensions</span></h3>
+                          
+                          {/* Visual Layout Guide - Moved above sliders */}
+                          <div className="bg-zinc-50 rounded-[2rem] p-8 border border-zinc-100 flex flex-col md:flex-row items-center gap-8 shadow-sm">
+                             <div className="relative w-32 h-32 bg-white rounded-2xl border border-zinc-200 flex items-center justify-center overflow-hidden shadow-inner">
+                                {formData.layout === 'Straight' && (
+                                  <div className="w-20 h-4 bg-[#ee6669] rounded-sm relative">
+                                    <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-[9px] font-bold text-[#ee6669]">TOTAL</span>
+                                  </div>
+                                )}
+                                {formData.layout === 'L Shape' && (
+                                  <div className="w-20 h-20 relative">
+                                    <div className="absolute top-0 left-0 w-4 h-20 bg-[#ee6669] rounded-sm" />
+                                    <div className="absolute bottom-0 left-0 h-4 w-20 bg-[#ee6669] rounded-sm" />
+                                    <span className="absolute top-1/2 -left-5 -translate-y-1/2 text-[10px] font-bold text-[#ee6669]">A</span>
+                                    <span className="absolute -bottom-5 left-1/2 -translate-x-1/2 text-[10px] font-bold text-[#ee6669]">B</span>
+                                  </div>
+                                )}
+                                {formData.layout === 'Parallel' && (
+                                  <div className="w-20 h-20 relative flex justify-between">
+                                    <div className="w-4 h-20 bg-[#ee6669] rounded-sm relative">
+                                      <span className="absolute top-1/2 -left-5 -translate-y-1/2 text-[10px] font-bold text-[#ee6669]">A</span>
+                                    </div>
+                                    <div className="w-4 h-20 bg-[#ee6669] rounded-sm relative">
+                                      <span className="absolute top-1/2 -right-5 -translate-y-1/2 text-[10px] font-bold text-[#ee6669]">B</span>
+                                    </div>
+                                  </div>
+                                )}
+                                {formData.layout === 'U Shape' && (
+                                  <div className="w-20 h-20 relative">
+                                    <div className="absolute top-0 left-0 w-4 h-20 bg-[#ee6669] rounded-sm" />
+                                    <div className="absolute bottom-0 left-0 h-4 w-20 bg-[#ee6669] rounded-sm" />
+                                    <div className="absolute top-0 right-0 w-4 h-20 bg-[#ee6669] rounded-sm" />
+                                    <span className="absolute top-1/2 -left-5 -translate-y-1/2 text-[10px] font-bold text-[#ee6669]">A</span>
+                                    <span className="absolute -bottom-5 left-1/2 -translate-x-1/2 text-[10px] font-bold text-[#ee6669]">B</span>
+                                    <span className="absolute top-1/2 -right-5 -translate-y-1/2 text-[10px] font-bold text-[#ee6669]">C</span>
+                                  </div>
+                                )}
                              </div>
-                             <Slider 
-                              defaultValue={[formData.kitchenSize]} 
-                              min={20}
-                              max={300} 
-                              step={5} 
-                              className="w-full h-2"
-                              onValueChange={(val) => setFormData({...formData, kitchenSize: val[0]})}
-                             />
-                             <div className="text-[10px] text-zinc-400 uppercase tracking-[0.2em] font-bold flex items-center justify-center gap-4">
-                                <div className="w-1.5 h-1.5 rounded-full bg-zinc-100" />
-                                Slide to adjust your floor area
-                                <div className="w-1.5 h-1.5 rounded-full bg-zinc-100" />
+                             <div className="text-center md:text-left space-y-2">
+                                <p className="text-sm font-bold text-[#222222] uppercase tracking-widest">{formData.layout} Guide</p>
+                                <p className="text-xs text-zinc-500 max-w-[280px]">Match your kitchen's walls to the letters in the diagram to input the correct dimensions below.</p>
                              </div>
                           </div>
-                          <Button onClick={nextStep} className="bg-[#222222] hover:bg-[#ee6669] text-white px-10 h-14 sm:h-16 rounded-[2rem] font-bold uppercase tracking-[0.24em] text-[12px] shadow-2xl group transition-all">
-                            SET AREA & PROCEED <ArrowRight className="w-5 h-5 ml-4 group-hover:translate-x-1 transition-transform" />
+                          
+                          {(formData.layout === 'L Shape' || formData.layout === 'Parallel') && (
+                            <div className="grid md:grid-cols-2 gap-10 max-w-4xl">
+                              <div className="p-12 bg-white border border-zinc-100 rounded-[2rem] space-y-8 text-center shadow-[0_32px_64px_-16px_rgba(45,27,78,0.05)]">
+                                 <div className="space-y-2">
+                                    <div className="flex items-baseline justify-center text-[#ee6669]">
+                                      <input 
+                                        type="number" 
+                                        value={Math.floor(formData.kitchenSideA / 12)} 
+                                        onChange={(e) => setFormData({...formData, kitchenSideA: (Number(e.target.value) * 12) + (formData.kitchenSideA % 12)})} 
+                                        className="w-24 text-right bg-transparent focus:outline-none text-8xl font-serif font-light tracking-tighter leading-none border-b-2 border-transparent hover:border-zinc-200 focus:border-[#ee6669] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none transition-all" 
+                                      />
+                                      <span className="text-4xl ml-1 mr-4">ft</span>
+                                      <input 
+                                        type="number" 
+                                        value={formData.kitchenSideA % 12} 
+                                        onChange={(e) => setFormData({...formData, kitchenSideA: (Math.floor(formData.kitchenSideA / 12) * 12) + Number(e.target.value)})} 
+                                        className="w-20 text-right bg-transparent focus:outline-none text-8xl font-serif font-light tracking-tighter leading-none border-b-2 border-transparent hover:border-zinc-200 focus:border-[#ee6669] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none transition-all" 
+                                      />
+                                      <span className="text-4xl ml-1">in</span>
+                                    </div>
+                                    <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.5em]">{formData.layout === 'L Shape' ? 'Wall Side A' : 'Platform A'}</p>
+                                 </div>
+                                 <Slider 
+                                  defaultValue={[formData.kitchenSideA]} 
+                                  min={36} max={480} step={1} 
+                                  className="w-full h-2"
+                                  onValueChange={(val) => setFormData({...formData, kitchenSideA: val[0]})}
+                                 />
+                              </div>
+                              <div className="p-12 bg-white border border-zinc-100 rounded-[2rem] space-y-8 text-center shadow-[0_32px_64px_-16px_rgba(45,27,78,0.05)]">
+                                 <div className="space-y-2">
+                                    <div className="flex items-baseline justify-center text-[#ee6669]">
+                                      <input 
+                                        type="number" 
+                                        value={Math.floor(formData.kitchenSideB / 12)} 
+                                        onChange={(e) => setFormData({...formData, kitchenSideB: (Number(e.target.value) * 12) + (formData.kitchenSideB % 12)})} 
+                                        className="w-24 text-right bg-transparent focus:outline-none text-8xl font-serif font-light tracking-tighter leading-none border-b-2 border-transparent hover:border-zinc-200 focus:border-[#ee6669] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none transition-all" 
+                                      />
+                                      <span className="text-4xl ml-1 mr-4">ft</span>
+                                      <input 
+                                        type="number" 
+                                        value={formData.kitchenSideB % 12} 
+                                        onChange={(e) => setFormData({...formData, kitchenSideB: (Math.floor(formData.kitchenSideB / 12) * 12) + Number(e.target.value)})} 
+                                        className="w-20 text-right bg-transparent focus:outline-none text-8xl font-serif font-light tracking-tighter leading-none border-b-2 border-transparent hover:border-zinc-200 focus:border-[#ee6669] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none transition-all" 
+                                      />
+                                      <span className="text-4xl ml-1">in</span>
+                                    </div>
+                                    <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.5em]">{formData.layout === 'L Shape' ? 'Wall Side B' : 'Platform B'}</p>
+                                 </div>
+                                 <Slider 
+                                  defaultValue={[formData.kitchenSideB]} 
+                                  min={36} max={480} step={1} 
+                                  className="w-full h-2"
+                                  onValueChange={(val) => setFormData({...formData, kitchenSideB: val[0]})}
+                                 />
+                              </div>
+                            </div>
+                          )}
+
+                          {formData.layout === 'U Shape' && (
+                            <div className="grid md:grid-cols-3 gap-6 max-w-6xl">
+                              <div className="p-10 bg-white border border-zinc-100 rounded-[2rem] space-y-8 text-center shadow-[0_32px_64px_-16px_rgba(45,27,78,0.05)]">
+                                 <div className="space-y-2">
+                                    <div className="flex items-baseline justify-center text-[#ee6669]">
+                                      <input 
+                                        type="number" 
+                                        value={Math.floor(formData.kitchenSideA / 12)} 
+                                        onChange={(e) => setFormData({...formData, kitchenSideA: (Number(e.target.value) * 12) + (formData.kitchenSideA % 12)})} 
+                                        className="w-16 text-right bg-transparent focus:outline-none text-6xl font-serif font-light tracking-tighter leading-none border-b-2 border-transparent hover:border-zinc-200 focus:border-[#ee6669] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none transition-all" 
+                                      />
+                                      <span className="text-3xl ml-1 mr-2">ft</span>
+                                      <input 
+                                        type="number" 
+                                        value={formData.kitchenSideA % 12} 
+                                        onChange={(e) => setFormData({...formData, kitchenSideA: (Math.floor(formData.kitchenSideA / 12) * 12) + Number(e.target.value)})} 
+                                        className="w-14 text-right bg-transparent focus:outline-none text-6xl font-serif font-light tracking-tighter leading-none border-b-2 border-transparent hover:border-zinc-200 focus:border-[#ee6669] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none transition-all" 
+                                      />
+                                      <span className="text-3xl ml-1">in</span>
+                                    </div>
+                                    <p className="text-[9px] font-bold text-zinc-400 uppercase tracking-[0.4em]">Side A</p>
+                                 </div>
+                                 <Slider 
+                                  defaultValue={[formData.kitchenSideA]} 
+                                  min={36} max={480} step={1} 
+                                  className="w-full h-2"
+                                  onValueChange={(val) => setFormData({...formData, kitchenSideA: val[0]})}
+                                 />
+                              </div>
+                              <div className="p-10 bg-white border border-zinc-100 rounded-[2rem] space-y-8 text-center shadow-[0_32px_64px_-16px_rgba(45,27,78,0.05)]">
+                                 <div className="space-y-2">
+                                    <div className="flex items-baseline justify-center text-[#ee6669]">
+                                      <input 
+                                        type="number" 
+                                        value={Math.floor(formData.kitchenSideB / 12)} 
+                                        onChange={(e) => setFormData({...formData, kitchenSideB: (Number(e.target.value) * 12) + (formData.kitchenSideB % 12)})} 
+                                        className="w-16 text-right bg-transparent focus:outline-none text-6xl font-serif font-light tracking-tighter leading-none border-b-2 border-transparent hover:border-zinc-200 focus:border-[#ee6669] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none transition-all" 
+                                      />
+                                      <span className="text-3xl ml-1 mr-2">ft</span>
+                                      <input 
+                                        type="number" 
+                                        value={formData.kitchenSideB % 12} 
+                                        onChange={(e) => setFormData({...formData, kitchenSideB: (Math.floor(formData.kitchenSideB / 12) * 12) + Number(e.target.value)})} 
+                                        className="w-14 text-right bg-transparent focus:outline-none text-6xl font-serif font-light tracking-tighter leading-none border-b-2 border-transparent hover:border-zinc-200 focus:border-[#ee6669] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none transition-all" 
+                                      />
+                                      <span className="text-3xl ml-1">in</span>
+                                    </div>
+                                    <p className="text-[9px] font-bold text-zinc-400 uppercase tracking-[0.4em]">Side B</p>
+                                 </div>
+                                 <Slider 
+                                  defaultValue={[formData.kitchenSideB]} 
+                                  min={36} max={480} step={1} 
+                                  className="w-full h-2"
+                                  onValueChange={(val) => setFormData({...formData, kitchenSideB: val[0]})}
+                                 />
+                              </div>
+                              <div className="p-10 bg-white border border-zinc-100 rounded-[2rem] space-y-8 text-center shadow-[0_32px_64px_-16px_rgba(45,27,78,0.05)]">
+                                 <div className="space-y-2">
+                                    <div className="flex items-baseline justify-center text-[#ee6669]">
+                                      <input 
+                                        type="number" 
+                                        value={Math.floor(formData.kitchenSideC / 12)} 
+                                        onChange={(e) => setFormData({...formData, kitchenSideC: (Number(e.target.value) * 12) + (formData.kitchenSideC % 12)})} 
+                                        className="w-16 text-right bg-transparent focus:outline-none text-6xl font-serif font-light tracking-tighter leading-none border-b-2 border-transparent hover:border-zinc-200 focus:border-[#ee6669] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none transition-all" 
+                                      />
+                                      <span className="text-3xl ml-1 mr-2">ft</span>
+                                      <input 
+                                        type="number" 
+                                        value={formData.kitchenSideC % 12} 
+                                        onChange={(e) => setFormData({...formData, kitchenSideC: (Math.floor(formData.kitchenSideC / 12) * 12) + Number(e.target.value)})} 
+                                        className="w-14 text-right bg-transparent focus:outline-none text-6xl font-serif font-light tracking-tighter leading-none border-b-2 border-transparent hover:border-zinc-200 focus:border-[#ee6669] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none transition-all" 
+                                      />
+                                      <span className="text-3xl ml-1">in</span>
+                                    </div>
+                                    <p className="text-[9px] font-bold text-zinc-400 uppercase tracking-[0.4em]">Side C</p>
+                                 </div>
+                                 <Slider 
+                                  defaultValue={[formData.kitchenSideC]} 
+                                  min={36} max={480} step={1} 
+                                  className="w-full h-2"
+                                  onValueChange={(val) => setFormData({...formData, kitchenSideC: val[0]})}
+                                 />
+                              </div>
+                            </div>
+                          )}
+
+                          {(formData.layout === 'Straight' || formData.layout === 'Island Kitchen') && (
+                            <div className="max-w-3xl p-24 bg-white border border-zinc-100 rounded-[2rem] space-y-10 text-center shadow-[0_32px_64px_-16px_rgba(45,27,78,0.05)]">
+                               <div className="space-y-4">
+                                  <div className="flex items-baseline justify-center text-[#ee6669]">
+                                    <input 
+                                      type="number" 
+                                      value={Math.floor(formData.platformLength / 12)} 
+                                      onChange={(e) => setFormData({...formData, platformLength: (Number(e.target.value) * 12) + (formData.platformLength % 12)})} 
+                                      className="w-32 text-right bg-transparent focus:outline-none text-[120px] font-serif font-light tracking-tighter leading-none border-b-2 border-transparent hover:border-zinc-200 focus:border-[#ee6669] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none transition-all" 
+                                    />
+                                    <span className="text-6xl ml-1 mr-6">ft</span>
+                                    <input 
+                                      type="number" 
+                                      value={formData.platformLength % 12} 
+                                      onChange={(e) => setFormData({...formData, platformLength: (Math.floor(formData.platformLength / 12) * 12) + Number(e.target.value)})} 
+                                      className="w-24 text-right bg-transparent focus:outline-none text-[120px] font-serif font-light tracking-tighter leading-none border-b-2 border-transparent hover:border-zinc-200 focus:border-[#ee6669] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none transition-all" 
+                                    />
+                                    <span className="text-6xl ml-1">in</span>
+                                  </div>
+                                  <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.5em]">Total Length</p>
+                               </div>
+                               <Slider 
+                                defaultValue={[formData.platformLength]} 
+                                min={60} max={600} step={1} 
+                                className="w-full h-2"
+                                onValueChange={(val) => setFormData({...formData, platformLength: val[0]})}
+                               />
+                            </div>
+                          )}
+
+                          <div className="text-[10px] text-zinc-400 uppercase tracking-[0.2em] font-bold flex items-center justify-center gap-4">
+                              <div className="w-1.5 h-1.5 rounded-full bg-zinc-100" />
+                              {formData.layout === 'L Shape' ? 'Adjust dimensions for both walls of your L-shaped kitchen' : 'Slide to adjust the total running length of your kitchen platform'}
+                              <div className="w-1.5 h-1.5 rounded-full bg-zinc-100" />
+                          </div>
+
+                          <Button onClick={nextStep} className="bg-[#222222] hover:bg-[#ee6669] text-white px-10 h-14 sm:h-16 rounded-[2rem] font-bold uppercase tracking-[0.24em] text-[12px] shadow-2xl group transition-all w-full md:w-auto">
+                            SET DIMENSIONS & PROCEED <ArrowRight className="w-5 h-5 ml-4 group-hover:translate-x-1 transition-transform" />
                           </Button>
                         </div>
                       )}
 
                       {step === 3 && (
                          <div className="space-y-8">
-                          <h3 className="text-4xl lg:text-6xl font-serif font-light text-[#222222]">Material <span className="text-[#ee6669]">Finish</span></h3>
+                          <h3 className="text-4xl lg:text-6xl font-serif font-light text-[#222222]">Kitchen <span className="text-[#ee6669]">Finish</span></h3>
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            {['Glossy Acrylic', 'Premium Laminate', 'Matte PU', 'Glass Finish'].map(item => (
+                            {['Normal Mica', 'Acrylic', 'Premium Laminate', 'Glossy Acrylic', 'Matte PU'].map(item => (
                               <button 
                                 key={item} 
                                 onClick={() => { setFormData({...formData, kitchenFinish: item}); nextStep(); }}
                                 className={cn(
-                                  "p-8 rounded-[2rem] border-2 transition-all duration-500 font-bold text-sm uppercase tracking-[0.24em] group relative",
+                                  "p-10 rounded-[2rem] border-2 transition-all duration-500 font-bold text-sm uppercase tracking-[0.24em] group relative",
                                   formData.kitchenFinish === item ? "border-[#ee6669] bg-[#ee6669]/5 text-[#ee6669] shadow-xl" : "border-zinc-50 bg-white text-zinc-400 hover:border-[#ee6669]/20"
                                 )}
                               >
@@ -720,47 +1085,55 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
 
                       {step === 4 && (
                         <div className="space-y-8">
-                          <h3 className="text-4xl lg:text-6xl font-serif font-light text-[#222222]">Select <span className="text-[#ee6669]">Accessories</span></h3>
-                          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-                            {['Tandem Drawers', 'Tall Unit', 'Corner Unit', 'Pantry', 'Soft Close'].map(item => (
+                          <h3 className="text-4xl lg:text-6xl font-serif font-light text-[#222222]">Hardware <span className="text-[#ee6669]">System</span></h3>
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            {[
+                              { id: 'Tandem Drawers', desc: 'Premium soft-close runner system' },
+                              { id: 'Jali / Normal', desc: 'Economic basket system' },
+                              { id: 'Perforated', desc: 'Durable ventilated baskets' }
+                            ].map(item => (
                               <button 
-                                key={item} 
-                                onClick={() => toggleSelection('kitchenAccessories', item)}
+                                key={item.id} 
+                                onClick={() => { setFormData({...formData, kitchenHardware: item.id}); nextStep(); }}
                                 className={cn(
-                                  "p-8 rounded-[2rem] border-2 transition-all duration-500 flex items-center justify-center text-center group relative overflow-hidden active:scale-95 md:active:scale-100",
-                                  formData.kitchenAccessories.includes(item) ? "border-[#ee6669] bg-[#ee6669]/5 text-[#ee6669] shadow-xl" : "border-zinc-50 bg-white text-zinc-400 hover:border-[#ee6669]/20 hover:shadow-xl"
+                                  "p-10 rounded-[2rem] border-2 transition-all duration-500 text-left group relative",
+                                  formData.kitchenHardware === item.id ? "border-[#ee6669] bg-[#ee6669]/5 text-[#ee6669] shadow-xl" : "border-zinc-50 bg-white text-zinc-400 hover:border-[#ee6669]/20"
                                 )}
                               >
-                                <span className="text-[10px] font-bold uppercase tracking-[0.2em]">{item}</span>
-                                {formData.kitchenAccessories.includes(item) && <div className="absolute top-4 right-4 w-1.5 h-1.5 rounded-full bg-[#ee6669]" />}
+                                <p className="font-bold text-sm uppercase tracking-[0.24em] mb-2">{item.id}</p>
+                                <p className="text-[10px] opacity-60 tracking-widest uppercase">{item.desc}</p>
+                                {formData.kitchenHardware === item.id && <div className="absolute top-1/2 right-10 -translate-y-1/2 w-2 h-2 rounded-full bg-[#ee6669]" />}
                               </button>
                             ))}
-                          </div>
-                          <div className="pt-8">
-                            <Button onClick={nextStep} className="bg-[#222222] hover:bg-[#ee6669] text-white px-10 h-14 sm:h-16 rounded-[2rem] font-bold uppercase tracking-[0.24em] text-[12px] shadow-2xl group transition-all">
-                              CONFIRM ACCESSORIES <ArrowRight className="w-5 h-5 ml-4 group-hover:translate-x-1 transition-transform" />
-                            </Button>
                           </div>
                         </div>
                       )}
 
                       {step === 5 && (
-                        <div className="space-y-8">
-                          <h3 className="text-4xl lg:text-6xl font-serif font-light text-[#222222]">Countertop <span className="text-[#ee6669]">Selection</span></h3>
-                          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            {['Quartz', 'Granite', 'Marble'].map(item => (
-                              <button 
-                                key={item} 
-                                onClick={() => { setFormData({...formData, countertop: item}); nextStep(); }}
-                                className={cn(
-                                  "p-16 rounded-[2rem] border-2 transition-all duration-500 font-bold uppercase tracking-[0.2em] text-[11px] group relative",
-                                  formData.countertop === item ? "border-[#ee6669] bg-[#ee6669]/5 text-[#ee6669] shadow-xl" : "border-zinc-50 bg-white text-zinc-400 hover:border-[#ee6669]/20"
-                                )}
-                              >
-                                {item}
-                                {formData.countertop === item && <div className="absolute top-4 right-4 w-1.5 h-1.5 rounded-full bg-[#ee6669]" />}
-                              </button>
-                            ))}
+                        <div className="space-y-12">
+                          <div className="space-y-8">
+                            <h3 className="text-4xl lg:text-6xl font-serif font-light text-[#222222]">Select <span className="text-[#ee6669]">Add-ons</span></h3>
+                            <div className="grid grid-cols-2 md:grid-cols-2 gap-6">
+                              {['Tall Unit', 'Corner Unit', 'Pantry', 'Rolling Shutter'].map(item => (
+                                <button 
+                                  key={item} 
+                                  onClick={() => toggleSelection('kitchenAccessories', item)}
+                                  className={cn(
+                                    "p-8 rounded-[2rem] border-2 transition-all duration-500 flex items-center justify-center text-center group relative overflow-hidden active:scale-95 md:active:scale-100",
+                                    formData.kitchenAccessories.includes(item) ? "border-[#ee6669] bg-[#ee6669]/5 text-[#ee6669] shadow-xl" : "border-zinc-50 bg-white text-zinc-400 hover:border-[#ee6669]/20 hover:shadow-xl"
+                                  )}
+                                >
+                                  <span className="text-[10px] font-bold uppercase tracking-[0.2em]">{item}</span>
+                                  {formData.kitchenAccessories.includes(item) && <div className="absolute top-4 right-4 w-1.5 h-1.5 rounded-full bg-[#ee6669]" />}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+
+                          <div className="pt-8">
+                            <Button onClick={nextStep} className="bg-[#222222] hover:bg-[#ee6669] text-white px-10 h-14 sm:h-16 rounded-[2rem] font-bold uppercase tracking-[0.24em] text-[12px] shadow-2xl group transition-all">
+                              REVIEW SELECTIONS & PROCEED <ArrowRight className="w-5 h-5 ml-4 group-hover:translate-x-1 transition-transform" />
+                            </Button>
                           </div>
                         </div>
                       )}
@@ -796,26 +1169,72 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
                             <h3 className="text-4xl lg:text-6xl font-serif font-light text-[#222222]">Input <span className="text-[#ee6669]">Dimensions</span></h3>
                             <div className="grid md:grid-cols-2 gap-10 max-w-3xl">
                               <div className="space-y-8 p-8 bg-zinc-50 border border-zinc-100 rounded-[2rem]">
-                                 <div className="flex justify-between items-end px-4">
-                                    <label className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.24em]">Width (FT)</label>
-                                    <span className="text-5xl font-serif text-[#ee6669] leading-none">{formData.wardrobeWidth}</span>
+                                 <div className="flex flex-col items-center justify-center space-y-4 pt-4">
+                                    <div className="flex items-baseline justify-center text-[#ee6669]">
+                                      <input 
+                                        type="number" 
+                                        value={Math.floor(formData.wardrobeWidth)} 
+                                        onChange={(e) => {
+                                          const ft = Number(e.target.value);
+                                          const inches = (formData.wardrobeWidth % 1) * 12;
+                                          setFormData({...formData, wardrobeWidth: ft + (inches / 12)});
+                                        }} 
+                                        className="w-16 text-right bg-transparent focus:outline-none text-6xl font-serif font-light tracking-tighter leading-none border-b-2 border-transparent hover:border-zinc-200 focus:border-[#ee6669] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none transition-all" 
+                                      />
+                                      <span className="text-3xl ml-1 mr-4">ft</span>
+                                      <input 
+                                        type="number" 
+                                        value={Math.round((formData.wardrobeWidth % 1) * 12)} 
+                                        onChange={(e) => {
+                                          const ft = Math.floor(formData.wardrobeWidth);
+                                          const inches = Number(e.target.value);
+                                          setFormData({...formData, wardrobeWidth: ft + (inches / 12)});
+                                        }} 
+                                        className="w-16 text-right bg-transparent focus:outline-none text-6xl font-serif font-light tracking-tighter leading-none border-b-2 border-transparent hover:border-zinc-200 focus:border-[#ee6669] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none transition-all" 
+                                      />
+                                      <span className="text-3xl ml-1">in</span>
+                                    </div>
+                                    <label className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.24em]">Wardrobe Width</label>
                                  </div>
                                  <Slider 
                                     defaultValue={[formData.wardrobeWidth]} 
-                                    min={3} max={20} step={0.5} 
-                                    className="w-full"
+                                    min={3} max={20} step={1/12} 
+                                    className="w-full h-2"
                                     onValueChange={(val) => setFormData({...formData, wardrobeWidth: val[0]})}
                                  />
                               </div>
                               <div className="space-y-8 p-8 bg-zinc-50 border border-zinc-100 rounded-[2rem]">
-                                 <div className="flex justify-between items-end px-4">
-                                    <label className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.24em]">Height (FT)</label>
-                                    <span className="text-5xl font-serif text-[#ee6669] leading-none">{formData.wardrobeHeight}</span>
+                                 <div className="flex flex-col items-center justify-center space-y-4 pt-4">
+                                    <div className="flex items-baseline justify-center text-[#ee6669]">
+                                      <input 
+                                        type="number" 
+                                        value={Math.floor(formData.wardrobeHeight)} 
+                                        onChange={(e) => {
+                                          const ft = Number(e.target.value);
+                                          const inches = (formData.wardrobeHeight % 1) * 12;
+                                          setFormData({...formData, wardrobeHeight: ft + (inches / 12)});
+                                        }} 
+                                        className="w-16 text-right bg-transparent focus:outline-none text-6xl font-serif font-light tracking-tighter leading-none border-b-2 border-transparent hover:border-zinc-200 focus:border-[#ee6669] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none transition-all" 
+                                      />
+                                      <span className="text-3xl ml-1 mr-4">ft</span>
+                                      <input 
+                                        type="number" 
+                                        value={Math.round((formData.wardrobeHeight % 1) * 12)} 
+                                        onChange={(e) => {
+                                          const ft = Math.floor(formData.wardrobeHeight);
+                                          const inches = Number(e.target.value);
+                                          setFormData({...formData, wardrobeHeight: ft + (inches / 12)});
+                                        }} 
+                                        className="w-16 text-right bg-transparent focus:outline-none text-6xl font-serif font-light tracking-tighter leading-none border-b-2 border-transparent hover:border-zinc-200 focus:border-[#ee6669] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none transition-all" 
+                                      />
+                                      <span className="text-3xl ml-1">in</span>
+                                    </div>
+                                    <label className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.24em]">Wardrobe Height</label>
                                  </div>
                                  <Slider 
                                     defaultValue={[formData.wardrobeHeight]} 
-                                    min={5} max={10} step={0.5} 
-                                    className="w-full"
+                                    min={5} max={12} step={1/12} 
+                                    className="w-full h-2"
                                     onValueChange={(val) => setFormData({...formData, wardrobeHeight: val[0]})}
                                  />
                               </div>
@@ -830,7 +1249,7 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
                           <div className="space-y-8">
                             <h3 className="text-4xl lg:text-6xl font-serif font-light text-[#222222]">Finish <span className="text-[#ee6669]">Type</span></h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                              {['Matte', 'High Gloss', 'Wood Texture', 'Glass Finish'].map(item => (
+                              {['Laminates', 'Mica', 'Premium Matt Finish', 'Acrylic High Gloss', 'Acrylic'].map(item => (
                                 <button 
                                   key={item} 
                                   onClick={() => { setFormData({...formData, wardrobeFinish: item}); nextStep(); }}
@@ -876,11 +1295,16 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
                   )}
 
                   {/* --- SHARED CONTACT FORM (FINAL STEP) --- */}
-                  {((category === 'home' && step === 6) || (category !== 'home' && step === 5)) && (
+                  {((category === 'home' && step === 6) || (category === 'kitchen' && step === 6) || (category === 'wardrobe' && step === 5)) && (
+
                      <div className="max-w-3xl space-y-10">
                         <div className="space-y-6">
-                          <h3 className="text-4xl lg:text-6xl font-serif font-light text-[#222222] leading-[1.1] tracking-tight">Your Estimate <br /><span className="text-[#ee6669]">is Ready.</span></h3>
-                          <p className="text-xl text-zinc-500 font-light leading-relaxed max-w-2xl">Enter your details to receive your personalized estimate breakdown and book a professional site visit for your project in Bhopal.</p>
+                          <h3 className="text-4xl lg:text-6xl font-serif font-light text-[#222222] leading-[1.1] tracking-tight">
+                            Almost <span className="text-[#ee6669]">Done!</span>
+                          </h3>
+                          <p className="text-xl text-zinc-500 font-light leading-relaxed max-w-2xl">
+                            Our experts are calculating your exact cost in the background. Fill out this form to reveal your estimate and receive a detailed quotation on WhatsApp.
+                          </p>
                         </div>
                         
                         <form onSubmit={handleFinalSubmit} className="space-y-10">
@@ -951,9 +1375,9 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
                           </div>
 
                           <div className="pt-8">
-                             <Button type="submit" className="w-full h-14 sm:h-16 bg-[#ee6669] hover:bg-[#222222] text-white font-bold uppercase tracking-[0.24em] text-[12px] rounded-[2rem] shadow-[0_24px_48px_-12px_rgba(238,102,105,0.25)] transition-all active:scale-[0.98] group relative overflow-hidden">
+                             <Button disabled={isSubmitting} type="submit" className="w-full h-14 sm:h-16 bg-[#ee6669] hover:bg-[#222222] text-white font-bold uppercase tracking-[0.24em] text-[12px] rounded-[2rem] shadow-[0_24px_48px_-12px_rgba(238,102,105,0.25)] transition-all active:scale-[0.98] group relative overflow-hidden">
                                <span className="relative z-10 flex items-center justify-center">
-                                  GET MY DETAILED QUOTE <ArrowRight className="w-5 h-5 ml-4 group-hover:translate-x-1 transition-transform" />
+                                  {isSubmitting ? 'CALCULATING...' : 'GET MY DETAILED QUOTE'} {!isSubmitting && <ArrowRight className="w-5 h-5 ml-4 group-hover:translate-x-1 transition-transform" />}
                                </span>
                                <div className="absolute inset-0 bg-[#222222] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                              </Button>
@@ -969,7 +1393,7 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
             </AnimatePresence>
 
             {/* Back Navigation */}
-            {!submitted && step > 1 && !((category === 'home' && step === 6) || (category !== 'home' && step === 5)) && (
+            {!submitted && step > 1 && step < 6 && (
                <button onClick={prevStep} className="mt-12 flex items-center gap-2 text-[11px] font-bold text-zinc-400 hover:text-[#ee6669] uppercase tracking-[0.2em] transition-all group">
                  <ChevronLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> Back to Previous
                </button>
