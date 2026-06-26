@@ -45,7 +45,7 @@ export function LandingBudget() {
       id: '1',
       title: '2BHK Interiors',
       subtitle: 'Starting from',
-      price_text: '₹X Lakh',
+      price_text: '₹4.5 Lakh',
       description: 'Complete interiors planned for modern 2BHK homes.',
       features: ['Modular Kitchen', 'Wardrobes', 'TV Unit', 'Smart Storage'],
       footer_text: 'Ideal for compact family homes.',
@@ -55,7 +55,7 @@ export function LandingBudget() {
       id: '2',
       title: '3BHK Interiors',
       subtitle: 'Starting from',
-      price_text: '₹X Lakh',
+      price_text: '₹6.5 Lakh',
       description: 'Full-home interiors for larger family spaces.',
       features: ['Modular Kitchen', 'Multiple Wardrobes', 'Living Room Unit', 'False Ceiling'],
       footer_text: 'Designed for spacious family living.',
@@ -75,7 +75,7 @@ export function LandingBudget() {
       id: '4',
       title: 'Wardrobes',
       subtitle: 'Starting from',
-      price_text: '₹X',
+      price_text: '₹50,000',
       description: 'Space-saving wardrobes with practical internal storage.',
       features: ['Sliding Options', 'Hinged Options', 'Internal Storage', 'Modern Finishes'],
       footer_text: 'Designed for organized bedrooms.',
@@ -88,16 +88,10 @@ export function LandingBudget() {
     .filter((item) => preferredTitles.includes(item.title))
     .map((item) => {
       if (item.title === 'Wardrobe Designs') {
-        return { ...item, title: 'Wardrobes', subtitle: 'Starting from', price_text: '₹X' }
-      }
-      if (item.title === '2BHK Interiors') {
-        return { ...item, subtitle: 'Starting from', price_text: '₹X Lakh' }
-      }
-      if (item.title === '3BHK Interiors') {
-        return { ...item, subtitle: 'Starting from', price_text: '₹X Lakh' }
-      }
-      if (item.title === 'Modular Kitchens') {
-        return { ...item, subtitle: 'Starting from', price_text: '₹1.2 Lakh' }
+        return { 
+          ...item, 
+          title: 'Wardrobes'
+        }
       }
       return item
     })
