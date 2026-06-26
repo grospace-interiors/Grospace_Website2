@@ -214,11 +214,6 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
         totalHome *= Number(materialConfig.base_price)
       }
 
-      // 5. Budget Slider multiplier
-      if (formData.budget > 50) {
-        totalHome *= 1.3
-      }
-
       total = totalHome
     }
 
@@ -408,19 +403,6 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
               <span className="font-bold flex items-center gap-2.5 text-[#222222]"><ShieldCheck className="w-4 h-4 text-green-600" /> Expert Execution</span>
            </div>
         </div>
-
-        <Button 
-          className="w-full h-14 sm:h-16 bg-[#ee6669] hover:bg-[#222222] text-white font-bold uppercase tracking-[0.2em] text-[10px] rounded-[1.5rem] shadow-xl shadow-[#ee6669]/20 transition-all duration-500 group relative overflow-hidden"
-          onClick={() => {
-            if (category === 'wardrobe') setStep(5)
-            else setStep(6)
-          }}
-        >
-          <span className="relative z-10 flex items-center justify-center">
-            REQUEST CUSTOM QUOTE <ArrowRight className="w-4 h-4 ml-3 group-hover:translate-x-1 transition-transform" />
-          </span>
-          <div className="absolute inset-0 bg-[#222222] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-        </Button>
       </div>
     </div>
   )
@@ -448,7 +430,14 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
         router.push(path)
       }}
     >
-      <Image src={img} alt={title} fill className="object-cover transition-transform duration-[3000ms] group-hover:scale-110" />
+      <Image 
+        src={img} 
+        alt={title} 
+        fill 
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 33vw"
+        priority={type === 'home'} 
+        className="object-cover transition-transform duration-[3000ms] group-hover:scale-110" 
+      />
       <div className="absolute inset-0 bg-gradient-to-t from-[#222222] via-[#222222]/60 to-transparent opacity-95 group-hover:opacity-100 transition-opacity duration-700" />
       
       <div className="absolute inset-0 flex flex-col items-center justify-end space-y-5 p-6 text-center sm:space-y-10 sm:p-16">
@@ -603,16 +592,16 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
            <div className="flex-grow w-full space-y-4">
               <div className="flex justify-between items-end">
                  <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.2em]">
-                   Step 0{step} <span className="text-zinc-200 mx-2">/</span> 0{category === 'wardrobe' ? 5 : 6}
+                   Step 0{step} <span className="text-zinc-200 mx-2">/</span> 0{category === 'kitchen' ? 6 : 5}
                  </p>
                  <p className="text-[11px] font-bold text-[#ee6669] uppercase tracking-[0.2em]">
-                   {Math.round((step / (category === 'wardrobe' ? 5 : 6)) * 100)}% Completed
+                   {Math.round((step / (category === 'kitchen' ? 6 : 5)) * 100)}% Completed
                  </p>
               </div>
               <div className="h-1 w-full bg-zinc-100 rounded-full overflow-hidden">
                 <motion.div 
                   initial={{ width: 0 }}
-                  animate={{ width: `${(step / (category === 'wardrobe' ? 5 : 6)) * 100}%` }}
+                  animate={{ width: `${(step / (category === 'kitchen' ? 6 : 5)) * 100}%` }}
                   className="h-full bg-[#ee6669]" 
                   transition={{ duration: 1, ease: "easeOut" }}
                 />
@@ -697,11 +686,13 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
                           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
                             {[
                               { id: 'Kitchen', icon: Zap },
-                              { id: 'Wardrobe', icon: Award },
+                              { id: 'Living Room Display', icon: Award },
                               { id: 'TV Unit', icon: Layout },
                               { id: 'False Ceiling', icon: Layers },
                               { id: 'Mandir', icon: Sparkles },
                               { id: 'Study Unit', icon: Briefcase },
+                              { id: 'Sofa', icon: Home },
+                              { id: 'Partition (Living Room)', icon: Maximize2 },
                             ].map(item => (
                               <button 
                                 key={item.id} 
@@ -770,35 +761,6 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
                               </button>
                             ))}
                           </div>
-                        </div>
-                      )}
-
-                      {step === 5 && (
-                        <div className="space-y-8">
-                          <h3 className="text-4xl lg:text-6xl font-serif font-light text-[#222222]">Preferred <span className="text-[#ee6669]">Budget Range</span></h3>
-                          <div className="max-w-3xl p-8 bg-white border border-zinc-100 rounded-[2rem] space-y-10 shadow-[0_32px_64px_-16px_rgba(45,27,78,0.05)] relative overflow-hidden">
-                             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-zinc-50 via-[#ee6669]/20 to-zinc-50" />
-                             <Slider 
-                              defaultValue={[formData.budget]} 
-                              max={100} 
-                              step={1} 
-                              className="w-full h-2"
-                              onValueChange={(val) => setFormData({...formData, budget: val[0]})}
-                             />
-                             <div className="grid grid-cols-2 gap-10">
-                                <div className="space-y-3 p-8 rounded-[2rem] bg-zinc-50 border border-zinc-100">
-                                  <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.2em] block">Economic Range</span>
-                                  <span className="text-xl font-serif text-[#222222]">Essential Interiors</span>
-                                </div>
-                                <div className="space-y-3 p-8 rounded-[2rem] bg-[#222222] border border-[#222222]">
-                                  <span className="text-[10px] font-bold text-[#ee6669] uppercase tracking-[0.2em] block">Signature Range</span>
-                                  <span className="text-xl font-serif text-white">Luxury Experience</span>
-                                </div>
-                             </div>
-                          </div>
-                          <Button onClick={nextStep} className="bg-[#222222] hover:bg-[#ee6669] text-white px-10 h-14 sm:h-16 rounded-[2rem] font-bold uppercase tracking-[0.24em] text-[12px] transition-all shadow-2xl group">
-                            CONTINUE TO FINAL QUOTE <ArrowRight className="w-5 h-5 ml-4 group-hover:translate-x-1 transition-transform" />
-                          </Button>
                         </div>
                       )}
                     </div>
@@ -1249,7 +1211,7 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
                           <div className="space-y-8">
                             <h3 className="text-4xl lg:text-6xl font-serif font-light text-[#222222]">Finish <span className="text-[#ee6669]">Type</span></h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                              {['Laminates', 'Mica', 'Premium Matt Finish', 'Acrylic High Gloss', 'Acrylic'].map(item => (
+                              {['Mica', 'Acrylic', 'Premium Matt Finish', 'Veneer'].map(item => (
                                 <button 
                                   key={item} 
                                   onClick={() => { setFormData({...formData, wardrobeFinish: item}); nextStep(); }}
@@ -1270,7 +1232,7 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
                           <div className="space-y-8">
                             <h3 className="text-4xl lg:text-6xl font-serif font-light text-[#222222]">Internal <span className="text-[#ee6669]">Accessories</span></h3>
                             <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-                              {['Drawers', 'Shoe Rack', 'Jewelry Unit', 'Full Mirror', 'Loft Unit'].map(item => (
+                              {['Drawers', 'Shoe Rack', 'Jewelry Unit', 'Full Mirror', 'Pull Down Hanger', 'Trouser Organiser'].map(item => (
                                 <button 
                                   key={item} 
                                   onClick={() => toggleSelection('wardrobeAccessories', item)}
@@ -1295,7 +1257,7 @@ export function PriceEstimator({ initialCategory = 'none' }: { initialCategory?:
                   )}
 
                   {/* --- SHARED CONTACT FORM (FINAL STEP) --- */}
-                  {((category === 'home' && step === 6) || (category === 'kitchen' && step === 6) || (category === 'wardrobe' && step === 5)) && (
+                  {((category === 'home' && step === 5) || (category === 'kitchen' && step === 6) || (category === 'wardrobe' && step === 5)) && (
 
                      <div className="max-w-3xl space-y-10">
                         <div className="space-y-6">

@@ -131,15 +131,19 @@ DO UPDATE SET
     is_active = true;
 
 -- Home space options must match current frontend labels exactly:
--- ['Kitchen', 'Wardrobe', 'TV Unit', 'False Ceiling', 'Mandir', 'Study Unit']
+-- ['Kitchen', 'Living Room Display', 'TV Unit', 'False Ceiling', 'Mandir', 'Study Unit', 'Sofa', 'Partition (Living Room)']
+DELETE FROM home_calculator_config WHERE item_type = 'space' AND package_name = 'Wardrobe';
+
 INSERT INTO home_calculator_config (item_type, package_name, base_price, unit)
 VALUES
 ('space', 'Kitchen', 120000, 'UNIT'),
-('space', 'Wardrobe', 80000, 'UNIT'),
+('space', 'Living Room Display', 80000, 'UNIT'),
 ('space', 'TV Unit', 40000, 'UNIT'),
 ('space', 'False Ceiling', 50000, 'UNIT'),
 ('space', 'Mandir', 25000, 'UNIT'),
-('space', 'Study Unit', 30000, 'UNIT')
+('space', 'Study Unit', 30000, 'UNIT'),
+('space', 'Sofa', 50000, 'UNIT'),
+('space', 'Partition (Living Room)', 35000, 'UNIT')
 ON CONFLICT (item_type, package_name)
 DO UPDATE SET
     base_price = EXCLUDED.base_price,
